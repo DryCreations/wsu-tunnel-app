@@ -1,6 +1,6 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "Sample AWS CloudFormation template: This template creates a VPC and adds an EC2 instance with an Elastic IP address and a security group configured for use at Wright State University (and other specified network). This template only works in US-EAST AWS regions (Virginia and Ohio.  **WARNING** This template creates an Amazon EC2 instance. You will be billed for the AWS resources used.",
+    "Description": "This template should create an Ubuntu server and create files on it.",
     "Parameters": {
         "InstanceType": {
             "Description": "WebServer EC2 instance type",
@@ -84,6 +84,11 @@
                         "Value": "Senior-Design-team30"
                     }
                 ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "319a17f4-c266-4ba8-9e1d-1b8c734c54f9"
+                }
             }
         },
         "Subnet": {
@@ -101,6 +106,11 @@
                         }
                     }
                 ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "021bc877-a898-4bd1-b917-390353d74a6f"
+                }
             }
         },
         "InternetGateway": {
@@ -114,6 +124,11 @@
                         }
                     }
                 ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "8345f332-952b-4990-830d-87e19e4f9d46"
+                }
             }
         },
         "AttachGateway": {
@@ -124,6 +139,11 @@
                 },
                 "InternetGatewayId": {
                     "Ref": "InternetGateway"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "c849e352-efb8-4393-ae02-f5d564e9c909"
                 }
             }
         },
@@ -141,16 +161,31 @@
                         }
                     }
                 ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "5802b918-a740-43dd-a605-fe9143ffca4b"
+                }
             }
         },
         "Route": {
             "Type": "AWS::EC2::Route",
-            "DependsOn": "AttachGateway",
+            "DependsOn": [
+                "AttachGateway"
+            ],
             "Properties": {
                 "RouteTableId": {
                     "Ref": "RouteTable"
                 },
-                "DestinationCidrBlock": "0.0.0.0/0"
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "GatewayId": {
+                    "Ref": "InternetGateway"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "e497771f-2747-4593-9530-71b93ab6cbd2"
+                }
             }
         },
         "SubnetRouteTableAssociation": {
@@ -162,6 +197,11 @@
                 "RouteTableId": {
                     "Ref": "RouteTable"
                 }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "d628427d-14a1-49f6-8e47-5c32d977caf3"
+                }
             }
         },
         "IPAddress": {
@@ -171,6 +211,11 @@
                 "Domain": "vpc",
                 "InstanceId": {
                     "Ref": "WebServerInstance"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "cf784846-b819-4ee0-92b9-d68564c55705"
                 }
             }
         },
@@ -211,6 +256,11 @@
                         "CidrIp": "130.108.0.0/16"
                     }
                 ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "88e0c088-7a25-471a-8d69-21f7d9276294"
+                }
             }
         },
         "WebServerInstance": {
@@ -254,13 +304,13 @@
                 ],
                 "NetworkInterfaces": [
                     {
+                       "DeviceIndex": "0",
                         "GroupSet": [
                             {
                                 "Ref": "InstanceSecurityGroup"
                             }
                         ],
                         "AssociatePublicIpAddress": "true",
-                        "DeviceIndex": "0",
                         "DeleteOnTermination": "true"
                     },
                     {
@@ -270,6 +320,11 @@
                     }
                 ],
                 "UserData": "#!/bin/bash echo \"This is a test. This is only a test\" > /tmp/test.txt"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "c6bff0d1-232e-4539-a0eb-566ea7f6429a"
+                }
             }
         }
     }
