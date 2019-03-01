@@ -5,6 +5,10 @@ const config = require('./config.js');
 const pool = mysql.createPool(config);
 const query = util.promisify(pool.query).bind(pool);
 
+exports.allEdges = async function() {
+    return query('SELECT connectionID, nodeA_ID, nodeB_ID FROM connections');
+};
+
 exports.node = async function(nodeID) {
     return query('SELECT * FROM nodes WHERE nodeID = ?', nodeID);
 };

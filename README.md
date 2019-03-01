@@ -57,7 +57,8 @@ This field will have a video demonstrating use of the app, as well as a list of 
 =======
 # Server #
 * Start before the client.
-* Run by executing `npm run start-server` in the root directory of the project.
+* Run by executing `npm run start-server` in the root directory.
+* Run tests by execution `npm test` in the server directory.
 * Using https://github.com/mysqljs/mysql to access the database.
 * Using https://github.com/expressjs/express to run the server.
 
