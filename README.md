@@ -6,6 +6,7 @@ Spring 2018 CS 3900 course project -- Wright State tunnel navigation mobile app
 
 # Server #
 * Start before the client.
-* Run by executing `npm run start-server` in the root directory of the project.
+* Run by executing `npm run start-server` in the root directory.
+* Run tests by execution `npm test` in the server directory.
 * Using https://github.com/mysqljs/mysql to access the database.
 * Using https://github.com/expressjs/express to run the server.
