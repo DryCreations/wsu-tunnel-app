@@ -7,7 +7,7 @@ Parameters:
   InstanceType:
     Description: WebServer EC2 instance type
     Type: String
-    Default: t2.small
+    Default: t2.micro
     AllowedValues:
       - t2.nano
       - t2.micro
@@ -157,6 +157,8 @@ Resources:
           DeviceIndex: '0'
           DeleteOnTermination: 'true'
           SubnetId: !Ref Subnet
-      UserData: 
-        Fn::Base64: #!/bin/bash
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
           echo "This is a test. This is only a test" > /var/test.txt
+          apt-get install sl
