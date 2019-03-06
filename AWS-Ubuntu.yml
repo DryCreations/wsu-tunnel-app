@@ -64,7 +64,7 @@ Resources:
         - Key: Application
           Value: !Ref 'AWS::StackId'
         - Key: Name
-          Value: Senior-Design-team30
+          Value: CS-3900 Special Subjects
   Subnet:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -116,7 +116,7 @@ Resources:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
       VpcId: !Ref VPC
-      GroupDescription: Enable SSH access via port 22
+      GroupDescription: Enable SSH access via port 22 and access to app features via ports 3000 and 5000
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: '22'
@@ -160,10 +160,11 @@ Resources:
           #!/bin/bash
           
           # Install dependencies
-          apt-get install git
-          apt-get install nodejs
-          apt-get install build-essential
-          npm install -g pm2
+          apt-get update
+          yes | apt-get install build-essential
+          yes | apt-get install git
+          yes | apt-get install nodejs
+          yes | apt-get install npm
           
           # Download the course repo
           git clone https://github.com/RLey/wsu-tunnel-app.git ~/repo

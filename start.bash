@@ -4,10 +4,10 @@
  pushd src
  
  # Install app dependencies
- npm install &>> ~/error.log
+ npm install
  
  # Start the app
- pm2 start App.js &>> ~/error.log
+ npm start
  
  # Go back to the revious directory
  popd
