@@ -1,8 +1,10 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: >-
-  WSU CS-3900 Server Template: This template creates a server to be used by the Spring 2019 CS-3900 project.
-  Hopefully, it will eventually have a built in bash file that is run on create to set everything up, but
-  for now it's just making a file containing "This is test. This is only a test" into a file named /var/test.txt
+  WSU CS-3900 Server Template: This template creates a server to be used by the Spring 2019 CS-3900 project.  
+    The template automatcally sets up a EC2 server and peripherals, with a bash script for setup appearing in a file 
+    matching the pattern /var/lib/cloud/instances/*/user-data.txt. To setup the server, run the command 
+    "sudo bash /var/lib/cloud/instances/*/user-data.txt <BRANCH>", where <BRANCH> is the name of the branch from the git 
+    repository that the server should use.  The setup script will then run the start.bash file in that branch.
 Parameters:
   InstanceType:
     Description: WebServer EC2 instance type
@@ -121,17 +123,13 @@ Resources:
           ToPort: '22'
           CidrIp: !Ref SSHLocation
         - IpProtocol: tcp
-          FromPort: '1025'
-          ToPort: '2048'
+          FromPort: '3000'
+          ToPort: '3000'
           CidrIp: !Ref SSHLocation
         - IpProtocol: tcp
-          FromPort: '22'
-          ToPort: '22'
-          CidrIp: 130.108.0.0/16
-        - IpProtocol: tcp
-          FromPort: '1025'
-          ToPort: '2048'
-          CidrIp: 130.108.0.0/16
+          FromPort: '5000'
+          ToPort: '5000'
+          CidrIp: !Ref SSHLocation
   WebServerInstance:
     Type: 'AWS::EC2::Instance'
     DependsOn: AttachGateway
@@ -160,5 +158,28 @@ Resources:
       UserData:
         Fn::Base64: |
           #!/bin/bash
-          echo "This is a test. This is only a test" > /var/test.txt
-          apt-get install sl
+          
+          # Install dependencies
+          apt-get install git
+          apt-get install nodejs
+          apt-get install build-essential
+          npm install -g pm2
+          
+          # Download the course repo
+          git clone https://github.com/RLey/wsu-tunnel-app.git ~/repo
+          
+          # Get whatever branch the user specified and store it for future reference.
+          # If no branch was specified, default to master
+          branch=${1:-'master'}
+          
+          # Change directories to the downloaded repository
+          pushd ~/repo
+          
+          # Checkout to the specified branch
+          git checkout $branch
+          
+          # Run the setup script
+          bash start.bash
+          
+          # Change back to the original working directory
+          popd
