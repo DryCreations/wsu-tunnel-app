@@ -4,7 +4,7 @@
  pushd src
  
  # Install app dependencies
- npm install -g 
+ npm install
  
  # Start the app as a background process
  npm start &>>../app.log &
@@ -16,7 +16,7 @@
  pushd server
  
  # Install its dependencies
- npm install -g
+ npm install
  
  # Backto root directory...
  popd

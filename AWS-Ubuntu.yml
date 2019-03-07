@@ -192,3 +192,5 @@ Resources:
           
           # Change back to the original working directory
           popd
+          
+          echo -e "\033[32;1mServer should be up and running at ${dig +short myip.opendns.com @resolver1.opendns.com}:3000\033[0m"
