@@ -159,12 +159,20 @@ Resources:
         Fn::Base64: |
           #!/bin/bash
           
+          # Give the server some swap space
+          fallocate -l 4G /swapfile
+          chmod 0600 /swapfile
+          mkswap /swapfile
+          swapon /swapfile
+          sysctl vm.swappiness=10
+          
           # Install dependencies
           apt-get update
           yes | apt-get install build-essential
           yes | apt-get install git
           yes | apt-get install nodejs
           yes | apt-get install npm
+          npm install -g react-scripts
           
           # Download the course repo
           git clone https://github.com/RLey/wsu-tunnel-app.git ~/repo
