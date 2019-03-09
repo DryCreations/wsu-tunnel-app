@@ -7,9 +7,6 @@ When contributing to this repository, please first discuss the change you wish t
 ### Master Branch
 Any pull requests to the Master Branch must come from Development Branch, and require two independent reviewers as well as final approval by Ryan L, who will be acting as the caretaker of the Master Branch for the duration of this course.
 
-### Sprial Branches
-Each Spiral will have its own branch, copied from the Development Branch once the previous Spiral Branch has been successfully tested and merged into it.
-
 ### Development Branch
 Development Branch will act as the primary branch for developing and prepping code between each Spiral. Testing will occur in this branch in between Spirals.
 
@@ -28,6 +25,12 @@ Commit messages will all be based upon the following link: https://chris.beams.i
     5. Use the imperative mood in the subject line
     6. Wrap the body at 72 characters
     7. Use the body to explain what and why vs. how
+
+### Spirals
+
+Each commit will have its own tag, in the following format to designate to which Spiral it belongs:
+
+    spiral#
 
 ## Logging Issues
 
