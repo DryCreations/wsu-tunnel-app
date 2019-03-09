@@ -48,6 +48,7 @@ Nodes are singular datapoints that represent a geographical location in the tunn
 |17          |Student Success Center|
 |18          |Student Union|
 |19          |University Hall|
+
 \*Note: Hamilton Hall, Health Sciences, Neuroscience Building, and White Hall have been deliberately excluded from this list as they are not connected to the rest of campus through the tunnels.
 
 #### Node Type IDs
@@ -79,4 +80,4 @@ Connections are pathways that connect two adjacent nodes. Connections are used t
 ## Collecting Data
 First, a source map must be either created or collected. [David Kendrick](https://people.wright.edu/david.kendrick) generously gave us this image to use:
 
-![Map of the tunnel system](https://github.com/RLey/wsu-tunnel-app/blob/Development/WSU_Floorplans/README/WSU_Campus_Tunnel_Map.pdf)
+![alt text](https://github.com/RLey/wsu-tunnel-app/blob/Development/WSU_Floorplans/README/WSU_Campus_Tunnel_Map.pdf "Map of the tunnel system")
