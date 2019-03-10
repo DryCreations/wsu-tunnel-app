@@ -143,8 +143,60 @@ You likely won't have the Coordinate Capture section to the left of the image. T
 Click the Start Capture button, then click anywhere on the image to get the X/Y coordinate (remember to reverse them to get the latitude/longitude)
 
 #### Connection Length Measurement
+The distance between any two points can be measured using the Measure Tool (the ruler button on the top tool bar). It should be fairly intuitive to use, just click two points you want to know the distance between.
 
 ## Formatting Data
+MySQL supports direct [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) uploading, so storing data locally in spreadsheets before uploading to the database is a viable option. The CSV spreadsheets should be formatted as follows:
+
+### Nodes
+The first row will be the property names exactly as follows, with each following row being data for a new node.
+
+|nodeID| lat |long|elev|isIndoors|buildingID|floor|roomNumber|nodeTypeID|
+|:-----|:----|:---|:---|:--------|:---------|:----|:---------|:---------|
+|||||||||||
+
+### Connections
+The first row will be the property names exactly as follows, with each following row being data for a new connection.
+
+|connectionID|nodeA_ID|nodeB_ID|length|isIndoors|hasStairs|hasElevator|
+|------------|--------|--------|------|---------|---------|-----------|
+|||||||||
+
+### Buildings
+buildings.csv should be exactly as follows:
+
+| buildingID | Building Name |
+|:----------:|:-------------:|
+|0           |No Building|
+|1           |Allyn Hall|
+|2           |Biological Sciences I|
+|3           |Biological Sciences II|
+|4           |Creative Arts Center|
+|5           |Diggs Laboratory|
+|6           |Dunbar Library|
+|7           |Fawcett Hall|
+|8           |Joshi Center|
+|9           |Library Annex|
+|10          |Math & Microbiology|
+|11          |Medical Sciences|
+|12          |Milett Hall|
+|13          |Motion Pictures|
+|14          |Oelman Hall|
+|15          |Rike Hall|
+|16          |Russ Engineering|
+|17          |Student Success Center|
+|18          |Student Union|
+|19          |University Hall|
+
+### Types
+types.csv should be exactly as follows:
+
+|nodeTypeID| Type |
+|:--------:|:----:|
+|0         |Intersection|
+|1         |Exit|
+|2         |Staircase|
+|3         |Elevator|
 
 ## Uploading Data to MySQL Database
 ***To be written***
