@@ -78,6 +78,19 @@ Connections are pathways that connect two adjacent nodes. Connections are used t
   * Whether or not the connection has an elevator along its path.
 
 ## Collecting Data
+
+### Source Map
 First, a source map must be either created or collected. [David Kendrick](https://people.wright.edu/david.kendrick) generously gave us this image to use:
 
 ![alt text](https://github.com/RLey/wsu-tunnel-app/blob/Development/WSU_Floorplans/README/WSU_Campus_Tunnel_Map.png "Map of the tunnel system")
+
+### Image Preparation
+This step is not necessary, however it can prove to be quite useful if there are a lot of nodes you wish to map. Marking locations of nodes and numbering them with their corresponding nodeID can help with future steps. [Photoshop](https://www.adobe.com/products/photoshop.html) is capable of doing this, however any image editing tool will do, as how you complete this step is up to you. [Gimp](https://www.gimp.org/) is a good free option. This is the above image prepared for rasterization:
+
+![alt text](https://github.com/RLey/wsu-tunnel-app/blob/Development/WSU_Floorplans/README/WSU_Campus_Tunnel_Map_Nodes_Drawn.png "Image with nodes marked and labeled")
+
+### Image Rasterization
+
+To use this image to collect actual data, it must be mapped to a coordinate system. [Google Maps](https://www.google.com/maps/place/Wright+State+University/@39.7846157,-84.0605168,17z/data=!3m1!4b1!4m5!3m4!1s0x88409cf05f334387:0x4a08e9031987088!8m2!3d39.7846157!4d-84.0583281) is a great place to get accurate coordinate data, but the tunnels are not visible from the surface of the Earth. To get coordinates of nodes in the tunnels, we must create a rastered image scaled to the Mercator Projection. To do this, we will grab the coordinates of some known points from Google Maps. Easy points to grab are corners of buildings, as they are visible on Google Maps and our image. On Google Maps, click a corner of a building and record the latitude and longitude in a temporary document. Make sure to collect at least five points, one in each corner of the area you wish to map and one roughly in the middle.
+
+Next, we will create the rastered image. [QGIS](https://www.qgis.org/en/site/) is a great tool for doing this, and it is available for Windows, MacOS, Linux, BSD, and Android at this [download link](https://www.qgis.org/en/site/forusers/download.html).
