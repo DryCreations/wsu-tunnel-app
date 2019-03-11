@@ -1,9 +1,9 @@
-AWSTemplateFormatVersion: 2010-09-09
+ AWSTemplateFormatVersion: 2010-09-09
 Description: >-
-  WSU CS-3900 Server Template: This template creates a server to be used by the Spring 2019 CS-3900 project.  
-    The template automatcally sets up a EC2 server and peripherals, with a bash script for setup appearing in a file 
-    matching the pattern /var/lib/cloud/instances/*/user-data.txt. To setup the server, run the command 
-    "sudo bash /var/lib/cloud/instances/*/user-data.txt <BRANCH>", where <BRANCH> is the name of the branch from the git 
+  WSU CS-3900 Server Template: This template creates a server to be used by the Spring 2019 CS-3900 project.
+    The template automatcally sets up a EC2 server and peripherals, with a bash script for setup appearing in a file
+    matching the pattern /var/lib/cloud/instances/*/user-data.txt. To setup the server, run the command
+    "sudo bash /var/lib/cloud/instances/*/user-data.txt <BRANCH>", where <BRANCH> is the name of the branch from the git
     repository that the server should use.  The setup script will then run the start.bash file in that branch.
 Parameters:
   InstanceType:
@@ -28,6 +28,14 @@ Parameters:
     Default: 0.0.0.0/0
     AllowedPattern: '(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})'
     ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
+  DBPort:
+    Description: 'The port that the database will be on'
+    Type: String
+    MinLength: 1
+    MaxLength: 5
+    Default: 3306
+    AllowedPattern: '\d{1,5}'
+    ConstraintDescription: Must be a one to five digit decimal integer
 Mappings:
   AWSInstanceType2Arch:
     t2.nano:
@@ -53,13 +61,16 @@ Mappings:
       HVMG2: NOT_SUPPORTED
     us-east-2:
       PV64: NOT_SUPPORTED
-      HVM64: ami-0f65671a86f061fcd
+      HVM64: NOT_SUPPORTED
       HVMG2: NOT_SUPPORTED
 Resources:
   VPC:
     Type: 'AWS::EC2::VPC'
     Properties:
       CidrBlock: 10.0.0.0/16
+      InstanceTenancy: default
+      EnableDnsSupport: 'true'
+      EnableDnsHostnames: 'true'
       Tags:
         - Key: Application
           Value: !Ref 'AWS::StackId'
@@ -69,10 +80,57 @@ Resources:
     Type: 'AWS::EC2::Subnet'
     Properties:
       VpcId: !Ref VPC
-      CidrBlock: 10.0.0.0/24
+      CidrBlock: 10.0.0.0/20
       Tags:
         - Key: Application
           Value: !Ref 'AWS::StackId'
+  DatabaseSubnet1:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.16.0/20
+      AvailabilityZone: us-east-1a
+  DatabaseSubnet2:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.32.0/20
+      AvailabilityZone: us-east-1b
+  DatabaseSubnet3:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.48.0/20
+      AvailabilityZone: us-east-1c
+  DatabaseSubnet4:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.64.0/20
+      AvailabilityZone: us-east-1d
+  DatabaseSubnet5:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.80.0/20
+      AvailabilityZone: us-east-1e
+  DatabaseSubnet6:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.96.0/20
+      AvailabilityZone: us-east-1f
+  DatabaseSubnetGroup:
+    Type: 'AWS::RDS::DBSubnetGroup'
+    Properties:
+      DBSubnetGroupDescription: default
+      SubnetIds:
+        - !Ref DatabaseSubnet1
+        - !Ref DatabaseSubnet2
+        - !Ref DatabaseSubnet3
+        - !Ref DatabaseSubnet4
+        - !Ref DatabaseSubnet5
+        - !Ref DatabaseSubnet6
   InternetGateway:
     Type: 'AWS::EC2::InternetGateway'
     Properties:
@@ -109,9 +167,6 @@ Resources:
     Properties:
       Domain: vpc
       InstanceId: !Ref WebServerInstance
-    Metadata:
-      'AWS::CloudFormation::Designer':
-        id: e3a55eb6-e430-4ada-a225-7677aeaad343
   InstanceSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
@@ -130,6 +185,47 @@ Resources:
           FromPort: '5000'
           ToPort: '5000'
           CidrIp: !Ref SSHLocation
+  DatabaseSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      VpcId: !Ref VPC
+      GroupDescription: Only allow traffic over the database port from local ip addresses
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: !Ref DBPort
+          ToPort: !Ref DBPort
+          CidrIp: 10.0.0.0/16
+  DatabaseInstance:
+    Type: 'AWS::RDS::DBInstance'
+    Properties:
+      AllocatedStorage: 20
+      AllowMajorVersionUpgrade: 'false'
+      AutoMinorVersionUpgrade: 'true'
+      DBInstanceClass: db.t2.micro
+      Port: !Ref DBPort
+      PubliclyAccessible: 'true'
+      StorageType: gp2
+      BackupRetentionPeriod: '7'
+      MasterUsername: wsutunneladmin
+      MasterUserPassword: MyPassword
+      PreferredBackupWindow: '05:11-05:41'
+      PreferredMaintenanceWindow: 'sun:03:30-sun:04:00'
+      DBName: wustunnelapp
+      Engine: mysql
+      EngineVersion: 8.0.13
+      LicenseModel: general-public-license
+      DBSubnetGroupName: !Ref DatabaseSubnetGroup
+      VPCSecurityGroups:
+        - !Ref DatabaseSecurityGroup
+      Tags:
+        - Key: workload-type
+          Value: other
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      AccessControl: Private
+      VersioningConfiguration:
+        Status: Enabled
   WebServerInstance:
     Type: 'AWS::EC2::Instance'
     DependsOn: AttachGateway
@@ -158,14 +254,14 @@ Resources:
       UserData:
         Fn::Base64: |
           #!/bin/bash
-          
+
           # Give the server some swap space
           fallocate -l 4G /swapfile
           chmod 0600 /swapfile
           mkswap /swapfile
           swapon /swapfile
           sysctl vm.swappiness=10
-          
+
           # Install dependencies
           apt-get update
           yes | apt-get install build-essential
@@ -173,31 +269,24 @@ Resources:
           yes | apt-get install nodejs
           yes | apt-get install npm
           npm install -g react-scripts
-          
-          # Install mysql
-          apt-get install mysql-server
-          
-          # Start mysql now and for all time
-          systemctl start mysql
-          systemctl enable mysql
-          
+
           # Download the course repo
           git clone https://github.com/RLey/wsu-tunnel-app.git ~/repo
-          
+
           # Get whatever branch the user specified and store it for future reference.
           # If no branch was specified, default to master
           branch=${1:-'master'}
-          
+
           # Change directories to the downloaded repository
           pushd ~/repo
-          
+
           # Checkout to the specified branch
           git checkout $branch
-          
+
           # Run the setup script
           bash start.bash
-          
+
           # Change back to the original working directory
           popd
-          
+
           echo -e "\033[32;1mServer should be up and running at ${dig +short myip.opendns.com @resolver1.opendns.com}:3000\033[0m"
