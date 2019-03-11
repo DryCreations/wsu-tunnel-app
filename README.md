@@ -42,23 +42,14 @@ This field will have a video demonstrating use of the app, as well as a list of 
 
   #### UI
 
-  #### Database
-    * Using https://github.com/mysqljs/mysql to access the database.
-    * You will need to enter a password in src/config.js.
-
-    1. git checkout -b test-branch
-    2. git branch
-    3. git push --set-upstream origin test-branch (only need upstream arg first tim)
-    4. [pull request] cli using URL or GitHub
-
   #### Pathfinding Algorithm
 
 ### Credits
 =======
+
 # Server #
 * Start before the client.
 * Run by executing `npm run start-server` in the root directory.
-* Run tests by execution `npm test` in the server directory.
 * Using https://github.com/mysqljs/mysql to access the database.
 * Using https://github.com/expressjs/express to run the server.
 
@@ -72,4 +63,28 @@ Use the CloudFormation template AWS-Ububtu.yml to create the stack. Once
   finishes (it might take awhile), both the app server and the navigation server 
   should be up and running.  If they aren't, logs can be found in `~/repo/app.log` 
   and `~/repo/server.log`.
+
+# Testing
+
+Validation of CloudFormation templates is done by running the command:
+```sh
+$ aws cloudformation validate-template --template-body file://./TEMPLATE.yml
+```
+Where TEMPLATE.yml is the local filename of the template.
+
+An example using AWS-Ubuntu.yml:
+```sh
+$ aws cloudformation validate-template --template-body file://./AWS-Ubuntu.yml
+WSU CS-3900 Server Template: This template creates a server to be used by the Spring 2019 CS-3900 project.  
+  The template automatcally sets up a EC2 server and peripherals, with a bash script for setup appearing in a file 
+  matching the pattern /var/lib/cloud/instances/*/user-data.txt. To setup the server, run the command 
+  "sudo bash /var/lib/cloud/instances/*/user-data.txt <BRANCH>", where <BRANCH> is the name of the branch from the git 
+  repository that the server should use.  The setup script will then run the start.bash file in that branch.
+PARAMETERS		Name of an existing EC2 KeyPair to enable SSH access to the instance	False	KeyName
+PARAMETERS	0.0.0.0/0	 The IP address range that can be used to access the EC2 instance	False	SSHLocation
+PARAMETERS	t2.micro	WebServer EC2 instance type	False	InstanceType
+```
+
+Testing of the pathfinding is done by running `npm test` command in the server directory.
+
 
