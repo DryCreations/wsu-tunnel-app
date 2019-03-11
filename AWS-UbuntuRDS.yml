@@ -89,7 +89,7 @@ Resources:
     Properties:
       VpcId: !Ref VPC
       CidrBlock: 10.0.16.0/20
-      AvailabilityZone: us-east-1a 
+      AvailabilityZone: us-east-1a
   DatabaseSubnet2:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -194,7 +194,7 @@ Resources:
         - IpProtocol: tcp
           FromPort: !Ref DBPort
           ToPort: !Ref DBPort
-          CidrIp: 0.0.0.0/0
+          CidrIp: 10.0.0.0/16
   DatabaseInstance:
     Type: 'AWS::RDS::DBInstance'
     Properties:
@@ -215,7 +215,7 @@ Resources:
       EngineVersion: 8.0.13
       LicenseModel: general-public-license
       DBSubnetGroupName: !Ref DatabaseSubnetGroup
-      VPCSecurityGroups: 
+      VPCSecurityGroups:
         - !Ref DatabaseSecurityGroup
       Tags:
         - Key: workload-type
@@ -290,5 +290,3 @@ Resources:
           popd
 
           echo -e "\033[32;1mServer should be up and running at ${dig +short myip.opendns.com @resolver1.opendns.com}:3000\033[0m"
-
-
