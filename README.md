@@ -62,3 +62,14 @@ This field will have a video demonstrating use of the app, as well as a list of 
 * Using https://github.com/mysqljs/mysql to access the database.
 * Using https://github.com/expressjs/express to run the server.
 
+# AWS
+
+Use the CloudFormation template AWS-Ububtu.yml to create the stack. Once 
+  the stack has been created, log into its EC2 server and run the command 
+  `sudo bash /var/lib/cloud/instances/*/user-data.txt <BRANCH>`, where `<BRANCH>` is
+  whatever branch from the repository you want the server to use. If no branch is 
+  specified, the script will default to the master branch. After the command
+  finishes (it might take awhile), both the app server and the navigation server 
+  should be up and running.  If they aren't, logs can be found in `~/repo/app.log` 
+  and `~/repo/server.log`.
+
