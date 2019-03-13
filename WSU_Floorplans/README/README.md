@@ -32,22 +32,23 @@ Nodes are singular datapoints that represent a geographical location in the tunn
 |1           |Allyn Hall|
 |2           |Biological Sciences I|
 |3           |Biological Sciences II|
-|4           |Creative Arts Center|
-|5           |Diggs Laboratory|
-|6           |Dunbar Library|
-|7           |Fawcett Hall|
-|8           |Joshi Center|
-|9           |Library Annex|
-|10          |Math & Microbiology|
-|11          |Medical Sciences|
-|12          |Milett Hall|
-|13          |Motion Pictures|
-|14          |Oelman Hall|
-|15          |Rike Hall|
-|16          |Russ Engineering|
-|17          |Student Success Center|
-|18          |Student Union|
-|19          |University Hall|
+|4           |Brehm Laboratory|
+|5           |Creative Arts Center|
+|6           |Diggs Laboratory|
+|7           |Dunbar Library|
+|8           |Fawcett Hall|
+|9           |Joshi Center|
+|10          |Library Annex|
+|11          |Math & Microbiology|
+|12          |Medical Sciences|
+|13          |Milett Hall|
+|14          |Motion Pictures|
+|15          |Oelman Hall|
+|16          |Rike Hall|
+|17          |Russ Engineering|
+|18          |Student Success Center|
+|19          |Student Union|
+|20          |University Hall|
 
 \*Note: Hamilton Hall, Health Sciences, Neuroscience Building, and White Hall have been deliberately excluded from this list as they are not connected to the rest of campus through the tunnels.
 
@@ -136,11 +137,7 @@ To start the rasterization process, click File > Start georeferencing. This may 
 The rastered image should be diagonal with a slight curve to it, mimicking the curve of the Earth. If the image is oddly warped, just restart the georeferencing process from the "Using the Georeferencer Tool" header in this document. Georeferencer can be a little finicky at times, and it's quite easy to mess up a coordinate. Sometimes restarting can fix the issue.
 
 #### Coordinate Interpolation
-You likely won't have the Coordinate Capture section to the left of the image. This plugin is also built into stock QGIS. Enable it through the Plugins > Plugins > Manage and Install Plugins menu. Start it by clicking the Coordinate Capture button:
-
-![alt text](https://github.com/RLey/wsu-tunnel-app/blob/Development/WSU_Floorplans/README/Coordinate_Capture_Button.png "Coordinate Capture Button")
-
-Click the Start Capture button, then click anywhere on the image to get the X/Y coordinate (remember to reverse them to get the latitude/longitude)
+Coordinates for the mouse location can be found underneath the image. Note that they're in the x/y format so you'll have to switch them to return them to standard longitude/latitude form.
 
 #### Connection Length Measurement
 The distance between any two points can be measured using the Measure Tool (the ruler button on the top tool bar). It should be fairly intuitive to use, just click two points you want to know the distance between.
@@ -171,22 +168,23 @@ buildings.csv should be exactly as follows:
 |1           |Allyn Hall|
 |2           |Biological Sciences I|
 |3           |Biological Sciences II|
-|4           |Creative Arts Center|
-|5           |Diggs Laboratory|
-|6           |Dunbar Library|
-|7           |Fawcett Hall|
-|8           |Joshi Center|
-|9           |Library Annex|
-|10          |Math & Microbiology|
-|11          |Medical Sciences|
-|12          |Milett Hall|
-|13          |Motion Pictures|
-|14          |Oelman Hall|
-|15          |Rike Hall|
-|16          |Russ Engineering|
-|17          |Student Success Center|
-|18          |Student Union|
-|19          |University Hall|
+|4           |Brehm Laboratory|
+|5           |Creative Arts Center|
+|6           |Diggs Laboratory|
+|7           |Dunbar Library|
+|8           |Fawcett Hall|
+|9           |Joshi Center|
+|10          |Library Annex|
+|11          |Math & Microbiology|
+|12          |Medical Sciences|
+|13          |Milett Hall|
+|14          |Motion Pictures|
+|15          |Oelman Hall|
+|16          |Rike Hall|
+|17          |Russ Engineering|
+|18          |Student Success Center|
+|19          |Student Union|
+|20          |University Hall|
 
 ### Types
 types.csv should be exactly as follows:
