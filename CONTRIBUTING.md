@@ -1,6 +1,11 @@
 # Contributing Guidelines
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with your team members before making a change.
+If you would like to contribute code after our semester is done you can do so through GitHub by forking the repository and sending a pull request. When submitting code, please follow existing conventions and style in order to keep the code as legible as possible.
+
+## Code
+- This application is written in javascript
+- Check whether the build passes when creating a pull request
 
 ## Branches
 
