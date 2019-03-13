@@ -1,4 +1,4 @@
- AWSTemplateFormatVersion: 2010-09-09
+AWSTemplateFormatVersion: 2010-09-09
 Description: >-
   WSU CS-3900 Server Template: This template creates a server to be used by the Spring 2019 CS-3900 project.
     The template automatcally sets up a EC2 server and peripherals, with a bash script for setup appearing in a file
