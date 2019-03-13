@@ -15,6 +15,8 @@ ____
   - [UI](https://github.com/RLey/wsu-tunnel-app/#UI)
   - [Database](https://github.com/RLey/wsu-tunnel-app/#Database)
   - [Pathfinding Algorithm](https://github.com/RLey/wsu-tunnel-app/#Pathfinding-Algorithm)
+  - [Server/AWS](https://github.com/RLey/wsu-tunnel-app/#Server/AWS)
+- [Testing](https://github.com/RLey/wsu-tunnel-app/#Testing)
 - [Credits](https://github.com/RLey/wsu-tunnel-app/#Credits)
   - [Contribution Link](https://github.com/RLey/wsu-tunnel-app/#Contribution-Link)
 
@@ -49,27 +51,26 @@ ____
 ____
   #### Pathfinding Algorithm
 ____
-### Credits
-=======
-____
-# Server #
-* Start before the client.
-* Run by executing `npm run start-server` in the root directory.
-* Using https://github.com/mysqljs/mysql to access the database.
-* Using https://github.com/expressjs/express to run the server.
-____
-# AWS
+  #### Server/AWS
 
-Use the CloudFormation template AWS-Ububtu.yml to create the stack. Once 
-  the stack has been created, log into its EC2 server and run the command 
-  `sudo bash /var/lib/cloud/instances/*/user-data.txt <BRANCH>`, where `<BRANCH>` is
-  whatever branch from the repository you want the server to use. If no branch is 
-  specified, the script will default to the master branch. After the command
-  finishes (it might take awhile), both the app server and the navigation server 
-  should be up and running.  If they aren't, logs can be found in `~/repo/app.log` 
-  and `~/repo/server.log`.
-____
-# Testing
+  ##### Server
+  * Start before the client.
+  * Run by executing `npm run start-server` in the root directory.
+  * Using https://github.com/mysqljs/mysql to access the database.
+  * Using https://github.com/expressjs/express to run the server.
+  ____
+  ##### AWS
+
+  Use the CloudFormation template AWS-Ububtu.yml to create the stack. Once 
+    the stack has been created, log into its EC2 server and run the command 
+    `sudo bash /var/lib/cloud/instances/*/user-data.txt <BRANCH>`, where `<BRANCH>` is
+    whatever branch from the repository you want the server to use. If no branch is 
+    specified, the script will default to the master branch. After the command
+    finishes (it might take awhile), both the app server and the navigation server 
+    should be up and running.  If they aren't, logs can be found in `~/repo/app.log` 
+    and `~/repo/server.log`.
+  ____
+### Testing
 
 Validation of CloudFormation templates is done by running the command:
 ```sh
@@ -91,5 +92,25 @@ PARAMETERS	t2.micro	WebServer EC2 instance type	False	InstanceType
 ```
 
 Testing of the pathfinding is done by running `npm test` command in the server directory.
+___
+### Credits
+#### Class/Project Members
+
+* Jared Cole
+* Matt Eilerman
+* Eric Foy
+* Ryan Ley
+* Hayden Mankin
+* Matt Masten
+* Owen O'Connor
+* Ryan Slater
+
+#### Mentor/Instructors
+
+* Michelle Cheatham
+* Matt Kijowski
+
+#### Additional Contributors
+* Wright State University and the Wright State University Marketing Department
 
 
