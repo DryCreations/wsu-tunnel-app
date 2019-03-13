@@ -58,6 +58,7 @@ circle:hover {
 }
 
 #NavigateButton {
+  min-width: 100px;
   background-color: #026937;
   border-color: #026937;
   border-radius: 5px;
@@ -76,6 +77,60 @@ circle:hover {
 }
 
 #NavigateButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#PreviousViewButton {
+  position: fixed;
+  top: 80%;
+  left: 0%;
+  min-width: 100px;
+  background-color: #026937;
+  border-color: #026937;
+  border-radius: 5px;
+  border-width: 2px;
+  color: white;
+  padding: 10px 10px;
+  margin: 20px;
+  font: bold 16px sans-serif;
+  -webkit-transition-duration: 0.4s;
+
+}
+
+#PreviousViewButton:hover:enabled   {
+  background-color: #F2F1EB;
+  color: #063D1C;
+}
+
+#PreviousViewButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#NextViewButton {
+  position: fixed;
+  top: 80%;
+  right: 0%;
+  min-width: 100px;
+  background-color: #026937;
+  border-color: #026937;
+  border-radius: 5px;
+  border-width: 2px;
+  color: white;
+  padding: 10px 10px;
+  margin: 20px;
+  font: bold 16px sans-serif;
+  -webkit-transition-duration: 0.4s;
+
+}
+
+#NextViewButton:hover:enabled   {
+  background-color: #F2F1EB;
+  color: #063D1C;
+}
+
+#NextViewButton:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }

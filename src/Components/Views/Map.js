@@ -50,6 +50,18 @@ class Map extends Component {
             onClick={() => this.getPath(this.getStartPointID(), this.getEndPointID())}>
             Navigate
             </button>
+            
+            <button
+            id="PreviousViewButton"
+            onClick={() => /* display previous view */ null}>
+            Previous
+            </button>
+
+            <button
+            id="NextViewButton"
+            onClick={() => /* display next view */ null}>
+            Next
+            </button>
 
             </div>
         );
