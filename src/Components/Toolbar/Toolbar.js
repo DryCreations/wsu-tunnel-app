@@ -12,12 +12,9 @@ const toolbar = props => (
             </div>
             <div className="toolbar_logo"><NavLink to="/Map">CS-3900 Web App</NavLink></div>
             <div className="spacer"> </div>
-            <div className="toolbar_nav_items">
-                <ul>
-                    <li><NavLink to="/About">About</NavLink></li>
-                    <li><NavLink to="/FAQ">FAQ</NavLink></li>
-                </ul>
-            </div>
+            
+            
+            
         </nav>
     </header>
 );
