@@ -85,6 +85,21 @@ PARAMETERS	0.0.0.0/0	 The IP address range that can be used to access the EC2 in
 PARAMETERS	t2.micro	WebServer EC2 instance type	False	InstanceType
 ```
 
-Testing of the pathfinding is done by running `npm test` command in the server directory.
+To view detailed information on all resources that AWS CloudFormation will create first create a change set:
+```sh
+$ aws cloudformation create-change-set --stack-name testing --change-set-name changes --change-set-type CREATE --template-body file://./AWS-UbuntuRDS.yml
+```
 
+Then to view those changes run:
+```sh
+$ aws cloudformation describe-change-set --change-set-name changes --stack-name testing
+```
+
+When done, clean up by running:
+```sh
+$ aws cloudformation delete-change-set --change-set-name changes --stack-name testing
+$ aws cloudformation delete-stack --stack-name testing
+```
+
+Testing of the pathfinding is done by running `npm test` command in the server directory.
 
