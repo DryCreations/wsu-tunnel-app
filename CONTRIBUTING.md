@@ -19,9 +19,9 @@ Development Branch will act as the primary branch for developing and prepping co
 ## Logging Issues/Issue Branches
 
 Log an issue for any question or problem you might have. When in doubt, log an issue, 
-and clone the Development Branch as necessary to work out the issue. Once complete, merge and delete the branch.
+and clone the Development Branch as necessary to work out the issue. Once complete, send a pull request (to be reviewed by one other class member during class) after which we will delete the Issue branch.
 
-The branch nomenclature should match the Issue Number.
+The branch nomenclature should match the Issue Number/Description.
 
 Please be courteous, respectful, and concise.
 
