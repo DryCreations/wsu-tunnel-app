@@ -4,7 +4,7 @@
    id="Map"
    stroke-width="5px"
    >
-    
+  <g id="TransformMap">
    <path
      id="E1"
      d="M 20,351 90,385"
@@ -228,4 +228,5 @@
      cy="0"
      r="8"
    />
+ </g>
 </svg>

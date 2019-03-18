@@ -50,7 +50,7 @@ class Map extends Component {
             onClick={() => this.getPath(this.getStartPointID(), this.getEndPointID())}>
             Navigate
             </button>
-            
+
             <button
             id="PreviousViewButton"
             onClick={() => /* display previous view */ null}>
@@ -585,6 +585,47 @@ class Map extends Component {
         path.edges.forEach((id) => {
             this.animatePath(id, 0, 1, 0.01);
         });
+    }
+
+    resetViewBox() {
+      var map = document.getElementById('Map')
+      map.setAttribute('viewBox', '0 0 640 680');
+    }
+
+    transform(nodeIdFrom, nodeIdTo) {
+      this.resetViewBox();
+
+      var group = document.getElementById('TransformMap');
+      var map = document.getElementById('Map')
+
+      var circles = group.getElementsByTagName('circle');
+
+      var n1 = document.getElementById(nodeIdFrom);
+      var n2 = document.getElementById(nodeIdTo);
+
+      var transformString = '';
+
+      transformString += 'translate(' + 640 / 2 + ',' + 5 * 680 / 6 + ')';
+
+      var theta = Math.atan2(0, -1) + Math.atan2(n2.getAttribute('cx') - n1.getAttribute('cx'), n2.getAttribute('cy') - n1.getAttribute('cy'));
+      theta = 180 * theta / Math.PI
+
+      transformString += ',rotate(' + theta + ')';
+
+      var mag = ((n1.getAttribute('cx') - n2.getAttribute('cx')) ** 2 + (n1.getAttribute('cy') - n2.getAttribute('cy')) ** 2) ** .5;
+
+      var scale = (680 * 2 / 3) / mag;
+
+      transformString += ',scale(' + scale + ')';
+      transformString += 'translate(' + -n1.getAttribute('cx') + ',' + -n1.getAttribute('cy') + ')';
+
+      map.setAttribute('stroke-width', 5 / scale )
+
+      for(let c of circles) {
+        c.setAttribute('r', 8 / scale);
+      }
+
+      group.setAttribute('transform', transformString);
     }
 }
 
