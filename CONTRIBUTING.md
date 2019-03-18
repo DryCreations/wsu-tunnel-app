@@ -15,6 +15,16 @@ Any pull requests to the Master Branch must come from Development Branch, and re
 ### Development Branch
 Development Branch will act as the primary branch for developing and prepping code between each Spiral. Testing will occur in this branch in between Spirals.
 
+
+## Logging Issues/Issue Branches
+
+Log an issue for any question or problem you might have. When in doubt, log an issue, 
+and clone the Development Branch as necessary to work out the issue. Once complete, send a pull request (to be reviewed by one other class member during class) after which we will delete the Issue branch.
+
+The branch nomenclature should match the Issue Number/Description.
+
+Please be courteous, respectful, and concise.
+
 ### Deleting Branches
 Branches will be deleted by Ryan L. once they are successfully merged.
 
@@ -36,13 +46,6 @@ Commit messages will all be based upon the following link: https://chris.beams.i
 Each commit will have its own tag, in the following format to designate to which Spiral it belongs:
 
     spiral#
-
-## Logging Issues
-
-Log an issue for any question or problem you might have. When in doubt, log an issue, 
-any additional policies about what to include will be provided in the responses.
-
-Please be courteous, respectful, and concise.
 
 ## Other
 ![Genral Guidelines](https://imgs.xkcd.com/comics/git.png "If that doesn't fix it, git.txt contains the phone number of a friend of mine who understands git. Just wait through a few minutes of 'It's really pretty simple, just think of branches as...' and eventually you'll learn the commands that will fix everything.")
