@@ -20,6 +20,8 @@ class Map extends Component {
             lAvgD: null,
             animationStack: [],
             animating: false,
+            pathNodes: null,
+            currNodes: 0,
         };
 
         //bind touch events to this object
@@ -53,13 +55,13 @@ class Map extends Component {
 
             <button
             id="PreviousViewButton"
-            onClick={() => /* display previous view */ null}>
+            onClick={() => this.prevStep()}>
             Previous
             </button>
 
             <button
             id="NextViewButton"
-            onClick={() => /* display next view */ null}>
+            onClick={() => this.nextStep()}>
             Next
             </button>
 
@@ -368,7 +370,13 @@ class Map extends Component {
 
         fetch('getPath/'+startID+'-'+endID)
             .then(result => result.json())
-            .then(path => this.highlightPath(path));
+            .then(path => {
+              this.setState({
+                pathNodes: path.nodeIDs,
+                currNodes: 0,
+              });
+              this.highlightPath(path);
+            });
     }
 
     highlightPath(path) {
@@ -600,8 +608,8 @@ class Map extends Component {
 
       var circles = group.getElementsByTagName('circle');
 
-      var n1 = document.getElementById(nodeIdFrom);
-      var n2 = document.getElementById(nodeIdTo);
+      var n1 = document.getElementById('N' + nodeIdFrom);
+      var n2 = document.getElementById('N' + nodeIdTo);
 
       var transformString = '';
 
@@ -626,6 +634,25 @@ class Map extends Component {
       }
 
       group.setAttribute('transform', transformString);
+    }
+
+    nextStep() {
+
+      if (this.state.pathNodes != null && this.state.currNodes < this.state.pathNodes.length - 1) {
+        this.transform(this.state.pathNodes[this.state.currNodes], this.state.pathNodes[this.state.currNodes + 1])
+        this.setState({
+          currNodes: this.state.currNodes + 1,
+        });
+      }
+    }
+
+    prevStep() {
+      if (this.state.pathNodes != null && this.state.currNodes > 1) {
+        this.transform(this.state.pathNodes[this.state.currNodes - 2], this.state.pathNodes[this.state.currNodes - 1])
+        this.setState({
+          currNodes: this.state.currNodes - 1,
+        });
+      }
     }
 }
 
