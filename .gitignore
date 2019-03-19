@@ -28,3 +28,6 @@ server/node_modules/
 
 \.directory
 
+# Ignore log files generated at runtime
+server\.log
+app\.log
