@@ -604,6 +604,16 @@ class Map extends Component {
       this.resetViewBox();
 
       var group = document.getElementById('TransformMap');
+
+
+      var currRot = group.getAttribute('transform')
+
+      if (currRot) {
+        currRot = currRot.match('rotate\\((-?\\d*(:?\\.\\d*)?)\\)')[1];
+      } else {
+        currRot = 0;
+      }
+
       var map = document.getElementById('Map')
 
       var circles = group.getElementsByTagName('circle');
@@ -613,27 +623,56 @@ class Map extends Component {
 
       var transformString = '';
 
-      transformString += 'translate(' + 640 / 2 + ',' + 5 * 680 / 6 + ')';
+      transformString += 'translate(' + 640 / 2 + 'px,' + 5 * 680 / 6 + 'px)';
 
       var theta = Math.atan2(0, -1) + Math.atan2(n2.getAttribute('cx') - n1.getAttribute('cx'), n2.getAttribute('cy') - n1.getAttribute('cy'));
       theta = 180 * theta / Math.PI
 
-      transformString += ',rotate(' + theta + ')';
+      var countOfRots = Math.floor(currRot / 360);
+      var currRot;
+      if (currRot < 0) {
+        currRot = 360 - Math.abs(currRot % 360);
+      } else {
+        currRot = Math.abs(currRot % 360);
+      }
+
+      var high = Math.abs((currRot - 360) - theta);
+      var mid = Math.abs((currRot) - theta);
+      var lower = Math.abs((currRot + 360) - theta);
+
+      if (lower < mid) {
+        if (lower < high) {
+          theta += (countOfRots - 1) * 360
+        } else {
+          theta += (countOfRots + 1) * 360
+        }
+      } else {
+        if (mid < high) {
+          theta += countOfRots * 360
+        } else {
+          theta += (countOfRots + 1) * 360
+        }
+      }
+
+      transformString += ' rotate(' + theta + 'deg)';
 
       var mag = ((n1.getAttribute('cx') - n2.getAttribute('cx')) ** 2 + (n1.getAttribute('cy') - n2.getAttribute('cy')) ** 2) ** .5;
 
       var scale = (680 * 2 / 3) / mag;
 
-      transformString += ',scale(' + scale + ')';
-      transformString += 'translate(' + -n1.getAttribute('cx') + ',' + -n1.getAttribute('cy') + ')';
+      transformString += ' scale(' + scale + ')';
+      transformString += ' translate(' + -n1.getAttribute('cx') + 'px,' + -n1.getAttribute('cy') + 'px)';
 
       map.setAttribute('stroke-width', 5 / scale )
 
       for(let c of circles) {
         c.setAttribute('r', 8 / scale);
       }
-
-      group.setAttribute('transform', transformString);
+      // group.style.transform = transformString;
+      group.setAttribute('style', 'transform:'+ transformString + ';' +
+                                  '-webkit-transform:' + transformString + ';' +
+                                  '-moz-transform:' + transformString + ';' +
+                                  '-o-transform:' + transformString + ';');
     }
 
     nextStep() {
