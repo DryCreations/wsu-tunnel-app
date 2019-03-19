@@ -428,4 +428,4 @@ const len9 = [
     {"nodeIDs":[17, 18, 19, 13, 12, 9, 8, 5, 4, 3],"edgeIDs":[20, 22, 17, 15, 13, 11, 7, 5, 4]},
 ];
 
-module.exports = {len0, len1, len2, len3, len4, len5, len6, len7, len8, len9}
+module.exports = {len0, len1, len2, len3, len4, len5, len6, len7, len8, len9};

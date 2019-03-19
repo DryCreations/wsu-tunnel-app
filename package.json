@@ -2,7 +2,7 @@
 
   "name": "mysql-wsutunnelapp",
   "version": "1.0.0",
-  "description": "skeleton access to the test database",
+  "description": "Wright State University Tunnel Navigation Application",
   "main": "index.js",
   "scripts": {
     "test": "node src/connect.js"
@@ -34,7 +34,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-server": "node server/src/server.js"
+    "start-server": "node server/src/server.js tabletop"
   },
   "eslintConfig": {
     "extends": "react-app"
