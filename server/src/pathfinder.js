@@ -1,9 +1,30 @@
 const database = require('./database.js');
 const coordinate = require('./coordinate.js');
+const DEBUG = 0;
 
-exports.getPath = async function(startID, endID) {
+/**
+ * Uses A* to find a path from one node to another or from one node to the
+ * nearest of an array of nodes.
+ * @param {number} startID - The ID of the node to start at
+ * @param {number|Array} endIDs - The ID(s) of the node(s) to end at
+ * @return {Object} An object containing data representing the shortest path
+ *  between two points
+ */
+exports.getPath = async function(startID, endIDs) {
+    //Make sure that endIDs is an array
+    if(!Array.isArray(endIDs)) endIDs = [endIDs];
+
+    //Retrieve the information about all of the ending nodes
+    let endNodes = new Map();
+
+    //Load in the data for all of the possible end IDs
+    for(let i of endIDs) {
+      let nodeData = await database.node(i);
+      endNodes.set(i, nodeData);
+    }
+
     //Retreive end node now as we will be using it many times for our heuristic calculations.
-    let endNode = await database.node(endID);
+    let endNode = await database.node(endIDs);
 
     //Create a stack to hold the ID's frontier nodes.  this should be kept sorted at all times
     let toVisit = [{id: startID, heuristic: 0}];
@@ -20,11 +41,14 @@ exports.getPath = async function(startID, endID) {
     while(toVisit.length > 0) {
         //Get the ID of the next node to be visited
         var thisNodeID = toVisit.pop().id;
-        console.log("Popped node " + thisNodeID);
+        if(DEBUG>=3) console.log("Popped node " + thisNodeID);
 
-        //Check to see if the end node has been reached
-        if(thisNodeID === endID) {
-            console.log("End node has been reached. The distance is " + distances.get(endID));
+        //Check to see if an end node has been reached
+        if(endIDs.includes(thisNodeID)) {
+            if(DEBUG>=2) console.log("End node has been reached. The distance is " + distances.get(thisNodeID));
+
+            //Print that the end has been reached
+            var firstEndID = thisNodeID;
             break;
         }
 
@@ -48,7 +72,7 @@ exports.getPath = async function(startID, endID) {
                 let otherNode = await database.node(edge.nextNodeID);
 
                 //Get the minimum distance from otherNode to the end node
-                let crowFlightToEnd = coordinate.distanceTo(otherNode[0], endNode[0]);
+                let crowFlightToEnd = Math.min(...endIDs.map(i => coordinate.distanceTo(otherNode[0], endNodes.get(i)[0])));
 
                 //Get the A* heuristic distance for this node
                 let heuristic = currentPath + crowFlightToEnd;
@@ -60,7 +84,7 @@ exports.getPath = async function(startID, endID) {
                 //And splice it in
                 toVisit.splice(insertIndex, 0, {id: edge.nextNodeID, heuristic: heuristic});
 
-                console.log("Inserted node " + edge.nextNodeID + " at index " + insertIndex);
+                if(DEBUG>=3) console.log("Inserted node " + edge.nextNodeID + " at index " + insertIndex);
             }
         };
     }
@@ -68,26 +92,35 @@ exports.getPath = async function(startID, endID) {
     //Get the path taken..
 
     //Object to store path data
-    let path = { nodeIDs: [endID], edgeIDs: [] };
+    let path = { nodeIDs: [firstEndID], edgeIDs: [] };
 
     //Iterate backwards through the path, storing it into the path object arrays
     //Note that the resulting arrays will be backwards from the actual direction of the path...
     while(path.nodeIDs[path.nodeIDs.length - 1] !== startID) {
         //Get the ID of this node
         var thisID = path.nodeIDs[path.nodeIDs.length - 1];
-
         //Get the previous node in the path
         let previous = previousNodes.get(thisID);
 
         //Push the edge and the node IDs into the path
         path.nodeIDs.push(previous.nodeID);
         path.edgeIDs.push(previous.edgeID);
+
     }
 
     //Since the arrays were loaded backwards, reverse them now
-    //IDEA: if the algorithm searches from end to start, this won't be necessary...
     path.nodeIDs = path.nodeIDs.reverse();
     path.edgeIDs = path.edgeIDs.reverse();
 
     return path;
 };
+
+if(DEBUG>=1) {
+  let asyncTest = async function() {
+    console.log("Testing some dummy paths...");
+    console.log(await exports.getPath(1, [6, 5, 13]));
+    console.log(await exports.getPath(1, [6, 5]));
+  };
+
+  asyncTest();
+}
