@@ -22,6 +22,7 @@ class Map extends Component {
             animating: false,
             pathNodes: null,
             currNodes: 0,
+            defaultViewBoxArgs: '0 0 640 480',
         };
 
         //bind touch events to this object
@@ -101,6 +102,35 @@ class Map extends Component {
             map.addEventListener('touchend', this.onTouchUp);
             map.addEventListener('touchmove', this.onTouchMove);
         }
+
+        this.initViewBoxDimensions();
+    }
+
+    initViewBoxDimensions() {
+      var verticalMargin = 200;
+
+      var screenWidth = window.innerWidth;
+      var screenHeight = window.innerHeight - 200;
+
+      var map = document.getElementById('Map');
+
+      var viewBoxArgs = map.getAttribute('viewBox').split(' ').map(x => parseFloat(x));
+
+      if (screenWidth  < screenHeight) {
+        var newHeight = viewBoxArgs[2] * (screenHeight / screenWidth);
+        viewBoxArgs[1] = -(newHeight - viewBoxArgs[3]) / 2;
+        viewBoxArgs[3] = newHeight;
+      } else {
+        var newWidth = viewBoxArgs[3] * (screenWidth / screenHeight);
+        viewBoxArgs[0] = -(newWidth - viewBoxArgs[2]) / 2;
+        viewBoxArgs[2] = newWidth;
+      }
+
+      map.setAttribute('viewBox', viewBoxArgs.join(' '));
+
+      this.setState({
+        defaultViewBoxArgs: viewBoxArgs,
+      });
     }
 
     onTouchDown(event) {
@@ -597,7 +627,13 @@ class Map extends Component {
 
     resetViewBox() {
       var map = document.getElementById('Map')
-      map.setAttribute('viewBox', '0 0 640 680');
+
+      var viewBoxArgs = this.state.defaultViewBoxArgs.slice(0);
+
+      viewBoxArgs[0] = 0;
+      viewBoxArgs[1] = 0;
+
+      map.setAttribute('viewBox', viewBoxArgs.join(' '));
     }
 
     transform(nodeIdFrom, nodeIdTo) {
@@ -623,7 +659,7 @@ class Map extends Component {
 
       var transformString = '';
 
-      transformString += 'translate(' + 640 / 2 + 'px,' + 5 * 680 / 6 + 'px)';
+      transformString += 'translate(' + this.state.defaultViewBoxArgs[2] / 2 + 'px,' + 5 * this.state.defaultViewBoxArgs[3] / 6 + 'px)';
 
       var theta = Math.atan2(0, -1) + Math.atan2(n2.getAttribute('cx') - n1.getAttribute('cx'), n2.getAttribute('cy') - n1.getAttribute('cy'));
       theta = 180 * theta / Math.PI
@@ -658,7 +694,7 @@ class Map extends Component {
 
       var mag = ((n1.getAttribute('cx') - n2.getAttribute('cx')) ** 2 + (n1.getAttribute('cy') - n2.getAttribute('cy')) ** 2) ** .5;
 
-      var scale = (680 * 2 / 3) / mag;
+      var scale = (this.state.defaultViewBoxArgs[3] * 2 / 3) / mag;
 
       transformString += ' scale(' + scale + ')';
       transformString += ' translate(' + -n1.getAttribute('cx') + 'px,' + -n1.getAttribute('cy') + 'px)';
