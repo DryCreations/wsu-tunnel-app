@@ -79,6 +79,9 @@ circle {
 }
 
 #NavigateButton {
+  position: fixed;
+  top: 80%;
+  left: 50%;
   min-width: 100px;
   background-color: #026937;
   border-color: #026937;
@@ -86,7 +89,8 @@ circle {
   border-width: 2px;
   color: white;
   padding: 10px 10px;
-  margin: 20px;
+  margin-top: 20px;
+  margin-left: -50px;
   font: bold 16px sans-serif;
   -webkit-transition-duration: 0.4s;
 

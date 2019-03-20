@@ -107,10 +107,10 @@ class Map extends Component {
     }
 
     initViewBoxDimensions() {
-      var verticalMargin = 200;
+      var verticalMargin = 0;
 
       var screenWidth = window.innerWidth;
-      var screenHeight = window.innerHeight - 200;
+      var screenHeight = window.innerHeight - verticalMargin;
 
       var map = document.getElementById('Map');
 
