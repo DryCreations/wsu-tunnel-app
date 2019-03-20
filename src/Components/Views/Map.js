@@ -216,7 +216,7 @@ class Map extends Component {
             }
             avgD /= event.touches.length;
 
-            this.scaleViewBoxAtPos(Math.min(2, Math.max(1 - (this.state.lAvgD - avgD) / 200, .5)), avgX, avgY);
+            this.scaleViewBoxAtPos(Math.min(2, Math.max(1 - (this.state.lAvgD - avgD) / 100, .5)), avgX, avgY);
         }
         let map = document.getElementById('Map');
         let rec = map.getBoundingClientRect();
@@ -278,7 +278,7 @@ class Map extends Component {
             if (this.state.o1.pointerId === event.pointerId) {
                 let rec = map.getBoundingClientRect();
                 let delta = Math.hypot(this.state.o2.pageX - this.state.o1.pageX, this.state.o2.pageY - this.state.o1.pageY) - Math.hypot(this.state.o2.pageX - event.pageX, this.state.o2.pageY - event.pageY);
-                this.scaleViewBoxAtPos(Math.min(2, Math.max(1 - delta / 1000, .5)),
+                this.scaleViewBoxAtPos(Math.min(2, Math.max(1 - delta / 200, .5)),
                     (event.pageX + this.state.o2.pageX) / 2 - rec.left,
                     (event.pageY + this.state.o2.pageY) / 2 - rec.top);
 
@@ -294,7 +294,7 @@ class Map extends Component {
             } else if (this.state.o2.pointerId === event.pointerId) {
                 let rec = map.getBoundingClientRect();
                 let delta = Math.hypot(this.state.o2.pageX - this.state.o1.pageX, this.state.o2.pageY - this.state.o1.pageY) - Math.hypot(this.state.o1.pageX - event.pageX, this.state.o1.pageY - event.pageY);
-                this.scaleViewBoxAtPos(Math.min(2, Math.max(1 - delta / 1000, .5)),
+                this.scaleViewBoxAtPos(Math.min(2, Math.max(1 - delta / 200, .5)),
                     (event.pageX + this.state.o1.pageX) / 2 - rec.left,
                     (event.pageY + this.state.o1.pageY) / 2 - rec.top);
 
@@ -652,8 +652,6 @@ class Map extends Component {
 
       var map = document.getElementById('Map')
 
-      var circles = group.getElementsByTagName('circle');
-
       var n1 = document.getElementById('N' + nodeIdFrom);
       var n2 = document.getElementById('N' + nodeIdTo);
 
@@ -701,6 +699,8 @@ class Map extends Component {
 
       map.setAttribute('stroke-width', 5 / scale )
 
+      var circles = group.getElementsByTagName('circle');
+
       for(let c of circles) {
         c.setAttribute('r', 8 / scale);
       }
@@ -729,6 +729,7 @@ class Map extends Component {
         });
       }
     }
+
 }
 
 
