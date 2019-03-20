@@ -730,6 +730,47 @@ class Map extends Component {
       }
     }
 
+
+        markers(edgeId, markers, startNodeId, endNodeId) {
+          var scale = document.getElementById('TransformMap').getAttribute('transform');
+          if (scale) {
+            scale = scale.match('scale\\((-?\\d*(:?\\.\\d*)?)\\)')[1];
+          } else {
+            scale = 1;
+          }
+
+          var lineLength = 16 / scale;
+
+          var path = document.getElementById(edgeId);
+
+          var pathStart = document.getElementById(startNodeId);
+          var pathEnd = document.getElementById(endNodeId);
+
+          var dy = pathEnd.getAttribute('cy') - pathStart.getAttribute('cy');
+          var dx = pathEnd.getAttribute('cx') - pathStart.getAttribute('cx');
+
+          var mag = Math.sqrt(dx ** 2 + dy ** 2);
+
+          dx /= mag;
+          dy /= mag;
+
+          for(var i = 1; i <= markers; i++) {
+            var arrow = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+
+
+            var point1 = path.getPointAtLength(i * path.getTotalLength() / (markers + 1));
+            point1.x += dx * lineLength / 2;
+            point1.y += dy * lineLength / 2;
+
+            var point2 = {x: point1.x - dx * lineLength - dy * lineLength / 2, y: point1.y - dy * lineLength + dx * lineLength / 2};
+            var point3 = {x: point1.x - dx * lineLength + dy * lineLength / 2, y: point1.y - dy * lineLength - dx * lineLength / 2};
+
+            arrow.setAttribute('points', point1.x + ',' + point1.y + ' ' + point2.x + ',' + point2.y + ' ' + point3.x + ',' + point3.y);
+
+            path.parentElement.insertBefore(arrow, path.nextSibling);
+          }
+        }
+
 }
 
 
