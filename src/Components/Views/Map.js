@@ -659,7 +659,7 @@ class Map extends Component {
 
       var transformString = '';
 
-      transformString += 'translate(' + this.state.defaultViewBoxArgs[2] / 2 + 'px,' + 5 * this.state.defaultViewBoxArgs[3] / 6 + 'px)';
+      transformString += 'translate(' + this.state.defaultViewBoxArgs[2] / 2 + 'px,' + 11 * this.state.defaultViewBoxArgs[3] / 15 + 'px)';
 
       var theta = Math.atan2(0, -1) + Math.atan2(n2.getAttribute('cx') - n1.getAttribute('cx'), n2.getAttribute('cy') - n1.getAttribute('cy'));
       theta = 180 * theta / Math.PI
@@ -694,7 +694,7 @@ class Map extends Component {
 
       var mag = ((n1.getAttribute('cx') - n2.getAttribute('cx')) ** 2 + (n1.getAttribute('cy') - n2.getAttribute('cy')) ** 2) ** .5;
 
-      var scale = (this.state.defaultViewBoxArgs[3] * 2 / 3) / mag;
+      var scale = (this.state.defaultViewBoxArgs[3] * 8 / 15) / mag;
 
       transformString += ' scale(' + scale + ')';
       transformString += ' translate(' + -n1.getAttribute('cx') + 'px,' + -n1.getAttribute('cy') + 'px)';
