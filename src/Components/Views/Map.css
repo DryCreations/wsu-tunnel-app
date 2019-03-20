@@ -9,6 +9,7 @@ path {
 circle {
   stroke: #063D1C;
   fill: #063D1C;
+  r: inherit;
 }
 
 circle:hover {

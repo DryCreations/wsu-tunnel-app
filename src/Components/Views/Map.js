@@ -340,6 +340,23 @@ class Map extends Component {
 
         map.setAttribute('viewBox', viewBoxArgs.join(' '));
 
+        var scale2 = map.getElementById('TransformMap').getAttribute('style');
+
+        if (scale2) {
+          scale2 = scale2.match('scale\\((-?\\d*(:?\\.\\d*)?)\\)');
+          if (scale2) {
+            scale2 = scale2[1];
+
+          } else {
+            scale2 = 1
+          }
+        } else {
+          scale2 = 1;
+        }
+
+        map.setAttribute('stroke-width', Math.min((5 / (this.state.defaultViewBoxArgs[3] / viewBoxArgs[3])) / scale2, 5));
+        map.getElementById('TransformMap').style.r = Math.min((8 / (this.state.defaultViewBoxArgs[3] / viewBoxArgs[3])) / scale2, 8);
+
         this.shiftViewBox(shiftX, shiftY);
     }
 
@@ -356,6 +373,22 @@ class Map extends Component {
         viewBoxArgs[3] *= 1 / scale;
 
         map.setAttribute('viewBox', viewBoxArgs.join(' '));
+
+        var scale2 = map.getElementById('TransformMap').getAttribute('style');
+
+        if (scale2) {
+          scale2 = scale2.match('scale\\((-?\\d*(:?\\.\\d*)?)\\)');
+          if (scale2) {
+            scale2 = scale2[1];
+          } else {
+            scale2 = 1
+          }
+        } else {
+          scale2 = 1;
+        }
+
+        map.setAttribute('stroke-width', Math.min((5 / (this.state.defaultViewBoxArgs[3] / viewBoxArgs[3])) / scale2, 5));
+        map.getElementById('TransformMap').style.r = Math.min((8 / (this.state.defaultViewBoxArgs[3] / viewBoxArgs[3])) / scale2, 8);
 
         this.shiftViewBox(shiftX, shiftY);
     }
@@ -699,13 +732,8 @@ class Map extends Component {
 
       map.setAttribute('stroke-width', 5 / scale )
 
-      var circles = group.getElementsByTagName('circle');
-
-      for(let c of circles) {
-        c.setAttribute('r', 8 / scale);
-      }
       // group.style.transform = transformString;
-      group.setAttribute('style', 'transform:'+ transformString + ';' +
+      group.setAttribute('style', 'r:' + 8 / scale + ';transform:' + transformString + ';' +
                                   '-webkit-transform:' + transformString + ';' +
                                   '-moz-transform:' + transformString + ';' +
                                   '-o-transform:' + transformString + ';');
@@ -732,7 +760,7 @@ class Map extends Component {
 
 
         markers(edgeId, markers, startNodeId, endNodeId) {
-          var scale = document.getElementById('TransformMap').getAttribute('transform');
+          var scale = document.getElementById('TransformMap').getAttribute('style');
           if (scale) {
             scale = scale.match('scale\\((-?\\d*(:?\\.\\d*)?)\\)')[1];
           } else {
