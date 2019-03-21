@@ -1,20 +1,17 @@
 {
-
-  "name": "mysql-wsutunnelapp",
-  "version": "1.0.0",
+  "name": "untitled",
+  "version": "0.1.0",
   "description": "Wright State University Tunnel Navigation Application",
   "main": "index.js",
   "scripts": {
-    "test": "node src/connect.js"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "start-server": "node server/src/server.js tabletop"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "mysql": "^2.16.0"
-  },
-  "name": "untitled",
-  "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.13",
     "@fortawesome/free-solid-svg-icons": "^5.7.0",
@@ -29,13 +26,7 @@
     "react-scripts": "2.1.3",
     "react-swipeable-routes": "^0.5.1"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "start-server": "node server/src/server.js tabletop"
-  },
+  "private": true,
   "eslintConfig": {
     "extends": "react-app"
   },
