@@ -23,6 +23,10 @@ $('form').submit(function(e1) {
 
     var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
+    var transformGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+    transformGroup.setAttribute('id', 'TransformMap');
+    transformGroup.style.r = nodeRadius;
+
     for(var i = 1; i < data.length; i++) {
       var node = document.createElementNS(null, 'circle');
       node.setAttribute('id', 'N' + data[i][0]);
@@ -30,9 +34,90 @@ $('form').submit(function(e1) {
       node.setAttribute('cx', map(data[i][2], longMin, longMax, 0, svgXMax));
       node.setAttribute('cy', map(data[i][1], latMax, latMin, 0, svgYMax));
 
-      node.setAttribute('r', nodeRadius);
+      // node.setAttribute('r', nodeRadius);
 
-      svg.appendChild(node);
+      switch(data[i][8]) {
+        case '0':
+          node.classList.add('intersection');
+          break;
+        case '1':
+          node.classList.add('exit');
+          break;
+        case '2':
+          node.classList.add('staircase');
+          break;
+        case '3':
+          node.classList.add('elevator');
+          break;
+      }
+
+      switch(data[i][5]) {
+        case '0':
+          node.classList.add('noBuilding');
+          break;
+        case '1':
+          node.classList.add('allynHall');
+          break;
+        case '2':
+          node.classList.add('biologicalSciencesI');
+          break;
+        case '3':
+          node.classList.add('biologicalSciencesII');
+          break;
+        case '4':
+          node.classList.add('brehmLaboratory');
+          break;
+        case '5':
+          node.classList.add('creativeArtsCenter');
+          break;
+        case '6':
+          node.classList.add('diggsLaboratory');
+          break;
+        case '7':
+          node.classList.add('dunbarLibrary');
+          break;
+        case '8':
+          node.classList.add('fawcettHall');
+          break;
+        case '9':
+          node.classList.add('joshiCenter');
+          break;
+        case '10':
+          node.classList.add('libraryAnnex');
+          break;
+        case '11':
+          node.classList.add('mathAndMicrobiology');
+          break;
+        case '12':
+          node.classList.add('medicalSciences');
+          break;
+        case '13':
+          node.classList.add('millettHall');
+          break;
+        case '14':
+          node.classList.add('motionPictures');
+          break;
+        case '15':
+          node.classList.add('oelmanHall');
+          break;
+        case '16':
+          node.classList.add('rikeHall');
+          break;
+        case '17':
+          node.classList.add('russEngineering');
+          break;
+        case '18':
+          node.classList.add('studentSuccessCenter');
+          break;
+        case '19':
+          node.classList.add('studentUnion');
+          break;
+        case '20':
+          node.classList.add('universityHall');
+          break;
+      }
+
+      transformGroup.appendChild(node);
     }
 
     var reader2 = new FileReader();
@@ -48,8 +133,10 @@ $('form').submit(function(e1) {
 
         path.setAttribute('d', 'M ' + map(data[data2[i][1]][2], longMin, longMax, 0, svgXMax) + ' ' + map(data[data2[i][1]][1], latMax, latMin, 0, svgYMax) + ' ' + map(data[data2[i][2]][2], longMin, longMax, 0, svgXMax) + ' ' + map(data[data2[i][2]][1], latMax, latMin, 0, svgYMax));
 
-        svg.prepend(path);
+        transformGroup.prepend(path);
       }
+
+      svg.appendChild(transformGroup);
 
       svg.setAttribute('viewBox', '0 0 ' + svgXMax + ' ' + svgYMax);
       svg.setAttribute('version', '1.1');
