@@ -12,4 +12,4 @@ app.get("/getPath/:start-:end", function(req, res) {
     res.send(res.locals.path);
 });
 
-app.listen(5000);
+app.listen(5000).setTimeout(500000);
