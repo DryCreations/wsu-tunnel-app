@@ -743,6 +743,7 @@ class Map extends Component {
 
       if (this.state.pathNodes != null && this.state.currNodes < this.state.pathNodes.length - 1) {
         this.transform(this.state.pathNodes[this.state.currNodes], this.state.pathNodes[this.state.currNodes + 1])
+        console.log(this.getDirection(this.state.currNodes));
         this.setState({
           currNodes: this.state.currNodes + 1,
         });
@@ -758,46 +759,98 @@ class Map extends Component {
       }
     }
 
+    getDirection(currNodes) {
+      var ret = 'Your destination is ahead'
+      if (this.state.pathNodes && currNodes < this.state.pathNodes.length - 2) {
+        var n1 = document.getElementById('N' + this.state.pathNodes[currNodes]);
+        var n2 = document.getElementById('N' + this.state.pathNodes[currNodes + 1]);
+        var n3 = document.getElementById('N' + this.state.pathNodes[currNodes + 2]);
 
-        markers(edgeId, markers, startNodeId, endNodeId) {
-          var scale = document.getElementById('TransformMap').getAttribute('style');
-          if (scale) {
-            scale = scale.match('scale\\((-?\\d*(:?\\.\\d*)?)\\)')[1];
-          } else {
-            scale = 1;
-          }
+        var theta1 = Math.atan2(n2.getAttribute('cx') - n1.getAttribute('cx'), n2.getAttribute('cy') - n1.getAttribute('cy'));
+        var theta2 = Math.atan2(n3.getAttribute('cx') - n2.getAttribute('cx'), n3.getAttribute('cy') - n2.getAttribute('cy'));
 
-          var lineLength = 16 / scale;
+        ret = '';
 
-          var path = document.getElementById(edgeId);
-
-          var pathStart = document.getElementById(startNodeId);
-          var pathEnd = document.getElementById(endNodeId);
-
-          var dy = pathEnd.getAttribute('cy') - pathStart.getAttribute('cy');
-          var dx = pathEnd.getAttribute('cx') - pathStart.getAttribute('cx');
-
-          var mag = Math.sqrt(dx ** 2 + dy ** 2);
-
-          dx /= mag;
-          dy /= mag;
-
-          for(var i = 1; i <= markers; i++) {
-            var arrow = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-
-
-            var point1 = path.getPointAtLength(i * path.getTotalLength() / (markers + 1));
-            point1.x += dx * lineLength / 2;
-            point1.y += dy * lineLength / 2;
-
-            var point2 = {x: point1.x - dx * lineLength - dy * lineLength / 2, y: point1.y - dy * lineLength + dx * lineLength / 2};
-            var point3 = {x: point1.x - dx * lineLength + dy * lineLength / 2, y: point1.y - dy * lineLength - dx * lineLength / 2};
-
-            arrow.setAttribute('points', point1.x + ',' + point1.y + ' ' + point2.x + ',' + point2.y + ' ' + point3.x + ',' + point3.y);
-
-            path.parentElement.insertBefore(arrow, path.nextSibling);
-          }
+        var theta = theta1 - theta2;
+        if (theta > Math.PI) {
+          theta -= 2 * Math.PI;
+        } else if (theta < -Math.PI) {
+          theta += 2 * Math.PI;
         }
+
+        if (theta > Math.PI / 8) {
+          ret += 'take a '
+          if (theta > Math.PI / 4) {
+            ret += 'right ';
+          } else {
+            ret += 'slight right '
+          }
+        } else if (theta < -Math.PI / 8) {
+          ret += 'take a '
+          if (theta < -Math.PI / 4) {
+            ret += 'left ';
+          } else {
+            ret += 'slight left '
+          }
+        } else {
+          ret += 'continue straight ';
+        }
+
+        ret += 'at the next ';
+
+        if (n2.classList.contains('intersection')) {
+          ret += 'intersection';
+        } else if (n2.classList.contains('staircase')) {
+          ret += 'staircase';
+        } else if (n2.classList.contains('exit')) {
+          ret += 'exit';
+        } else if (n2.classList.contains('elevator')) {
+          ret += 'elevator';
+        }
+      }
+      return ret;
+    }
+
+
+    markers(edgeId, markers, startNodeId, endNodeId) {
+      var scale = document.getElementById('TransformMap').getAttribute('style');
+      if (scale) {
+        scale = scale.match('scale\\((-?\\d*(:?\\.\\d*)?)\\)')[1];
+      } else {
+        scale = 1;
+      }
+
+      var lineLength = 16 / scale;
+
+      var path = document.getElementById(edgeId);
+
+      var pathStart = document.getElementById(startNodeId);
+      var pathEnd = document.getElementById(endNodeId);
+
+      var dy = pathEnd.getAttribute('cy') - pathStart.getAttribute('cy');
+      var dx = pathEnd.getAttribute('cx') - pathStart.getAttribute('cx');
+
+      var mag = Math.sqrt(dx ** 2 + dy ** 2);
+
+      dx /= mag;
+      dy /= mag;
+
+      for(var i = 1; i <= markers; i++) {
+        var arrow = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+
+
+        var point1 = path.getPointAtLength(i * path.getTotalLength() / (markers + 1));
+        point1.x += dx * lineLength / 2;
+        point1.y += dy * lineLength / 2;
+
+        var point2 = {x: point1.x - dx * lineLength - dy * lineLength / 2, y: point1.y - dy * lineLength + dx * lineLength / 2};
+        var point3 = {x: point1.x - dx * lineLength + dy * lineLength / 2, y: point1.y - dy * lineLength - dx * lineLength / 2};
+
+        arrow.setAttribute('points', point1.x + ',' + point1.y + ' ' + point2.x + ',' + point2.y + ' ' + point3.x + ',' + point3.y);
+
+        path.parentElement.insertBefore(arrow, path.nextSibling);
+      }
+    }
 
 }
 
