@@ -24,12 +24,24 @@ const sideDrawer = props => {
             
         </header>
 
-        <ul><li>
+        <ul>
+            <li>
+                <NavLink to={"./Map"} onClick={props.clicky}>Map</NavLink>
+            </li>
+            <li>
+                <NavLink to={"./About"} onClick={props.clicky}>About</NavLink>
+            </li>
+
+            <li>
+                <NavLink to={"./FAQ"} onClick={props.clicky}>FAQ</NavLink>
+            </li>
+        
+
+
+        <li>
             <SelectFrom/>
         </li>
             <li><SelectTo/></li>
-            
-
         </ul>
     </nav>
         </div>
