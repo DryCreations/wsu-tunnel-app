@@ -14,10 +14,6 @@ class Map extends Component {
             selected: sel,
             o1: null,
             o2: null,
-            t: null,
-            lAvgX: null,
-            lAvgY: null,
-            lAvgD: null,
             animationStack: [],
             animating: false,
             pathNodes: null,
@@ -33,6 +29,8 @@ class Map extends Component {
         this.onTouchDown = this.onTouchDown.bind(this);
         this.onTouchUp = this.onTouchUp.bind(this);
         this.onTouchMove = this.onTouchMove.bind(this);
+
+        window.addEventListener("resize", this.initViewBoxDimensions.bind(this));
 
         window.mapComponent = this; //call functions by window.mapComponent.{Function call here}
 
@@ -134,105 +132,60 @@ class Map extends Component {
     }
 
     onTouchDown(event) {
-        var avgX = 0;
-        var avgY = 0;
-
-        for(let i = 0; i < event.touches.length; i++) {
-            avgX += event.touches[i].pageX;
-            avgY += event.touches[i].pageY;
-        }
-
-        avgX /= event.touches.length;
-        avgY /= event.touches.length;
-
-        if (event.touches.length > 1) {
-            var avgD = 0;
-
-            for(let i = 0; i < event.touches.length; i++) {
-                avgD += Math.hypot(event.touches[i].pageX - avgX, event.touches[i].pageY - avgY);
-            }
-            avgD /= event.touches.length;
-
-        }
-
-
+      this.setState({
+        o1: {x:event.touches[0].pageX, y:event.touches[0].pageY},
+        o2: null,
+      });
+      if (event.touches.length > 1) {
         this.setState({
-            t: event,
-            lAvgX: avgX,
-            lAvgY: avgY,
-            lAvgD: avgD,
+          o2: {x:event.touches[1].pageX, y:event.touches[1].pageY},
         });
+      }
     }
 
     onTouchUp(event) {
-        var avgX = 0;
-        var avgY = 0;
-
-        for(let i = 0; i < event.touches.length; i++) {
-            avgX += event.touches[i].pageX;
-            avgY += event.touches[i].pageY;
-        }
-
-        avgX /= event.touches.length;
-        avgY /= event.touches.length;
-
-        if (event.touches.length > 1) {
-            var avgD = 0;
-
-            for(let i = 0; i < event.touches.length; i++) {
-                avgD += Math.hypot(event.touches[i].pageX - avgX, event.touches[i].pageY - avgY);
-            }
-            avgD /= event.touches.length;
-
-        }
-
-
+      if (event.touches.length > 0) {
         this.setState({
-            t: event,
-            lAvgX: avgX,
-            lAvgY: avgY,
-            lAvgD: avgD,
+          o1: {x:event.touches[0].pageX, y:event.touches[0].pageY},
+          o2: null,
         });
+        if (event.touches.length > 1) {
+          this.setState({
+            o2: {x:event.touches[1].pageX, y:event.touches[1].pageY},
+          });
+        }
+      }
     }
 
     onTouchMove(event) {
         event.preventDefault();
-        var avgX = 0;
-        var avgY = 0;
 
-        for(let i = 0; i < event.touches.length; i++) {
-            avgX += event.touches[i].pageX;
-            avgY += event.touches[i].pageY;
-        }
-
-        avgX /= event.touches.length;
-        avgY /= event.touches.length;
-
+        var map = document.getElementById('Map');
+        var scale = this.state.defaultViewBoxArgs[2] / map.getBoundingClientRect().width;
+        let group = document.getElementById('UserTransform');
+        let lastMatrix = this.getUserMatrix();
         if (event.touches.length > 1) {
-            var avgD = 0;
+          let o1 = {x: this.state.o1.x * scale + this.state.defaultViewBoxArgs[0], y: this.state.o1.y * scale + this.state.defaultViewBoxArgs[1]};
+          let o2 = {x: this.state.o2.x * scale + this.state.defaultViewBoxArgs[0], y: this.state.o2.y * scale + this.state.defaultViewBoxArgs[1]};
+          let r1 = {x: event.touches[0].pageX * scale + this.state.defaultViewBoxArgs[0], y: event.touches[0].pageY * scale + this.state.defaultViewBoxArgs[1]};
+          let r2 = {x: event.touches[1].pageX * scale + this.state.defaultViewBoxArgs[0], y: event.touches[1].pageY * scale + this.state.defaultViewBoxArgs[1]};
 
-            for(let i = 0; i < event.touches.length; i++) {
-                avgD += Math.hypot(event.touches[i].pageX - avgX, event.touches[i].pageY - avgY);
-            }
-            avgD /= event.touches.length;
-
-            this.scaleViewBoxAtPos(Math.min(2, Math.max(1 - (this.state.lAvgD - avgD) / 100, .5)), avgX, avgY);
+          var newMatrix = this.multiplyMatrices(this.getDoubleTouchMatrix(o1, o2, r1, r2), lastMatrix);
+          group.setAttribute('style', 'transform:matrix(' + this.matrixToString(newMatrix) + ');')
+          this.setState({
+              o1: {x:event.touches[0].pageX, y:event.touches[0].pageY},
+              o2: {x:event.touches[1].pageX, y:event.touches[1].pageY},
+          });
+        } else {
+          let o1 = {x: this.state.o1.x * scale, y: this.state.o1.y * scale};
+          let r1 = {x: event.touches[0].pageX * scale, y: event.touches[0].pageY * scale};
+          let newMatrix = this.multiplyMatrices(this.getSingleTouchMatrix(o1, r1), lastMatrix);
+          group.setAttribute('style', 'transform:matrix(' + this.matrixToString(newMatrix) + ');')
+          this.setState({
+            o1: {x:event.touches[0].pageX, y:event.touches[0].pageY},
+            o2: null,
+          });
         }
-        let map = document.getElementById('Map');
-        let rec = map.getBoundingClientRect();
-        let viewBoxArgs = map.getAttribute('viewBox').split(' ').map(x => parseFloat(x));
-        let scalarX = viewBoxArgs[2] / rec.width;
-        let scalarY = viewBoxArgs[3] / rec.height;
-
-        this.shiftViewBox(scalarX * (this.state.lAvgX - avgX), scalarY * (this.state.lAvgY - avgY));
-
-        this.setState({
-            t: event,
-            lAvgX: avgX,
-            lAvgY: avgY,
-            lAvgD: avgD,
-        });
-
 
     }
 
@@ -279,10 +232,10 @@ class Map extends Component {
               let group = document.getElementById('UserTransform');
               let lastMatrix = this.getUserMatrix();
 
-              let o1 = {x: this.state.o1.pageX * scale, y: this.state.o1.pageY * scale};
-              let o2 = {x: this.state.o2.pageX * scale, y: this.state.o2.pageY * scale};
-              let r2 = {x: this.state.o2.pageX * scale, y: this.state.o2.pageY * scale};
-              let r1 = {x: event.pageX * scale, y: event.pageY * scale};
+              let o1 = {x: this.state.o1.pageX * scale + this.state.defaultViewBoxArgs[0], y: this.state.o1.pageY * scale + this.state.defaultViewBoxArgs[1]};
+              let o2 = {x: this.state.o2.pageX * scale + this.state.defaultViewBoxArgs[0], y: this.state.o2.pageY * scale + this.state.defaultViewBoxArgs[1]};
+              let r2 = {x: this.state.o2.pageX * scale + this.state.defaultViewBoxArgs[0], y: this.state.o2.pageY * scale + this.state.defaultViewBoxArgs[1]};
+              let r1 = {x: event.pageX * scale + this.state.defaultViewBoxArgs[0], y: event.pageY * scale + this.state.defaultViewBoxArgs[1]};
 
               let newMatrix = this.multiplyMatrices(this.getDoubleTouchMatrix(o1, o2, r1, r2), lastMatrix);
 
@@ -295,10 +248,10 @@ class Map extends Component {
               let group = document.getElementById('UserTransform');
               let lastMatrix = this.getUserMatrix();
 
-              let o1 = {x: this.state.o1.pageX * scale, y: this.state.o1.pageY * scale};
-              let o2 = {x: this.state.o2.pageX * scale, y: this.state.o2.pageY * scale};
-              let r1 = {x: this.state.o1.pageX * scale, y: this.state.o1.pageY * scale};
-              let r2 = {x: event.pageX * scale, y: event.pageY * scale};
+              let o1 = {x: this.state.o1.pageX * scale + this.state.defaultViewBoxArgs[0], y: this.state.o1.pageY * scale + this.state.defaultViewBoxArgs[1]};
+              let o2 = {x: this.state.o2.pageX * scale + this.state.defaultViewBoxArgs[0], y: this.state.o2.pageY * scale + this.state.defaultViewBoxArgs[1]};
+              let r1 = {x: this.state.o1.pageX * scale + this.state.defaultViewBoxArgs[0], y: this.state.o1.pageY * scale + this.state.defaultViewBoxArgs[1]};
+              let r2 = {x: event.pageX * scale + this.state.defaultViewBoxArgs[0], y: event.pageY * scale + this.state.defaultViewBoxArgs[1]};
 
               var newMatrix = this.multiplyMatrices(this.getDoubleTouchMatrix(o1, o2, r1, r2), lastMatrix);
               group.setAttribute('style', 'transform:matrix(' + this.matrixToString(newMatrix) + ');')
@@ -310,8 +263,8 @@ class Map extends Component {
           let group = document.getElementById('UserTransform');
           let lastMatrix = this.getUserMatrix();
 
-          let o1 = {x: this.state.o1.pageX * scale, y: this.state.o1.pageY * scale};
-          let r1 = {x: event.pageX * scale, y: event.pageY * scale};
+          let o1 = {x: this.state.o1.pageX * scale + this.state.defaultViewBoxArgs[0], y: this.state.o1.pageY * scale + this.state.defaultViewBoxArgs[1]};
+          let r1 = {x: event.pageX * scale + this.state.defaultViewBoxArgs[0], y: event.pageY * scale + this.state.defaultViewBoxArgs[1]};
 
 
           let newMatrix = this.multiplyMatrices(this.getSingleTouchMatrix(o1, r1), lastMatrix);
@@ -324,7 +277,7 @@ class Map extends Component {
 
     onScroll(event) {
       event.preventDefault();
-var map = document.getElementById('Map');
+      var map = document.getElementById('Map');
       var scale = this.state.defaultViewBoxArgs[2] / map.getBoundingClientRect().width;
       let group = document.getElementById('UserTransform');
 
@@ -336,87 +289,6 @@ var map = document.getElementById('Map');
       group.setAttribute('style', 'transform:matrix(' + this.matrixToString(newMatrix) + ');')
       // this.scaleViewBoxAtPos(Math.min(2, Math.max(1 - event.deltaY / 1000, .5)), event.pageX - document.getElementById('Map').getBoundingClientRect().left, event.pageY - document.getElementById('Map').getBoundingClientRect().top);
     }
-
-    scaleViewBox(scale) {
-        var map = document.getElementById('Map');
-
-        var viewBoxArgs = map.getAttribute('viewBox').split(' ').map(x => parseFloat(x));
-
-        var shiftX = (viewBoxArgs[2] * (1 - 1 / scale)) / 2;
-        var shiftY = (viewBoxArgs[3] * (1 - 1 / scale)) / 2;
-
-        viewBoxArgs[2] *= 1 / scale;
-        viewBoxArgs[3] *= 1 / scale;
-
-        map.setAttribute('viewBox', viewBoxArgs.join(' '));
-
-        var scale2 = map.getElementById('TransformMap').getAttribute('style');
-
-        if (scale2) {
-          scale2 = scale2.match('scale\\((-?\\d*(:?\\.\\d*)?)\\)');
-          if (scale2) {
-            scale2 = scale2[1];
-
-          } else {
-            scale2 = 1
-          }
-        } else {
-          scale2 = 1;
-        }
-
-        map.setAttribute('stroke-width', Math.min((5 / (this.state.defaultViewBoxArgs[3] / viewBoxArgs[3])) / scale2, 5));
-        map.getElementById('TransformMap').style.r = Math.min((8 / (this.state.defaultViewBoxArgs[3] / viewBoxArgs[3])) / scale2, 8);
-
-        this.shiftViewBox(shiftX, shiftY);
-    }
-
-    scaleViewBoxAtPos(scale, x, y) {
-        var map = document.getElementById('Map');
-        let rec = map.getBoundingClientRect();
-
-        var viewBoxArgs = map.getAttribute('viewBox').split(' ').map(x => parseFloat(x));
-
-        var shiftX = (viewBoxArgs[2] * (1 - 1 / scale)) * (x / rec.width);
-        var shiftY = (viewBoxArgs[3] * (1 - 1 / scale)) * (y / rec.height);
-
-        viewBoxArgs[2] *= 1 / scale;
-        viewBoxArgs[3] *= 1 / scale;
-
-        map.setAttribute('viewBox', viewBoxArgs.join(' '));
-
-        var scale2 = map.getElementById('TransformMap').getAttribute('style');
-
-        if (scale2) {
-          scale2 = scale2.match('scale\\((-?\\d*(:?\\.\\d*)?)\\)');
-          if (scale2) {
-            scale2 = scale2[1];
-          } else {
-            scale2 = 1
-          }
-        } else {
-          scale2 = 1;
-        }
-
-        map.setAttribute('stroke-width', Math.min((5 / (this.state.defaultViewBoxArgs[3] / viewBoxArgs[3])) / scale2, 5));
-        map.getElementById('TransformMap').style.r = Math.min((8 / (this.state.defaultViewBoxArgs[3] / viewBoxArgs[3])) / scale2, 8);
-
-        this.shiftViewBox(shiftX, shiftY);
-    }
-
-    shiftViewBox(x, y) {
-        var map = document.getElementById('Map');
-
-        var viewBoxArgs = map.getAttribute('viewBox').split(' ').map(x => parseFloat(x));
-
-        viewBoxArgs[0] += x;
-        viewBoxArgs[1] += y;
-
-        map.setAttribute('viewBox', viewBoxArgs.join(' '));
-    }
-
-
-
-
 
     //select or deselect element, fills start point first then end point. Only overrides null values
     selectElement(element) {
