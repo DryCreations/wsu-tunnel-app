@@ -154,6 +154,11 @@ class Map extends Component {
             o2: {x:event.touches[1].pageX, y:event.touches[1].pageY},
           });
         }
+      } else {
+        this.setState({
+          o1: null,
+          o2: null,
+        });
       }
     }
 
@@ -596,8 +601,8 @@ class Map extends Component {
 
       var inverted = this.matrixToString(this.matrix_invert(this.getUserMatrix()));
       transformString += ' matrix(' + inverted + ')';
-      
-      transformString += 'translate(' + (this.state.defaultViewBoxArgs[2] / 2 + this.state.defaultViewBoxArgs[0]) + 'px,' + (11 * this.state.defaultViewBoxArgs[3] / 15 + this.state.defaultViewBoxArgs[1]) + 'px)';
+
+      transformString += ' translate(' + (this.state.defaultViewBoxArgs[2] / 2 + this.state.defaultViewBoxArgs[0]) + 'px,' + (11 * this.state.defaultViewBoxArgs[3] / 15 + this.state.defaultViewBoxArgs[1]) + 'px)';
 
       var theta = Math.atan2(0, -1) + Math.atan2(n2.getAttribute('cx') - n1.getAttribute('cx'), n2.getAttribute('cy') - n1.getAttribute('cy'));
       theta = 180 * theta / Math.PI
@@ -638,8 +643,6 @@ class Map extends Component {
       transformString += ' translate(' + -n1.getAttribute('cx') + 'px,' + -n1.getAttribute('cy') + 'px)';
 
       // transformString += ' translate(' + this.state.defaultViewBoxArgs[0] + 'px,' +  this.state.defaultViewBoxArgs[1] + 'px)';
-
-
 
       map.setAttribute('stroke-width', 5 / scale )
 
