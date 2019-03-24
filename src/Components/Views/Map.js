@@ -238,7 +238,6 @@ class Map extends Component {
 
     //set origin to mouse pos on pointer down
     onPointerDown(event) {
-
         if (!this.state.o1) {
             this.setState({
                 o1: event,
@@ -321,7 +320,6 @@ class Map extends Component {
         }
     }
 
-    //scale using scroll event. TODO: add mult touch support for scaling
     onScroll(event) {
         event.preventDefault();
         this.scaleViewBoxAtPos(Math.min(2, Math.max(1 - event.deltaY / 1000, .5)), event.pageX - document.getElementById('Map').getBoundingClientRect().left, event.pageY - document.getElementById('Map').getBoundingClientRect().top);
@@ -403,6 +401,10 @@ class Map extends Component {
 
         map.setAttribute('viewBox', viewBoxArgs.join(' '));
     }
+
+
+
+
 
     //select or deselect element, fills start point first then end point. Only overrides null values
     selectElement(element) {
@@ -675,10 +677,15 @@ class Map extends Component {
       var group = document.getElementById('TransformMap');
 
 
-      var currRot = group.getAttribute('transform')
+      var currRot = group.getAttribute('style')
 
       if (currRot) {
-        currRot = currRot.match('rotate\\((-?\\d*(:?\\.\\d*)?)\\)')[1];
+        currRot = currRot.match('rotate\\((-?\\d*(:?\\.\\d*)?)deg\\)');
+        if (currRot) {
+          currRot = currRot[1];
+        } else {
+          currRot = 0;
+        }
       } else {
         currRot = 0;
       }
@@ -696,7 +703,7 @@ class Map extends Component {
       theta = 180 * theta / Math.PI
 
       var countOfRots = Math.floor(currRot / 360);
-      var currRot;
+
       if (currRot < 0) {
         currRot = 360 - Math.abs(currRot % 360);
       } else {
@@ -852,6 +859,95 @@ class Map extends Component {
       }
     }
 
+    multiplyMatrices(m1, m2) {
+      var result = [];
+      for (var i = 0; i < m1.length; i++) {
+          result[i] = [];
+          for (var j = 0; j < m2[0].length; j++) {
+              var sum = 0;
+              for (var k = 0; k < m1[0].length; k++) {
+                  sum += m1[i][k] * m2[k][j];
+              }
+              result[i][j] = sum;
+          }
+      }
+      return result;
+    }
+
+    getIdentityMatrix() {
+      return [[1,0,0],
+              [0,1,0],
+              [0,0,1]];
+    }
+
+    getRotationMatrix(rad) {
+      return [[Math.cos(rad),Math.sin(rad),0],
+              [-Math.sin(rad),Math.cos(rad),0],
+              [0,0,1]];
+    }
+
+    getTranslationMatrix(tx, ty) {
+      return [[1,0,tx],
+              [0,1,ty],
+              [0,0,1]];
+    }
+
+    getScaleMatrix(s) {
+      return [[s,0,0],
+              [0,s,0],
+              [0,0,1]];
+    }
+
+    matrixToString(m) {
+      return m[0][0] + ',' + m[1][0] + ',' + m[0][1] + ',' + m[1][1] + ',' + m[0][2] + ',' + m[1][2];
+    }
+
+    stringToMatrix(s) {
+      var m = s.split(',');
+      return [[m[0],m[2],m[4]],
+              [m[1],m[3],m[5]],
+              [0,0,1]]
+    }
+
+    getUserMatrix() {
+      var result = document.getElementById('UserTransform').getAttribute('style');
+      if (result) {
+        result = this.stringToMatrix(result.match('matrix\\((.+?)\\)'));
+        if (result) {
+          return result[1];
+        } else {
+          return this.getIdentityMatrix();
+        }
+      } else {
+        return(this.stringToMatrix(this.getIdentityMatrix()));
+      }
+    }
+
+    getSingleTouchMatrix(o, r) {
+      return this.getTranslationMatrix(r.x - o.x, r.y - o.x);
+    }
+
+    getDoubleTouchMatrix(o1, o2, r1, r2) {
+      var o = {x: (o1.x + o2.x) / 2, y: (o1.y + o2.y) / 2};
+      var r = {x: (r1.x + r2.x) / 2, y: (r1.y + r2.y) / 2};
+
+      var od = Math.sqrt((o2.x - o1.x) ** 2 + (o2.y - o1.y) ** 2);
+      var rd = Math.sqrt((r2.x - r1.x) ** 2 + (r2.y - r1.y) ** 2);
+
+      var originTranslation = this.getTranslationMatrix(-o.x, -o.y);
+      var rotationTranslation = this.getRotationMatrix(Math.atan2(r2.x - r1.x, r2.y - r1.y) - Math.atan2(o2.x - o1.x, o2.y - o1.y));
+      var scaleMatrix = this.getScaleMatrix(rd / od);
+      var newTranslation = this.getTranslationMatrix(r.x, r.y);
+
+      var result = this.getIdentityMatrix();
+
+      result = this.multiplyMatrices(originTranslation, result);
+      result = this.multiplyMatrices(rotationTranslation, result);
+      result = this.multiplyMatrices(scaleMatrix, result);
+      result = this.multiplyMatrices(newTranslation, result);
+
+      return this.matrixToString(result);
+    }
 }
 
 
