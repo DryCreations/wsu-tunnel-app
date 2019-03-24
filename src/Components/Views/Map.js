@@ -171,7 +171,11 @@ class Map extends Component {
           let r2 = {x: event.touches[1].pageX * scale + this.state.defaultViewBoxArgs[0], y: event.touches[1].pageY * scale + this.state.defaultViewBoxArgs[1]};
 
           var newMatrix = this.multiplyMatrices(this.getDoubleTouchMatrix(o1, o2, r1, r2), lastMatrix);
-          group.setAttribute('style', 'transform:matrix(' + this.matrixToString(newMatrix) + ');')
+          let transformString = 'matrix(' + this.matrixToString(newMatrix) + ')';
+          group.setAttribute('style', 'transform:' + transformString + ';' +
+                                      '-webkit-transform:' + transformString + ';' +
+                                      '-moz-transform:' + transformString + ';' +
+                                      '-o-transform:' + transformString + ';')
           this.setState({
               o1: {x:event.touches[0].pageX, y:event.touches[0].pageY},
               o2: {x:event.touches[1].pageX, y:event.touches[1].pageY},
@@ -180,7 +184,11 @@ class Map extends Component {
           let o1 = {x: this.state.o1.x * scale, y: this.state.o1.y * scale};
           let r1 = {x: event.touches[0].pageX * scale, y: event.touches[0].pageY * scale};
           let newMatrix = this.multiplyMatrices(this.getSingleTouchMatrix(o1, r1), lastMatrix);
-          group.setAttribute('style', 'transform:matrix(' + this.matrixToString(newMatrix) + ');')
+          let transformString = 'matrix(' + this.matrixToString(newMatrix) + ')';
+          group.setAttribute('style', 'transform:' + transformString + ';' +
+                                      '-webkit-transform:' + transformString + ';' +
+                                      '-moz-transform:' + transformString + ';' +
+                                      '-o-transform:' + transformString + ';')
           this.setState({
             o1: {x:event.touches[0].pageX, y:event.touches[0].pageY},
             o2: null,
@@ -239,7 +247,11 @@ class Map extends Component {
 
               let newMatrix = this.multiplyMatrices(this.getDoubleTouchMatrix(o1, o2, r1, r2), lastMatrix);
 
-              group.setAttribute('style', 'transform:matrix(' + this.matrixToString(newMatrix) + ');')
+              let transformString = 'matrix(' + this.matrixToString(newMatrix) + ')';
+              group.setAttribute('style', 'transform:' + transformString + ';' +
+                                          '-webkit-transform:' + transformString + ';' +
+                                          '-moz-transform:' + transformString + ';' +
+                                          '-o-transform:' + transformString + ';')
 
               this.setState({
                   o1: event,
@@ -254,7 +266,11 @@ class Map extends Component {
               let r2 = {x: event.pageX * scale + this.state.defaultViewBoxArgs[0], y: event.pageY * scale + this.state.defaultViewBoxArgs[1]};
 
               var newMatrix = this.multiplyMatrices(this.getDoubleTouchMatrix(o1, o2, r1, r2), lastMatrix);
-              group.setAttribute('style', 'transform:matrix(' + this.matrixToString(newMatrix) + ');')
+              let transformString = 'matrix(' + this.matrixToString(newMatrix) + ')';
+              group.setAttribute('style', 'transform:' + transformString + ';' +
+                                          '-webkit-transform:' + transformString + ';' +
+                                          '-moz-transform:' + transformString + ';' +
+                                          '-o-transform:' + transformString + ';')
               this.setState({
                   o2: event,
               });
@@ -268,7 +284,11 @@ class Map extends Component {
 
 
           let newMatrix = this.multiplyMatrices(this.getSingleTouchMatrix(o1, r1), lastMatrix);
-          group.setAttribute('style', 'transform:matrix(' + this.matrixToString(newMatrix) + ');')
+          let transformString = 'matrix(' + this.matrixToString(newMatrix) + ')';
+          group.setAttribute('style', 'transform:' + transformString + ';' +
+                                      '-webkit-transform:' + transformString + ';' +
+                                      '-moz-transform:' + transformString + ';' +
+                                      '-o-transform:' + transformString + ';')
           this.setState({
               o1: event,
           });
@@ -286,7 +306,11 @@ class Map extends Component {
       newMatrix = this.multiplyMatrices(this.getScaleMatrix(1 - event.deltaY/1000), newMatrix);
       newMatrix = this.multiplyMatrices(this.getTranslationMatrix(event.pageX * scale + this.state.defaultViewBoxArgs[0], event.pageY * scale + this.state.defaultViewBoxArgs[1]), newMatrix);
 
-      group.setAttribute('style', 'transform:matrix(' + this.matrixToString(newMatrix) + ');')
+      let transformString = 'matrix(' + this.matrixToString(newMatrix) + ')';
+      group.setAttribute('style', 'transform:' + transformString + ';' +
+                                  '-webkit-transform:' + transformString + ';' +
+                                  '-moz-transform:' + transformString + ';' +
+                                  '-o-transform:' + transformString + ';')
       // this.scaleViewBoxAtPos(Math.min(2, Math.max(1 - event.deltaY / 1000, .5)), event.pageX - document.getElementById('Map').getBoundingClientRect().left, event.pageY - document.getElementById('Map').getBoundingClientRect().top);
     }
 
@@ -556,7 +580,7 @@ class Map extends Component {
     }
 
     transform(nodeIdFrom, nodeIdTo) {
-      this.resetViewBox();
+      // this.resetViewBox();
 
       var group = document.getElementById('TransformMap');
 
