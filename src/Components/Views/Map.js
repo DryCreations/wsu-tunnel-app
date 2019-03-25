@@ -62,7 +62,9 @@ class Map extends Component {
 
     scaleNodes() {
       var m = this.getUserMatrix();
-      var s = Math.abs(m[0][0] / Math.sqrt(1 - m[0][1] ** 2));
+      // var s = m[0][0] / Math.sqrt(Math.abs(1 - m[0][1] ** 2));
+      // var s = m[0][0] / Math.cos(Math.asin(m[0][1]));
+      var s = m[0][0] * m[1][1] - m[0][1] * m[1][0];
 
       var s2 = document.getElementById('TransformMap').getAttribute('style');
       var s3 = 1;
@@ -70,7 +72,9 @@ class Map extends Component {
         s3 = s2.match('matrix\\((.+?)\\)');
         if (s3) {
           s3 = this.stringToMatrix(s3[1]);
-          s3 = Math.abs(s3[0][0] / Math.sqrt(1 - s3[0][1] ** 2));
+          // s3 = s3[0][0] / Math.sqrt(Math.abs(1 - s3[0][1] ** 2));
+          // s3 = s3[0][0] / Math.cos(Math.asin(s3[0][1]));
+          var s3 = s3[0][0] * s3[1][1] - s3[0][1] * s3[1][0];
         } else {
           s3 = 1;
         }
@@ -83,18 +87,20 @@ class Map extends Component {
       } else {
         s2 = 1;
       }
+      console.log(s, s2, s3);
+
       s *= s2 * s3;
 
-      console.log(s);
+      var size = Math.min(16 / (s ** .5), 4);
+      //
+      // if (size == NaN) {
+      //   size = .01;
+      // } else {
+        // size = Math.max(size, .01)
+        // size = Math.min(size, 4);
+      // }
 
-      var size = 16 / s;
-
-      if (size == NaN) {
-        size = .01;
-      } else {
-        size = Math.max(size, .01)
-        size = Math.min(size, 4);
-      }
+      // size = Math.abs(size);
 
       var scaleString = 'scale(' + size + ')';
       document.getElementById('nodeRadius').innerHTML = 'circle {transform:' + scaleString + ';-webkit-transform:' + scaleString + ';-moz-transform:' + scaleString + ';-o-transform:' + scaleString + ';}';
