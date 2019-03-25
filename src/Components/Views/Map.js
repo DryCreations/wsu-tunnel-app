@@ -70,7 +70,7 @@ class Map extends Component {
         s3 = s2.match('matrix\\((.+?)\\)');
         if (s3) {
           s3 = this.stringToMatrix(s3[1]);
-          s3 = Math.abs(s3[0][0] / Math.sqrt(1 - m[0][1] ** 2));
+          s3 = Math.abs(s3[0][0] / Math.sqrt(1 - s3[0][1] ** 2));
         } else {
           s3 = 1;
         }
