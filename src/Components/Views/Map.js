@@ -95,7 +95,8 @@ class Map extends Component {
 
         this.initViewBoxDimensions();
 
-        var sheet = document.createElement('style')
+        var sheet = document.createElement('style');
+        sheet.setAttribute('id', 'nodeRadius');
         sheet.innerHTML = "circle {transform: scale(8);-webkit-transform:scale(8);-moz-transform:scale(8);-o-transform:scale(8);}";
         document.head.appendChild(sheet);
     }
@@ -634,6 +635,13 @@ class Map extends Component {
       var scale = (this.state.defaultViewBoxArgs[3] * 8 / 15) / mag;
 
       transformString += ' scale(' + scale + ')';
+
+
+      var scaleString = 'scale(' + 16 / scale + ')';
+      document.getElementById('nodeRadius').innerHTML = 'circle {transform:' + scaleString + ';-webkit-transform:' + scaleString + ';-moz-transform:' + scaleString + ';-o-transform:' + scaleString + ';}';
+      document.getElementById('Map').setAttribute('stroke-width', 8 / scale + 'px')
+
+
       transformString += ' translate(' + -n1.getAttribute('cx') + 'px,' + -n1.getAttribute('cy') + 'px)';
 
       // transformString += ' translate(' + this.state.defaultViewBoxArgs[0] + 'px,' +  this.state.defaultViewBoxArgs[1] + 'px)';

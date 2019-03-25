@@ -54,10 +54,10 @@ path {
 }
 
 circle {
-  transition: stroke-width 1s ease-in, r 1s ease-in;
-  -webkit-transition: stroke-width 1s ease-in, r 1s ease-in;
-  -moz-transition: stroke-width 1s ease-in, r 1s ease-in;
-  -o-transition: stroke-width 1s ease-in, r 1s ease-in;
+  transition: stroke-width 1s ease-in, transform 1s ease-in;
+  -webkit-transition: stroke-width 1s ease-in, -webkit-transform 1s ease-in;
+  -moz-transition: stroke-width 1s ease-in, -moz-transform 1s ease-in;
+  -o-transition: stroke-width 1s ease-in, -o-transform 1s ease-in;
 }
 
 #MapContainer {
