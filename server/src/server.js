@@ -1,15 +1,10 @@
-const express = require("express");
-const pathfinder = require("./pathfinder.js");
+const http = require('http');
+const querystring = require('querystring');
+const pathfinder = require('./pathfinder.js');
 
-const app = express();
-
-app.use("/getPath/:start-:end", async function(req, res, next) {
-    res.locals.path = await pathfinder.getPath(+req.params.start, +req.params.end);
-    next();
+const server = http.createServer(async function (req, res) {
+    const query = querystring.parse(req.url.replace(/^\/[a-zA-Z0-9]*\?/,''));
+    res.end(JSON.stringify(await pathfinder.getPath(+query.start, +query.end)));
 });
 
-app.get("/getPath/:start-:end", function(req, res) {
-    res.send(res.locals.path);
-});
-
-app.listen(5000).setTimeout(500000);
+server.listen(5000);

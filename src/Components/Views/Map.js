@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './Map.css';
 import {ReactComponent as MapSVG} from '../Maps/map.svg';
-//import Graph from '../../nav/Graph.js';
-//import PathFinder from '../../nav/PathFinder.js';
 
 class Map extends Component {
     constructor(props) {
@@ -33,12 +31,6 @@ class Map extends Component {
         window.addEventListener("resize", this.initViewBoxDimensions.bind(this));
 
         window.mapComponent = this; //call functions by window.mapComponent.{Function call here}
-
-        //Create a Graph object to be used by path finding
-        //this.graph = new Graph(5, 6);
-
-        //Create a path finder reading that Graph
-        //this.pathFinder = new PathFinder(this.graph);
     }
 
     //render map to screen
@@ -339,9 +331,7 @@ class Map extends Component {
         //Clear all highlights
         this.flush();
 
-        //this.highlightPath(this.pathFinder.getPath(startID, endID));
-
-        fetch('getPath/'+startID+'-'+endID)
+        fetch(`getPath?start=${startID}&end=${endID}`)
             .then(result => result.json())
             .then(path => {
               this.setState({
