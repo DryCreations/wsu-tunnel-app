@@ -60,6 +60,47 @@ class Map extends Component {
         );
     }
 
+    scaleNodes() {
+      var m = this.getUserMatrix();
+      var s = Math.abs(m[0][0] / Math.sqrt(1 - m[0][1] ** 2));
+
+      var s2 = document.getElementById('TransformMap').getAttribute('style');
+      var s3 = 1;
+      if (s2) {
+        s3 = s2.match('matrix\\((.+?)\\)');
+        if (s3) {
+          s3 = this.stringToMatrix(s3[1]);
+          s3 = Math.abs(s3[0][0] / Math.sqrt(1 - m[0][1] ** 2));
+        } else {
+          s3 = 1;
+        }
+        s2 = s2.match('scale\\((-?\\d*(:?\\.\\d*)?)\\)');
+        if (s2) {
+          s2 = s2[1]
+        } else {
+          s2 = 1;
+        }
+      } else {
+        s2 = 1;
+      }
+      s *= s2 * s3;
+
+      console.log(s);
+
+      var size = 16 / s;
+
+      if (size == NaN) {
+        size = .01;
+      } else {
+        size = Math.max(size, .01)
+        size = Math.min(size, 4);
+      }
+
+      var scaleString = 'scale(' + size + ')';
+      document.getElementById('nodeRadius').innerHTML = 'circle {transform:' + scaleString + ';-webkit-transform:' + scaleString + ';-moz-transform:' + scaleString + ';-o-transform:' + scaleString + ';}';
+      document.getElementById('Map').setAttribute('stroke-width', size / 2 + 'px');
+    }
+
     //set onclick for svg elements, called after load
     componentDidMount() {
         Array.from(document.getElementById('Map').getElementsByTagName('circle')).forEach((element) => {
@@ -99,6 +140,8 @@ class Map extends Component {
         sheet.setAttribute('id', 'nodeRadius');
         sheet.innerHTML = "circle {transform: scale(1);-webkit-transform:scale(1);-moz-transform:scale(1);-o-transform:scale(1);}";
         document.head.appendChild(sheet);
+
+        this.scaleNodes();
     }
 
     initViewBoxDimensions() {
@@ -196,7 +239,7 @@ class Map extends Component {
             o2: null,
           });
         }
-
+this.scaleNodes();
     }
 
     //set origin to mouse pos on pointer down
@@ -295,6 +338,8 @@ class Map extends Component {
               o1: event,
           });
         }
+
+        this.scaleNodes();
     }
 
     onScroll(event) {
@@ -314,6 +359,7 @@ class Map extends Component {
                                   '-moz-transform:' + transformString + ';' +
                                   '-o-transform:' + transformString + ';')
       // this.scaleViewBoxAtPos(Math.min(2, Math.max(1 - event.deltaY / 1000, .5)), event.pageX - document.getElementById('Map').getBoundingClientRect().left, event.pageY - document.getElementById('Map').getBoundingClientRect().top);
+this.scaleNodes();
     }
 
     //select or deselect element, fills start point first then end point. Only overrides null values
@@ -637,10 +683,11 @@ class Map extends Component {
 
       transformString += ' scale(' + scale + ')';
 
+      //
+      // var scaleString = 'scale(' + 16 / scale + ')';
+      // document.getElementById('nodeRadius').innerHTML = 'circle {transform:' + scaleString + ';-webkit-transform:' + scaleString + ';-moz-transform:' + scaleString + ';-o-transform:' + scaleString + ';}';
+      // document.getElementById('Map').setAttribute('stroke-width', 8 / scale + 'px')
 
-      var scaleString = 'scale(' + 16 / scale + ')';
-      document.getElementById('nodeRadius').innerHTML = 'circle {transform:' + scaleString + ';-webkit-transform:' + scaleString + ';-moz-transform:' + scaleString + ';-o-transform:' + scaleString + ';}';
-      document.getElementById('Map').setAttribute('stroke-width', 8 / scale + 'px')
 
 
       transformString += ' translate(' + -n1.getAttribute('cx') + 'px,' + -n1.getAttribute('cy') + 'px)';
@@ -652,6 +699,8 @@ class Map extends Component {
                                   '-webkit-transform:' + transformString + ';' +
                                   '-moz-transform:' + transformString + ';' +
                                   '-o-transform:' + transformString + ';');
+
+          this.scaleNodes();
     }
 
     nextStep() {
