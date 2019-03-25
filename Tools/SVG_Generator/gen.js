@@ -139,6 +139,167 @@ $('form').submit(function(e1) {
 
         path.setAttribute('d', 'M ' + map(data[data2[i][1]][2], longMin, longMax, 0, svgXMax) + ' ' + map(data[data2[i][1]][1], latMax, latMin, 0, svgYMax) + ' ' + map(data[data2[i][2]][2], longMin, longMax, 0, svgXMax) + ' ' + map(data[data2[i][2]][1], latMax, latMin, 0, svgYMax));
 
+        switch(data[data2[i][1]][8]) {
+          case '0':
+            path.classList.add('intersection');
+            break;
+          case '1':
+            path.classList.add('exit');
+            break;
+          case '2':
+            path.classList.add('staircase');
+            break;
+          case '3':
+            path.classList.add('elevator');
+            break;
+        }
+
+        switch(data[data2[i][1]][5]) {
+          case '0':
+            path.classList.add('noBuilding');
+            break;
+          case '1':
+            path.classList.add('allynHall');
+            break;
+          case '2':
+            path.classList.add('biologicalSciencesI');
+            break;
+          case '3':
+            path.classList.add('biologicalSciencesII');
+            break;
+          case '4':
+            path.classList.add('brehmLaboratory');
+            break;
+          case '5':
+            path.classList.add('creativeArtsCenter');
+            break;
+          case '6':
+            path.classList.add('diggsLaboratory');
+            break;
+          case '7':
+            path.classList.add('dunbarLibrary');
+            break;
+          case '8':
+            path.classList.add('fawcettHall');
+            break;
+          case '9':
+            path.classList.add('joshiCenter');
+            break;
+          case '10':
+            path.classList.add('libraryAnnex');
+            break;
+          case '11':
+            path.classList.add('mathAndMicrobiology');
+            break;
+          case '12':
+            path.classList.add('medicalSciences');
+            break;
+          case '13':
+            path.classList.add('millettHall');
+            break;
+          case '14':
+            path.classList.add('motionPictures');
+            break;
+          case '15':
+            node.classList.add('oelmanHall');
+            break;
+          case '16':
+            node.classList.add('rikeHall');
+            break;
+          case '17':
+            node.classList.add('russEngineering');
+            break;
+          case '18':
+            path.classList.add('studentSuccessCenter');
+            break;
+          case '19':
+            path.classList.add('studentUnion');
+            break;
+          case '20':
+            path.classList.add('universityHall');
+            break;
+        }
+        switch(data[data2[i][2]][8]) {
+          case '0':
+            path.classList.add('intersection');
+            break;
+          case '1':
+            path.classList.add('exit');
+            break;
+          case '2':
+            path.classList.add('staircase');
+            break;
+          case '3':
+            path.classList.add('elevator');
+            break;
+        }
+
+        switch(data[data2[i][2]][5]) {
+          case '0':
+            path.classList.add('noBuilding');
+            break;
+          case '1':
+            path.classList.add('allynHall');
+            break;
+          case '2':
+            path.classList.add('biologicalSciencesI');
+            break;
+          case '3':
+            path.classList.add('biologicalSciencesII');
+            break;
+          case '4':
+            path.classList.add('brehmLaboratory');
+            break;
+          case '5':
+            path.classList.add('creativeArtsCenter');
+            break;
+          case '6':
+            path.classList.add('diggsLaboratory');
+            break;
+          case '7':
+            path.classList.add('dunbarLibrary');
+            break;
+          case '8':
+            path.classList.add('fawcettHall');
+            break;
+          case '9':
+            path.classList.add('joshiCenter');
+            break;
+          case '10':
+            path.classList.add('libraryAnnex');
+            break;
+          case '11':
+            path.classList.add('mathAndMicrobiology');
+            break;
+          case '12':
+            path.classList.add('medicalSciences');
+            break;
+          case '13':
+            path.classList.add('millettHall');
+            break;
+          case '14':
+            path.classList.add('motionPictures');
+            break;
+          case '15':
+            node.classList.add('oelmanHall');
+            break;
+          case '16':
+            node.classList.add('rikeHall');
+            break;
+          case '17':
+            node.classList.add('russEngineering');
+            break;
+          case '18':
+            path.classList.add('studentSuccessCenter');
+            break;
+          case '19':
+            path.classList.add('studentUnion');
+            break;
+          case '20':
+            path.classList.add('universityHall');
+            break;
+        }
+
         transformGroup.prepend(path);
       }
 

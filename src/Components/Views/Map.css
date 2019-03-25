@@ -160,3 +160,20 @@ circle {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+.elevator:not(.highlight) {
+  visibility: hidden;
+}
+.staircase:not(.highlight) {
+  visibility: hidden;
+}
+.bathroom:not(.highlight) {
+  visibility: hidden;
+}
+.exit:not(.highlight) {
+  visibility: hidden;
+}
+
+#N130,#N131 {
+  visibility: hidden;
+}
