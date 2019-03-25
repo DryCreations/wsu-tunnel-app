@@ -146,6 +146,11 @@ class Map extends Component {
         sheet.innerHTML = "circle {transform: scale(1);-webkit-transform:scale(1);-moz-transform:scale(1);-o-transform:scale(1);}";
         document.head.appendChild(sheet);
 
+        var sheet2 = document.createElement('style');
+        sheet2.setAttribute('id', 'ShowNodes');
+        sheet2.innerHTML = '.elevator:not(.highlight){visibility:hidden;}.staircase:not(.highlight){visibility:hidden;}.exit:not(.highlight){visibility:hidden;}'
+        document.head.appendChild(sheet2);
+
         this.scaleNodes();
     }
 
@@ -244,7 +249,7 @@ class Map extends Component {
             o2: null,
           });
         }
-this.scaleNodes();
+        this.scaleNodes();
     }
 
     //set origin to mouse pos on pointer down
@@ -1003,6 +1008,28 @@ this.scaleNodes();
       //we've done all operations, C should be the identity
       //matrix I should be the inverse:
       return I;
+    }
+
+    showNodes(c) {
+      var s = document.getElementById('ShowNodes');
+      var r = new RegExp('\\'+c+'.+?{.+?}', 'g');
+      s.innerHTML = s.innerHTML.replace(r,'');
+      // if (s.innerHTML.match(r)) {
+      //   s.innerHTML = s.innerHTML.replace(r, c + ':not(highlight){visibility:visible;}');
+      // } else {
+      //   s.innerHTML = c + ':not(highlight){visibility:visible;}' + s.innerHTML;
+      // }
+    }
+
+    hideNodes(c) {
+      var s = document.getElementById('ShowNodes');
+      var r = new RegExp('\\'+c+'.+?{.+?}', 'g');
+
+      if (s.innerHTML.match(r)) {
+        s.innerHTML = s.innerHTML.replace(r, c + ':not(highlight){visibility:hidden;}');
+      } else {
+        s.innerHTML = c + ':not(highlight){visibility:hidden;}' + s.innerHTML;
+      }
     }
 }
 
