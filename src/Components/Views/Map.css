@@ -80,8 +80,8 @@ circle {
 }
 
 #NavigateButton {
-  position: fixed;
-  top: 80%;
+  position: absolute;
+  bottom: 50px;
   left: 50%;
   min-width: 100px;
   background-color: #026937;
@@ -90,7 +90,7 @@ circle {
   border-width: 2px;
   color: white;
   padding: 10px 10px;
-  margin-top: 20px;
+  margin: 20px;
   margin-left: -50px;
   font: bold 16px sans-serif;
   -webkit-transition-duration: 0.4s;
@@ -108,8 +108,8 @@ circle {
 }
 
 #PreviousViewButton {
-  position: fixed;
-  top: 80%;
+  position: absolute;
+  bottom: 50px;
   left: 0%;
   min-width: 100px;
   background-color: #026937;
@@ -135,8 +135,8 @@ circle {
 }
 
 #NextViewButton {
-  position: fixed;
-  top: 80%;
+  position: absolute;
+  bottom: 50px;
   right: 0%;
   min-width: 100px;
   background-color: #026937;
