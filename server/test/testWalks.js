@@ -7,7 +7,7 @@ const walksToTest = [walks.len1, walks.len2, walks.len3];
 
 walksToTest.forEach(function(test)
 {
-    describe("walks of length "+test[0].edgeIDs.length, function()
+    describe(`walks of length ${test[0].edgeIDs.length}`, function()
     {
         test.forEach(function(walk)
         {
@@ -21,11 +21,11 @@ function assertPath(nodes, edges)
     let start = nodes[0];
     let end = nodes[nodes.length-1];
 
-    let title = "node "+start+" to node "+end;
+    let title = `node ${start} to node ${end}`;
 
     it(title, async function()
     {
-        let url = "http://localhost:5000/getPath/"+start+"-"+end;
+        let url = `http://localhost:5000/getPath?start=${start}&end=${end}`;
 
         let result = await fetch(url);
         let path = await result.json();
