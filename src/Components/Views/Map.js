@@ -87,11 +87,10 @@ class Map extends Component {
       } else {
         s2 = 1;
       }
-      console.log(s, s2, s3);
 
-      s *= s2 * s3;
+      s = Math.sqrt(s) * s2 * Math.sqrt(s3);
 
-      var size = Math.min(16 / (s ** .5), 4);
+      var size = Math.min(16 / s, 4);
       //
       // if (size == NaN) {
       //   size = .01;
