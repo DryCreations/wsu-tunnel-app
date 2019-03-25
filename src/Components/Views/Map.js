@@ -94,6 +94,10 @@ class Map extends Component {
         }
 
         this.initViewBoxDimensions();
+
+        var sheet = document.createElement('style')
+        sheet.innerHTML = "circle {transform: scale(8);-webkit-transform:scale(8);-moz-transform:scale(8);-o-transform:scale(8);}";
+        document.head.appendChild(sheet);
     }
 
     initViewBoxDimensions() {
@@ -634,10 +638,8 @@ class Map extends Component {
 
       // transformString += ' translate(' + this.state.defaultViewBoxArgs[0] + 'px,' +  this.state.defaultViewBoxArgs[1] + 'px)';
 
-      map.setAttribute('stroke-width', 5 / scale )
-
       // group.style.transform = transformString;
-      group.setAttribute('style', 'r:' + 8 / scale + ';transform:' + transformString + ';' +
+      group.setAttribute('style', ';transform:' + transformString + ';' +
                                   '-webkit-transform:' + transformString + ';' +
                                   '-moz-transform:' + transformString + ';' +
                                   '-o-transform:' + transformString + ';');

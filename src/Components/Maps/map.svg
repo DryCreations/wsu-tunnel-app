@@ -2,10 +2,10 @@
    viewBox="0 0 640 480"
    version="1.1"
    id="Map"
-   stroke-width="5px"
+   stroke-width="4px"
    >
    <g id="UserTransform">
-    <g id="TransformMap" style="r: 8;">
+    <g id="TransformMap">
      <path
        id="E1"
        d="M 20,351 90,385"
@@ -105,121 +105,141 @@
        id="N1"
        cx="20"
        cy="351"
-
+       r="1px"
+       style="transform-origin:20px 351px"
      />
      <circle
        id="N2"
        cx="90"
        cy="385"
-
+       r="1px"
+       style="transform-origin:90px 385px"
      />
      <circle
        id="N3"
        cx="244"
        cy="460"
-
+       r="1px"
+       style="transform-origin:244px 460px;"
      />
      <circle
        id="N4"
        cx="415"
        cy="381"
-
+       r="1px"
+       style="transform-origin:415px 381px;"
      />
      <circle
        id="N5"
        cx="443"
        cy="361"
-
+       r="1px"
+       style="transform-origin:443px 361px;"
      />
      <circle
        id="N6"
        cx="420"
        cy="329"
-
+       r="1px"
+       style="transform-origin:420px 329px;"
      />
      <circle
        id="N7"
        cx="447"
        cy="310"
-
+       r="1px"
+       style="transform-origin:447px 310px;"
      />
      <circle
        id="N8"
        cx="472"
        cy="342"
-
+       r="1px"
+       style="transform-origin:472px 342px;"
      />
      <circle
        id="N9"
        cx="509"
        cy="321"
-
+       r="1px"
+       style="transform-origin:509px 321px;"
      />
      <circle
        id="N10"
        cx="581"
        cy="349"
-
+       r="1px"
+       style="transform-origin:581px 349px;"
      />
      <circle
        id="N11"
        cx="620"
        cy="296"
-
+       r="1px"
+       style="transform-origin:620px 296px;"
      />
      <circle
        id="N12"
        cx="593"
        cy="281"
-
+       r="1px"
+       style="transform-origin:593px 281px;"
      />
      <circle
        id="N13"
        cx="379"
        cy="181"
-
+       r="1px"
+       style="transform-origin:379px 181px;"
      />
      <circle
        id="N14"
        cx="251"
        cy="227"
-
+       r="1px"
+       style="transform-origin:251px 227px;"
      />
      <circle
        id="N15"
        cx="187"
        cy="255"
-
+       r="1px"
+       style="transform-origin:187px 255px;"
      />
      <circle
        id="N16"
        cx="103"
        cy="293"
-
+       r="1px"
+       style="transform-origin:103px 293px;"
      />
      <circle
        id="N17"
        cx="292"
        cy="20"
-
+       r="1px"
+       style="transform-origin:292px 20px;"
      />
      <circle
        id="N18"
        cx="331"
        cy="45"
-
+       r="1px"
+       style="transform-origin:331px 45px;"
      />
      <circle
        id="N19"
        cx="296"
        cy="69"
-
+       r="1px"
+       style="transform-origin:296px 69px;"
      />
      <circle
        id="N20"
        cx="259"
        cy="42"
-
+       r="1px"
+       style="transform-origin:259px 42px;"
      />
 
 
@@ -227,7 +247,6 @@
        id="User"
        cx="0"
        cy="0"
-
      />
    </g>
   </g>
