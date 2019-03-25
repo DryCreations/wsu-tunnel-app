@@ -97,7 +97,7 @@ class Map extends Component {
 
         var sheet = document.createElement('style');
         sheet.setAttribute('id', 'nodeRadius');
-        sheet.innerHTML = "circle {transform: scale(8);-webkit-transform:scale(8);-moz-transform:scale(8);-o-transform:scale(8);}";
+        sheet.innerHTML = "circle {transform: scale(1);-webkit-transform:scale(1);-moz-transform:scale(1);-o-transform:scale(1);}";
         document.head.appendChild(sheet);
     }
 
@@ -348,6 +348,7 @@ class Map extends Component {
                 pathNodes: path.nodeIDs,
                 currNodes: 0,
               });
+              console.log(path);
               this.highlightPath(path);
             });
     }

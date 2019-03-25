@@ -23,6 +23,9 @@ $('form').submit(function(e1) {
 
     var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
+    var userTransform = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    userTransform.setAttribute('id', 'UserTransform');
+
     var transformGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g')
     transformGroup.setAttribute('id', 'TransformMap');
     transformGroup.style.r = nodeRadius;
@@ -34,7 +37,9 @@ $('form').submit(function(e1) {
       node.setAttribute('cx', map(data[i][2], longMin, longMax, 0, svgXMax));
       node.setAttribute('cy', map(data[i][1], latMax, latMin, 0, svgYMax));
 
-      // node.setAttribute('r', nodeRadius);
+      node.setAttribute('r', nodeRadius);
+
+      node.setAttribute('style', 'transform-origin:' + map(data[i][2], longMin, longMax, 0, svgXMax) + 'px ' + map(data[i][1], latMax, latMin, 0, svgYMax) + 'px')
 
       switch(data[i][8]) {
         case '0':
@@ -126,17 +131,19 @@ $('form').submit(function(e1) {
       var csv2 = e3.target.result;
       var data2 = $.csv.toArrays(csv2);
 
-      for(var i = 1; i < data2.length; i++) {
+      for(var i = 0; i < data2.length; i++) {
         var path = document.createElementNS(null, 'path');
 
-        path.setAttribute('id', 'E' + data2[i][0]);
+        // path.setAttribute('id', 'E' + data2[i][0]);
+        path.setAttribute('id', 'E' + (i+1));
 
         path.setAttribute('d', 'M ' + map(data[data2[i][1]][2], longMin, longMax, 0, svgXMax) + ' ' + map(data[data2[i][1]][1], latMax, latMin, 0, svgYMax) + ' ' + map(data[data2[i][2]][2], longMin, longMax, 0, svgXMax) + ' ' + map(data[data2[i][2]][1], latMax, latMin, 0, svgYMax));
 
         transformGroup.prepend(path);
       }
 
-      svg.appendChild(transformGroup);
+      userTransform.appendChild(transformGroup);
+      svg.appendChild(userTransform);
 
       svg.setAttribute('viewBox', '0 0 ' + svgXMax + ' ' + svgYMax);
       svg.setAttribute('version', '1.1');
