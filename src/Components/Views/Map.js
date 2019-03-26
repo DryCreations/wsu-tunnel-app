@@ -17,6 +17,7 @@ class Map extends Component {
             pathNodes: null,
             currNodes: 0,
             defaultViewBoxArgs: '0 0 640 480',
+            direction: '',
         };
 
         //bind touch events to this object
@@ -38,6 +39,7 @@ class Map extends Component {
         return (
             <div id='MapContainer'>
             <MapSVG />
+            <div id="Directions"><p>{this.state.direction}</p></div>
             <button
             id="NavigateButton"
             onClick={() => this.getPath(this.getStartPointID(), this.getEndPointID())}>
@@ -90,7 +92,7 @@ class Map extends Component {
 
       s = Math.sqrt(s) * s2 * Math.sqrt(s3);
 
-      var size = Math.min(16 / s, 4);
+      var size = Math.min(16 / s, 2.2);
       //
       // if (size == NaN) {
       //   size = .01;
@@ -716,19 +718,25 @@ this.scaleNodes();
     nextStep() {
 
       if (this.state.pathNodes != null && this.state.currNodes < this.state.pathNodes.length - 1) {
-        this.transform(this.state.pathNodes[this.state.currNodes], this.state.pathNodes[this.state.currNodes + 1])
-        console.log(this.getDirection(this.state.currNodes));
+        this.transform(this.state.pathNodes[this.state.currNodes], this.state.pathNodes[this.state.currNodes + 1]);
+        var dir = this.getDirection(this.state.currNodes);
+        console.log(dir);
+
         this.setState({
           currNodes: this.state.currNodes + 1,
+          direction: dir,
         });
       }
     }
 
     prevStep() {
       if (this.state.pathNodes != null && this.state.currNodes > 1) {
-        this.transform(this.state.pathNodes[this.state.currNodes - 2], this.state.pathNodes[this.state.currNodes - 1])
+        this.transform(this.state.pathNodes[this.state.currNodes - 2], this.state.pathNodes[this.state.currNodes - 1]);
+        var dir = this.getDirection(this.state.currNodes - 2);
+        console.log(dir);
         this.setState({
           currNodes: this.state.currNodes - 1,
+          direction: dir,
         });
       }
     }

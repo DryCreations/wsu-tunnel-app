@@ -164,3 +164,17 @@ circle {
 #N130,#N131 {
   visibility: hidden;
 }
+
+#Directions {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 55px;
+  margin: 0;
+  padding: 5px;
+  background:white;
+  height: 20px;
+}
+#Directions p {
+  margin: 0px;
+}
