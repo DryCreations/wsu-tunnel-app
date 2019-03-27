@@ -396,19 +396,22 @@ this.scaleNodes();
     }
 
     getPath(startID, endID) {
-        //Clear all highlights
-        this.flush();
 
-        fetch(`getPath?start=${startID}&end=${endID}`)
-            .then(result => result.json())
-            .then(path => {
-              this.setState({
-                pathNodes: path.nodeIDs,
-                currNodes: 0,
+        if (startID && endID) {
+          //Clear all highlights
+          this.flush();
+
+          fetch(`getPath?start=${startID}&end=${endID}`)
+              .then(result => result.json())
+              .then(path => {
+                this.setState({
+                  pathNodes: path.nodeIDs,
+                  currNodes: 0,
+                });
+                console.log(path);
+                this.highlightPath(path);
               });
-              console.log(path);
-              this.highlightPath(path);
-            });
+          }
     }
 
     highlightPath(path) {
