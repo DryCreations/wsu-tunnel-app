@@ -28,13 +28,7 @@ const sideDrawer = props => {
             <SelectFrom/>
         </li>
             <li><SelectTo/></li>
-            <li>
-                <NavLink to={"./About"} onClick={props.clicky}>About</NavLink>
-            </li>
-
-            <li>
-                <NavLink to={"./FAQ"} onClick={props.clicky}>FAQ</NavLink>
-            </li>
+            
 
         </ul>
     </nav>

@@ -6,7 +6,12 @@ import Toolbar from "./Components/Toolbar/Toolbar.js"
 import SideDrawer from './Components/SideDrawer/SideDrawer.js';
 import Backdrop from './Components/Backdrop/Backdrop.js';
 import MyFooter  from './Components/Footer/MyFooter';
-import Views from './Components/Views/Views';
+
+
+import Map from './Components/Views/Map';
+import FAQ from './Components/Views/FAQ';
+import About from './Components/Views/About';
+
 
 
 
@@ -41,7 +46,11 @@ class App extends Component {
         <Toolbar drawerClick={this.drawerToggleClickHandler}/>
         <SideDrawer show={this.state.sideDrawerOpen} clicky={this.backdropClickHandler}/>
         {backdrop}
-        <Views/>
+        <Redirect to="Map" />
+        <Route sytle={{margin:64}}exact path="/Map" component={Map}/>
+        <Route exact path='/About' component ={About}/>
+        <Route exact path="/FAQ" component={FAQ}/>
+  
         <MyFooter/>
         </div>
         </HashRouter>

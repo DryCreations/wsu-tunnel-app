@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <style>
+      * {
+        margin:5px;
+      }
+    </style>
+    <script src="jquery-3.3.1.js"></script>
+    <script src="jquery-csv.js"></script>
+  </head>
+  <body>
+    <form>
+      <input id="latMin" type="text" placeholder="latitude min"/>
+      <input id="latMax" type="text" placeholder="latitude max"/>
+      <input id="longMin" type="text" placeholder="longitude min"/>
+      <input id="longMax" type="text" placeholder="longitude max"/>
+      <br>
+      <input id="svgYMax" type="text" placeholder="svg y max" />
+      <input id="svgXMax" type="text" placeholder="svg x max" />
+      <br>
+      <input id="nodeRadius" type="text" placeholder="node radius" />
+      <input id="strokeWidth" type="text" placeholder="stroke width" />
+      <br>
+      <label for="file">file with nodes:</label>
+      <input id="file" type="file"/>
+      <br>
+      <label for="file2">file with connections:</label>
+      <input id="file2" type="file"/>
+      <br>
+      <input id="submit" type="submit" value="submit"/>
+    </form>
+    <script src="gen.js"></script>
+  </body>
+</html>

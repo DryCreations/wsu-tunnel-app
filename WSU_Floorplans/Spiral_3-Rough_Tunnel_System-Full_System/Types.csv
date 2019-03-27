@@ -1,0 +1,5 @@
+nodeTypeID,Type
+0,Intersection
+1,Exit
+2,Staircase
+3,Elevator

@@ -1,0 +1,204 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  WSU CS-3900 Server Template: This template creates a server to be used by the Spring 2019 CS-3900 project.  
+    The template automatcally sets up a EC2 server and peripherals, with a bash script for setup appearing in a file 
+    matching the pattern /var/lib/cloud/instances/*/user-data.txt. To setup the server, run the command 
+    "sudo bash /var/lib/cloud/instances/*/user-data.txt <BRANCH>", where <BRANCH> is the name of the branch from the git 
+    repository that the server should use.  The setup script will then run the start.bash file in that branch.
+Parameters:
+  InstanceType:
+    Description: WebServer EC2 instance type
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      - t2.nano
+      - t2.micro
+      - t2.small
+      - t2.medium
+    ConstraintDescription: must be a valid EC2 instance type smaller than a t2.large.
+  KeyName:
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
+    Type: 'AWS::EC2::KeyPair::KeyName'
+    ConstraintDescription: must be the name of an existing EC2 KeyPair.
+    Default: ''
+  SSHLocation:
+    Description: ' The IP address range that can be used to access the EC2 instance'
+    Type: String
+    MinLength: '9'
+    MaxLength: '18'
+    Default: 0.0.0.0/0
+    AllowedPattern: '(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})'
+    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
+Mappings:
+  AWSInstanceType2Arch:
+    t2.nano:
+      Arch: HVM64
+    t2.micro:
+      Arch: HVM64
+    t2.small:
+      Arch: HVM64
+    t2.medium:
+      Arch: HVM64
+  AWSRegionArch2AMI:
+    us-east-1:
+      PV64: NOT_SUPPORTED
+      HVM64: ami-0ac019f4fcb7cb7e6
+      HVMG2: NOT_SUPPORTED
+    us-west-2:
+      PV64: NOT_SUPPORTED
+      HVM64: NOT_SUPPORTED
+      HVMG2: NOT_SUPPORTED
+    us-west-1:
+      PV64: NOT_SUPPORTED
+      HVM64: NOT_SUPPORTED
+      HVMG2: NOT_SUPPORTED
+    us-east-2:
+      PV64: NOT_SUPPORTED
+      HVM64: ami-0f65671a86f061fcd
+      HVMG2: NOT_SUPPORTED
+Resources:
+  VPC:
+    Type: 'AWS::EC2::VPC'
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Name
+          Value: CS-3900 Special Subjects
+  Subnet:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.0.0/24
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+  InternetGateway:
+    Type: 'AWS::EC2::InternetGateway'
+    Properties:
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+  AttachGateway:
+    Type: 'AWS::EC2::VPCGatewayAttachment'
+    Properties:
+      VpcId: !Ref VPC
+      InternetGatewayId: !Ref InternetGateway
+  RouteTable:
+    Type: 'AWS::EC2::RouteTable'
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+  Route:
+    Type: 'AWS::EC2::Route'
+    DependsOn: AttachGateway
+    Properties:
+      RouteTableId: !Ref RouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+  SubnetRouteTableAssociation:
+    Type: 'AWS::EC2::SubnetRouteTableAssociation'
+    Properties:
+      SubnetId: !Ref Subnet
+      RouteTableId: !Ref RouteTable
+  IPAddress:
+    Type: 'AWS::EC2::EIP'
+    DependsOn: AttachGateway
+    Properties:
+      Domain: vpc
+      InstanceId: !Ref WebServerInstance
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: e3a55eb6-e430-4ada-a225-7677aeaad343
+  InstanceSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      VpcId: !Ref VPC
+      GroupDescription: Enable SSH access via port 22 and access to app features via ports 3000 and 5000
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: !Ref SSHLocation
+        - IpProtocol: tcp
+          FromPort: '3000'
+          ToPort: '3000'
+          CidrIp: !Ref SSHLocation
+        - IpProtocol: tcp
+          FromPort: '5000'
+          ToPort: '5000'
+          CidrIp: !Ref SSHLocation
+  WebServerInstance:
+    Type: 'AWS::EC2::Instance'
+    DependsOn: AttachGateway
+    Properties:
+      ImageId: !FindInMap
+        - AWSRegionArch2AMI
+        - !Ref 'AWS::Region'
+        - !FindInMap
+          - AWSInstanceType2Arch
+          - !Ref InstanceType
+          - Arch
+      InstanceType: !Ref InstanceType
+      KeyName: !Ref KeyName
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Name
+          Value: Sample-instance
+      NetworkInterfaces:
+        - GroupSet:
+            - !Ref InstanceSecurityGroup
+          AssociatePublicIpAddress: 'true'
+          DeviceIndex: '0'
+          DeleteOnTermination: 'true'
+          SubnetId: !Ref Subnet
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          
+          # Give the server some swap space
+          fallocate -l 4G /swapfile
+          chmod 0600 /swapfile
+          mkswap /swapfile
+          swapon /swapfile
+          sysctl vm.swappiness=10
+          
+          # Install dependencies
+          apt-get update
+          yes | apt-get install build-essential
+          yes | apt-get install git
+          yes | apt-get install nodejs
+          yes | apt-get install npm
+          npm install -g react-scripts
+          
+          # Install mysql
+          apt-get install mysql-server
+          
+          # Start mysql now and for all time
+          systemctl start mysql
+          systemctl enable mysql
+          
+          # Download the course repo
+          git clone https://github.com/RLey/wsu-tunnel-app.git ~/repo
+          
+          # Get whatever branch the user specified and store it for future reference.
+          # If no branch was specified, default to master
+          branch=${1:-'master'}
+          
+          # Change directories to the downloaded repository
+          pushd ~/repo
+          
+          # Checkout to the specified branch
+          git checkout $branch
+          
+          # Run the setup script
+          bash start.bash
+          
+          # Change back to the original working directory
+          popd
+          
+          echo -e "\033[32;1mServer should be up and running at ${dig +short myip.opendns.com @resolver1.opendns.com}:3000\033[0m"
