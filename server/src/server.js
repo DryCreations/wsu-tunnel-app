@@ -4,6 +4,7 @@ const pathfinder = require('./pathfinder.js');
 
 const server = http.createServer();
 server.listen(5000);
+server.setTimeout();
 
 server.on('request', async function(request, response) {
     const parsedUrl = parseUrl(request.url);
