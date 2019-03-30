@@ -1,9 +1,9 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: >-
-  WSU CS-3900 Server Template: This template creates a server to be used by the Spring 2019 CS-3900 project.  
-    The template automatcally sets up a EC2 server and peripherals, with a bash script for setup appearing in a file 
-    matching the pattern /var/lib/cloud/instances/*/user-data.txt. To setup the server, run the command 
-    "sudo bash /var/lib/cloud/instances/*/user-data.txt <BRANCH>", where <BRANCH> is the name of the branch from the git 
+  WSU CS-3900 Server Template: This template creates a server to be used by the Spring 2019 CS-3900 project.
+    The template automatcally sets up a EC2 server and peripherals, with a bash script for setup appearing in a file
+    matching the pattern /var/lib/cloud/instances/*/user-data.txt. To setup the server, run the command
+    "sudo bash /var/lib/cloud/instances/*/user-data.txt <BRANCH>", where <BRANCH> is the name of the branch from the git
     repository that the server should use.  The setup script will then run the start.bash file in that branch.
 Parameters:
   InstanceType:
@@ -26,7 +26,7 @@ Parameters:
     Type: String
     MinLength: '9'
     MaxLength: '18'
-    Default: 0.0.0.0/0
+    Default: 130.108.0.0/16
     AllowedPattern: '(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})'
     ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
 Mappings:
@@ -124,13 +124,17 @@ Resources:
           ToPort: '22'
           CidrIp: !Ref SSHLocation
         - IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
           FromPort: '3000'
           ToPort: '3000'
-          CidrIp: !Ref SSHLocation
+          CidrIp: 0.0.0.0/0
         - IpProtocol: tcp
           FromPort: '5000'
           ToPort: '5000'
-          CidrIp: !Ref SSHLocation
+          CidrIp: 0.0.0.0/0
   WebServerInstance:
     Type: 'AWS::EC2::Instance'
     DependsOn: AttachGateway
@@ -159,14 +163,14 @@ Resources:
       UserData:
         Fn::Base64: |
           #!/bin/bash
-          
+
           # Give the server some swap space
           fallocate -l 4G /swapfile
           chmod 0600 /swapfile
           mkswap /swapfile
           swapon /swapfile
           sysctl vm.swappiness=10
-          
+
           # Install dependencies
           apt-get update
           yes | apt-get install build-essential
@@ -174,31 +178,31 @@ Resources:
           yes | apt-get install nodejs
           yes | apt-get install npm
           npm install -g react-scripts
-          
+
           # Install mysql
           apt-get install mysql-server
-          
+
           # Start mysql now and for all time
           systemctl start mysql
           systemctl enable mysql
-          
+
           # Download the course repo
           git clone https://github.com/RLey/wsu-tunnel-app.git ~/repo
-          
+
           # Get whatever branch the user specified and store it for future reference.
           # If no branch was specified, default to master
           branch=${1:-'master'}
-          
+
           # Change directories to the downloaded repository
           pushd ~/repo
-          
+
           # Checkout to the specified branch
           git checkout $branch
-          
+
           # Run the setup script
           bash start.bash
-          
+
           # Change back to the original working directory
           popd
-          
+
           echo -e "\033[32;1mServer should be up and running at ${dig +short myip.opendns.com @resolver1.opendns.com}:3000\033[0m"
