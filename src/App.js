@@ -11,6 +11,7 @@ import MyFooter  from './Components/Footer/MyFooter';
 import Map from './Components/Views/Map';
 import FAQ from './Components/Views/FAQ';
 import About from './Components/Views/About';
+import Settings from './Components/Views/Settings/Settings';
 
 
 
@@ -50,6 +51,7 @@ class App extends Component {
         <Route sytle={{margin:64}}exact path="/Map" component={Map}/>
         <Route exact path='/About' component ={About}/>
         <Route exact path="/FAQ" component={FAQ}/>
+        <Route exact path="/Settings" component={Settings}/>
   
         <MyFooter/>
         </div>
