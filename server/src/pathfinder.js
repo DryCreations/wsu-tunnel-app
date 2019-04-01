@@ -71,22 +71,26 @@ exports.getPath = async function(startID, endIDs) {
 
                 let otherNode = await database.node(edge.nextNodeID);
 
-                //Get the minimum distance from otherNode to the end node
-                let crowFlightToEnd = Math.min(...endIDs.map(i => coordinate.distanceTo(otherNode[0], endNodes.get(i)[0])));
+                //Check to see if the node is an intersection or an exit, so the
+                //  algorithm doen't plot through stair
+                if (endIDs.includes(otherNode[0]) || otherNode[8] === 0 || otherNode[8] == 1) {
+                  //Get the minimum distance from otherNode to the end node
+                  let crowFlightToEnd = Math.min(...endIDs.map(i => coordinate.distanceTo(otherNode[0], endNodes.get(i)[0])));
 
-                //Get the A* heuristic distance for this node
-                let heuristic = currentPath + crowFlightToEnd;
+                  //Get the A* heuristic distance for this node
+                  let heuristic = currentPath + crowFlightToEnd;
 
-                //Get the index where this node should be spliced in
-                let insertIndex = toVisit.length;
-                while (insertIndex !== 0 && heuristic > toVisit[insertIndex-1].heuristic) insertIndex--;
+                  //Get the index where this node should be spliced in
+                  let insertIndex = toVisit.length;
+                  while (insertIndex !== 0 && heuristic > toVisit[insertIndex-1].heuristic) insertIndex--;
 
-                //And splice it in
-                toVisit.splice(insertIndex, 0, {id: edge.nextNodeID, heuristic: heuristic});
+                  //And splice it in
+                  toVisit.splice(insertIndex, 0, {id: edge.nextNodeID, heuristic: heuristic});
 
-                if(DEBUG>=3) console.log("Inserted node " + edge.nextNodeID + " at index " + insertIndex);
+                  if(DEBUG>=3) console.log("Inserted node " + edge.nextNodeID + " at index " + insertIndex);
+                }
             }
-        };
+        }
     }
 
     //Get the path taken..
