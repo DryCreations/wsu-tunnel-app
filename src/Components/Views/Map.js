@@ -63,6 +63,23 @@ class Map extends Component {
     }
 
     scaleNodes() {
+      var size = Math.min(16 / this.getScale(), 2.2);
+      //
+      // if (size == NaN) {
+      //   size = .01;
+      // } else {
+        // size = Math.max(size, .01)
+        // size = Math.min(size, 4);
+      // }
+
+      // size = Math.abs(size);
+
+      var scaleString = 'scale(' + size + ')';
+      document.getElementById('nodeRadius').innerHTML = 'circle {transform:' + scaleString + ';-webkit-transform:' + scaleString + ';-moz-transform:' + scaleString + ';-o-transform:' + scaleString + ';}';
+      document.getElementById('Map').setAttribute('stroke-width', size / 2 + 'px');
+    }
+
+    getScale() {
       var m = this.getUserMatrix();
       // var s = m[0][0] / Math.sqrt(Math.abs(1 - m[0][1] ** 2));
       // var s = m[0][0] / Math.cos(Math.asin(m[0][1]));
@@ -92,20 +109,7 @@ class Map extends Component {
 
       s = Math.sqrt(s) * s2 * Math.sqrt(s3);
 
-      var size = Math.min(16 / s, 2.2);
-      //
-      // if (size == NaN) {
-      //   size = .01;
-      // } else {
-        // size = Math.max(size, .01)
-        // size = Math.min(size, 4);
-      // }
-
-      // size = Math.abs(size);
-
-      var scaleString = 'scale(' + size + ')';
-      document.getElementById('nodeRadius').innerHTML = 'circle {transform:' + scaleString + ';-webkit-transform:' + scaleString + ';-moz-transform:' + scaleString + ';-o-transform:' + scaleString + ';}';
-      document.getElementById('Map').setAttribute('stroke-width', size / 2 + 'px');
+      return s;
     }
 
     //set onclick for svg elements, called after load
@@ -362,7 +366,9 @@ class Map extends Component {
 
       let lastMatrix = this.getUserMatrix();
       let newMatrix = this.multiplyMatrices(this.getTranslationMatrix(-event.pageX * scale - this.state.defaultViewBoxArgs[0], -event.pageY * scale - this.state.defaultViewBoxArgs[1]), lastMatrix);
-      newMatrix = this.multiplyMatrices(this.getScaleMatrix(1 - event.deltaY/1000), newMatrix);
+      if (!(this.getScale() > 20 && 1 - event.deltaY/1000 > 1) && !(this.getScale() < .5 && 1 - event.deltaY/1000 < 1)) {
+        newMatrix = this.multiplyMatrices(this.getScaleMatrix(1 - event.deltaY/1000), newMatrix);
+      }
       newMatrix = this.multiplyMatrices(this.getTranslationMatrix(event.pageX * scale + this.state.defaultViewBoxArgs[0], event.pageY * scale + this.state.defaultViewBoxArgs[1]), newMatrix);
 
       let transformString = 'matrix(' + this.matrixToString(newMatrix) + ')';
@@ -371,7 +377,7 @@ class Map extends Component {
                                   '-moz-transform:' + transformString + ';' +
                                   '-o-transform:' + transformString + ';')
       // this.scaleViewBoxAtPos(Math.min(2, Math.max(1 - event.deltaY / 1000, .5)), event.pageX - document.getElementById('Map').getBoundingClientRect().left, event.pageY - document.getElementById('Map').getBoundingClientRect().top);
-this.scaleNodes();
+      this.scaleNodes();
     }
 
     //select or deselect element, fills start point first then end point. Only overrides null values
@@ -921,7 +927,9 @@ this.scaleNodes();
 
       result = this.multiplyMatrices(originTranslation, result);
       result = this.multiplyMatrices(rotationTranslation, result);
-      result = this.multiplyMatrices(scaleMatrix, result);
+      if (!(this.getScale() > 20 && rd / od > 1) && !(this.getScale() < .5 && rd / od < 1)) {
+        result = this.multiplyMatrices(scaleMatrix, result);
+      }
       result = this.multiplyMatrices(newTranslation, result);
 
       return result;

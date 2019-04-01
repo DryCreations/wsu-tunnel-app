@@ -4,12 +4,16 @@ body {
 path {
   stroke: #063D1C;
   fill: none !important;
+  /* animation: rainbow 2.5s linear;
+	animation-iteration-count: infinite; */
 }
 
 circle {
   stroke: #063D1C;
   fill: #063D1C;
   stroke-width: 0.5;
+  /* animation: rainbow 2.5s linear;
+	animation-iteration-count: infinite; */
 }
 
 circle:hover {
@@ -18,11 +22,15 @@ circle:hover {
 
 .selected {
   stroke: #CEA052;
+  /* animation: rainbow 1s linear;
+	animation-iteration-count: infinite; */
 }
 
 .highlight {
   stroke: #CEA052;
   fill: #CEA052;
+  /* animation: rainbow 1s linear;
+	animation-iteration-count: infinite; */
 }
 
 #User {
@@ -171,10 +179,61 @@ circle {
   left: 0;
   top: 55px;
   margin: 0;
-  padding: 5px;
+  padding: 0px;
   background:white;
   height: 20px;
 }
 #Directions p {
   margin: 0px;
+}
+
+@keyframes rainbow {
+  100%,0%{
+    fill: rgb(255,0,0);
+    stroke: rgb(255,0,0);
+  }
+  8%{
+    fill: rgb(255,127,0);
+    stroke: rgb(255,127,0);
+  }
+  16%{
+    fill: rgb(255,255,0);
+    stroke: rgb(255,255,0);
+  }
+  25%{
+    fill: rgb(127,255,0);
+    stroke: rgb(127,255,0);
+  }
+  33%{
+    fill: rgb(0,255,0);
+    stroke: rgb(0,255,0);
+  }
+  41%{
+    fill: rgb(0,255,127);
+    stroke: rgb(0,255,127);
+  }
+  50%{
+    fill: rgb(0,255,255);
+    stroke: rgb(0,255,255);
+  }
+  58%{
+    fill: rgb(0,127,255);
+    stroke: rgb(0,127,255);
+  }
+  66%{
+    fill: rgb(0,0,255);
+    stroke: rgb(0,0,255);
+  }
+  75%{
+    fill: rgb(127,0,255);
+    stroke: rgb(127,0,255);
+  }
+  83%{
+   fill: rgb(255,0,255);
+   stroke: rgb(255,0,255);
+  }
+  91%{
+   fill: rgb(255,0,127);
+   stroke: rgb(255,0,127);
+  }
 }
