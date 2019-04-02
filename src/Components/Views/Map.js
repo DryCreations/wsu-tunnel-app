@@ -57,9 +57,23 @@ class Map extends Component {
             onClick={() => this.nextStep()}>
             Next
             </button>
+            <img id="Compass" src="north.png"></img>
 
             </div>
         );
+    }
+
+    updateCompass() {
+      var matrix = this.multiplyMatrices(this.getUserMatrix(), this.getMapMatrix());
+
+      var det = matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1];
+      matrix = this.multiplyMatrices(this.matrix_invert(this.getScaleMatrix(Math.sqrt(det))), matrix);
+
+      var angle = Math.atan2(matrix[0][0], matrix[0][1]);
+
+      angle = angle * 180 / Math.PI - 90;
+
+      document.getElementById('Compass').setAttribute('style', 'transform:rotate(' + angle + 'deg);-webkit-transform:rotate(' + angle + 'deg);-moz-transform:rotate(' + angle + 'deg);-o-transform:rotate(' + angle + 'deg);');
     }
 
     scaleNodes() {
@@ -157,7 +171,7 @@ class Map extends Component {
         sheet2.innerHTML = '.elevator:not(.highlight){visibility:hidden;}.staircase:not(.highlight){visibility:hidden;}.exit:not(.highlight){visibility:hidden;}'
         document.head.appendChild(sheet2);
 
-        this.scaleNodes();
+        this.scaleNodes();this.updateCompass();
     }
 
     initViewBoxDimensions() {
@@ -255,7 +269,8 @@ class Map extends Component {
             o2: null,
           });
         }
-        this.scaleNodes();
+        this.scaleNodes();this.updateCompass();
+
     }
 
     //set origin to mouse pos on pointer down
@@ -355,7 +370,7 @@ class Map extends Component {
           });
         }
 
-        this.scaleNodes();
+        this.scaleNodes();this.updateCompass();
     }
 
     onScroll(event) {
@@ -377,7 +392,7 @@ class Map extends Component {
                                   '-moz-transform:' + transformString + ';' +
                                   '-o-transform:' + transformString + ';')
       // this.scaleViewBoxAtPos(Math.min(2, Math.max(1 - event.deltaY / 1000, .5)), event.pageX - document.getElementById('Map').getBoundingClientRect().left, event.pageY - document.getElementById('Map').getBoundingClientRect().top);
-      this.scaleNodes();
+      this.scaleNodes();this.updateCompass();
     }
 
     //select or deselect element, fills start point first then end point. Only overrides null values
@@ -721,7 +736,7 @@ class Map extends Component {
                                   '-moz-transform:' + transformString + ';' +
                                   '-o-transform:' + transformString + ';');
 
-          this.scaleNodes();
+          this.scaleNodes();this.updateCompass();
     }
 
     nextStep() {
@@ -1027,6 +1042,27 @@ class Map extends Component {
       //we've done all operations, C should be the identity
       //matrix I should be the inverse:
       return I;
+    }
+
+    getMapMatrix() {
+      var style = document.getElementById('TransformMap').getAttribute('style');
+      if (style) {
+        style = style.match('matrix\\((.+?)\\) translate\\((.+?)px,(.+?)px\\) rotate\\((.+?)deg\\) scale\\((.+?)\\) translate\\((.+?)px,(.+?)px\\)');
+        if (style) {
+          var matrix = this.stringToMatrix(style[1]);
+          matrix = this.multiplyMatrices(matrix,this.getTranslationMatrix(style[2], style[3]));
+          matrix = this.multiplyMatrices(matrix,this.getRotationMatrix(-style[4] * Math.PI / 180));
+          matrix = this.multiplyMatrices(matrix, this.getScaleMatrix(style[5]));
+          matrix = this.multiplyMatrices(matrix,this.getTranslationMatrix(style[6], style[7]));
+
+          return matrix;
+        } else {
+          return this.getIdentityMatrix();
+        }
+      } else {
+        return this.getIdentityMatrix();
+      }
+
     }
 
     showNodes(c) {
