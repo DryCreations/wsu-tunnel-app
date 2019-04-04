@@ -859,18 +859,23 @@ class Map extends Component {
     }
 
     multiplyMatrices(m1, m2) {
-      var result = [];
-      for (var i = 0; i < m1.length; i++) {
-          result[i] = [];
-          for (var j = 0; j < m2[0].length; j++) {
-              var sum = 0;
-              for (var k = 0; k < m1[0].length; k++) {
-                  sum += m1[i][k] * m2[k][j];
-              }
-              result[i][j] = sum;
-          }
-      }
-      return result;
+      //multiply two 3x3 matrices
+      return [[m1[0][0] * m2[0][0] + m1[0][1] * m2[1][0] + m1[0][2] * m2[2][0], m1[0][0] * m2[0][1] + m1[0][1] * m2[1][1] + m1[0][2] * m2[2][1], m1[0][0] * m2[0][2] + m1[0][1] * m2[1][2] + m1[0][2] * m2[2][2]],
+              [m1[1][0] * m2[0][0] + m1[1][1] * m2[1][0] + m1[1][2] * m2[2][0], m1[1][0] * m2[0][1] + m1[1][1] * m2[1][1] + m1[1][2] * m2[2][1], m1[1][0] * m2[0][2] + m1[1][1] * m2[1][2] + m1[1][2] * m2[2][2]],
+              [0,0,1]];
+
+      // var result = [];
+      // for (var i = 0; i < m1.length; i++) {
+      //     result[i] = [];
+      //     for (var j = 0; j < m2[0].length; j++) {
+      //         var sum = 0;
+      //         for (var k = 0; k < m1[0].length; k++) {
+      //             sum += m1[i][k] * m2[k][j];
+      //         }
+      //         result[i][j] = sum;
+      //     }
+      // }
+      // return result;
     }
 
     getIdentityMatrix() {
