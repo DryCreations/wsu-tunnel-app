@@ -29,6 +29,7 @@ class Map extends Component {
         this.onTouchUp = this.onTouchUp.bind(this);
         this.onTouchMove = this.onTouchMove.bind(this);
 
+        //resize svg when window resizes to stay responsive
         window.addEventListener("resize", this.initViewBoxDimensions.bind(this));
 
         window.mapComponent = this; //call functions by window.mapComponent.{Function call here}
@@ -57,12 +58,13 @@ class Map extends Component {
             onClick={() => this.nextStep()}>
             Next
             </button>
-            <img id="Compass" src="north.png"></img>
+            <img id="Compass" src="north.png" alt="compass"></img>
 
             </div>
         );
     }
 
+    //update rotation of compass
     updateCompass() {
       var matrix = this.multiplyMatrices(this.getUserMatrix(), this.getMapMatrix());
 
@@ -76,6 +78,7 @@ class Map extends Component {
       document.getElementById('Compass').setAttribute('style', 'transform:rotate(' + angle + 'deg);-webkit-transform:rotate(' + angle + 'deg);-moz-transform:rotate(' + angle + 'deg);-o-transform:rotate(' + angle + 'deg);');
     }
 
+    //scale nodes to maintain a constant size on screen, with a maximum size to avoid overlappnig nodes
     scaleNodes() {
       var size = Math.min(16 / this.getScale(), 2.2);
       //
@@ -93,6 +96,7 @@ class Map extends Component {
       document.getElementById('Map').setAttribute('stroke-width', size / 2 + 'px');
     }
 
+    //get the overall scale factor of the map by taking the square root of the determinant
     getScale() {
       var m = this.getUserMatrix();
       // var s = m[0][0] / Math.sqrt(Math.abs(1 - m[0][1] ** 2));
@@ -107,7 +111,7 @@ class Map extends Component {
           s3 = this.stringToMatrix(s3[1]);
           // s3 = s3[0][0] / Math.sqrt(Math.abs(1 - s3[0][1] ** 2));
           // s3 = s3[0][0] / Math.cos(Math.asin(s3[0][1]));
-          var s3 = s3[0][0] * s3[1][1] - s3[0][1] * s3[1][0];
+          s3 = s3[0][0] * s3[1][1] - s3[0][1] * s3[1][0];
         } else {
           s3 = 1;
         }
@@ -174,6 +178,7 @@ class Map extends Component {
         this.scaleNodes();this.updateCompass();
     }
 
+    //scale svg viewbox to user viewport
     initViewBoxDimensions() {
       var verticalMargin = 0;
 
@@ -201,6 +206,7 @@ class Map extends Component {
       });
     }
 
+    //keep track when a new finger touches screen
     onTouchDown(event) {
       this.setState({
         o1: {x:event.touches[0].pageX, y:event.touches[0].pageY},
@@ -213,6 +219,7 @@ class Map extends Component {
       }
     }
 
+    //kremove touch when user lifts finger
     onTouchUp(event) {
       if (event.touches.length > 0) {
         this.setState({
@@ -232,6 +239,7 @@ class Map extends Component {
       }
     }
 
+    //transform map on touch move
     onTouchMove(event) {
         event.preventDefault();
 
@@ -373,6 +381,7 @@ class Map extends Component {
         this.scaleNodes();this.updateCompass();
     }
 
+    //zoom map onScroll event
     onScroll(event) {
       event.preventDefault();
       var map = document.getElementById('Map');
@@ -651,7 +660,7 @@ class Map extends Component {
         });
     }
 
-
+    //transform map to show nodeIdFrom at bottom of the screen and nodeIdTo at the top
     transform(nodeIdFrom, nodeIdTo) {
 
       var group = document.getElementById('TransformMap');
@@ -670,7 +679,7 @@ class Map extends Component {
         currRot = 0;
       }
 
-      var map = document.getElementById('Map')
+      // var map = document.getElementById('Map')
 
       var n1 = document.getElementById('N' + nodeIdFrom);
       var n2 = document.getElementById('N' + nodeIdTo);
@@ -739,6 +748,7 @@ class Map extends Component {
           this.scaleNodes();this.updateCompass();
     }
 
+    //move map to next step in path
     nextStep() {
 
       if (this.state.pathNodes != null && this.state.currNodes < this.state.pathNodes.length - 1) {
@@ -753,6 +763,7 @@ class Map extends Component {
       }
     }
 
+    //move map to previous step in path
     prevStep() {
       if (this.state.pathNodes != null && this.state.currNodes > 1) {
         this.transform(this.state.pathNodes[this.state.currNodes - 2], this.state.pathNodes[this.state.currNodes - 1]);
@@ -765,6 +776,7 @@ class Map extends Component {
       }
     }
 
+    //returns directions for user based on node passed in.
     getDirection(currNodes) {
       var ret = 'Your destination is ahead'
       if (this.state.pathNodes && currNodes < this.state.pathNodes.length - 2) {
@@ -817,7 +829,7 @@ class Map extends Component {
       return ret;
     }
 
-
+    //adds markers along path pointing along the desired direction
     markers(edgeId, markers, startNodeId, endNodeId) {
       var scale = document.getElementById('TransformMap').getAttribute('style');
       if (scale) {
@@ -858,8 +870,9 @@ class Map extends Component {
       }
     }
 
+    //multiply two 3x3 matrices
     multiplyMatrices(m1, m2) {
-      //multiply two 3x3 matrices
+
       return [[m1[0][0] * m2[0][0] + m1[0][1] * m2[1][0] + m1[0][2] * m2[2][0], m1[0][0] * m2[0][1] + m1[0][1] * m2[1][1] + m1[0][2] * m2[2][1], m1[0][0] * m2[0][2] + m1[0][1] * m2[1][2] + m1[0][2] * m2[2][2]],
               [m1[1][0] * m2[0][0] + m1[1][1] * m2[1][0] + m1[1][2] * m2[2][0], m1[1][0] * m2[0][1] + m1[1][1] * m2[1][1] + m1[1][2] * m2[2][1], m1[1][0] * m2[0][2] + m1[1][1] * m2[1][2] + m1[1][2] * m2[2][2]],
               [0,0,1]];
@@ -878,34 +891,40 @@ class Map extends Component {
       // return result;
     }
 
+    //return identity matrix
     getIdentityMatrix() {
       return [[1,0,0],
               [0,1,0],
               [0,0,1]];
     }
 
+    //get rotation matrix of rad degrees in radians
     getRotationMatrix(rad) {
       return [[Math.cos(rad),Math.sin(rad),0],
               [-Math.sin(rad),Math.cos(rad),0],
               [0,0,1]];
     }
 
+    //get transformation matrix for a x translation tx and y translation ty
     getTranslationMatrix(tx, ty) {
       return [[1,0,tx],
               [0,1,ty],
               [0,0,1]];
     }
 
+    //get transformation matrix for a uniform scale of s
     getScaleMatrix(s) {
       return [[s,0,0],
               [0,s,0],
               [0,0,1]];
     }
 
+    //convert matrix to string to be used in css transform
     matrixToString(m) {
       return m[0][0] + ',' + m[1][0] + ',' + m[0][1] + ',' + m[1][1] + ',' + m[0][2] + ',' + m[1][2];
     }
 
+    //convert string to matrix, string in form 'a,b,c,d,tx,ty' goes to [[a,c,tx],[b,d,ty],[0,0,1]]
     stringToMatrix(s) {
       var m = s.split(',');
       return [[m[0],m[2],m[4]],
@@ -913,6 +932,7 @@ class Map extends Component {
               [0,0,1]]
     }
 
+    //get current matrix transforming the svg
     getUserMatrix() {
       var result = document.getElementById('UserTransform').getAttribute('style');
       if (result) {
@@ -931,6 +951,7 @@ class Map extends Component {
       return this.getTranslationMatrix(r.x - o.x, r.y - o.y);
     }
 
+    //get 3x3 transformation matrix matching the the transformations of o1->r1 and o2->r2
     getDoubleTouchMatrix(o1, o2, r1, r2) {
       var o = {x: (o1.x + o2.x) / 2, y: (o1.y + o2.y) / 2};
       var r = {x: (r1.x + r2.x) / 2, y: (r1.y + r2.y) / 2};
@@ -970,7 +991,7 @@ class Map extends Component {
       if(M.length !== M[0].length){return;}
 
       //create the identity matrix (I), and a copy (C) of the original
-      var i=0, ii=0, j=0, dim=M.length, e=0, t=0;
+      var i=0, ii=0, j=0, dim=M.length, e=0;
       var I = [], C = [];
       for(i=0; i<dim; i+=1){
           // Create the row
@@ -979,7 +1000,7 @@ class Map extends Component {
           for(j=0; j<dim; j+=1){
 
               //if we're on the diagonal, put a 1 (for identity)
-              if(i==j){ I[i][j] = 1; }
+              if(i===j){ I[i][j] = 1; }
               else{ I[i][j] = 0; }
 
               // Also, make the copy of the original
@@ -993,11 +1014,11 @@ class Map extends Component {
           e = C[i][i];
 
           // if we have a 0 on the diagonal (we'll need to swap with a lower row)
-          if(e==0){
+          if(e===0){
               //look through every row below the i'th row
               for(ii=i+1; ii<dim; ii+=1){
                   //if the ii'th row has a non-0 in the i'th col
-                  if(C[ii][i] != 0){
+                  if(C[ii][i] !== 0){
                       //it would make the diagonal have a non-0 so swap it
                       for(j=0; j<dim; j++){
                           e = C[i][j];       //temp store i'th row
@@ -1014,7 +1035,7 @@ class Map extends Component {
               //get the new diagonal
               e = C[i][i];
               //if it's still 0, not invertable (error)
-              if(e==0){return}
+              if(e===0){return}
           }
 
           // Scale this row down by e (so we have a 1 on the diagonal)
@@ -1028,7 +1049,7 @@ class Map extends Component {
           // rows above and below this one
           for(ii=0; ii<dim; ii++){
               // Only apply to other rows (we want a 1 on the diagonal)
-              if(ii==i){continue;}
+              if(ii===i){continue;}
 
               // We want to change this element to 0
               e = C[ii][i];
@@ -1049,6 +1070,7 @@ class Map extends Component {
       return I;
     }
 
+    //get current matrix transforming map
     getMapMatrix() {
       var style = document.getElementById('TransformMap').getAttribute('style');
       if (style) {
@@ -1070,6 +1092,7 @@ class Map extends Component {
 
     }
 
+    //show nodes of class c
     showNodes(c) {
       var s = document.getElementById('ShowNodes');
       var r = new RegExp('\\'+c+'.+?{.+?}', 'g');
@@ -1081,6 +1104,7 @@ class Map extends Component {
       // }
     }
 
+    //hide nodes of class c
     hideNodes(c) {
       var s = document.getElementById('ShowNodes');
       var r = new RegExp('\\'+c+'.+?{.+?}', 'g');
