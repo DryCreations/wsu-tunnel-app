@@ -21,10 +21,13 @@ exports.getPath = async function(startID, endIDs) {
     for(let i of endIDs) {
       let nodeData = await database.node(i);
       endNodes.set(i, nodeData);
-    }
 
-    //Retreive end node now as we will be using it many times for our heuristic calculations.
-    let endNode = await database.node(endIDs);
+
+      if(DEBUG>=5) {
+        console.log("Set end node " + i + " to: ");
+        console.log(nodeData);
+      }
+    }
 
     //Create a stack to hold the ID's frontier nodes.  this should be kept sorted at all times
     let toVisit = [{id: startID, heuristic: 0}];
@@ -57,6 +60,8 @@ exports.getPath = async function(startID, endIDs) {
 
         for (let edge of edges) {
             let currentPath = distances.get(thisNodeID) + edge.length;
+
+
             let previousPath = distances.get(edge.nextNodeID);
 
             //Check to see if either the next node hasn't been visited or the path to the node
@@ -71,9 +76,10 @@ exports.getPath = async function(startID, endIDs) {
 
                 let otherNode = await database.node(edge.nextNodeID);
 
+
                 //Check to see if the node is an intersection or an exit, so the
-                //  algorithm doen't plot through stair
-                if (endIDs.includes(otherNode[0]) || otherNode[8] === 0 || otherNode[8] == 1) {
+                //  algorithm doen't plot through stair                                                                    V-- this is a temporary fix. It is bad.
+                if (endIDs.includes(otherNode[0].nodeID) || otherNode[0].nodeTypeID === 0 || otherNode[0].nodeTypeID === 1 || thisNodeID === 1 ||thisNodeID === 2 ||thisNodeID === 3) {
                   //Get the minimum distance from otherNode to the end node
                   let crowFlightToEnd = Math.min(...endIDs.map(i => coordinate.distanceTo(otherNode[0], endNodes.get(i)[0])));
 
@@ -121,9 +127,33 @@ exports.getPath = async function(startID, endIDs) {
 
 if(DEBUG>=1) {
   let asyncTest = async function() {
+
+    //Check to see that all nodes have valid connections
+    if(DEBUG>=11) {
+      for (var i = 1; i < 138; i++) {
+        console.log("------------------------------------");
+        console.log("Nodes connected to " + i)
+        console.log("------------------------------------");
+
+        let hasSomethingBesidesAStairOrElevator = false;
+
+        let edges = await database.adjacentNodes(i);
+        for (let edge of edges) {
+          let nodeData = await database.node(edge.nextNodeID);
+          console.log(nodeData);
+          if(nodeData[0].nodeTypeID === 0 || nodeData[0].nodeTypeID === 1) hasSomethingBesidesAStairOrElevator = true;
+        }
+
+        if(!hasSomethingBesidesAStairOrElevator) {
+          console.log("\033[31;1mThis node does not have any routable connections!\033[0m");
+        }
+      }
+    }
+
     console.log("Testing some dummy paths...");
     console.log(await exports.getPath(1, [6, 5, 13]));
     console.log(await exports.getPath(1, [6, 5]));
+    console.log(await exports.getPath(14, [67, 52, 128]));
   };
 
   asyncTest();
