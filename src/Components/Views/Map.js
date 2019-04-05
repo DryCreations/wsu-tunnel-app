@@ -7,16 +7,16 @@ class Map extends Component {
         super(props);
 
         var sel = [null, null];
+        this.selected = sel;
+        this.o1 = null;
+        this.o2 = null;
+        this.animationStack = []
+        this.animating = false;
+        this.pathNodes = null;
+        this.currNodes = 0;
+        this.defaultViewBoxArgs = '0 0 640 480';
 
         this.state = {
-            selected: sel,
-            o1: null,
-            o2: null,
-            animationStack: [],
-            animating: false,
-            pathNodes: null,
-            currNodes: 0,
-            defaultViewBoxArgs: '0 0 640 480',
             direction: '',
         };
 
@@ -165,11 +165,13 @@ class Map extends Component {
 
         this.initViewBoxDimensions();
 
+        //create style sheet to scale nodes together
         var sheet = document.createElement('style');
         sheet.setAttribute('id', 'nodeRadius');
         sheet.innerHTML = "circle {transform: scale(1);-webkit-transform:scale(1);-moz-transform:scale(1);-o-transform:scale(1);}";
         document.head.appendChild(sheet);
 
+        //create style sheet for hiding and showing node categories
         var sheet2 = document.createElement('style');
         sheet2.setAttribute('id', 'ShowNodes');
         sheet2.innerHTML = '.elevator:not(.highlight){visibility:hidden;}.staircase:not(.highlight){visibility:hidden;}.exit:not(.highlight){visibility:hidden;}'
@@ -201,41 +203,38 @@ class Map extends Component {
 
       map.setAttribute('viewBox', viewBoxArgs.join(' '));
 
-      this.setState({
-        defaultViewBoxArgs: viewBoxArgs,
-      });
+      this.defaultViewBoxArgs= viewBoxArgs;
+
     }
 
     //keep track when a new finger touches screen
     onTouchDown(event) {
-      this.setState({
-        o1: {x:event.touches[0].pageX, y:event.touches[0].pageY},
-        o2: null,
-      });
+
+        this.o1= {x:event.touches[0].pageX, y:event.touches[0].pageY};
+        this.o2= null;
+
       if (event.touches.length > 1) {
-        this.setState({
-          o2: {x:event.touches[1].pageX, y:event.touches[1].pageY},
-        });
+
+        this.o2= {x:event.touches[1].pageX, y:event.touches[1].pageY};
+
       }
     }
 
     //kremove touch when user lifts finger
     onTouchUp(event) {
       if (event.touches.length > 0) {
-        this.setState({
-          o1: {x:event.touches[0].pageX, y:event.touches[0].pageY},
-          o2: null,
-        });
+
+        this.o1= {x:event.touches[0].pageX, y:event.touches[0].pageY};
+        this.o2= null;
+
         if (event.touches.length > 1) {
-          this.setState({
-            o2: {x:event.touches[1].pageX, y:event.touches[1].pageY},
-          });
+
+        this.o2= {x:event.touches[1].pageX, y:event.touches[1].pageY};
+
         }
       } else {
-        this.setState({
-          o1: null,
-          o2: null,
-        });
+        this.o1= null;
+        this.o2= null;
       }
     }
 
@@ -244,14 +243,14 @@ class Map extends Component {
         event.preventDefault();
 
         var map = document.getElementById('Map');
-        var scale = this.state.defaultViewBoxArgs[2] / map.getBoundingClientRect().width;
+        var scale = this.defaultViewBoxArgs[2] / map.getBoundingClientRect().width;
         let group = document.getElementById('UserTransform');
         let lastMatrix = this.getUserMatrix();
         if (event.touches.length > 1) {
-          let o1 = {x: this.state.o1.x * scale + this.state.defaultViewBoxArgs[0], y: this.state.o1.y * scale + this.state.defaultViewBoxArgs[1]};
-          let o2 = {x: this.state.o2.x * scale + this.state.defaultViewBoxArgs[0], y: this.state.o2.y * scale + this.state.defaultViewBoxArgs[1]};
-          let r1 = {x: event.touches[0].pageX * scale + this.state.defaultViewBoxArgs[0], y: event.touches[0].pageY * scale + this.state.defaultViewBoxArgs[1]};
-          let r2 = {x: event.touches[1].pageX * scale + this.state.defaultViewBoxArgs[0], y: event.touches[1].pageY * scale + this.state.defaultViewBoxArgs[1]};
+          let o1 = {x: this.o1.x * scale + this.defaultViewBoxArgs[0], y: this.o1.y * scale + this.defaultViewBoxArgs[1]};
+          let o2 = {x: this.o2.x * scale + this.defaultViewBoxArgs[0], y: this.o2.y * scale + this.defaultViewBoxArgs[1]};
+          let r1 = {x: event.touches[0].pageX * scale + this.defaultViewBoxArgs[0], y: event.touches[0].pageY * scale + this.defaultViewBoxArgs[1]};
+          let r2 = {x: event.touches[1].pageX * scale + this.defaultViewBoxArgs[0], y: event.touches[1].pageY * scale + this.defaultViewBoxArgs[1]};
 
           var newMatrix = this.multiplyMatrices(this.getDoubleTouchMatrix(o1, o2, r1, r2), lastMatrix);
           let transformString = 'matrix(' + this.matrixToString(newMatrix) + ')';
@@ -259,12 +258,11 @@ class Map extends Component {
                                       '-webkit-transform:' + transformString + ';' +
                                       '-moz-transform:' + transformString + ';' +
                                       '-o-transform:' + transformString + ';')
-          this.setState({
-              o1: {x:event.touches[0].pageX, y:event.touches[0].pageY},
-              o2: {x:event.touches[1].pageX, y:event.touches[1].pageY},
-          });
+
+          this.o1= {x:event.touches[0].pageX, y:event.touches[0].pageY};
+          this.o2= {x:event.touches[1].pageX, y:event.touches[1].pageY};
         } else {
-          let o1 = {x: this.state.o1.x * scale, y: this.state.o1.y * scale};
+          let o1 = {x: this.o1.x * scale, y: this.o1.y * scale};
           let r1 = {x: event.touches[0].pageX * scale, y: event.touches[0].pageY * scale};
           let newMatrix = this.multiplyMatrices(this.getSingleTouchMatrix(o1, r1), lastMatrix);
           let transformString = 'matrix(' + this.matrixToString(newMatrix) + ')';
@@ -272,10 +270,10 @@ class Map extends Component {
                                       '-webkit-transform:' + transformString + ';' +
                                       '-moz-transform:' + transformString + ';' +
                                       '-o-transform:' + transformString + ';')
-          this.setState({
-            o1: {x:event.touches[0].pageX, y:event.touches[0].pageY},
-            o2: null,
-          });
+
+          this.o1= {x:event.touches[0].pageX, y:event.touches[0].pageY};
+          this.o2= null;
+
         }
         this.scaleNodes();this.updateCompass();
 
@@ -283,33 +281,33 @@ class Map extends Component {
 
     //set origin to mouse pos on pointer down
     onPointerDown(event) {
-        if (!this.state.o1) {
-            this.setState({
-                o1: event,
-            });
-        } else if (!this.state.o2) {
-            this.setState({
-                o2: event,
-            });
+        if (!this.o1) {
+
+            this.o1= event;
+
+        } else if (!this.o2) {
+
+            this.o2= event;
+
         }
     }
 
     //relase origin and set it to null on pointer up
     onPointerUp(event) {
-        if (this.state.o1 && this.state.o1.pointerId === event.pointerId) {
-            this.setState({
-                o1: null,
-            });
-            if (this.state.o2) {
-                this.setState({
-                    o1: this.state.o2,
-                    o2: null,
-                });
+        if (this.o1 && this.o1.pointerId === event.pointerId) {
+
+                this.o1= null;
+
+            if (this.o2) {
+
+              this.o1= this.o2;
+              this.o2= null;
+
             }
-        } else if (this.state.o2 && this.state.o2.pointerId === event.pointerId) {
-            this.setState({
-                o2: null,
-            });
+        } else if (this.o2 && this.o2.pointerId === event.pointerId) {
+
+            this.o2= null;
+
         }
     }
 
@@ -317,17 +315,17 @@ class Map extends Component {
     onPointerMove(event) {
         event.preventDefault();
         var map = document.getElementById('Map');
-        var scale = this.state.defaultViewBoxArgs[2] / map.getBoundingClientRect().width;
+        var scale = this.defaultViewBoxArgs[2] / map.getBoundingClientRect().width;
 
-        if (this.state.o2) {
-            if (this.state.o1.pointerId === event.pointerId) {
+        if (this.o2) {
+            if (this.o1.pointerId === event.pointerId) {
               let group = document.getElementById('UserTransform');
               let lastMatrix = this.getUserMatrix();
 
-              let o1 = {x: this.state.o1.pageX * scale + this.state.defaultViewBoxArgs[0], y: this.state.o1.pageY * scale + this.state.defaultViewBoxArgs[1]};
-              let o2 = {x: this.state.o2.pageX * scale + this.state.defaultViewBoxArgs[0], y: this.state.o2.pageY * scale + this.state.defaultViewBoxArgs[1]};
-              let r2 = {x: this.state.o2.pageX * scale + this.state.defaultViewBoxArgs[0], y: this.state.o2.pageY * scale + this.state.defaultViewBoxArgs[1]};
-              let r1 = {x: event.pageX * scale + this.state.defaultViewBoxArgs[0], y: event.pageY * scale + this.state.defaultViewBoxArgs[1]};
+              let o1 = {x: this.o1.pageX * scale + this.defaultViewBoxArgs[0], y: this.o1.pageY * scale + this.defaultViewBoxArgs[1]};
+              let o2 = {x: this.o2.pageX * scale + this.defaultViewBoxArgs[0], y: this.o2.pageY * scale + this.defaultViewBoxArgs[1]};
+              let r2 = {x: this.o2.pageX * scale + this.defaultViewBoxArgs[0], y: this.o2.pageY * scale + this.defaultViewBoxArgs[1]};
+              let r1 = {x: event.pageX * scale + this.defaultViewBoxArgs[0], y: event.pageY * scale + this.defaultViewBoxArgs[1]};
 
               let newMatrix = this.multiplyMatrices(this.getDoubleTouchMatrix(o1, o2, r1, r2), lastMatrix);
 
@@ -337,34 +335,34 @@ class Map extends Component {
                                           '-moz-transform:' + transformString + ';' +
                                           '-o-transform:' + transformString + ';')
 
-              this.setState({
-                  o1: event,
-              });
-            } else if (this.state.o2.pointerId === event.pointerId) {
+
+                  this.o1= event;
+
+            } else if (this.o2.pointerId === event.pointerId) {
               let group = document.getElementById('UserTransform');
               let lastMatrix = this.getUserMatrix();
 
-              let o1 = {x: this.state.o1.pageX * scale + this.state.defaultViewBoxArgs[0], y: this.state.o1.pageY * scale + this.state.defaultViewBoxArgs[1]};
-              let o2 = {x: this.state.o2.pageX * scale + this.state.defaultViewBoxArgs[0], y: this.state.o2.pageY * scale + this.state.defaultViewBoxArgs[1]};
-              let r1 = {x: this.state.o1.pageX * scale + this.state.defaultViewBoxArgs[0], y: this.state.o1.pageY * scale + this.state.defaultViewBoxArgs[1]};
-              let r2 = {x: event.pageX * scale + this.state.defaultViewBoxArgs[0], y: event.pageY * scale + this.state.defaultViewBoxArgs[1]};
+              let o1 = {x: this.o1.pageX * scale + this.defaultViewBoxArgs[0], y: this.o1.pageY * scale + this.defaultViewBoxArgs[1]};
+              let o2 = {x: this.o2.pageX * scale + this.defaultViewBoxArgs[0], y: this.o2.pageY * scale + this.defaultViewBoxArgs[1]};
+              let r1 = {x: this.o1.pageX * scale + this.defaultViewBoxArgs[0], y: this.o1.pageY * scale + this.defaultViewBoxArgs[1]};
+              let r2 = {x: event.pageX * scale + this.defaultViewBoxArgs[0], y: event.pageY * scale + this.defaultViewBoxArgs[1]};
 
               var newMatrix = this.multiplyMatrices(this.getDoubleTouchMatrix(o1, o2, r1, r2), lastMatrix);
               let transformString = 'matrix(' + this.matrixToString(newMatrix) + ')';
               group.setAttribute('style', 'transform:' + transformString + ';' +
                                           '-webkit-transform:' + transformString + ';' +
                                           '-moz-transform:' + transformString + ';' +
-                                          '-o-transform:' + transformString + ';')
-              this.setState({
-                  o2: event,
-              });
+                                          '-o-transform:' + transformString + ';');
+
+              this.o2= event;
+
             }
-        } else if (this.state.o1 && this.state.o1.pointerId === event.pointerId) {
+        } else if (this.o1 && this.o1.pointerId === event.pointerId) {
           let group = document.getElementById('UserTransform');
           let lastMatrix = this.getUserMatrix();
 
-          let o1 = {x: this.state.o1.pageX * scale + this.state.defaultViewBoxArgs[0], y: this.state.o1.pageY * scale + this.state.defaultViewBoxArgs[1]};
-          let r1 = {x: event.pageX * scale + this.state.defaultViewBoxArgs[0], y: event.pageY * scale + this.state.defaultViewBoxArgs[1]};
+          let o1 = {x: this.o1.pageX * scale + this.defaultViewBoxArgs[0], y: this.o1.pageY * scale + this.defaultViewBoxArgs[1]};
+          let r1 = {x: event.pageX * scale + this.defaultViewBoxArgs[0], y: event.pageY * scale + this.defaultViewBoxArgs[1]};
 
 
           let newMatrix = this.multiplyMatrices(this.getSingleTouchMatrix(o1, r1), lastMatrix);
@@ -372,10 +370,10 @@ class Map extends Component {
           group.setAttribute('style', 'transform:' + transformString + ';' +
                                       '-webkit-transform:' + transformString + ';' +
                                       '-moz-transform:' + transformString + ';' +
-                                      '-o-transform:' + transformString + ';')
-          this.setState({
-              o1: event,
-          });
+                                      '-o-transform:' + transformString + ';');
+
+          this.o1= event;
+
         }
 
         this.scaleNodes();this.updateCompass();
@@ -385,15 +383,15 @@ class Map extends Component {
     onScroll(event) {
       event.preventDefault();
       var map = document.getElementById('Map');
-      var scale = this.state.defaultViewBoxArgs[2] / map.getBoundingClientRect().width;
+      var scale = this.defaultViewBoxArgs[2] / map.getBoundingClientRect().width;
       let group = document.getElementById('UserTransform');
 
       let lastMatrix = this.getUserMatrix();
-      let newMatrix = this.multiplyMatrices(this.getTranslationMatrix(-event.pageX * scale - this.state.defaultViewBoxArgs[0], -event.pageY * scale - this.state.defaultViewBoxArgs[1]), lastMatrix);
+      let newMatrix = this.multiplyMatrices(this.getTranslationMatrix(-event.pageX * scale - this.defaultViewBoxArgs[0], -event.pageY * scale - this.defaultViewBoxArgs[1]), lastMatrix);
       if (!(this.getScale() > 20 && 1 - event.deltaY/1000 > 1) && !(this.getScale() < .5 && 1 - event.deltaY/1000 < 1)) {
         newMatrix = this.multiplyMatrices(this.getScaleMatrix(1 - event.deltaY/1000), newMatrix);
       }
-      newMatrix = this.multiplyMatrices(this.getTranslationMatrix(event.pageX * scale + this.state.defaultViewBoxArgs[0], event.pageY * scale + this.state.defaultViewBoxArgs[1]), newMatrix);
+      newMatrix = this.multiplyMatrices(this.getTranslationMatrix(event.pageX * scale + this.defaultViewBoxArgs[0], event.pageY * scale + this.defaultViewBoxArgs[1]), newMatrix);
 
       let transformString = 'matrix(' + this.matrixToString(newMatrix) + ')';
       group.setAttribute('style', 'transform:' + transformString + ';' +
@@ -406,23 +404,23 @@ class Map extends Component {
 
     //select or deselect element, fills start point first then end point. Only overrides null values
     selectElement(element) {
-        var sel = this.state.selected.slice();
-        if (this.state.selected[0] === element) {
+        var sel = this.selected.slice();
+        if (this.selected[0] === element) {
             sel[0] = null;
             element.classList.remove('selected')
-        } else if (this.state.selected[1] === element) {
+        } else if (this.selected[1] === element) {
             sel[1] = null;
             element.classList.remove('selected')
-        } else if (!this.state.selected[0]) {
+        } else if (!this.selected[0]) {
             sel[0] = element;
             element.classList.add('selected')
-        } else if (!this.state.selected[1]) {
+        } else if (!this.selected[1]) {
             sel[1] = element;
             element.classList.add('selected')
         }
-        this.setState({
-            selected: sel,
-        });
+
+        this.selected = sel;
+
     }
 
     getPath(startID, endID) {
@@ -434,10 +432,10 @@ class Map extends Component {
           fetch(`getPath?start=${startID}&end=${endID}`)
               .then(result => result.json())
               .then(path => {
-                this.setState({
-                  pathNodes: path.nodeIDs,
-                  currNodes: 0,
-                });
+
+                this.pathNodes= path.nodeIDs;
+                this.currNodes = 0;
+
                 console.log(path);
                 this.highlightPath(path);
               });
@@ -458,16 +456,15 @@ class Map extends Component {
 
     //override current start point with this start point call with id i.e 'N1'
     selectStartPointByID(id) {
-        if (this.state.selected[0]) {
-            this.state.selected[0].classList.remove('selected');
+        if (this.selected[0]) {
+            this.selected[0].classList.remove('selected');
         }
-        var sel = this.state.selected.slice();
+        var sel = this.selected.slice();
         sel[0] = document.getElementById('Map').getElementById(id);
         sel[0].classList.add('selected');
 
-        this.setState({
-            selected: sel,
-        });
+        this.selected = sel;
+
     }
 
     //override current start point with this start point call with numerical id i.e '1'
@@ -477,16 +474,14 @@ class Map extends Component {
 
     //override current end point with this end point call with id i.e 'N1'
     selectEndPointByID(id) {
-        if (this.state.selected[1]) {
-            this.state.selected[1].classList.remove('selected');
+        if (this.selected[1]) {
+            this.selected[1].classList.remove('selected');
         }
-        var sel = this.state.selected.slice();
+        var sel = this.selected.slice();
         sel[1] = document.getElementById('Map').getElementById(id);
         sel[1].classList.add('selected');
 
-        this.setState({
-            selected: sel,
-        });
+        this.selected = sel;
     }
 
     //override current end point with this end point call with numerical id i.e '1'
@@ -541,29 +536,29 @@ class Map extends Component {
 
     //return selected start point element
     getStartPoint() {
-        return this.state.selected[0];
+        return this.selected[0];
     }
 
     //return selected end point element
     getEndPoint() {
-        return this.state.selected[1];
+        return this.selected[1];
     }
 
     //return selected array [start, end]
     getPoints() {
-        return this.state.selected;
+        return this.selected;
     }
 
     //return id of selected start point
     getStartPointID() {
-        if (this.state.selected[0])
+        if (this.selected[0])
             return parseInt(this.getStartPoint().id.substring(1));
         return null;
     }
 
     //return id of selected end point
     getEndPointID() {
-        if (this.state.selected[1])
+        if (this.selected[1])
             return parseInt(this.getEndPoint().id.substring(1));
         return null;
     }
@@ -579,9 +574,7 @@ class Map extends Component {
             element.classList.remove('selected', 'highlight');
             var sel = [null, null];
 
-            this.setState({
-                selected: sel,
-            });
+            this.selected = sel;
         });
     }
 
@@ -610,7 +603,7 @@ class Map extends Component {
     //animate user motion on specific path from point start to end at speed of speed. start and end are percentages of total length in range (0, 1)
     //stores calls in a stack to display animations one after another
     animatePath(pathID, start, end, speed) {
-        var stack = this.state.animationStack.slice();
+        var stack = this.animationStack.slice();
         stack.push(() => {
             var curr = start;
             var func = () => {
@@ -620,31 +613,25 @@ class Map extends Component {
                     requestAnimationFrame(func);
                 } else {
                     this.moveUserToPath(pathID, end);
-                    if (this.state.animationStack.length > 1) {
-                        this.setState({
-                            animationStack: this.state.animationStack.slice(1),
-                        });
-                        this.state.animationStack[0]()
+                    if (this.animationStack.length > 1) {
+
+                        this.animationStack = this.animationStack.slice(1);
+                        this.animationStack[0]();
                     } else {
-                        this.setState({
-                            animationStack: [],
-                            animating: false,
-                        });
+                        this.animationStack = [];
+                        this.animating = false;
                     }
                 }
             }
             requestAnimationFrame(func);
         });
 
-        this.setState({
-            animationStack: stack,
-        });
+        this.animationStack = stack;
 
-        if (!this.state.animating) {
-            this.state.animationStack[0]();
-            this.setState({
-                animating: true,
-            });
+        if (!this.animating) {
+            this.animationStack[0]();
+            this.animating = true;
+
         }
     }
 
@@ -689,7 +676,7 @@ class Map extends Component {
       var inverted = this.matrixToString(this.matrix_invert(this.getUserMatrix()));
       transformString += ' matrix(' + inverted + ')';
 
-      transformString += ' translate(' + (this.state.defaultViewBoxArgs[2] / 2 + this.state.defaultViewBoxArgs[0]) + 'px,' + (11 * this.state.defaultViewBoxArgs[3] / 15 + this.state.defaultViewBoxArgs[1]) + 'px)';
+      transformString += ' translate(' + (this.defaultViewBoxArgs[2] / 2 + this.defaultViewBoxArgs[0]) + 'px,' + (11 * this.defaultViewBoxArgs[3] / 15 + this.defaultViewBoxArgs[1]) + 'px)';
 
       var theta = Math.atan2(0, -1) + Math.atan2(n2.getAttribute('cx') - n1.getAttribute('cx'), n2.getAttribute('cy') - n1.getAttribute('cy'));
       theta = 180 * theta / Math.PI
@@ -724,7 +711,7 @@ class Map extends Component {
 
       var mag = ((n1.getAttribute('cx') - n2.getAttribute('cx')) ** 2 + (n1.getAttribute('cy') - n2.getAttribute('cy')) ** 2) ** .5;
 
-      var scale = (this.state.defaultViewBoxArgs[3] * 8 / 15) / mag;
+      var scale = (this.defaultViewBoxArgs[3] * 8 / 15) / mag;
 
       transformString += ' scale(' + scale + ')';
 
@@ -737,7 +724,7 @@ class Map extends Component {
 
       transformString += ' translate(' + -n1.getAttribute('cx') + 'px,' + -n1.getAttribute('cy') + 'px)';
 
-      // transformString += ' translate(' + this.state.defaultViewBoxArgs[0] + 'px,' +  this.state.defaultViewBoxArgs[1] + 'px)';
+      // transformString += ' translate(' + this.defaultViewBoxArgs[0] + 'px,' +  this.defaultViewBoxArgs[1] + 'px)';
 
       // group.style.transform = transformString;
       group.setAttribute('style', ';transform:' + transformString + ';' +
@@ -751,26 +738,28 @@ class Map extends Component {
     //move map to next step in path
     nextStep() {
 
-      if (this.state.pathNodes != null && this.state.currNodes < this.state.pathNodes.length - 1) {
-        this.transform(this.state.pathNodes[this.state.currNodes], this.state.pathNodes[this.state.currNodes + 1]);
-        var dir = this.getDirection(this.state.currNodes);
+      if (this.pathNodes != null && this.currNodes < this.pathNodes.length - 1) {
+        this.transform(this.pathNodes[this.currNodes], this.pathNodes[this.currNodes + 1]);
+        var dir = this.getDirection(this.currNodes);
         console.log(dir);
 
+
+        this.currNodes= this.currNodes + 1;
         this.setState({
-          currNodes: this.state.currNodes + 1,
           direction: dir,
         });
+
       }
     }
 
     //move map to previous step in path
     prevStep() {
-      if (this.state.pathNodes != null && this.state.currNodes > 1) {
-        this.transform(this.state.pathNodes[this.state.currNodes - 2], this.state.pathNodes[this.state.currNodes - 1]);
-        var dir = this.getDirection(this.state.currNodes - 2);
+      if (this.pathNodes != null && this.currNodes > 1) {
+        this.transform(this.pathNodes[this.currNodes - 2], this.pathNodes[this.currNodes - 1]);
+        var dir = this.getDirection(this.currNodes - 2);
         console.log(dir);
+        this.currNodes= this.currNodes - 1;
         this.setState({
-          currNodes: this.state.currNodes - 1,
           direction: dir,
         });
       }
@@ -779,10 +768,10 @@ class Map extends Component {
     //returns directions for user based on node passed in.
     getDirection(currNodes) {
       var ret = 'Your destination is ahead'
-      if (this.state.pathNodes && currNodes < this.state.pathNodes.length - 2) {
-        var n1 = document.getElementById('N' + this.state.pathNodes[currNodes]);
-        var n2 = document.getElementById('N' + this.state.pathNodes[currNodes + 1]);
-        var n3 = document.getElementById('N' + this.state.pathNodes[currNodes + 2]);
+      if (this.pathNodes && currNodes < this.pathNodes.length - 2) {
+        var n1 = document.getElementById('N' + this.pathNodes[currNodes]);
+        var n2 = document.getElementById('N' + this.pathNodes[currNodes + 1]);
+        var n3 = document.getElementById('N' + this.pathNodes[currNodes + 2]);
 
         var theta1 = Math.atan2(n2.getAttribute('cx') - n1.getAttribute('cx'), n2.getAttribute('cy') - n1.getAttribute('cy'));
         var theta2 = Math.atan2(n3.getAttribute('cx') - n2.getAttribute('cx'), n3.getAttribute('cy') - n2.getAttribute('cy'));
