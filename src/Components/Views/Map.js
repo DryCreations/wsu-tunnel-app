@@ -404,6 +404,9 @@ class Map extends Component {
 
     //select or deselect element, fills start point first then end point. Only overrides null values
     selectElement(element) {
+        if (element.id.match('N[0-9]+?B')) {
+          element = document.getElementById(element.id.match('(N[0-9]+?)B')[1]);
+        }
         var sel = this.selected.slice();
         if (this.selected[0] === element) {
             sel[0] = null;

@@ -169,7 +169,7 @@ circle {
   cursor: not-allowed;
 }
 
-#N130,#N131 {
+#N130,#N131,#N130B,#N131B {
   visibility: hidden;
 }
 
@@ -193,6 +193,10 @@ circle {
   top:100px;
   width:10%;
   transition: all .5s ease-out;
+}
+
+.backNode {
+  opacity: .05;
 }
 
 @keyframes rainbow {

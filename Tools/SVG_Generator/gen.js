@@ -121,8 +121,13 @@ $('form').submit(function(e1) {
           node.classList.add('universityHall');
           break;
       }
+      var backNode = node.cloneNode();
+      backNode.classList.add('backNode');
+      backNode.setAttribute('id', backNode.getAttribute('id') + 'B');
+      backNode.setAttribute('r', nodeRadius * 10)
 
       transformGroup.appendChild(node);
+      transformGroup.prepend(backNode);
     }
 
     var reader2 = new FileReader();
