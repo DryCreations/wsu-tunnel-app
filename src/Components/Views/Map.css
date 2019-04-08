@@ -33,6 +33,11 @@ circle:hover {
 	animation-iteration-count: infinite; */
 }
 
+.traversed {
+  stroke: #000000;
+  fill: #000000;
+}
+
 #User {
   display:none;
   stroke: #CEA052;
@@ -197,6 +202,10 @@ circle {
 
 .backNode {
   opacity: 0;
+}
+
+.backNode.selected {
+  opacity: .1;
 }
 
 @keyframes rainbow {

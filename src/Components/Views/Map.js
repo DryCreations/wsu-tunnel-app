@@ -13,11 +13,12 @@ class Map extends Component {
         this.animationStack = []
         this.animating = false;
         this.pathNodes = null;
+        this.pathEdges = null;
         this.currNodes = 0;
         this.defaultViewBoxArgs = '0 0 640 480';
 
         this.state = {
-            direction: '',
+            direction: 'Tap to select a start and end location',
         };
 
         //bind touch events to this object
@@ -210,7 +211,9 @@ class Map extends Component {
                                       '-webkit-transform:' + transformString + ';' +
                                       '-moz-transform:' + transformString + ';' +
                                       '-o-transform:' + transformString + ';');
-
+          this.setState({
+            direction: 'You are here, tap to select destination',
+          })
         }
         if (to) {
           this.selectEndPointByID(to);
@@ -452,7 +455,6 @@ class Map extends Component {
           element = document.getElementById(element.id.match('(N[0-9]+?)[A-Za-z]')[1]);
         } else {
           backElement = document.getElementById(element.id + 'B');
-          console.log(backElement);
         }
         var sel = this.selected.slice();
         if (this.selected[0] === element) {
@@ -475,19 +477,38 @@ class Map extends Component {
 
         this.selected = sel;
 
+        if (this.selected[0] && this.selected[1]) {
+          this.setState({
+            direction: 'Press the navigate button to generate a path'
+          });
+        } else if (this.selected[0]) {
+          this.setState({
+            direction: 'Tap to select destination'
+          });
+        } else {
+          this.setState({
+            direction: 'Tap to select starting location'
+          });
+        }
     }
 
     getPath(startID, endID) {
 
         if (startID && endID) {
-          //Clear all highlights
+          this.setState({
+            direction: 'Navigating... please wait'
+          });
 
 
           fetch(`getPath?start=${startID}&end=${endID}`)
               .then(result => result.json())
               .then(path => {
-
+                this.transform(startID,endID);
+                this.setState({
+                  direction: 'Finished pathfinding, press Next to begin',
+                });
                 this.pathNodes= path.nodeIDs;
+                this.pathEdges = path.edgeIDs;
                 this.currNodes = 0;
                 this.flush();
                 console.log(path);
@@ -629,7 +650,7 @@ class Map extends Component {
     //remove highlights and selections on map
     flush() {
         Array.from(document.getElementById('Map').getElementsByClassName('selected')).concat(Array.from(document.getElementById('Map').getElementsByClassName('highlight'))).forEach((element) => {
-            element.classList.remove('selected', 'highlight');
+            element.classList.remove('selected', 'highlight', 'traversed');
             var sel = [null, null];
 
             this.selected = sel;
@@ -797,10 +818,13 @@ class Map extends Component {
     nextStep() {
 
       if (this.pathNodes != null && this.currNodes < this.pathNodes.length - 1) {
+        document.getElementById('N' + this.pathNodes[this.currNodes]).classList.add('traversed');
+        if (this.currNodes > 0) {
+          document.getElementById('E' + this.pathEdges[this.currNodes - 1]).classList.add('traversed');
+        }
         this.transform(this.pathNodes[this.currNodes], this.pathNodes[this.currNodes + 1]);
         var dir = this.getDirection(this.currNodes);
         console.log(dir);
-
 
         this.currNodes= this.currNodes + 1;
         this.setState({
@@ -813,6 +837,10 @@ class Map extends Component {
     //move map to previous step in path
     prevStep() {
       if (this.pathNodes != null && this.currNodes > 1) {
+        document.getElementById('N' + this.pathNodes[this.currNodes - 1]).classList.remove('traversed');
+        if (this.currNodes > 1) {
+          document.getElementById('E' + this.pathEdges[this.currNodes - 2]).classList.remove('traversed');
+        }
         this.transform(this.pathNodes[this.currNodes - 2], this.pathNodes[this.currNodes - 1]);
         var dir = this.getDirection(this.currNodes - 2);
         console.log(dir);
