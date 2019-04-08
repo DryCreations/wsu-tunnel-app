@@ -446,22 +446,31 @@ class Map extends Component {
 
     //select or deselect element, fills start point first then end point. Only overrides null values
     selectElement(element) {
+        var backElement;
         if (element.id.match('N[0-9]+?[A-Za-z]')) {
+          backElement = element;
           element = document.getElementById(element.id.match('(N[0-9]+?)[A-Za-z]')[1]);
+        } else {
+          backElement = document.getElementById(element.id + 'B');
+          console.log(backElement);
         }
         var sel = this.selected.slice();
         if (this.selected[0] === element) {
             sel[0] = null;
-            element.classList.remove('selected')
+            element.classList.remove('selected');
+            backElement.classList.remove('selected');
         } else if (this.selected[1] === element) {
             sel[1] = null;
-            element.classList.remove('selected')
+            element.classList.remove('selected');
+            backElement.classList.remove('selected');
         } else if (!this.selected[0]) {
             sel[0] = element;
-            element.classList.add('selected')
+            element.classList.add('selected');
+            backElement.classList.add('selected');
         } else if (!this.selected[1]) {
             sel[1] = element;
-            element.classList.add('selected')
+            element.classList.add('selected');
+            backElement.classList.add('selected');
         }
 
         this.selected = sel;
@@ -502,10 +511,12 @@ class Map extends Component {
     //override current start point with this start point call with id i.e 'N1'
     selectStartPointByID(id) {
         if (this.selected[0]) {
+            document.getElementById(this.selected[0].id + 'B').classList.remove('selected');
             this.selected[0].classList.remove('selected');
         }
         var sel = this.selected.slice();
         sel[0] = document.getElementById('Map').getElementById(id);
+        document.getElementById(sel[0].id + 'B').classList.add('selected');
         sel[0].classList.add('selected');
 
         this.selected = sel;
@@ -520,10 +531,12 @@ class Map extends Component {
     //override current end point with this end point call with id i.e 'N1'
     selectEndPointByID(id) {
         if (this.selected[1]) {
+            document.getElementById(this.selected[1].id + 'B').classList.remove('selected');
             this.selected[1].classList.remove('selected');
         }
         var sel = this.selected.slice();
         sel[1] = document.getElementById('Map').getElementById(id);
+        document.getElementById(sel[1].id + 'B').classList.add('selected');
         sel[1].classList.add('selected');
 
         this.selected = sel;
@@ -1047,9 +1060,9 @@ class Map extends Component {
       var r = new RegExp('\\'+c+'.+?{.+?}', 'g');
 
       if (s.innerHTML.match(r)) {
-        s.innerHTML = s.innerHTML.replace(r, c + ':not(highlight):not(selected){visibility:hidden;}');
+        s.innerHTML = s.innerHTML.replace(r, c + ':not(.highlight):not(.selected){visibility:hidden;}');
       } else {
-        s.innerHTML = c + ':not(highlight):not(selected){visibility:hidden;}' + s.innerHTML;
+        s.innerHTML = c + ':not(.highlight):not(.selected){visibility:hidden;}' + s.innerHTML;
       }
     }
 
