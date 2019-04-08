@@ -38,19 +38,27 @@
     padding: 0 0.5rem;
     line-height: 30px;
 }
+
 .spacer{
     flex:1;
 }
 
-.settings a{
+.menu_item a{
     color: white;
     text-decoration: none;
     font-size: 1.5rem;
 }
-.settings a:hover {
+.menu_item a:hover {
     color: #af8446;
 }
-.settings{
+.menu_item {
+    margin-right: 1rem;
+}
+
+.bar {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
     margin-right: 1rem;
 }
 
