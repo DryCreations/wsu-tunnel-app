@@ -169,12 +169,16 @@ class Map extends Component {
         var sheet = document.createElement('style');
         sheet.setAttribute('id', 'nodeRadius');
         sheet.innerHTML = "circle {transform: scale(1);-webkit-transform:scale(1);-moz-transform:scale(1);-o-transform:scale(1);}";
+        if (document.getElementById('nodeRadius'))
+          document.head.removeChild(document.getElementById('nodeRadius'));
         document.head.appendChild(sheet);
 
         //create style sheet for hiding and showing node categories
         var sheet2 = document.createElement('style');
         sheet2.setAttribute('id', 'ShowNodes');
-        sheet2.innerHTML = '.elevator:not(.highlight){visibility:hidden;}.staircase:not(.highlight){visibility:hidden;}.exit:not(.highlight){visibility:hidden;}'
+        sheet2.innerHTML = '.elevator:not(.highlight):not(.selected){visibility:hidden;}.staircase:not(.highlight):not(.selected){visibility:hidden;}.exit:not(.highlight):not(.selected){visibility:hidden;}'
+        if (document.getElementById('ShowNodes'))
+          document.head.removeChild(document.getElementById('ShowNodes'));
         document.head.appendChild(sheet2);
 
         this.scaleNodes();this.updateCompass();
@@ -1043,9 +1047,9 @@ class Map extends Component {
       var r = new RegExp('\\'+c+'.+?{.+?}', 'g');
 
       if (s.innerHTML.match(r)) {
-        s.innerHTML = s.innerHTML.replace(r, c + ':not(highlight){visibility:hidden;}');
+        s.innerHTML = s.innerHTML.replace(r, c + ':not(highlight):not(selected){visibility:hidden;}');
       } else {
-        s.innerHTML = c + ':not(highlight){visibility:hidden;}' + s.innerHTML;
+        s.innerHTML = c + ':not(highlight):not(selected){visibility:hidden;}' + s.innerHTML;
       }
     }
 
@@ -1054,6 +1058,7 @@ class Map extends Component {
       var ret = [];
 
       for(let i of building) {
+        // console.log
         if (i.getAttribute('class').match(r)) ret.push(i.id.substring(1));
       }
 
