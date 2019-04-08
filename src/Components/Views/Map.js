@@ -178,6 +178,44 @@ class Map extends Component {
         document.head.appendChild(sheet2);
 
         this.scaleNodes();this.updateCompass();
+
+        var urlParams = window.location.search;
+        var from, to;
+        if (urlParams) {
+          urlParams = urlParams.split('?')[1].split('&');
+          for(let i of urlParams) {
+            var j = i.split('=');
+            if (j[0] === 'from') {
+              from = j[1];
+            }
+            if (j[0] === 'to') {
+              to = j[1];
+            }
+          }
+        }
+
+        if (from) {
+          this.selectStartPointByID(from);
+          var e = document.getElementById(from);
+
+          var transformString = ' translate(' + (this.defaultViewBoxArgs[2] / 2 + this.defaultViewBoxArgs[0]) + 'px,' + (this.defaultViewBoxArgs[3] / 2 + this.defaultViewBoxArgs[1]) + 'px)';
+          transformString += ' scale(4)';
+          transformString += ' translate(' + -e.getAttribute('cx') + 'px,' + -e.getAttribute('cy') + 'px)';
+
+          document.getElementById('TransformMap').setAttribute('style', ';transform:' + transformString + ';' +
+                                      '-webkit-transform:' + transformString + ';' +
+                                      '-moz-transform:' + transformString + ';' +
+                                      '-o-transform:' + transformString + ';');
+
+        }
+        if (to) {
+          this.selectEndPointByID(to);
+          this.transform(this.getStartPointID(), this.getEndPointID());
+        }
+
+        if(from && to) {
+          this.getPath(this.getStartPointID(), this.getEndPointID())
+        }
     }
 
     //scale svg viewbox to user viewport
@@ -404,8 +442,8 @@ class Map extends Component {
 
     //select or deselect element, fills start point first then end point. Only overrides null values
     selectElement(element) {
-        if (element.id.match('N[0-9]+?B')) {
-          element = document.getElementById(element.id.match('(N[0-9]+?)B')[1]);
+        if (element.id.match('N[0-9]+?[A-Za-z]')) {
+          element = document.getElementById(element.id.match('(N[0-9]+?)[A-Za-z]')[1]);
         }
         var sel = this.selected.slice();
         if (this.selected[0] === element) {
@@ -430,7 +468,7 @@ class Map extends Component {
 
         if (startID && endID) {
           //Clear all highlights
-          this.flush();
+
 
           fetch(`getPath?start=${startID}&end=${endID}`)
               .then(result => result.json())
@@ -438,7 +476,7 @@ class Map extends Component {
 
                 this.pathNodes= path.nodeIDs;
                 this.currNodes = 0;
-
+                this.flush();
                 console.log(path);
                 this.highlightPath(path);
               });
@@ -1009,6 +1047,17 @@ class Map extends Component {
       } else {
         s.innerHTML = c + ':not(highlight){visibility:hidden;}' + s.innerHTML;
       }
+    }
+
+    getSearchGroup(b,r) {
+      var building = document.querySelectorAll('circle' + b + ':not(.backNode)');
+      var ret = [];
+
+      for(let i of building) {
+        if (i.getAttribute('class').match(r)) ret.push(i.id.substring(1));
+      }
+
+      console.log(ret);
     }
 }
 
