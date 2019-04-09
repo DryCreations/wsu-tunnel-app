@@ -2,33 +2,33 @@ body {
   touch-action: none;
 }
 path {
-  stroke: #063D1C;
+  stroke: #063d1c;
   fill: none !important;
   /* animation: rainbow 2.5s linear;
 	animation-iteration-count: infinite; */
 }
 
 circle {
-  stroke: #063D1C;
-  fill: #063D1C;
+  stroke: #063d1c;
+  fill: #063d1c;
   stroke-width: 0.5;
   /* animation: rainbow 2.5s linear;
 	animation-iteration-count: infinite; */
 }
 
 circle:hover {
-  cursor:pointer
+  cursor: pointer;
 }
 
 .selected {
-  stroke: #CEA052;
+  stroke: #cea052;
   /* animation: rainbow 1s linear;
 	animation-iteration-count: infinite; */
 }
 
 .highlight {
-  stroke: #CEA052;
-  fill: #CEA052;
+  stroke: #cea052;
+  fill: #cea052;
   /* animation: rainbow 1s linear;
 	animation-iteration-count: infinite; */
 }
@@ -39,17 +39,17 @@ circle:hover {
 }
 
 #User {
-  display:none;
-  stroke: #CEA052;
-  fill: #F2F1EB;
+  display: none;
+  stroke: #cea052;
+  fill: #f2f1eb;
 }
 
 #User.show {
-  display:inherit;
+  display: inherit;
 }
 
 #User:hover {
-  cursor:default;
+  cursor: default;
 }
 
 #TransformMap {
@@ -82,14 +82,14 @@ circle {
 }
 
 #Map {
-  background: #F2F1EB;
+  background: #f2f1eb;
   /*border-radius: 10px;
   border-style: solid;
   border-width: 5px;
   border-color: #063D1C;*/
   user-select: none;
   /*max-width: 100vh;*/
-  touch-action:none;
+  touch-action: none;
 }
 
 #NavigateButton {
@@ -107,12 +107,12 @@ circle {
   margin-left: -50px;
   font: bold 16px sans-serif;
   -webkit-transition-duration: 0.4s;
-
+  transition-duration: 0.4s;
 }
 
-#NavigateButton:hover:enabled   {
-  background-color: #F2F1EB;
-  color: #063D1C;
+#NavigateButton:hover:enabled {
+  background-color: #f2f1eb;
+  color: #063d1c;
 }
 
 #NavigateButton:disabled {
@@ -134,12 +134,12 @@ circle {
   margin: 20px;
   font: bold 16px sans-serif;
   -webkit-transition-duration: 0.4s;
-
+  transition-duration: 0.4s;
 }
 
-#PreviousViewButton:hover:enabled   {
-  background-color: #F2F1EB;
-  color: #063D1C;
+#PreviousViewButton:hover:enabled {
+  background-color: #f2f1eb;
+  color: #063d1c;
 }
 
 #PreviousViewButton:disabled {
@@ -161,12 +161,12 @@ circle {
   margin: 20px;
   font: bold 16px sans-serif;
   -webkit-transition-duration: 0.4s;
-
+  transition-duration: 0.4s;
 }
 
-#NextViewButton:hover:enabled   {
-  background-color: #F2F1EB;
-  color: #063D1C;
+#NextViewButton:hover:enabled {
+  background-color: #f2f1eb;
+  color: #063d1c;
 }
 
 #NextViewButton:disabled {
@@ -174,7 +174,10 @@ circle {
   cursor: not-allowed;
 }
 
-#N130,#N131,#N130B,#N131B {
+#N130,
+#N131,
+#N130B,
+#N131B {
   visibility: hidden;
 }
 
@@ -185,7 +188,7 @@ circle {
   top: 55px;
   margin: 0;
   padding: 0px;
-  background:white;
+  background: white;
   height: 20px;
 }
 #Directions p {
@@ -194,10 +197,10 @@ circle {
 
 #Compass {
   position: absolute;
-  right:5%;
-  top:100px;
-  width:10%;
-  transition: all .5s ease-out;
+  right: 5%;
+  top: 100px;
+  width: 10%;
+  transition: all 0.5s ease-out;
 }
 
 .backNode {
@@ -205,56 +208,57 @@ circle {
 }
 
 .backNode.selected {
-  opacity: .1;
+  opacity: 0.1;
 }
 
 @keyframes rainbow {
-  100%,0%{
-    fill: rgb(255,0,0);
-    stroke: rgb(255,0,0);
+  100%,
+  0% {
+    fill: rgb(255, 0, 0);
+    stroke: rgb(255, 0, 0);
   }
-  8%{
-    fill: rgb(255,127,0);
-    stroke: rgb(255,127,0);
+  8% {
+    fill: rgb(255, 127, 0);
+    stroke: rgb(255, 127, 0);
   }
-  16%{
-    fill: rgb(255,255,0);
-    stroke: rgb(255,255,0);
+  16% {
+    fill: rgb(255, 255, 0);
+    stroke: rgb(255, 255, 0);
   }
-  25%{
-    fill: rgb(127,255,0);
-    stroke: rgb(127,255,0);
+  25% {
+    fill: rgb(127, 255, 0);
+    stroke: rgb(127, 255, 0);
   }
-  33%{
-    fill: rgb(0,255,0);
-    stroke: rgb(0,255,0);
+  33% {
+    fill: rgb(0, 255, 0);
+    stroke: rgb(0, 255, 0);
   }
-  41%{
-    fill: rgb(0,255,127);
-    stroke: rgb(0,255,127);
+  41% {
+    fill: rgb(0, 255, 127);
+    stroke: rgb(0, 255, 127);
   }
-  50%{
-    fill: rgb(0,255,255);
-    stroke: rgb(0,255,255);
+  50% {
+    fill: rgb(0, 255, 255);
+    stroke: rgb(0, 255, 255);
   }
-  58%{
-    fill: rgb(0,127,255);
-    stroke: rgb(0,127,255);
+  58% {
+    fill: rgb(0, 127, 255);
+    stroke: rgb(0, 127, 255);
   }
-  66%{
-    fill: rgb(0,0,255);
-    stroke: rgb(0,0,255);
+  66% {
+    fill: rgb(0, 0, 255);
+    stroke: rgb(0, 0, 255);
   }
-  75%{
-    fill: rgb(127,0,255);
-    stroke: rgb(127,0,255);
+  75% {
+    fill: rgb(127, 0, 255);
+    stroke: rgb(127, 0, 255);
   }
-  83%{
-   fill: rgb(255,0,255);
-   stroke: rgb(255,0,255);
+  83% {
+    fill: rgb(255, 0, 255);
+    stroke: rgb(255, 0, 255);
   }
-  91%{
-   fill: rgb(255,0,127);
-   stroke: rgb(255,0,127);
+  91% {
+    fill: rgb(255, 0, 127);
+    stroke: rgb(255, 0, 127);
   }
 }
