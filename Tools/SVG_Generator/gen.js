@@ -206,13 +206,13 @@ $('form').submit(function(e1) {
             path.classList.add('motionPictures');
             break;
           case '15':
-            node.classList.add('oelmanHall');
+            path.classList.add('oelmanHall');
             break;
           case '16':
-            node.classList.add('rikeHall');
+            path.classList.add('rikeHall');
             break;
           case '17':
-            node.classList.add('russEngineering');
+            path.classList.add('russEngineering');
             break;
           case '18':
             path.classList.add('studentSuccessCenter');
