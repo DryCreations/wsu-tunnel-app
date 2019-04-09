@@ -4,21 +4,23 @@ When contributing to this repository, please first discuss the change you wish t
 If you would like to contribute code after our semester is done you can do so through GitHub by forking the repository and sending a pull request. When submitting code, please follow existing conventions and style in order to keep the code as legible as possible.
 
 ## Code
+
 - This application is written in javascript
 - Check whether the build passes when creating a pull request
 
 ## Branches
 
 ### Master Branch
+
 Any pull requests to the Master Branch must come from Development Branch, and require two independent reviewers as well as final approval by Ryan L, who will be acting as the caretaker of the Master Branch for the duration of this course.
 
 ### Development Branch
-Development Branch will act as the primary branch for developing and prepping code between each Spiral. Testing will occur in this branch in between Spirals.
 
+Development Branch will act as the primary branch for developing and prepping code between each Spiral. Testing will occur in this branch in between Spirals.
 
 ## Logging Issues/Issue Branches
 
-Log an issue for any question or problem you might have. When in doubt, log an issue, 
+Log an issue for any question or problem you might have. When in doubt, log an issue,
 and clone the Development Branch as necessary to work out the issue. Once complete, send a pull request (to be reviewed by one other class member during class) after which we will delete the Issue branch.
 
 The branch nomenclature should match the Issue Number/Description.
@@ -26,6 +28,7 @@ The branch nomenclature should match the Issue Number/Description.
 Please be courteous, respectful, and concise.
 
 ### Deleting Branches
+
 Branches will be deleted by Ryan L. once they are successfully merged.
 
 ## Commits
@@ -33,6 +36,7 @@ Branches will be deleted by Ryan L. once they are successfully merged.
 Commit messages will all be based upon the following link: https://chris.beams.io/posts/git-commit/
 
 ### The seven rules of a great Git commit message.
+
     1. Separate subject from body with a blank line
     2. Limit the subject line to 50 characters
     3. Capitalize the subject line
@@ -48,4 +52,5 @@ Each commit will have its own tag, in the following format to designate to which
     spiral#
 
 ## Other
+
 ![Genral Guidelines](https://imgs.xkcd.com/comics/git.png "If that doesn't fix it, git.txt contains the phone number of a friend of mine who understands git. Just wait through a few minutes of 'It's really pretty simple, just think of branches as...' and eventually you'll learn the commands that will fix everything.")

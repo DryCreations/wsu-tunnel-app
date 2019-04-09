@@ -18,19 +18,19 @@ Parameters:
     ConstraintDescription: must be a valid EC2 instance type smaller than a t2.large.
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
-    Type: 'AWS::EC2::KeyPair::KeyName'
-    Default: ''
+    Type: "AWS::EC2::KeyPair::KeyName"
+    Default: ""
     ConstraintDescription: must be the name of an existing EC2 KeyPair.
   SSHLocation:
-    Description: ' The IP address range that can be used to access the EC2 instance'
+    Description: " The IP address range that can be used to access the EC2 instance"
     Type: String
-    MinLength: '9'
-    MaxLength: '18'
+    MinLength: "9"
+    MaxLength: "18"
     Default: 130.108.0.0/16
     AllowedPattern: '(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})'
     ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
   DBPort:
-    Description: 'The port that the database will be on'
+    Description: "The port that the database will be on"
     Type: String
     MinLength: 1
     MaxLength: 5
@@ -66,63 +66,63 @@ Mappings:
       HVMG2: NOT_SUPPORTED
 Resources:
   VPC:
-    Type: 'AWS::EC2::VPC'
+    Type: "AWS::EC2::VPC"
     Properties:
       CidrBlock: 10.0.0.0/16
       InstanceTenancy: default
-      EnableDnsSupport: 'true'
-      EnableDnsHostnames: 'true'
+      EnableDnsSupport: "true"
+      EnableDnsHostnames: "true"
       Tags:
         - Key: Application
-          Value: !Ref 'AWS::StackId'
+          Value: !Ref "AWS::StackId"
         - Key: Name
           Value: CS-3900 Special Subjects
   Subnet:
-    Type: 'AWS::EC2::Subnet'
+    Type: "AWS::EC2::Subnet"
     Properties:
       VpcId: !Ref VPC
       CidrBlock: 10.0.0.0/20
       Tags:
         - Key: Application
-          Value: !Ref 'AWS::StackId'
+          Value: !Ref "AWS::StackId"
   DatabaseSubnet1:
-    Type: 'AWS::EC2::Subnet'
+    Type: "AWS::EC2::Subnet"
     Properties:
       VpcId: !Ref VPC
       CidrBlock: 10.0.16.0/20
       AvailabilityZone: us-east-1a
   DatabaseSubnet2:
-    Type: 'AWS::EC2::Subnet'
+    Type: "AWS::EC2::Subnet"
     Properties:
       VpcId: !Ref VPC
       CidrBlock: 10.0.32.0/20
       AvailabilityZone: us-east-1b
   DatabaseSubnet3:
-    Type: 'AWS::EC2::Subnet'
+    Type: "AWS::EC2::Subnet"
     Properties:
       VpcId: !Ref VPC
       CidrBlock: 10.0.48.0/20
       AvailabilityZone: us-east-1c
   DatabaseSubnet4:
-    Type: 'AWS::EC2::Subnet'
+    Type: "AWS::EC2::Subnet"
     Properties:
       VpcId: !Ref VPC
       CidrBlock: 10.0.64.0/20
       AvailabilityZone: us-east-1d
   DatabaseSubnet5:
-    Type: 'AWS::EC2::Subnet'
+    Type: "AWS::EC2::Subnet"
     Properties:
       VpcId: !Ref VPC
       CidrBlock: 10.0.80.0/20
       AvailabilityZone: us-east-1e
   DatabaseSubnet6:
-    Type: 'AWS::EC2::Subnet'
+    Type: "AWS::EC2::Subnet"
     Properties:
       VpcId: !Ref VPC
       CidrBlock: 10.0.96.0/20
       AvailabilityZone: us-east-1f
   DatabaseSubnetGroup:
-    Type: 'AWS::RDS::DBSubnetGroup'
+    Type: "AWS::RDS::DBSubnetGroup"
     Properties:
       DBSubnetGroupDescription: default
       SubnetIds:
@@ -133,65 +133,65 @@ Resources:
         - !Ref DatabaseSubnet5
         - !Ref DatabaseSubnet6
   InternetGateway:
-    Type: 'AWS::EC2::InternetGateway'
+    Type: "AWS::EC2::InternetGateway"
     Properties:
       Tags:
         - Key: Application
-          Value: !Ref 'AWS::StackId'
+          Value: !Ref "AWS::StackId"
   AttachGateway:
-    Type: 'AWS::EC2::VPCGatewayAttachment'
+    Type: "AWS::EC2::VPCGatewayAttachment"
     Properties:
       VpcId: !Ref VPC
       InternetGatewayId: !Ref InternetGateway
   RouteTable:
-    Type: 'AWS::EC2::RouteTable'
+    Type: "AWS::EC2::RouteTable"
     Properties:
       VpcId: !Ref VPC
       Tags:
         - Key: Application
-          Value: !Ref 'AWS::StackId'
+          Value: !Ref "AWS::StackId"
   Route:
-    Type: 'AWS::EC2::Route'
+    Type: "AWS::EC2::Route"
     DependsOn: AttachGateway
     Properties:
       RouteTableId: !Ref RouteTable
       DestinationCidrBlock: 0.0.0.0/0
       GatewayId: !Ref InternetGateway
   SubnetRouteTableAssociation:
-    Type: 'AWS::EC2::SubnetRouteTableAssociation'
+    Type: "AWS::EC2::SubnetRouteTableAssociation"
     Properties:
       SubnetId: !Ref Subnet
       RouteTableId: !Ref RouteTable
   IPAddress:
-    Type: 'AWS::EC2::EIP'
+    Type: "AWS::EC2::EIP"
     DependsOn: AttachGateway
     Properties:
       Domain: vpc
       InstanceId: !Ref WebServerInstance
   InstanceSecurityGroup:
-    Type: 'AWS::EC2::SecurityGroup'
+    Type: "AWS::EC2::SecurityGroup"
     Properties:
       VpcId: !Ref VPC
       GroupDescription: Enable SSH access via port 22 and access to app features via ports 3000 and 5000
       SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: '22'
-          ToPort: '22'
+          FromPort: "22"
+          ToPort: "22"
           CidrIp: !Ref SSHLocation
         - IpProtocol: tcp
-          FromPort: '80'
-          ToPort: '80'
+          FromPort: "80"
+          ToPort: "80"
           CidrIp: 0.0.0.0/0
         - IpProtocol: tcp
-          FromPort: '3000'
-          ToPort: '3000'
+          FromPort: "3000"
+          ToPort: "3000"
           CidrIp: 0.0.0.0/0
         - IpProtocol: tcp
-          FromPort: '5000'
-          ToPort: '5000'
+          FromPort: "5000"
+          ToPort: "5000"
           CidrIp: 0.0.0.0/0
   DatabaseSecurityGroup:
-    Type: 'AWS::EC2::SecurityGroup'
+    Type: "AWS::EC2::SecurityGroup"
     Properties:
       VpcId: !Ref VPC
       GroupDescription: Only allow traffic over the database port from local ip addresses
@@ -201,20 +201,20 @@ Resources:
           ToPort: !Ref DBPort
           CidrIp: 10.0.0.0/16
   DatabaseInstance:
-    Type: 'AWS::RDS::DBInstance'
+    Type: "AWS::RDS::DBInstance"
     Properties:
       AllocatedStorage: 20
-      AllowMajorVersionUpgrade: 'false'
-      AutoMinorVersionUpgrade: 'true'
+      AllowMajorVersionUpgrade: "false"
+      AutoMinorVersionUpgrade: "true"
       DBInstanceClass: db.t2.micro
       Port: !Ref DBPort
-      PubliclyAccessible: 'true'
+      PubliclyAccessible: "true"
       StorageType: gp2
-      BackupRetentionPeriod: '7'
+      BackupRetentionPeriod: "7"
       MasterUsername: wsutunneladmin
       MasterUserPassword: MyPassword
-      PreferredBackupWindow: '05:11-05:41'
-      PreferredMaintenanceWindow: 'sun:03:30-sun:04:00'
+      PreferredBackupWindow: "05:11-05:41"
+      PreferredMaintenanceWindow: "sun:03:30-sun:04:00"
       DBName: wustunnelapp
       Engine: mysql
       EngineVersion: 8.0.13
@@ -226,18 +226,18 @@ Resources:
         - Key: workload-type
           Value: other
   S3Bucket:
-    Type: 'AWS::S3::Bucket'
+    Type: "AWS::S3::Bucket"
     Properties:
       AccessControl: Private
       VersioningConfiguration:
         Status: Enabled
   WebServerInstance:
-    Type: 'AWS::EC2::Instance'
+    Type: "AWS::EC2::Instance"
     DependsOn: AttachGateway
     Properties:
       ImageId: !FindInMap
         - AWSRegionArch2AMI
-        - !Ref 'AWS::Region'
+        - !Ref "AWS::Region"
         - !FindInMap
           - AWSInstanceType2Arch
           - !Ref InstanceType
@@ -246,15 +246,15 @@ Resources:
       KeyName: !Ref KeyName
       Tags:
         - Key: Application
-          Value: !Ref 'AWS::StackId'
+          Value: !Ref "AWS::StackId"
         - Key: Name
           Value: Sample-instance
       NetworkInterfaces:
         - GroupSet:
             - !Ref InstanceSecurityGroup
-          AssociatePublicIpAddress: 'true'
-          DeviceIndex: '0'
-          DeleteOnTermination: 'true'
+          AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          DeleteOnTermination: "true"
           SubnetId: !Ref Subnet
       UserData:
         Fn::Base64: |

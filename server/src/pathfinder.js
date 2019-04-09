@@ -169,7 +169,7 @@ if (DEBUG >= 1) {
 
         if (!hasSomethingBesidesAStairOrElevator) {
           console.log(
-            "\033[31;1mThis node does not have any routable connections!\033[0m"
+            "\x1b[31;1mThis node does not have any routable connections!\x1b[0m"
           );
         }
       }
