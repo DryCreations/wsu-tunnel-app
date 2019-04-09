@@ -26,17 +26,17 @@
  * Copyrighted 2012 by Evan Plaice.
  */
 
-RegExp.escape = function (s) {
-  return s.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+RegExp.escape = function(s) {
+  return s.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
 };
 
-(function () {
-  'use strict';
+(function() {
+  "use strict";
 
   var $;
 
   // to keep backwards compatibility
-  if (typeof jQuery !== 'undefined' && jQuery) {
+  if (typeof jQuery !== "undefined" && jQuery) {
     $ = jQuery;
   } else {
     $ = {};
@@ -49,13 +49,13 @@ RegExp.escape = function (s) {
 
   $.csv = {
     defaults: {
-      separator: ',',
+      separator: ",",
       delimiter: '"',
       headers: true
     },
 
     hooks: {
-      castToScalar: function (value, state) {
+      castToScalar: function(value, state) {
         var hasDot = /\./;
         if (isNaN(value)) {
           return value;
@@ -75,7 +75,7 @@ RegExp.escape = function (s) {
     },
 
     parsers: {
-      parse: function (csv, options) {
+      parse: function(csv, options) {
         // cache settings
         var separator = options.separator;
         var delimiter = options.delimiter;
@@ -92,13 +92,13 @@ RegExp.escape = function (s) {
         var data = [];
         var entry = [];
         var state = 0;
-        var value = '';
+        var value = "";
         var exit = false;
 
-        function endOfEntry () {
+        function endOfEntry() {
           // reset the state
           state = 0;
-          value = '';
+          value = "";
 
           // if 'start' hasn't been met, don't output
           if (options.start && options.state.rowNum < options.start) {
@@ -134,7 +134,7 @@ RegExp.escape = function (s) {
           options.state.colNum = 1;
         }
 
-        function endOfValue () {
+        function endOfValue() {
           if (options.onParseValue === undefined) {
             // onParseValue hook not set
             entry.push(value);
@@ -147,7 +147,7 @@ RegExp.escape = function (s) {
           }
           // console.log('value:' + value);
           // reset the state
-          value = '';
+          value = "";
           state = 0;
           // update global state
           options.state.colNum++;
@@ -162,11 +162,11 @@ RegExp.escape = function (s) {
         var matchSrc = match.source;
         matchSrc = matchSrc.replace(/S/g, escSeparator);
         matchSrc = matchSrc.replace(/D/g, escDelimiter);
-        match = new RegExp(matchSrc, 'gm');
+        match = new RegExp(matchSrc, "gm");
 
         // put on your fancy pants...
         // process control chars individually, use look-ahead on non-control chars
-        csv.replace(match, function (m0) {
+        csv.replace(match, function(m0) {
           if (exit) {
             return;
           }
@@ -175,7 +175,7 @@ RegExp.escape = function (s) {
             case 0:
               // null last value
               if (m0 === separator) {
-                value += '';
+                value += "";
                 endOfValue();
                 break;
               }
@@ -227,7 +227,13 @@ RegExp.escape = function (s) {
                 break;
               }
               // broken paser?
-              throw new Error('CSVDataError: Illegal State [Row:' + options.state.rowNum + '][Col:' + options.state.colNum + ']');
+              throw new Error(
+                "CSVDataError: Illegal State [Row:" +
+                  options.state.rowNum +
+                  "][Col:" +
+                  options.state.colNum +
+                  "]"
+              );
 
             // un-delimited input
             case 3:
@@ -243,14 +249,32 @@ RegExp.escape = function (s) {
                 break;
               }
               if (m0 === delimiter) {
-              // non-compliant data
-                throw new Error('CSVDataError: Illegal Quote [Row:' + options.state.rowNum + '][Col:' + options.state.colNum + ']');
+                // non-compliant data
+                throw new Error(
+                  "CSVDataError: Illegal Quote [Row:" +
+                    options.state.rowNum +
+                    "][Col:" +
+                    options.state.colNum +
+                    "]"
+                );
               }
               // broken parser?
-              throw new Error('CSVDataError: Illegal Data [Row:' + options.state.rowNum + '][Col:' + options.state.colNum + ']');
+              throw new Error(
+                "CSVDataError: Illegal Data [Row:" +
+                  options.state.rowNum +
+                  "][Col:" +
+                  options.state.colNum +
+                  "]"
+              );
             default:
               // shenanigans
-              throw new Error('CSVDataError: Unknown State [Row:' + options.state.rowNum + '][Col:' + options.state.colNum + ']');
+              throw new Error(
+                "CSVDataError: Unknown State [Row:" +
+                  options.state.rowNum +
+                  "][Col:" +
+                  options.state.colNum +
+                  "]"
+              );
           }
           // console.log('val:' + m0 + ' state:' + state);
         });
@@ -266,7 +290,7 @@ RegExp.escape = function (s) {
       },
 
       // a csv-specific line splitter
-      splitLines: function (csv, options) {
+      splitLines: function(csv, options) {
         if (!csv) {
           return undefined;
         }
@@ -286,17 +310,17 @@ RegExp.escape = function (s) {
         // clear initial state
         var entries = [];
         var state = 0;
-        var entry = '';
+        var entry = "";
         var exit = false;
 
-        function endOfLine () {
+        function endOfLine() {
           // reset the state
           state = 0;
 
           // if 'start' hasn't been met, don't output
           if (options.start && options.state.rowNum < options.start) {
             // update global state
-            entry = '';
+            entry = "";
             options.state.rowNum++;
             return;
           }
@@ -313,7 +337,7 @@ RegExp.escape = function (s) {
           }
 
           // cleanup
-          entry = '';
+          entry = "";
 
           // if 'end' is met, stop parsing
           if (options.end && options.state.rowNum >= options.end) {
@@ -333,11 +357,11 @@ RegExp.escape = function (s) {
         var matchSrc = match.source;
         matchSrc = matchSrc.replace(/S/g, escSeparator);
         matchSrc = matchSrc.replace(/D/g, escDelimiter);
-        match = new RegExp(matchSrc, 'gm');
+        match = new RegExp(matchSrc, "gm");
 
         // put on your fancy pants...
         // process control chars individually, use look-ahead on non-control chars
-        csv.replace(match, function (m0) {
+        csv.replace(match, function(m0) {
           if (exit) {
             return;
           }
@@ -357,7 +381,7 @@ RegExp.escape = function (s) {
                 break;
               }
               // end of line
-              if (m0 === '\n') {
+              if (m0 === "\n") {
                 endOfLine();
                 break;
               }
@@ -399,16 +423,18 @@ RegExp.escape = function (s) {
                 break;
               }
               // end of line
-              if (m0 === '\n') {
+              if (m0 === "\n") {
                 endOfLine();
                 break;
               }
               // phantom carriage return
-              if (m0 === '\r') {
+              if (m0 === "\r") {
                 break;
               }
               // broken paser?
-              throw new Error('CSVDataError: Illegal state [Row:' + options.state.rowNum + ']');
+              throw new Error(
+                "CSVDataError: Illegal state [Row:" + options.state.rowNum + "]"
+              );
 
             // un-delimited input
             case 3:
@@ -419,30 +445,38 @@ RegExp.escape = function (s) {
                 break;
               }
               // end of line
-              if (m0 === '\n') {
+              if (m0 === "\n") {
                 endOfLine();
                 break;
               }
               // phantom carriage return
-              if (m0 === '\r') {
+              if (m0 === "\r") {
                 break;
               }
               // non-compliant data
               if (m0 === delimiter) {
-                throw new Error('CSVDataError: Illegal quote [Row:' + options.state.rowNum + ']');
+                throw new Error(
+                  "CSVDataError: Illegal quote [Row:" +
+                    options.state.rowNum +
+                    "]"
+                );
               }
               // broken parser?
-              throw new Error('CSVDataError: Illegal state [Row:' + options.state.rowNum + ']');
+              throw new Error(
+                "CSVDataError: Illegal state [Row:" + options.state.rowNum + "]"
+              );
             default:
               // shenanigans
-              throw new Error('CSVDataError: Unknown state [Row:' + options.state.rowNum + ']');
+              throw new Error(
+                "CSVDataError: Unknown state [Row:" + options.state.rowNum + "]"
+              );
           }
           // console.log('val:' + m0 + ' state:' + state);
         });
 
         // submit the last entry
         // ignore null last line
-        if (entry !== '') {
+        if (entry !== "") {
           endOfLine();
         }
 
@@ -450,7 +484,7 @@ RegExp.escape = function (s) {
       },
 
       // a csv entry parser
-      parseEntry: function (csv, options) {
+      parseEntry: function(csv, options) {
         // cache settings
         var separator = options.separator;
         var delimiter = options.delimiter;
@@ -466,9 +500,9 @@ RegExp.escape = function (s) {
         // clear initial state
         var entry = [];
         var state = 0;
-        var value = '';
+        var value = "";
 
-        function endOfValue () {
+        function endOfValue() {
           if (options.onParseValue === undefined) {
             // onParseValue hook not set
             entry.push(value);
@@ -480,7 +514,7 @@ RegExp.escape = function (s) {
             }
           }
           // reset the state
-          value = '';
+          value = "";
           state = 0;
           // update global state
           options.state.colNum++;
@@ -497,18 +531,18 @@ RegExp.escape = function (s) {
           var matchSrc = match.source;
           matchSrc = matchSrc.replace(/S/g, escSeparator);
           matchSrc = matchSrc.replace(/D/g, escDelimiter);
-          options.match = new RegExp(matchSrc, 'gm');
+          options.match = new RegExp(matchSrc, "gm");
         }
 
         // put on your fancy pants...
         // process control chars individually, use look-ahead on non-control chars
-        csv.replace(options.match, function (m0) {
+        csv.replace(options.match, function(m0) {
           switch (state) {
             // the start of a value
             case 0:
               // null last value
               if (m0 === separator) {
-                value += '';
+                value += "";
                 endOfValue();
                 break;
               }
@@ -518,7 +552,7 @@ RegExp.escape = function (s) {
                 break;
               }
               // skip un-delimited new-lines
-              if (m0 === '\n' || m0 === '\r') {
+              if (m0 === "\n" || m0 === "\r") {
                 break;
               }
               // un-delimited value
@@ -552,11 +586,17 @@ RegExp.escape = function (s) {
                 break;
               }
               // skip un-delimited new-lines
-              if (m0 === '\n' || m0 === '\r') {
+              if (m0 === "\n" || m0 === "\r") {
                 break;
               }
               // broken paser?
-              throw new Error('CSVDataError: Illegal State [Row:' + options.state.rowNum + '][Col:' + options.state.colNum + ']');
+              throw new Error(
+                "CSVDataError: Illegal State [Row:" +
+                  options.state.rowNum +
+                  "][Col:" +
+                  options.state.colNum +
+                  "]"
+              );
 
             // un-delimited input
             case 3:
@@ -566,18 +606,36 @@ RegExp.escape = function (s) {
                 break;
               }
               // skip un-delimited new-lines
-              if (m0 === '\n' || m0 === '\r') {
+              if (m0 === "\n" || m0 === "\r") {
                 break;
               }
               // non-compliant data
               if (m0 === delimiter) {
-                throw new Error('CSVDataError: Illegal Quote [Row:' + options.state.rowNum + '][Col:' + options.state.colNum + ']');
+                throw new Error(
+                  "CSVDataError: Illegal Quote [Row:" +
+                    options.state.rowNum +
+                    "][Col:" +
+                    options.state.colNum +
+                    "]"
+                );
               }
               // broken parser?
-              throw new Error('CSVDataError: Illegal Data [Row:' + options.state.rowNum + '][Col:' + options.state.colNum + ']');
+              throw new Error(
+                "CSVDataError: Illegal Data [Row:" +
+                  options.state.rowNum +
+                  "][Col:" +
+                  options.state.colNum +
+                  "]"
+              );
             default:
               // shenanigans
-              throw new Error('CSVDataError: Unknown State [Row:' + options.state.rowNum + '][Col:' + options.state.colNum + ']');
+              throw new Error(
+                "CSVDataError: Unknown State [Row:" +
+                  options.state.rowNum +
+                  "][Col:" +
+                  options.state.colNum +
+                  "]"
+              );
           }
           // console.log('val:' + m0 + ' state:' + state);
         });
@@ -590,7 +648,6 @@ RegExp.escape = function (s) {
     },
 
     helpers: {
-
       /**
        * $.csv.helpers.collectPropertyNames(objectsArray)
        * Collects all unique property names from all passed objects.
@@ -600,15 +657,17 @@ RegExp.escape = function (s) {
        * Returns an array of property names (array will be empty,
        * if objects have no own properties).
        */
-      collectPropertyNames: function (objects) {
+      collectPropertyNames: function(objects) {
         var o = [];
         var propName = [];
         var props = [];
         for (o in objects) {
           for (propName in objects[o]) {
-            if ((objects[o].hasOwnProperty(propName)) &&
-                (props.indexOf(propName) < 0) &&
-                (typeof objects[o][propName] !== 'function')) {
+            if (
+              objects[o].hasOwnProperty(propName) &&
+              props.indexOf(propName) < 0 &&
+              typeof objects[o][propName] !== "function"
+            ) {
               props.push(propName);
             }
           }
@@ -630,13 +689,18 @@ RegExp.escape = function (s) {
      * need to parse a single entry. If you need to parse more than one line,
      * use $.csv2Array instead.
      */
-    toArray: function (csv, options, callback) {
-      options = (options !== undefined ? options : {});
+    toArray: function(csv, options, callback) {
+      options = options !== undefined ? options : {};
       var config = {};
-      config.callback = ((callback !== undefined && typeof (callback) === 'function') ? callback : false);
-      config.separator = 'separator' in options ? options.separator : $.csv.defaults.separator;
-      config.delimiter = 'delimiter' in options ? options.delimiter : $.csv.defaults.delimiter;
-      var state = (options.state !== undefined ? options.state : {});
+      config.callback =
+        callback !== undefined && typeof callback === "function"
+          ? callback
+          : false;
+      config.separator =
+        "separator" in options ? options.separator : $.csv.defaults.separator;
+      config.delimiter =
+        "delimiter" in options ? options.delimiter : $.csv.defaults.delimiter;
+      var state = options.state !== undefined ? options.state : {};
 
       // setup
       options = {
@@ -653,7 +717,7 @@ RegExp.escape = function (s) {
       if (!config.callback) {
         return entry;
       } else {
-        config.callback('', entry);
+        config.callback("", entry);
       }
     },
 
@@ -670,12 +734,17 @@ RegExp.escape = function (s) {
      * dimension of the array represents the line (or entry/row) while the second
      * dimension contains the values (or values/columns).
      */
-    toArrays: function (csv, options, callback) {
-      options = (options !== undefined ? options : {});
+    toArrays: function(csv, options, callback) {
+      options = options !== undefined ? options : {};
       var config = {};
-      config.callback = ((callback !== undefined && typeof (callback) === 'function') ? callback : false);
-      config.separator = 'separator' in options ? options.separator : $.csv.defaults.separator;
-      config.delimiter = 'delimiter' in options ? options.delimiter : $.csv.defaults.delimiter;
+      config.callback =
+        callback !== undefined && typeof callback === "function"
+          ? callback
+          : false;
+      config.separator =
+        "separator" in options ? options.separator : $.csv.defaults.separator;
+      config.delimiter =
+        "delimiter" in options ? options.delimiter : $.csv.defaults.delimiter;
 
       // setup
       var data = [];
@@ -711,7 +780,7 @@ RegExp.escape = function (s) {
       if (!config.callback) {
         return data;
       } else {
-        config.callback('', data);
+        config.callback("", data);
       }
     },
 
@@ -727,14 +796,20 @@ RegExp.escape = function (s) {
      * This method deals with multi-line CSV strings. Where the headers line is
      * used as the key for each value per entry.
      */
-    toObjects: function (csv, options, callback) {
-      options = (options !== undefined ? options : {});
+    toObjects: function(csv, options, callback) {
+      options = options !== undefined ? options : {};
       var config = {};
-      config.callback = ((callback !== undefined && typeof (callback) === 'function') ? callback : false);
-      config.separator = 'separator' in options ? options.separator : $.csv.defaults.separator;
-      config.delimiter = 'delimiter' in options ? options.delimiter : $.csv.defaults.delimiter;
-      config.headers = 'headers' in options ? options.headers : $.csv.defaults.headers;
-      options.start = 'start' in options ? options.start : 1;
+      config.callback =
+        callback !== undefined && typeof callback === "function"
+          ? callback
+          : false;
+      config.separator =
+        "separator" in options ? options.separator : $.csv.defaults.separator;
+      config.delimiter =
+        "delimiter" in options ? options.delimiter : $.csv.defaults.delimiter;
+      config.headers =
+        "headers" in options ? options.headers : $.csv.defaults.headers;
+      options.start = "start" in options ? options.start : 1;
 
       // account for headers
       if (config.headers) {
@@ -823,29 +898,34 @@ RegExp.escape = function (s) {
       if (!config.callback) {
         return data;
       } else {
-        config.callback('', data);
+        config.callback("", data);
       }
     },
 
     /**
-    * $.csv.fromArrays(arrays)
-    * Converts a javascript array to a CSV String.
-    *
-    * @param {Array} arrays An array containing an array of CSV entries.
-    * @param {Object} [options] An object containing user-defined options.
-    * @param {Character} [separator] An override for the separator character. Defaults to a comma(,).
-    * @param {Character} [delimiter] An override for the delimiter character. Defaults to a double-quote(").
-    *
-    * This method generates a CSV file from an array of arrays (representing entries).
-    */
-    fromArrays: function (arrays, options, callback) {
-      options = (options !== undefined ? options : {});
+     * $.csv.fromArrays(arrays)
+     * Converts a javascript array to a CSV String.
+     *
+     * @param {Array} arrays An array containing an array of CSV entries.
+     * @param {Object} [options] An object containing user-defined options.
+     * @param {Character} [separator] An override for the separator character. Defaults to a comma(,).
+     * @param {Character} [delimiter] An override for the delimiter character. Defaults to a double-quote(").
+     *
+     * This method generates a CSV file from an array of arrays (representing entries).
+     */
+    fromArrays: function(arrays, options, callback) {
+      options = options !== undefined ? options : {};
       var config = {};
-      config.callback = ((callback !== undefined && typeof (callback) === 'function') ? callback : false);
-      config.separator = 'separator' in options ? options.separator : $.csv.defaults.separator;
-      config.delimiter = 'delimiter' in options ? options.delimiter : $.csv.defaults.delimiter;
+      config.callback =
+        callback !== undefined && typeof callback === "function"
+          ? callback
+          : false;
+      config.separator =
+        "separator" in options ? options.separator : $.csv.defaults.separator;
+      config.delimiter =
+        "delimiter" in options ? options.delimiter : $.csv.defaults.delimiter;
 
-      var output = '';
+      var output = "";
       var line;
       var lineValues;
       var i;
@@ -855,28 +935,32 @@ RegExp.escape = function (s) {
         line = arrays[i];
         lineValues = [];
         for (j = 0; j < line.length; j++) {
-          var strValue = (line[j] === undefined || line[j] === null) ? '' : line[j].toString();
+          var strValue =
+            line[j] === undefined || line[j] === null ? "" : line[j].toString();
           if (strValue.indexOf(config.delimiter) > -1) {
-            strValue = strValue.replace(new RegExp(config.delimiter, 'g'), config.delimiter + config.delimiter);
+            strValue = strValue.replace(
+              new RegExp(config.delimiter, "g"),
+              config.delimiter + config.delimiter
+            );
           }
 
-          var escMatcher = '\n|\r|S|D';
-          escMatcher = escMatcher.replace('S', config.separator);
-          escMatcher = escMatcher.replace('D', config.delimiter);
+          var escMatcher = "\n|\r|S|D";
+          escMatcher = escMatcher.replace("S", config.separator);
+          escMatcher = escMatcher.replace("D", config.delimiter);
 
           if (strValue.search(escMatcher) > -1) {
             strValue = config.delimiter + strValue + config.delimiter;
           }
           lineValues.push(strValue);
         }
-        output += lineValues.join(config.separator) + '\n';
+        output += lineValues.join(config.separator) + "\n";
       }
 
       // push the value to a callback if one is defined
       if (!config.callback) {
         return output;
       } else {
-        config.callback('', output);
+        config.callback("", output);
       }
     },
 
@@ -902,18 +986,24 @@ RegExp.escape = function (s) {
      * It starts by detecting the headers and adding them as the first line of
      * the CSV file, followed by a structured dump of the data.
      */
-    fromObjects: function (objects, options, callback) {
-      options = (options !== undefined ? options : {});
+    fromObjects: function(objects, options, callback) {
+      options = options !== undefined ? options : {};
       var config = {};
-      config.callback = ((callback !== undefined && typeof (callback) === 'function') ? callback : false);
-      config.separator = 'separator' in options ? options.separator : $.csv.defaults.separator;
-      config.delimiter = 'delimiter' in options ? options.delimiter : $.csv.defaults.delimiter;
-      config.headers = 'headers' in options ? options.headers : $.csv.defaults.headers;
-      config.sortOrder = 'sortOrder' in options ? options.sortOrder : 'declare';
-      config.manualOrder = 'manualOrder' in options ? options.manualOrder : [];
+      config.callback =
+        callback !== undefined && typeof callback === "function"
+          ? callback
+          : false;
+      config.separator =
+        "separator" in options ? options.separator : $.csv.defaults.separator;
+      config.delimiter =
+        "delimiter" in options ? options.delimiter : $.csv.defaults.delimiter;
+      config.headers =
+        "headers" in options ? options.headers : $.csv.defaults.headers;
+      config.sortOrder = "sortOrder" in options ? options.sortOrder : "declare";
+      config.manualOrder = "manualOrder" in options ? options.manualOrder : [];
       config.transform = options.transform;
 
-      if (typeof config.manualOrder === 'string') {
+      if (typeof config.manualOrder === "string") {
         config.manualOrder = $.csv.toArray(config.manualOrder, config);
       }
 
@@ -929,7 +1019,7 @@ RegExp.escape = function (s) {
 
       var props = $.csv.helpers.collectPropertyNames(objects);
 
-      if (config.sortOrder === 'alpha') {
+      if (config.sortOrder === "alpha") {
         props.sort();
       } // else {} - nothing to do for 'declare' order
 
@@ -956,10 +1046,13 @@ RegExp.escape = function (s) {
         line = [];
         for (p = 0; p < props.length; p++) {
           propName = props[p];
-          if (propName in objects[o] && typeof objects[o][propName] !== 'function') {
+          if (
+            propName in objects[o] &&
+            typeof objects[o][propName] !== "function"
+          ) {
             line.push(objects[o][propName]);
           } else {
-            line.push('');
+            line.push("");
           }
         }
         output.push(line);
@@ -977,7 +1070,7 @@ RegExp.escape = function (s) {
   $.csv2Dictionary = $.csv.toObjects;
 
   // CommonJS module is defined
-  if (typeof module !== 'undefined' && module.exports) {
+  if (typeof module !== "undefined" && module.exports) {
     module.exports = $.csv;
   }
-}).call(this);
+}.call(this));
