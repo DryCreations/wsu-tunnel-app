@@ -1,10 +1,10 @@
 const mysql = require("mysql");
 const util = require("util");
-const { tabletop, aws } = require("./config.js");
+const { tabletop, aws, local } = require("./config.js");
 
-const config = process.argv.slice(2)[0] === "aws" ? aws : tabletop;
+const config = process.argv.slice(2)[0];
 
-const pool = mysql.createPool(config);
+const pool = mysql.createPool(eval(config));
 const query = util.promisify(pool.query).bind(pool);
 
 exports.allEdges = async function() {

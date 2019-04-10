@@ -14,4 +14,13 @@ const aws = {
   database: "wsutunnelapp"
 };
 
-module.exports = { tabletop, aws };
+const local = {
+  host: 'localhost',
+  port: '/run/mysqld/mysqld.sock',
+  user: "wsutunneladmin",
+  password: "Cs3900tunneluser",
+  database: "wsutunnelapp"
+}
+
+
+module.exports = { tabletop, aws, local };
