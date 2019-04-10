@@ -29,7 +29,7 @@ const MyFooter = props => {
                 </a>
               </li>
               <li>
-                <a href="https://plus.google.com/117952809397074502841">
+                <a href="http://worldartsme.com/images/tombstone-clipart-1.jpg" title="RIP Google+">
                   <i className="fab fa-google-plus-square" />
                 </a>
               </li>
