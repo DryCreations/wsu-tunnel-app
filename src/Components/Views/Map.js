@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import "./Map.css";
 import { ReactComponent as MapSVG } from "../Maps/map.svg";
+//import update from 'immutability-helper';
 
 class Map extends Component {
   constructor(props) {
     super(props);
 
-    var sel = [null, null];
-    this.selected = sel;
+    //var sel = [null, null];
+    //this.selected = sel;
     this.o1 = null;
     this.o2 = null;
     this.animationStack = [];
@@ -18,7 +19,8 @@ class Map extends Component {
     this.defaultViewBoxArgs = "0 0 640 480";
 
     this.state = {
-      direction: "Tap to select a start and end location"
+      direction: "Tap to select a start and end location",
+      selected: [null, null]
     };
 
     //bind touch events to this object
@@ -642,28 +644,30 @@ class Map extends Component {
     } else {
       backElement = document.getElementById(element.id + "B");
     }
-    var sel = this.selected.slice();
-    if (this.selected[0] === element) {
+    var sel = this.state.selected.slice();
+    if (sel[0] === element) {
       sel[0] = null;
       element.classList.remove("selected");
       backElement.classList.remove("selected");
-    } else if (this.selected[1] === element) {
+    } else if (sel[1] === element) {
       sel[1] = null;
       element.classList.remove("selected");
       backElement.classList.remove("selected");
-    } else if (!this.selected[0]) {
+    } else if (!sel[0]) {
       sel[0] = element;
       element.classList.add("selected");
       backElement.classList.add("selected");
-    } else if (!this.selected[1]) {
+    } else if (!sel[1]) {
       sel[1] = element;
       element.classList.add("selected");
       backElement.classList.add("selected");
     }
 
-    this.selected = sel;
+    this.setState({
+        selected: sel
+    });
 
-    if (this.selected[0] && this.selected[1]) {
+    if ([0] && this.selected[1]) {
       this.setState({
         direction: "Press the navigate button to generate a path"
       });
