@@ -9,17 +9,11 @@ const toolbar = props => (
       <div>
         <DrawerToggleButton click={props.drawerClick} />
       </div>
-      <div className="toolbar_logo">
-        <NavLink to="/Map">CS-3900 Web App</NavLink>
-      </div>
+      <button className="menu_item" onClick={props.toMap}>CS-3900 Web App</button>
       <div className="spacer"> </div>
-      <div className="menu_item">
-        <NavLink to="/Help">Help</NavLink>
-      </div>
+      <button className="menu_item" onClick={props.toHelp}>Help</button>
       <div className="bar">|</div>
-      <div className="menu_item">
-        <NavLink to="/Settings">Settings</NavLink>
-      </div>
+      <button className="menu_item" onClick={props.toSettings}>Settings</button>
     </nav>
   </header>
 );
