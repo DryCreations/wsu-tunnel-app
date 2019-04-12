@@ -8,7 +8,7 @@
     },
 
     "Fawcett Hall" : {
-        
+
     },
 
     "Oelman Hall" : {
@@ -16,6 +16,9 @@
     },
 
     "Rike Hall" : {
-        "Rey Rey Cafe" : 140
+        "Abbreviation" : "RK",
+        "Rooms" : {
+            "Rey Rey Cafe" : 140
+        }
     }
 }
