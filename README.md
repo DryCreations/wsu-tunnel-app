@@ -80,7 +80,17 @@ The User Interface was designed to feel both familiar and functional. The design
 
 #### Server/AWS
 
-##### Server
+The server side of the app is divided into two parts:
+
+- The app server, which serves the app and GUI info to the client and has instructions on how to use the pathfinding server.
+- The pathfinding server, which takes requests from the client and serves as an interface to the dataase in order to find the path requested.
+
+##### App Server
+
+To start the react server, two options are available. To start the react scripts listening on the default port (3000, if availiable), run the 
+  command `npm start`. If you want to start the react scripts listening on port 80, run the command `npm run start80` as root.
+
+##### Pathfinding Server
 
 - Start before the client.
 - Run by executing `npm run start-server` in the root directory.

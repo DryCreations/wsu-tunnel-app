@@ -1,6 +1,5 @@
 import React from "react";
 import "./SideDrawer.css";
-import { NavLink } from "react-router-dom";
 import SelectFrom from "./SelectFrom";
 import SelectTo from "./SelectTo";
 import Pilot from "../Images/pilot_wsu_logo.png";
@@ -15,9 +14,7 @@ const sideDrawer = props => {
     <div>
       <nav className={drawerClasses}>
         <header className={"myHeader"}>
-          <NavLink to={"./Map"} onClick={props.clicky}>
-            <img src={Pilot} alt="Pilot" />
-          </NavLink>
+            <img src={Pilot} alt="Pilot" onClick={props.clicky} />
         </header>
 
         <ul>
