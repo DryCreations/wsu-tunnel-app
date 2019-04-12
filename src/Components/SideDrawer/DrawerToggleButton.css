@@ -9,6 +9,7 @@
   cursor: pointer;
   padding: 0;
   box-sizing: border-box;
+  margin-right: 8px;
 }
 .toggle-button:focus {
   outline: none;

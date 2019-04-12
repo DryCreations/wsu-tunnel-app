@@ -1,14 +1,22 @@
 import React, { Component } from "react";
-import "./Map.css";
+import { HashRouter, Route, Redirect } from "react-router-dom";
 import { ReactComponent as MapSVG } from "../Maps/map.svg";
-//import update from 'immutability-helper';
+import "./Map.css";
+
+import Toolbar from "../Toolbar/Toolbar.js";
+import SideDrawer from "../SideDrawer/SideDrawer.js";
+import Backdrop from "../Backdrop/Backdrop.js";
+import MyFooter from "../Footer/MyFooter";
+
+import Settings from "./Settings/Settings";
+import HelpPage from "./Help.js";
 
 class Map extends Component {
   constructor(props) {
     super(props);
 
-    //var sel = [null, null];
-    //this.selected = sel;
+    var sel = [null, null];
+    this.selected = sel;
     this.o1 = null;
     this.o2 = null;
     this.animationStack = [];
@@ -20,7 +28,10 @@ class Map extends Component {
 
     this.state = {
       direction: "Tap to select a start and end location",
-      selected: [null, null]
+      sideDrawerOpen: false,
+      displayMap: "block",
+      displaySettings: "none",
+      displayHelp: "none"
     };
 
     //bind touch events to this object
@@ -38,31 +49,91 @@ class Map extends Component {
     window.mapComponent = this; //call functions by window.mapComponent.{Function call here}
   }
 
+  drawerToggleClickHandler = () => {
+    this.setState({ sideDrawerOpen: true });
+  };
+
+  backdropClickHandler = () => {
+    this.setState({ sideDrawerOpen: false });
+  };
+
+  displayMapHandler = () => {
+    this.setState({
+      displayMap: "block",
+      displaySettings: "none",
+      displayHelp: "none"
+    });
+  };
+
+  displayHelpHandler = () => {
+    this.setState({
+      displayMap: "none",
+      displaySettings: "none",
+      displayHelp: "block"
+    });
+  };
+
+  displaySettingsHandler = () => {
+    this.setState({
+      displayMap: "none",
+      displaySettings: "block",
+      displayHelp: "none"
+    });
+  };
+
   //render map to screen
   render() {
+    let backdrop;
+
+
+    if (this.state.sideDrawerOpen) {
+      backdrop = <Backdrop clicky={this.backdropClickHandler} />;
+    }
+
     return (
-      <div id="MapContainer">
-        <MapSVG />
-        <div id="Directions">
-          <p>{this.state.direction}</p>
-        </div>
-        <button
-          id="NavigateButton"
-          onClick={() =>
-            this.getPath(this.getStartPointID(), this.getEndPointID())
-          }
-        >
+      <div style={{ height: "100%" }}>
+        <Toolbar
+          drawerClick={this.drawerToggleClickHandler}
+          toMap={this.displayMapHandler}
+          toHelp={this.displayHelpHandler}
+          toSettings={this.displaySettingsHandler}
+        />
+        <SideDrawer
+          show={this.state.sideDrawerOpen}
+          clicky={this.backdropClickHandler}
+        />
+        {backdrop}
+        <div id="MapContainer" style={{display: this.state.displayMap}}>
+          <MapSVG />
+
+          <div id="Directions">
+            <p>{this.state.direction}</p>
+          </div>
+          <button id="NavigateButton"
+            onClick={() =>
+              this.getPath(this.getStartPointID(), this.getEndPointID())
+            }
+          >
           Navigate
-        </button>
+          </button>
 
-        <button id="PreviousViewButton" onClick={() => this.prevStep()}>
-          Previous
-        </button>
+          <button id="PreviousViewButton" onClick={() => this.prevStep()}>
+            Previous
+          </button>
 
-        <button id="NextViewButton" onClick={() => this.nextStep()}>
-          Next
-        </button>
-        <img id="Compass" src="north.png" alt="compass" />
+          <button id="NextViewButton" onClick={() => this.nextStep()}>
+            Next
+          </button>
+
+          <img id="Compass" src="north.png" alt="compass" />
+        </div>
+        <div style={{display: this.state.displaySettings}}>
+          <Settings />
+        </div>
+        <div style={{display: this.state.displayHelp}}>
+          <HelpPage />
+        </div>
+        <MyFooter />
       </div>
     );
   }
@@ -89,14 +160,14 @@ class Map extends Component {
       .setAttribute(
         "style",
         "transform:rotate(" +
-          angle +
-          "deg);-webkit-transform:rotate(" +
-          angle +
-          "deg);-moz-transform:rotate(" +
-          angle +
-          "deg);-o-transform:rotate(" +
-          angle +
-          "deg);"
+        angle +
+        "deg);-webkit-transform:rotate(" +
+        angle +
+        "deg);-moz-transform:rotate(" +
+        angle +
+        "deg);-o-transform:rotate(" +
+        angle +
+        "deg);"
       );
   }
 
@@ -258,17 +329,17 @@ class Map extends Component {
         .setAttribute(
           "style",
           ";transform:" +
-            transformString +
-            ";" +
-            "-webkit-transform:" +
-            transformString +
-            ";" +
-            "-moz-transform:" +
-            transformString +
-            ";" +
-            "-o-transform:" +
-            transformString +
-            ";"
+          transformString +
+          ";" +
+          "-webkit-transform:" +
+          transformString +
+          ";" +
+          "-moz-transform:" +
+          transformString +
+          ";" +
+          "-o-transform:" +
+          transformString +
+          ";"
         );
       this.setState({
         direction: "You are here, tap to select destination"
@@ -372,17 +443,17 @@ class Map extends Component {
       group.setAttribute(
         "style",
         "transform:" +
-          transformString +
-          ";" +
-          "-webkit-transform:" +
-          transformString +
-          ";" +
-          "-moz-transform:" +
-          transformString +
-          ";" +
-          "-o-transform:" +
-          transformString +
-          ";"
+        transformString +
+        ";" +
+        "-webkit-transform:" +
+        transformString +
+        ";" +
+        "-moz-transform:" +
+        transformString +
+        ";" +
+        "-o-transform:" +
+        transformString +
+        ";"
       );
 
       this.o1 = { x: event.touches[0].pageX, y: event.touches[0].pageY };
@@ -401,17 +472,17 @@ class Map extends Component {
       group.setAttribute(
         "style",
         "transform:" +
-          transformString +
-          ";" +
-          "-webkit-transform:" +
-          transformString +
-          ";" +
-          "-moz-transform:" +
-          transformString +
-          ";" +
-          "-o-transform:" +
-          transformString +
-          ";"
+        transformString +
+        ";" +
+        "-webkit-transform:" +
+        transformString +
+        ";" +
+        "-moz-transform:" +
+        transformString +
+        ";" +
+        "-o-transform:" +
+        transformString +
+        ";"
       );
 
       this.o1 = { x: event.touches[0].pageX, y: event.touches[0].pageY };
@@ -481,17 +552,17 @@ class Map extends Component {
         group.setAttribute(
           "style",
           "transform:" +
-            transformString +
-            ";" +
-            "-webkit-transform:" +
-            transformString +
-            ";" +
-            "-moz-transform:" +
-            transformString +
-            ";" +
-            "-o-transform:" +
-            transformString +
-            ";"
+          transformString +
+          ";" +
+          "-webkit-transform:" +
+          transformString +
+          ";" +
+          "-moz-transform:" +
+          transformString +
+          ";" +
+          "-o-transform:" +
+          transformString +
+          ";"
         );
 
         this.o1 = event;
@@ -524,17 +595,17 @@ class Map extends Component {
         group.setAttribute(
           "style",
           "transform:" +
-            transformString +
-            ";" +
-            "-webkit-transform:" +
-            transformString +
-            ";" +
-            "-moz-transform:" +
-            transformString +
-            ";" +
-            "-o-transform:" +
-            transformString +
-            ";"
+          transformString +
+          ";" +
+          "-webkit-transform:" +
+          transformString +
+          ";" +
+          "-moz-transform:" +
+          transformString +
+          ";" +
+          "-o-transform:" +
+          transformString +
+          ";"
         );
 
         this.o2 = event;
@@ -560,17 +631,17 @@ class Map extends Component {
       group.setAttribute(
         "style",
         "transform:" +
-          transformString +
-          ";" +
-          "-webkit-transform:" +
-          transformString +
-          ";" +
-          "-moz-transform:" +
-          transformString +
-          ";" +
-          "-o-transform:" +
-          transformString +
-          ";"
+        transformString +
+        ";" +
+        "-webkit-transform:" +
+        transformString +
+        ";" +
+        "-moz-transform:" +
+        transformString +
+        ";" +
+        "-o-transform:" +
+        transformString +
+        ";"
       );
 
       this.o1 = event;
@@ -616,17 +687,17 @@ class Map extends Component {
     group.setAttribute(
       "style",
       "transform:" +
-        transformString +
-        ";" +
-        "-webkit-transform:" +
-        transformString +
-        ";" +
-        "-moz-transform:" +
-        transformString +
-        ";" +
-        "-o-transform:" +
-        transformString +
-        ";"
+      transformString +
+      ";" +
+      "-webkit-transform:" +
+      transformString +
+      ";" +
+      "-moz-transform:" +
+      transformString +
+      ";" +
+      "-o-transform:" +
+      transformString +
+      ";"
     );
     // this.scaleViewBoxAtPos(Math.min(2, Math.max(1 - event.deltaY / 1000, .5)), event.pageX - document.getElementById('Map').getBoundingClientRect().left, event.pageY - document.getElementById('Map').getBoundingClientRect().top);
     this.scaleNodes();
@@ -644,30 +715,28 @@ class Map extends Component {
     } else {
       backElement = document.getElementById(element.id + "B");
     }
-    var sel = this.state.selected.slice();
-    if (sel[0] === element) {
+    var sel = this.selected.slice();
+    if (this.selected[0] === element) {
       sel[0] = null;
       element.classList.remove("selected");
       backElement.classList.remove("selected");
-    } else if (sel[1] === element) {
+    } else if (this.selected[1] === element) {
       sel[1] = null;
       element.classList.remove("selected");
       backElement.classList.remove("selected");
-    } else if (!sel[0]) {
+    } else if (!this.selected[0]) {
       sel[0] = element;
       element.classList.add("selected");
       backElement.classList.add("selected");
-    } else if (!sel[1]) {
+    } else if (!this.selected[1]) {
       sel[1] = element;
       element.classList.add("selected");
       backElement.classList.add("selected");
     }
 
-    this.setState({
-        selected: sel
-    });
+    this.selected = sel;
 
-    if ([0] && this.selected[1]) {
+    if (this.selected[0] && this.selected[1]) {
       this.setState({
         direction: "Press the navigate button to generate a path"
       });
@@ -1032,17 +1101,17 @@ class Map extends Component {
     group.setAttribute(
       "style",
       ";transform:" +
-        transformString +
-        ";" +
-        "-webkit-transform:" +
-        transformString +
-        ";" +
-        "-moz-transform:" +
-        transformString +
-        ";" +
-        "-o-transform:" +
-        transformString +
-        ";"
+      transformString +
+      ";" +
+      "-webkit-transform:" +
+      transformString +
+      ";" +
+      "-moz-transform:" +
+      transformString +
+      ";" +
+      "-o-transform:" +
+      transformString +
+      ";"
     );
 
     this.scaleNodes();
@@ -1205,16 +1274,16 @@ class Map extends Component {
       arrow.setAttribute(
         "points",
         point1.x +
-          "," +
-          point1.y +
-          " " +
-          point2.x +
-          "," +
-          point2.y +
-          " " +
-          point3.x +
-          "," +
-          point3.y
+        "," +
+        point1.y +
+        " " +
+        point2.x +
+        "," +
+        point2.y +
+        " " +
+        point3.x +
+        "," +
+        point3.y
       );
 
       path.parentElement.insertBefore(arrow, path.nextSibling);
@@ -1315,7 +1384,7 @@ class Map extends Component {
     var originTranslation = this.getTranslationMatrix(-o.x, -o.y);
     var rotationTranslation = this.getRotationMatrix(
       Math.atan2(r2.x - r1.x, r2.y - r1.y) -
-        Math.atan2(o2.x - o1.x, o2.y - o1.y)
+      Math.atan2(o2.x - o1.x, o2.y - o1.y)
     );
     var scaleMatrix = this.getScaleMatrix(rd / od);
     var newTranslation = this.getTranslationMatrix(r.x, r.y);

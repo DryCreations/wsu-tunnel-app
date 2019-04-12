@@ -42,23 +42,24 @@
   flex: 1;
 }
 
-.menu_item a {
+.menu_item {
+  background-color: inherit;
+  border: none;
   color: white;
-  text-decoration: none;
+  display: inline-block;
+  padding: 0.4rem;
   font-size: 1.5rem;
 }
-.menu_item a:hover {
+
+.menu_item:hover {
   color: #af8446;
-}
-.menu_item {
-  margin-right: 1rem;
 }
 
 .bar {
   color: white;
   text-decoration: none;
+  padding: 0.4rem;
   font-size: 1.5rem;
-  margin-right: 1rem;
 }
 
 .toolbar_nav_items a {
