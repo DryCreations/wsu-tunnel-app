@@ -16,9 +16,9 @@ const aws = {
 
 const local = {
   host: 'localhost',
-  port: '/run/mysqld/mysqld.sock',
-  user: "wsutunneladmin",
-  password: "Cs3900tunneluser",
+  port: '3306',
+  user: "tunnelapp-user",
+  password: "Cs3900",
   database: "wsutunnelapp"
 }
 
