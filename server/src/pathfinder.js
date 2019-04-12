@@ -1,6 +1,6 @@
 const database = require("./database.js");
 const coordinate = require("./coordinate.js");
-const DEBUG = 0;
+const DEBUG = 6;
 
 /**
  * Uses A* to find a path from one node to another or from one node to the
