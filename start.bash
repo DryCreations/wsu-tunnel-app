@@ -7,7 +7,7 @@ pushd src
 npm install
 
 # Start the app as a background process
-npm start &>>../app.log &
+npm run start80 &>>../app.log &
 
 # Go back to the revious directory
 popd
