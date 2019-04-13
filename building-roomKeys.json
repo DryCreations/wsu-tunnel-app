@@ -1,0 +1,24 @@
+{
+    "Millet Hall" : {
+
+    },
+
+    "Allyn Hall" : {
+        "The Hangar" : 195
+    },
+
+    "Fawcett Hall" : {
+
+    },
+
+    "Oelman Hall" : {
+
+    },
+
+    "Rike Hall" : {
+        "Abbreviation" : "RK",
+        "Rooms" : {
+            "Rey Rey Cafe" : 140
+        }
+    }
+}
