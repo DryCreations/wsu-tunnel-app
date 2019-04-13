@@ -11,11 +11,13 @@ server.on("request", async function(request, response) {
   if (checkUrl(parsedUrl)) {
     const path = await preparePath(parsedUrl);
     response.end(JSON.stringify(path));
+  } else {
+    response.end(JSON.stringify({"ERROR": "Poorly formed URL"}));
   }
 });
 
 function checkUrl(parsedUrl) {
-  return parsedUrl.path.match(/getPath\?start=\d+&end=\d+/);
+  return parsedUrl.path.match(/getPath\?start=\d+&end=[\d,]+/);
 }
 
 function parseUrl(requestUrl) {
@@ -23,5 +25,8 @@ function parseUrl(requestUrl) {
 }
 
 async function preparePath(parsedUrl) {
-  return pathfinder.getPath(+parsedUrl.query.start, +parsedUrl.query.end);
+  //Transform the comma separated node IDs into an array
+  let endNodes = parsedUrl.query.end.split(',').map(i => +i);
+  
+  return pathfinder.getPath(+parsedUrl.query.start, endNodes);
 }
