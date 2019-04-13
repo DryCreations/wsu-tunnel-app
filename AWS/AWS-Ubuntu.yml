@@ -164,16 +164,22 @@ Resources:
         Fn::Base64: |
           #!/bin/bash
 
-          # Install dependencies
-          apt-get update
-          yes | apt-get install build-essential
-          yes | apt-get install git
-          yes | apt-get install nodejs
-          yes | apt-get install npm
+          # Add the mysql software repositories to apt
+          wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.12-1_all.deb
+          dpkg -i mysql-apt-config_0.8.12-1_all.deb
+          apt update
+          apt upgrade
+          apt auto-remove
+
+          #Install dependencies
+          yes | apt install build-essential
+          yes | apt install git
+          yes | apt install nodejs
+          yes | apt install npm
           npm install -g react-scripts
 
           # Install mysql
-          apt-get install mysql-server
+          apt install mysql-server
 
           # Give the server some swap space
           fallocate -l 2G /swapfile
@@ -183,34 +189,35 @@ Resources:
           sysctl vm.swappiness=10
 
           # Start mysql now and for all time
-          systemctl start mysql
-          systemctl enable mysql
           service mysql start
           service mysql status
 
           # Download the course repo
           git clone https://github.com/RLey/wsu-tunnel-app.git ~/repo
 
+          # Get whatever branch the user specified and store it for future reference.
+          # If no branch was specified, default to master
+          branch=${1:-'master'}
+
           # et the path for the database that the user wants to use
           echo -ne "Please enter the path of the .sql file to use\072 "
           read sqlfile
 
           # If no database was specified, use a default
-          sqlfile=${sqlfile:-'/home/ubuntu/repo/Database_Info/wsutunnelapp_Spiral3_Data.sql'}
+          sqlfile=${sqlfile:-'~/repo/Database_Info/wsutunnelapp_Spiral3_Data.sql'}
 
           # If the sqlfile doesn't exist, use it, else use a default
           if [ -e $sqlfile ]; then
-            mysql -p wsutunnelapp < $sqlfile
+            mysql -p < $sqlfile
           else
-            mysql -p wsutunnelapp < /home/ubuntu/repo/Database_Info/wsutunnelapp_Spiral3_Data.sql
+            mysql -p < ~/repo/Database_Info/wsutunnelapp_Spiral3_Data.sql
           fi
 
           # Create a non-admin user to access the database
-          mysql -utunnelapp-user -pCs3900
-
-          # Get whatever branch the user specified and store it for future reference.
-          # If no branch was specified, default to master
-          branch=${1:-'master'}
+          echo "CREATE USER 'tunnelapp-user'@'localhost' IDENTIFIED BY 'Cs3900';" > makeUser
+          echo "GRANT SELECT ON wsutunnelapp.* TO 'tunnelapp-user'@'localhost';" >> makeUser
+          mysql -p < makeUser
+          rm makeUser
 
           # Change directories to the downloaded repository
           pushd ~/repo
