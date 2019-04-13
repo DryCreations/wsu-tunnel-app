@@ -1,4 +1,4 @@
-.Dropdown-root {
+/* .Dropdown-root {
   position: relative;
 }
 
@@ -90,4 +90,10 @@
   cursor: default;
   display: block;
   padding: 8px 10px;
+} */
+
+.select-from {
+  position: fixed;
+  top: 0;
+  left: 0;
 }
