@@ -772,6 +772,36 @@ class Map extends Component {
           this.highlightPath(path);
         });
     }
+
+    // Rough solutin to navigate to a room number
+    else if (startID) {
+      let roomNumber = prompt("What room number would you like to go to?");
+
+      fetch(`getPath?start=${startID}&toRoom=${roomNumber}`)
+        .then(result => result.json())
+        .then(path => {
+          if(!path.ERROR) {
+            this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length-1]);
+            this.setState({
+              direction: "Finished pathfinding, press Next to begin"
+            });
+            this.pathNodes = path.nodeIDs;
+            this.pathEdges = path.edgeIDs;
+            this.currNodes = 0;
+            this.flush();
+            console.log(path);
+            this.highlightPath(path);
+          }
+
+          else {
+            this.setState({
+              direction: "Could not navigate to that room number. We may not have full support for that building yet, or " +
+                "there could be no tunnels leading to that building."
+            });
+            this.flush();
+          }
+        })
+    }
   }
 
   highlightPath(path) {
