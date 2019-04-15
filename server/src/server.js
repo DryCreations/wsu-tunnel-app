@@ -37,7 +37,7 @@ function checkUrlForID(parsedUrl) {
 }
 
 function checkUrlForRoom(parsedUrl) {
-  return parsedUrl.path.match(/getPath\?start=\d+&toRoom=[A-Z]{2}%20\d{3}[A-Z]?/);
+  return parsedUrl.path.match(/getPath\?start=\d+&toRoom=[A-Z]{2}%20[A-Z]*\d{3}[A-Z]?/);
 }
 
 function parseUrl(requestUrl) {
