@@ -51,62 +51,80 @@
   <g
      id="layer101"
      stroke="none"
-     fill="#e3ddc6">
+     fill="#e3ddc6"
+     style="">
     <path
        d="M6434 15843 c-59 -71 -119 -140 -133 -154 -14 -14 -46 -50 -70 -80 -25 -30 -116 -124 -203 -210 -87 -86 -158 -164 -158 -173 0 -10 17 -34 38 -54 20 -21 70 -72 111 -114 l74 -78 -84 -81 c-129 -127 -320 -310 -366 -353 l-42 -39 -109 111 c-119 123 -136 130 -181 85 -75 -76 -506 -490 -522 -501 -11 -7 -19 -20 -19 -29 0 -9 42 -59 94 -112 52 -53 152 -156 223 -230 70 -73 154 -160 187 -193 l59 -60 -24 -22 c-13 -12 -56 -53 -96 -90 l-72 -68 -125 86 c-68 47 -129 86 -135 86 -5 0 -14 6 -18 14 -11 20 -98 66 -163 87 -30 10 -93 32 -140 49 -47 17 -121 42 -165 56 -44 14 -87 29 -95 34 -9 4 -35 11 -58 15 -41 7 -44 6 -97 -48 -33 -32 -55 -64 -55 -76 0 -15 75 -98 238 -261 299 -302 486 -497 491 -511 2 -7 17 -23 33 -38 42 -37 202 -197 275 -275 36 -39 70 -66 82 -66 12 0 54 33 99 78 43 42 136 131 205 197 70 67 126 128 127 138 0 10 -16 39 -37 63 l-36 45 64 65 63 64 52 -51 52 -52 97 5 c88 5 101 8 141 37 25 17 49 31 54 31 5 0 17 12 27 28 10 15 25 33 35 40 9 7 18 22 20 35 3 25 16 26 88 7 90 -23 225 12 283 74 l29 30 55 -57 c30 -31 63 -57 72 -57 9 0 102 84 206 186 105 102 232 224 283 271 60 56 92 93 92 107 0 13 -32 53 -81 104 l-82 83 7 167 c3 92 6 179 6 194 0 20 16 42 62 85 65 61 207 199 357 347 50 49 91 93 91 99 0 5 -53 64 -118 131 -65 66 -185 190 -267 275 -83 85 -206 206 -275 270 -134 123 -199 184 -270 253 -74 71 -143 128 -156 128 -6 0 -60 -57 -120 -127z"
-       id="path3756" />
+       id="path3756"
+       style="" />
     <path
        d="M3727 13584 c-85 -85 -117 -123 -117 -140 0 -22 -8 -17 -64 41 -36 36 -70 65 -76 65 -13 0 -119 -100 -289 -271 -53 -53 -106 -100 -118 -103 -11 -4 -33 -22 -47 -41 -37 -48 -35 -99 4 -147 26 -31 29 -41 20 -58 -6 -11 -15 -20 -20 -20 -4 0 -55 -46 -112 -102 l-103 -103 -546 4 -546 3 -6 -68 c-4 -38 -7 -115 -7 -171 l0 -102 -65 -58 c-36 -32 -65 -65 -65 -74 0 -9 57 -75 128 -146 70 -71 164 -168 209 -214 45 -46 124 -123 175 -172 l92 -88 -107 -103 c-59 -58 -107 -107 -107 -109 0 -3 -13 -19 -30 -37 -16 -18 -30 -38 -30 -45 0 -18 366 -385 384 -385 9 0 43 27 77 60 34 33 65 60 69 60 4 0 30 -22 56 -50 171 -174 186 -192 175 -203 -20 -20 -12 -42 34 -87 41 -40 48 -43 66 -32 19 12 19 12 4 -12 -9 -14 -32 -37 -51 -51 -33 -26 -36 -26 -54 -10 -10 9 -23 15 -28 14 -23 -9 -152 -134 -152 -147 0 -8 42 -57 93 -108 88 -89 125 -111 142 -84 8 13 16 12 37 -4 16 -12 6 -25 -105 -133 -207 -204 -204 -201 -232 -195 -31 5 -54 -20 -55 -58 0 -32 -73 -116 -209 -240 -33 -30 -61 -60 -61 -66 0 -10 48 -61 182 -191 35 -34 117 -118 183 -188 235 -247 305 -315 324 -315 11 0 68 48 131 110 62 61 120 110 130 110 19 0 50 30 50 50 0 13 91 112 213 229 37 36 94 93 127 126 114 117 248 251 298 299 29 27 52 54 52 61 0 6 -52 62 -116 123 l-117 113 20 22 c86 94 137 147 145 147 5 0 39 -32 77 -71 105 -109 105 -108 109 138 l2 202 173 -4 c94 -3 264 -7 377 -10 l204 -5 78 77 78 77 28 -27 c15 -15 32 -27 37 -27 5 0 60 53 122 118 63 64 124 127 136 140 27 28 28 28 63 -8 32 -33 55 -38 74 -15 7 8 16 15 21 15 16 0 79 73 79 93 0 10 -13 32 -30 47 -16 15 -30 32 -30 37 1 4 28 33 62 63 34 30 109 102 168 160 59 58 135 130 168 160 34 30 61 64 62 74 0 11 -30 51 -67 90 -82 87 -390 400 -507 516 -125 125 -336 343 -336 348 0 2 -46 50 -102 107 -57 56 -152 153 -211 214 -60 61 -111 111 -114 111 -3 0 -37 33 -75 73 -39 39 -109 113 -157 162 -48 50 -111 116 -140 148 l-54 57 46 44 c26 24 47 48 47 53 0 14 -231 253 -245 253 -6 0 -64 -52 -128 -116z"
-       id="path3758" />
+       id="path3758"
+       style="" />
     <path
        d="M9613 12117 c-12 -12 -78 -76 -147 -142 -70 -66 -182 -174 -249 -240 -68 -66 -205 -198 -305 -294 -100 -96 -182 -180 -182 -187 0 -6 42 -54 93 -106 237 -243 532 -551 545 -569 14 -20 9 -27 -87 -123 -55 -56 -101 -105 -101 -110 0 -27 135 -166 161 -166 12 0 49 31 94 78 l74 77 63 -62 c36 -36 72 -63 84 -63 18 0 124 -99 244 -229 23 -24 38 -32 55 -29 19 4 36 -8 82 -54 31 -32 64 -58 73 -58 9 0 33 18 54 39 l38 39 129 -129 c70 -71 133 -129 139 -129 11 0 70 53 226 205 57 55 135 131 174 169 38 37 70 74 70 82 0 23 16 16 43 -18 44 -59 188 -198 203 -198 17 0 274 259 274 275 0 6 -5 16 -12 23 -6 6 -9 15 -5 19 4 4 13 1 19 -5 7 -7 18 -12 26 -12 26 0 212 169 212 192 0 17 -50 70 -106 113 -39 30 -101 92 -339 339 -71 75 -137 136 -145 136 -8 0 -32 -16 -54 -36 -21 -19 -42 -32 -47 -27 -5 5 -2 30 6 57 17 56 19 102 6 111 -5 3 -90 6 -188 7 -176 1 -242 -8 -305 -43 -28 -14 -48 -11 -48 9 0 10 -5 23 -10 28 -7 7 -2 20 17 40 31 33 62 77 80 114 36 72 32 268 -7 332 -11 18 -24 42 -29 53 -15 35 -106 112 -162 139 -95 44 -189 47 -189 6 0 -11 -7 -20 -15 -20 -14 0 -13 3 1 25 9 14 20 25 25 25 5 0 9 8 9 17 0 21 -184 203 -205 203 -8 0 -23 4 -33 9 -9 5 -44 19 -77 32 -33 12 -64 26 -69 31 -6 4 -24 8 -42 8 -17 0 -43 9 -57 20 -33 26 -77 25 -104 -3z"
-       id="path3760" />
+       id="path3760"
+       style="" />
     <path
        d="M7060 12035 c-7 -9 -26 -25 -41 -36 l-29 -20 -22 20 c-12 12 -27 21 -34 21 -6 0 -40 -28 -75 -61 -35 -34 -97 -93 -136 -132 -40 -38 -73 -78 -73 -88 0 -10 11 -24 25 -32 l26 -13 -46 -48 c-25 -26 -45 -55 -45 -63 0 -14 58 -77 353 -387 102 -107 105 -109 141 -103 l36 6 0 -39 c0 -48 39 -85 82 -76 63 13 54 1 -294 -337 -67 -64 -98 -102 -98 -117 0 -15 -25 -47 -70 -91 -71 -70 -89 -109 -50 -109 11 0 20 -4 20 -9 0 -5 57 -68 128 -140 70 -71 158 -162 195 -201 37 -38 74 -70 82 -70 8 0 19 -9 25 -20 22 -42 51 -24 205 126 83 80 207 200 278 267 70 66 127 126 127 132 0 7 -6 18 -14 24 -8 7 -18 26 -21 42 -4 17 -15 35 -25 42 -14 8 -16 14 -8 24 9 11 14 10 30 -4 25 -23 168 -31 243 -14 62 14 89 42 134 136 28 59 34 85 38 165 5 80 3 97 -11 109 -9 7 -16 19 -16 26 0 12 -46 52 -91 80 -9 6 -29 19 -45 30 -18 13 -43 20 -71 19 -38 -1 -43 2 -43 21 0 13 -7 25 -15 29 -8 3 -15 12 -15 20 0 9 -12 22 -27 31 -34 18 -73 51 -73 60 0 4 -47 54 -105 111 -58 57 -105 110 -105 118 0 7 9 21 20 31 39 36 50 21 -260 342 -102 106 -192 193 -201 193 -9 0 -22 -7 -29 -15z"
-       id="path3762" />
+       id="path3762"
+       style="" />
     <path
        d="M1071 10090 c-24 -22 -51 -40 -60 -40 -18 0 -71 -49 -71 -66 0 -5 -22 -31 -50 -57 -27 -26 -50 -55 -50 -65 0 -10 27 -44 59 -76 51 -50 59 -63 54 -86 -3 -15 0 -31 6 -34 6 -4 11 -17 11 -30 0 -24 38 -66 60 -66 18 0 70 -50 70 -67 0 -28 54 -83 82 -83 22 0 29 -7 39 -37 13 -41 56 -92 77 -93 28 0 60 -32 66 -65 7 -36 38 -65 68 -65 10 0 18 -4 18 -10 0 -5 -10 -10 -22 -10 -25 0 -78 -46 -78 -69 -1 -24 -36 -61 -57 -61 -22 0 -90 -66 -80 -77 11 -10 -34 -53 -57 -53 -24 0 -76 -47 -76 -69 -1 -24 -25 -51 -47 -51 -22 0 -83 -59 -83 -80 0 -7 -8 -22 -17 -32 -13 -15 -15 -23 -6 -37 9 -15 2 -26 -53 -76 -35 -32 -64 -65 -64 -74 0 -9 23 -38 50 -65 28 -27 50 -57 50 -66 0 -21 51 -70 72 -70 9 0 34 -20 56 -45 22 -25 46 -45 55 -45 8 0 42 27 76 60 55 55 63 59 81 48 16 -10 24 -10 38 0 9 7 24 15 32 18 34 13 43 21 64 59 12 22 36 47 52 55 45 23 84 56 84 71 1 20 57 79 76 79 17 0 46 30 68 70 8 14 27 32 43 40 40 20 74 51 84 79 l10 24 27 -26 c33 -32 59 -34 87 -7 11 10 68 65 126 122 59 57 128 122 153 144 25 23 46 48 46 57 0 9 -26 43 -57 75 -189 190 -363 379 -363 392 0 18 -56 70 -74 70 -16 0 -59 48 -74 82 -6 15 -24 35 -39 44 -42 26 -73 56 -73 70 0 18 -56 74 -74 74 -15 0 -26 12 -69 80 -13 19 -32 39 -44 45 -11 6 -28 17 -37 24 -10 8 -28 11 -44 8 -25 -5 -36 2 -83 49 -31 31 -62 54 -74 54 -11 -1 -40 -19 -64 -40z"
-       id="path3764" />
+       id="path3764"
+       style="" />
     <path
        d="M7030 9480 l-125 -5 -7 -85 c-3 -47 -6 -163 -7 -258 l-1 -174 -30 -30 c-16 -16 -30 -35 -30 -43 0 -7 -7 -18 -15 -25 -8 -7 -15 -21 -15 -31 0 -10 -4 -21 -10 -24 -5 -3 -10 -30 -10 -59 0 -59 33 -135 75 -173 l25 -22 0 -251 0 -250 -25 0 -25 0 0 -111 0 -112 -167 6 c-93 4 -340 10 -550 13 -323 6 -383 5 -387 -7 -2 -8 -7 -107 -10 -221 l-6 -206 38 -36 c123 -118 155 -137 168 -101 15 37 24 8 24 -74 0 -59 4 -92 13 -99 13 -11 952 -20 963 -9 3 3 9 41 13 84 l6 78 53 -52 c28 -29 52 -57 52 -63 0 -6 -22 -33 -50 -61 -27 -27 -50 -55 -50 -61 0 -17 78 -88 98 -88 9 0 42 23 72 50 54 50 70 59 70 41 0 -5 25 -34 55 -63 30 -29 55 -56 55 -60 0 -4 -44 -9 -97 -10 l-98 -3 -3 -482 -2 -483 91 0 c89 0 91 -1 76 -18 -24 -27 -21 -54 11 -83 15 -14 36 -38 47 -54 34 -49 55 -63 103 -68 26 -3 65 -10 87 -16 22 -6 100 -11 173 -11 128 0 133 1 141 23 11 30 29 1205 22 1410 -1 15 -14 17 -122 17 l-121 0 -167 173 c-92 94 -191 198 -220 229 l-53 57 7 111 c5 73 4 115 -3 123 -7 8 -9 46 -5 105 l6 92 45 43 c25 23 69 66 98 95 29 28 59 52 66 52 19 0 68 52 68 71 0 10 7 22 15 27 9 4 54 45 100 90 l84 83 3 269 2 270 -90 93 c-116 119 -303 313 -341 355 -17 17 -36 31 -44 30 -8 -1 -70 -5 -139 -8z"
-       id="path3766" />
+       id="path3766"
+       style="" />
     <path
        d="M4382 8377 c-6 -6 -14 -61 -18 -121 -6 -102 -8 -110 -35 -134 -37 -32 -36 -47 2 -83 l31 -29 -26 -21 c-14 -11 -32 -29 -40 -40 -13 -19 -14 -19 -42 11 -36 38 -53 38 -89 0 l-30 -31 -106 6 c-80 5 -108 3 -117 -7 -7 -9 -11 -136 -14 -373 l-3 -360 103 -3 c56 -1 102 -6 102 -10 0 -4 -20 -27 -45 -51 -25 -24 -45 -49 -45 -55 0 -6 21 -32 48 -58 26 -26 61 -63 77 -83 17 -19 39 -35 50 -35 12 0 41 20 65 45 79 80 99 58 100 -106 l0 -116 28 -6 c15 -2 117 -5 227 -6 110 -1 262 -4 337 -7 l137 -7 11 27 c5 15 10 74 10 132 0 99 1 106 25 128 32 30 31 44 -5 83 -52 56 -14 46 45 -12 31 -30 65 -55 74 -55 10 0 56 38 103 85 61 61 93 85 110 85 16 0 42 16 71 44 l46 43 2 317 c0 175 0 319 -2 321 -2 1 -56 6 -119 9 l-115 7 -112 117 -113 117 0 116 0 116 -37 7 c-21 3 -183 6 -359 6 -245 0 -324 -3 -332 -13z"
-       id="path3768" />
+       id="path3768"
+       style="" />
     <path
        d="M12118 8045 c-6 -7 -220 -83 -273 -97 -22 -6 -44 -14 -50 -18 -5 -5 -32 -15 -60 -23 -27 -9 -102 -34 -165 -57 -63 -22 -137 -47 -165 -55 -27 -8 -74 -26 -102 -40 -41 -19 -53 -30 -53 -48 0 -13 4 -27 9 -33 10 -10 51 -132 51 -150 0 -15 -48 -35 -87 -36 -16 -1 -53 12 -81 27 -38 20 -58 26 -79 21 -46 -12 -73 -34 -73 -62 0 -49 27 -82 94 -113 39 -19 74 -45 91 -67 21 -28 32 -34 50 -30 21 5 25 0 43 -62 11 -37 25 -89 32 -117 7 -27 14 -57 17 -66 3 -12 -12 -20 -69 -36 -40 -12 -137 -43 -216 -70 -124 -42 -143 -51 -149 -72 -8 -31 6 -92 47 -201 17 -47 37 -105 45 -130 13 -42 50 -148 126 -360 17 -47 33 -96 36 -110 3 -14 9 -29 13 -35 4 -5 29 -75 55 -153 54 -161 68 -177 128 -153 18 7 55 19 82 27 28 7 59 18 70 23 11 6 37 17 59 26 36 14 38 17 33 50 -3 18 -12 49 -21 67 -8 18 -20 53 -26 77 -12 47 -5 61 33 61 10 0 33 6 51 14 l33 14 33 -102 c19 -55 38 -108 42 -116 5 -8 14 -35 21 -60 11 -40 18 -48 67 -72 30 -15 60 -27 66 -28 6 0 18 -18 26 -39 17 -43 94 -100 136 -101 32 0 27 -17 -8 -25 -65 -14 -89 -35 -121 -102 -32 -68 -33 -110 -6 -154 18 -29 45 -25 191 28 21 8 40 12 42 11 6 -7 56 -145 61 -170 3 -15 14 -35 25 -45 19 -17 22 -17 81 5 34 13 82 29 107 36 25 8 77 26 115 40 39 15 113 41 165 58 52 17 99 35 105 40 5 4 17 8 27 8 15 0 51 13 173 60 11 5 45 16 75 26 62 20 90 40 90 63 0 16 -22 87 -39 126 -5 11 -15 40 -22 65 -7 25 -16 49 -20 53 -3 5 0 22 8 37 15 31 26 31 71 2 26 -17 113 -12 137 8 36 30 11 99 -47 131 -70 40 -124 54 -152 41 -37 -17 -38 4 -4 71 43 87 37 112 -37 153 -79 43 -82 46 -99 102 -47 147 -52 156 -89 177 -20 11 -37 25 -37 31 0 17 -32 41 -75 54 -22 7 -65 24 -96 38 l-55 24 34 86 c19 48 37 90 41 94 3 4 53 11 111 15 l105 8 3 45 c3 42 -9 104 -28 140 -4 9 -11 36 -15 60 -3 25 -17 86 -30 135 -13 50 -35 133 -48 185 l-24 95 -33 3 c-24 3 -38 -2 -47 -14 -7 -10 -13 -12 -13 -6 0 18 -101 15 -167 -4 -32 -9 -59 -12 -64 -7 -5 5 -18 43 -28 86 -11 42 -25 86 -32 99 -10 18 -8 24 7 35 10 7 25 13 33 13 32 0 137 50 159 76 35 40 27 83 -21 108 l-38 20 -75 -22 c-69 -21 -77 -21 -105 -7 -16 9 -33 24 -36 33 -3 9 -12 32 -20 50 -8 18 -21 56 -30 85 -27 92 -39 107 -82 107 -21 0 -40 -2 -43 -5z"
-       id="path3770" />
+       id="path3770"
+       style="" />
     <path
        d="M8575 7813 c-38 -43 -81 -91 -96 -108 -16 -16 -48 -51 -73 -78 -25 -26 -48 -56 -51 -67 -3 -10 -14 -22 -24 -25 -10 -3 -31 -23 -45 -45 -14 -22 -37 -47 -51 -56 -31 -20 -32 -50 -4 -80 l21 -23 -67 -63 c-37 -35 -74 -67 -81 -71 -27 -15 -14 -47 46 -111 l61 -64 -26 -20 c-43 -34 -33 -57 73 -161 53 -53 143 -145 200 -204 57 -59 110 -107 118 -107 7 0 35 23 61 50 32 33 55 50 72 50 30 0 91 60 91 90 0 28 342 370 371 370 25 0 89 63 89 89 0 11 21 38 50 62 28 23 50 47 50 52 0 6 -24 36 -54 66 -299 306 -330 341 -306 341 25 0 5 35 -50 90 -69 69 -94 75 -133 30 -15 -16 -31 -30 -35 -30 -4 0 -30 22 -57 50 -28 27 -57 50 -66 50 -9 0 -46 -35 -84 -77z"
-       id="path3772" />
+       id="path3772"
+       style="" />
     <path
        d="M425 6699 c-44 -4 -134 -11 -200 -15 -66 -3 -126 -11 -133 -17 -10 -8 -12 -26 -8 -66 4 -31 11 -122 16 -203 8 -132 34 -281 62 -363 6 -16 19 -59 29 -94 14 -49 29 -74 59 -103 22 -21 43 -50 46 -65 4 -15 18 -42 31 -61 12 -19 23 -40 23 -47 0 -6 8 -20 18 -31 10 -10 25 -35 34 -54 10 -19 35 -55 58 -79 22 -24 40 -47 40 -51 0 -5 20 -28 45 -52 24 -24 45 -48 45 -54 0 -11 42 -54 53 -54 4 0 25 -20 48 -45 23 -25 47 -45 55 -45 7 0 16 -9 19 -20 3 -11 13 -20 20 -20 8 0 26 -12 40 -26 24 -23 32 -26 78 -21 28 2 53 9 55 15 2 6 20 16 40 22 60 19 112 43 112 52 0 4 8 8 19 8 10 0 44 13 76 29 l57 29 112 -78 c144 -101 156 -104 207 -54 32 31 39 44 35 65 -6 31 18 69 44 69 20 0 80 63 80 85 0 8 5 15 10 15 6 0 10 7 10 16 0 9 25 39 55 67 30 28 55 59 55 69 0 19 -52 77 -247 273 -57 56 -103 105 -103 108 0 3 -48 53 -107 110 -188 184 -207 203 -266 265 -32 34 -65 62 -74 62 -8 0 -40 -25 -70 -55 -30 -30 -57 -55 -60 -55 -9 0 -133 -128 -133 -137 0 -4 -8 -13 -19 -20 -16 -10 -23 -7 -51 22 l-32 33 25 69 c63 170 59 152 43 223 -9 36 -16 83 -16 106 0 61 -30 85 -97 77 l-52 -6 -6 39 c-12 76 -22 79 -180 63z"
-       id="path3774" />
+       id="path3774"
+       style="" />
     <path
        d="M9936 6252 c-44 -43 -119 -112 -166 -154 -47 -42 -106 -95 -131 -119 -26 -24 -68 -64 -95 -88 -52 -46 -229 -209 -274 -251 -74 -70 -230 -211 -265 -241 -93 -80 -125 -116 -125 -143 0 -28 1 -29 451 -490 97 -100 191 -198 210 -219 24 -29 38 -38 56 -34 12 2 28 -2 34 -10 10 -11 3 -22 -36 -56 -105 -92 -125 -115 -125 -140 0 -18 37 -62 150 -177 83 -83 150 -153 150 -154 0 -5 322 -336 547 -562 205 -206 247 -244 272 -244 22 0 45 16 98 68 38 37 104 99 146 137 l77 70 10 85 c5 47 14 141 20 210 5 69 17 179 25 245 8 66 21 197 30 290 8 94 20 211 25 260 5 50 16 162 24 250 9 88 20 187 25 220 5 33 10 107 10 164 l1 104 -74 76 c-40 42 -98 102 -128 134 -31 31 -63 57 -72 57 -9 0 -33 -15 -53 -33 -36 -31 -39 -32 -54 -17 -15 16 -14 19 11 44 47 44 47 73 2 120 -121 129 -490 514 -562 588 -59 61 -93 88 -109 88 -16 0 -51 -26 -105 -78z"
-       id="path3776" />
+       id="path3776"
+       style="" />
     <path
        d="M4047 6141 c-30 -33 -32 -42 -14 -72 10 -17 9 -22 -8 -31 -27 -15 -265 -252 -265 -264 0 -10 1392 -1414 1402 -1414 4 0 46 38 94 86 61 59 90 82 97 75 28 -28 57 -7 238 169 101 99 187 180 191 180 4 0 39 -31 77 -70 39 -38 76 -70 83 -70 7 0 35 23 62 50 27 28 52 50 57 50 5 0 9 6 9 14 0 8 7 17 16 20 21 8 125 -86 389 -351 146 -148 218 -213 233 -213 14 0 53 31 108 85 48 47 90 85 94 85 3 0 20 -15 38 -33 l32 -33 -73 -72 c-39 -39 -131 -130 -204 -201 l-132 -130 -45 54 c-39 45 -44 55 -31 65 8 7 15 22 15 34 0 13 11 33 25 46 44 41 45 40 -161 237 -24 23 -44 45 -44 48 0 17 -167 165 -186 165 -15 0 -91 -68 -230 -202 -305 -296 -444 -437 -444 -451 0 -7 56 -67 123 -134 68 -67 139 -139 157 -160 55 -64 121 -114 146 -111 17 2 33 -10 64 -50 23 -28 46 -52 51 -52 23 0 2 -29 -86 -117 -83 -83 -115 -133 -87 -133 5 0 14 -10 21 -23 7 -12 32 -36 56 -52 25 -17 45 -33 45 -37 0 -14 121 -138 133 -138 8 0 28 -20 115 -114 50 -55 66 -50 181 64 56 55 104 100 108 100 6 0 22 16 141 143 29 32 55 57 58 57 3 0 64 57 134 128 70 70 170 168 221 218 52 50 109 108 127 128 18 20 38 36 45 36 6 1 30 23 51 50 22 28 43 50 47 50 10 0 69 59 69 70 0 4 15 19 33 33 65 50 217 207 217 224 0 10 -33 52 -75 93 -400 399 -425 426 -425 449 0 18 -68 92 -277 304 -153 153 -290 290 -305 305 -25 22 -28 33 -28 85 l0 59 -257 -6 c-310 -8 -501 -22 -519 -37 -8 -6 -14 -29 -14 -51 0 -38 -6 -46 -95 -132 -97 -93 -108 -113 -80 -150 13 -17 11 -21 -15 -46 -37 -34 -39 -74 -7 -101 l22 -18 -22 -1 c-13 0 -23 -4 -23 -8 0 -16 -50 -33 -69 -23 -20 11 -191 177 -191 186 0 7 -68 75 -75 75 -3 0 -42 39 -88 87 -104 109 -159 164 -230 231 -31 29 -57 55 -57 59 0 4 -22 27 -48 52 -27 26 -51 54 -55 64 -3 9 -11 17 -17 17 -6 0 -38 28 -71 63 -141 148 -230 235 -244 241 -8 3 -18 13 -22 23 -11 28 -163 173 -182 173 -9 0 -22 -5 -29 -12 -9 -9 -15 -9 -24 0 -19 19 -41 14 -71 -17z m2361 -2206 c38 -39 41 -46 30 -65 -7 -11 -15 -20 -18 -20 -3 0 -50 -43 -104 -96 l-99 -95 -49 48 -49 48 118 112 c65 62 120 112 123 113 3 0 24 -20 48 -45z"
-       id="path3778" />
+       id="path3778"
+       style="" />
     <path
        d="M2254 5312 c-16 -15 -55 -56 -86 -90 -31 -34 -61 -62 -66 -62 -5 0 -17 -11 -26 -25 -9 -14 -21 -25 -26 -25 -18 0 -130 -120 -130 -138 0 -10 -11 -29 -25 -42 -45 -43 -36 -61 105 -202 72 -71 130 -132 130 -136 0 -4 33 -38 73 -76 l72 -70 -100 -102 c-55 -56 -212 -209 -350 -340 -367 -351 -435 -420 -435 -438 0 -22 29 -66 57 -89 30 -24 29 -51 -2 -75 -14 -11 -25 -27 -25 -35 0 -8 11 -22 25 -31 14 -9 25 -21 25 -26 0 -6 27 -37 59 -70 67 -68 98 -76 134 -36 l22 24 52 -49 c28 -27 59 -49 68 -49 10 0 41 24 71 54 30 30 61 57 69 60 9 3 18 13 22 23 4 10 21 29 37 43 17 14 78 71 135 127 57 57 106 103 108 103 3 0 53 48 111 108 59 59 134 132 167 163 59 54 61 55 79 37 32 -29 60 -22 118 32 l53 49 27 -26 c16 -15 28 -33 28 -40 0 -22 46 -15 59 10 14 26 51 53 51 37 0 -5 11 -10 24 -10 18 0 70 45 200 176 102 101 176 183 176 194 0 10 -17 38 -37 61 -37 42 -74 79 -473 488 -110 113 -200 208 -200 212 0 5 -11 16 -25 25 -14 9 -25 25 -25 35 0 11 -7 19 -15 19 -8 0 -22 11 -31 25 -9 14 -21 25 -26 25 -10 0 -62 53 -119 121 -18 22 -39 39 -46 39 -7 0 -13 5 -13 10 0 20 -49 9 -76 -18z"
-       id="path3780" />
+       id="path3780"
+       style="" />
     <path
        d="M8181 5238 c-49 -51 -64 -89 -41 -103 14 -9 12 -22 -4 -28 -9 -4 -40 20 -80 60 -86 85 -97 84 -212 -32 -46 -47 -88 -85 -92 -85 -5 0 -31 -23 -58 -51 -27 -29 -75 -78 -106 -111 -32 -32 -58 -67 -58 -78 0 -11 12 -33 28 -49 137 -146 508 -528 641 -661 92 -91 267 -270 391 -399 124 -128 280 -290 347 -360 67 -69 141 -145 164 -169 36 -39 44 -42 72 -36 19 4 63 35 109 76 108 97 318 323 318 341 0 15 -109 132 -372 399 -65 65 -118 121 -118 124 0 11 -61 63 -81 69 -10 4 -19 11 -19 16 0 6 -52 62 -114 125 -63 63 -124 127 -135 143 l-20 28 45 43 c50 48 52 66 11 124 -31 46 -205 216 -219 216 -7 0 -35 -23 -62 -51 -39 -39 -52 -47 -61 -37 -6 7 -44 48 -85 91 -67 70 -72 79 -58 93 14 14 17 14 31 0 9 -9 21 -16 27 -16 18 0 122 109 118 124 -5 24 -221 246 -239 246 -9 0 -40 -24 -68 -52z"
-       id="path3782" />
+       id="path3782"
+       style="" />
     <path
        d="M3809 3718 c-17 -34 -61 -79 -86 -89 -13 -5 -23 -15 -23 -24 0 -8 -4 -15 -8 -15 -4 0 -36 -27 -69 -60 -34 -33 -65 -55 -68 -50 -15 24 -53 9 -80 -31 -16 -22 -41 -49 -57 -60 -39 -28 -38 -66 4 -102 l31 -28 -34 -35 c-19 -20 -44 -40 -56 -45 -13 -5 -23 -15 -23 -22 0 -7 -16 -27 -36 -43 -42 -33 -54 -45 -107 -102 -40 -44 -57 -52 -57 -28 0 7 -7 19 -15 26 -12 10 -28 7 -85 -13 l-71 -25 -27 40 c-15 23 -33 52 -40 65 -17 31 -38 39 -58 22 -9 -7 -24 -18 -33 -24 -93 -56 -92 -55 -85 -94 4 -20 11 -37 15 -39 5 -2 9 -12 9 -22 0 -10 4 -21 9 -25 5 -3 12 -18 16 -34 3 -16 15 -37 25 -46 18 -17 18 -18 -16 -53 -26 -27 -34 -42 -29 -59 3 -13 1 -23 -4 -23 -16 0 -152 -144 -149 -157 2 -7 87 -100 189 -205 102 -106 206 -214 231 -240 24 -27 47 -48 50 -48 3 0 47 -43 99 -95 51 -52 100 -95 109 -95 8 0 42 26 75 58 84 80 520 499 569 545 22 21 48 43 58 48 24 13 23 38 -4 67 l-23 24 39 35 38 35 37 -36 c20 -20 43 -36 50 -36 7 0 37 26 67 57 38 41 56 69 62 98 5 27 15 43 30 50 12 5 22 15 22 21 0 6 15 23 33 37 60 45 187 175 187 191 0 8 -37 51 -81 96 -73 73 -84 80 -110 75 -20 -5 -29 -3 -29 6 0 7 -46 59 -102 115 -184 182 -196 197 -185 215 9 14 -5 34 -74 108 -46 50 -92 91 -101 91 -10 0 -23 -10 -29 -22z"
-       id="path3784" />
+       id="path3784"
+       style="" />
     <path
        d="M10085 3298 c-49 -49 -158 -155 -242 -236 -96 -93 -152 -155 -152 -168 -1 -13 33 -57 89 -117 82 -86 95 -96 133 -101 94 -11 590 -15 611 -4 36 18 186 177 186 197 0 10 -7 24 -15 31 -8 7 -15 16 -15 19 0 4 -102 112 -228 239 -183 187 -232 232 -252 231 -17 -1 -54 -30 -115 -91z"
-       id="path3786" />
+       id="path3786"
+       style="" />
     <path
        d="M6168 2502 c-152 -152 -327 -322 -331 -322 -14 0 -118 -116 -123 -136 -5 -19 5 -35 55 -85 34 -34 61 -65 61 -68 0 -4 -17 -24 -38 -44 -26 -26 -44 -36 -55 -31 -9 3 -17 10 -17 15 0 11 -401 422 -545 559 -9 8 -52 52 -96 98 -44 45 -86 82 -94 82 -8 0 -36 -21 -63 -47 -26 -27 -123 -120 -215 -208 -146 -140 -166 -163 -162 -185 3 -14 15 -32 25 -42 20 -16 19 -17 -26 -56 l-46 -39 -23 21 c-47 42 -84 66 -102 66 -19 0 -178 -147 -445 -412 -60 -60 -113 -108 -118 -108 -6 0 -10 -16 -10 -35 0 -31 12 -47 103 -139 56 -56 157 -161 225 -232 195 -205 215 -224 232 -224 9 0 118 100 243 223 125 122 254 247 287 277 33 30 60 64 60 74 0 11 -45 65 -105 126 l-105 106 41 43 c41 42 63 47 75 16 3 -8 54 -63 113 -122 58 -60 169 -173 246 -253 76 -80 144 -147 150 -150 6 -3 130 -129 275 -280 292 -305 387 -403 568 -586 67 -68 122 -128 122 -133 0 -4 22 -23 50 -42 27 -19 50 -38 50 -43 0 -15 160 -166 176 -166 8 0 33 18 54 40 21 22 41 40 44 40 9 0 226 220 226 229 0 5 16 19 35 31 19 12 40 30 45 41 14 25 22 24 58 -6 17 -14 35 -25 42 -25 6 0 45 34 86 75 41 41 78 75 82 75 4 0 30 -22 57 -50 53 -54 87 -64 105 -31 5 11 19 22 29 26 11 3 22 14 25 23 3 9 18 29 33 44 66 64 293 283 414 398 72 69 179 172 237 230 59 58 167 162 240 232 72 70 132 131 132 136 0 5 9 17 20 27 30 28 24 51 -26 99 l-46 44 76 76 c42 41 76 80 76 87 0 6 -80 95 -177 196 -98 102 -209 219 -248 261 -101 112 -156 162 -174 162 -9 0 -38 -22 -64 -50 -26 -27 -51 -50 -55 -50 -4 0 -74 -70 -156 -155 -82 -85 -154 -155 -161 -155 -13 0 -95 -71 -95 -82 0 -12 -55 -68 -67 -68 -7 0 -13 -7 -13 -15 0 -14 -62 -85 -74 -85 -2 0 -60 -54 -128 -120 -397 -388 -504 -490 -514 -490 -11 0 -44 32 -44 42 0 2 -57 62 -126 132 l-127 128 57 57 c58 58 67 83 41 111 -13 15 0 31 140 168 113 110 155 157 155 174 -1 16 -66 90 -225 253 -124 126 -225 232 -225 235 0 12 -91 70 -108 69 -9 0 -52 -35 -94 -77z"
-       id="path3788" />
+       id="path3788"
+       style="" />
   </g>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-weight:normal;font-size:320px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;"
+     style="font-style:normal;font-weight:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;"
      x="4003.5706"
      y="5071.457"
      id="text3801"
@@ -115,10 +133,10 @@
        id="tspan3799"
        x="4003.5706"
        y="5071.457"
-       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:320px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">AL</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">AL</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="4428.792"
      y="6743.4517"
      id="text3805"
@@ -127,10 +145,10 @@
        id="tspan3803"
        x="4428.792"
        y="6743.4517"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:10">MH</tspan></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr;text-anchor:start;stroke-width:10;">MH</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-weight:normal;font-size:400px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-weight:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;"
      x="369.96469"
      y="4402.1787"
      id="text3809"
@@ -139,10 +157,10 @@
        id="tspan3807"
        x="369.96469"
        y="4402.1787"
-       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal">RK</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">RK</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="-1468.1783"
      y="4796.2241"
      id="text3813"
@@ -151,10 +169,10 @@
        id="tspan3811"
        x="-1468.1783"
        y="4796.2241"
-       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal">UH</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">UH</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="-4016.8635"
      y="4671.7344"
      id="text3817"
@@ -163,10 +181,10 @@
        id="tspan3815"
        x="-4016.8635"
        y="4671.7344"
-       style="stroke-width:10">SC</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">SC</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="-1168.7429"
      y="7092.9819"
      id="text3821"
@@ -175,10 +193,10 @@
        id="tspan3819"
        x="-1168.7429"
        y="7092.9819"
-       style="stroke-width:10">MM</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">MM</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="1125.1376"
      y="7051.9058"
      id="text3825"
@@ -187,10 +205,10 @@
        id="tspan3823"
        x="1125.1376"
        y="7051.9058"
-       style="stroke-width:10">OH</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">OH</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="916.40009"
      y="8114.5308"
      id="text3829"
@@ -199,10 +217,10 @@
        id="tspan3827"
        x="916.40009"
        y="8114.5308"
-       style="stroke-width:10">BL</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">BL</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.66665649px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="5124.7056"
      y="9509.126"
      id="text3833"
@@ -211,10 +229,10 @@
        id="tspan3831"
        x="5124.7056"
        y="9509.126"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.66665649px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:10">MP</tspan></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr;text-anchor:start;stroke-width:10;">MP</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="3202.1113"
      y="8970.5117"
      id="text3837"
@@ -223,10 +241,10 @@
        id="tspan3835"
        x="3202.1113"
        y="8970.5117"
-       style="stroke-width:10">FH</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">FH</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="-5645.0527"
      y="7864.4878"
      id="text3841"
@@ -235,10 +253,10 @@
        id="tspan3839"
        x="-5645.0527"
        y="7864.4878"
-       style="stroke-width:10">HH</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">HH</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="-5037.7979"
      y="12003.001"
      id="text3845"
@@ -247,10 +265,10 @@
        id="tspan3843"
        x="-5037.7979"
        y="12003.001"
-       style="stroke-width:10">SU</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">SU</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="-6236.7207"
      y="12936.32"
      id="text3849"
@@ -259,10 +277,10 @@
        id="tspan3847"
        x="-6236.7207"
        y="12936.32"
-       style="stroke-width:10">JC</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">JC</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="-6434.8721"
      y="15905.302"
      id="text3853"
@@ -271,10 +289,10 @@
        id="tspan3851"
        x="-6434.8721"
        y="15905.302"
-       style="stroke-width:10">RC</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">RC</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="-2322.0293"
      y="8749.0596"
      id="text3857"
@@ -283,10 +301,10 @@
        id="tspan3855"
        x="-2322.0293"
        y="8749.0596"
-       style="stroke-width:10">MS</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">MS</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="-3231.8535"
      y="13276.47"
      id="text3861"
@@ -295,10 +313,10 @@
        id="tspan3859"
        x="-3231.8535"
        y="13276.47"
-       style="stroke-width:10">NE</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">NE</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="-867.59076"
      y="14596.227"
      id="text3865"
@@ -307,10 +325,10 @@
        id="tspan3863"
        x="-867.59076"
        y="14596.227"
-       style="stroke-width:10">WH</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">WH</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="938.13409"
      y="11316.213"
      id="text3869"
@@ -319,10 +337,10 @@
        id="tspan3867"
        x="938.13409"
        y="11316.213"
-       style="stroke-width:10">DG</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">DG</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="-1289.8037"
      y="11403.42"
      id="text3873"
@@ -331,10 +349,10 @@
        id="tspan3871"
        x="-1289.8037"
        y="11403.42"
-       style="stroke-width:10">HS</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">HS</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.66665649px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="-942.72467"
      y="9784.4434"
      id="text3877"
@@ -345,10 +363,10 @@
        id="tspan3875"
        x="-942.72467"
        y="9784.4434"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.66665649px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:10">BS2</tspan></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr;text-anchor:start;stroke-width:10;">BS2</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.66665649px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="800.57709"
      y="9714.1826"
      id="text3881"
@@ -357,10 +375,10 @@
        id="tspan3879"
        x="800.57709"
        y="9714.1826"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.66665649px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:10">BS1</tspan></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr;text-anchor:start;stroke-width:10;">BS1</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="2869.0928"
      y="10729.577"
      id="text3885"
@@ -369,10 +387,10 @@
        id="tspan3883"
        x="2869.0928"
        y="10729.577"
-       style="stroke-width:10">LX</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">LX</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="4271.1294"
      y="10736.619"
      id="text3889"
@@ -381,10 +399,10 @@
        id="tspan3887"
        x="4271.1294"
        y="10736.619"
-       style="stroke-width:10">DL</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">DL</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:320px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:266.6666667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;"
      x="3616.4238"
      y="13172.154"
      id="text3893"
@@ -393,5 +411,5 @@
        id="tspan3891"
        x="3616.4238"
        y="13172.154"
-       style="stroke-width:10">CA</tspan></text>
+       style="stroke-width:10;-inkscape-font-specification:'sans-serif, Normal';font-family:sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:266.6666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">CA</tspan></text>
 </svg>
