@@ -115,14 +115,14 @@ class Map extends Component {
               this.getPath(this.getStartPointID(), this.getEndPointID())
             }
           >
-          Navigate
+          Go
           </button>
 
-          <button id="PreviousViewButton" onClick={() => this.prevStep()}>
+          <button id="PreviousViewButton" style={{visibility: 'hidden'}} onClick={() => this.prevStep()}>
             Previous
           </button>
 
-          <button id="NextViewButton" onClick={() => this.nextStep()}>
+          <button id="NextViewButton" style={{visibility: 'hidden'}} onClick={() => this.nextStep()}>
             Next
           </button>
 
@@ -773,6 +773,7 @@ class Map extends Component {
           this.currNodes = 0;
           this.flush();
           this.highlightPath(path);
+          this.showButtons();
         });
     }
 
@@ -797,6 +798,7 @@ class Map extends Component {
             this.currNodes = 0;
             this.flush();
             this.highlightPath(path);
+            this.showButtons();
           }
 
           else {
@@ -808,6 +810,11 @@ class Map extends Component {
           }
         })
     }
+  }
+
+  showButtons() {
+    document.getElementById('NextViewButton').style.visibility = 'visible';
+    document.getElementById('PreviousViewButton').style.visibility = 'visible';
   }
 
   highlightPath(path) {
