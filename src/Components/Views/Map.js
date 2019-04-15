@@ -746,32 +746,26 @@ class Map extends Component {
 
     this.selected = sel;
 
+    var buildings = ['allynHall', 'biologicalSciencesI', 'biologicalSciencesII', 'brehmLaboratory', 'creativeArtsCenter', 'diggsLaboratory', 'dunbarLibrary', 'fawcettHall', 'joshiCenter', 'libraryAnnex', 'mathAndMicrobiology', 'medicalSciences', 'millettHall', 'motionPictures', 'oelmanHall', 'rikeHall', 'russEngineering', 'studentUnion', 'studentSuccessCenter', 'universityHall'];
+
     if (sel[0]) {
-      if (sel[0].classList.contains('russEngineering')) {
-        this.selectFromRef.current.value = '.russEngineering';
-      } else if (sel[0].classList.contains('allynHall')) {
-        this.selectFromRef.current.value = '.allynHall';
-      } else if (sel[0].classList.contains('millettHall')) {
-        this.selectFromRef.current.value = '.millettHall';
-      } else if (sel[0].classList.contains('fawcettHall')) {
-        this.selectFromRef.current.value = '.fawcettHall';
-      } else if (sel[0].classList.contains('oelmanHall')) {
-        this.selectFromRef.current.value = '.oelmanHall';
+      for(let i of buildings) {
+        if (sel[0].classList.contains(i)) {
+          this.selectFromRef.current.value = '.' + i;
+        }
       }
+    } else {
+      this.selectFromRef.current.value = '';
     }
 
     if (sel[1]) {
-      if (sel[1].classList.contains('russEngineering')) {
-        this.selectToRef.current.value = '.russEngineering';
-      } else if (sel[1].classList.contains('allynHall')) {
-        this.selectToRef.current.value = '.allynHall';
-      } else if (sel[1].classList.contains('millettHall')) {
-        this.selectToRef.current.value = '.millettHall';
-      } else if (sel[1].classList.contains('fawcettHall')) {
-        this.selectToRef.current.value = '.fawcettHall';
-      } else if (sel[1].classList.contains('oelmanHall')) {
-        this.selectToRef.current.value = '.oelmanHall';
+      for(let i of buildings) {
+        if (sel[1].classList.contains(i)) {
+          this.selectToRef.current.value = '.' + i;
+        }
       }
+    } else {
+      this.selectToRef.current.value = '';
     }
 
     if (this.selected[0] && this.selected[1]) {
