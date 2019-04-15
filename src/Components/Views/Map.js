@@ -11,6 +11,8 @@ import MyFooter from "../Footer/MyFooter";
 import Settings from "./Settings/Settings";
 import HelpPage from "./Help.js";
 
+import BuildingRooms from "../../building-roomKeys.json";
+
 class Map extends Component {
   constructor(props) {
     super(props);
@@ -28,6 +30,10 @@ class Map extends Component {
 
     this.selectFromRef = React.createRef();
     this.selectToRef = React.createRef();
+    this.selectToRoomRef = React.createRef();
+    this.selectFromRoomRef = React.createRef();
+
+    this.selectToObjectRef = React.createRef();
 
     this.state = {
       direction: "Tap to select a start and end location",
@@ -108,7 +114,10 @@ class Map extends Component {
           selectStart={this.selectStartByMenu.bind(this)}
           selectEnd={this.selectEndByMenu.bind(this)}
           selectToRef={this.selectToRef}
+          selectToRoomRef={this.selectToRoomRef}
           selectFromRef={this.selectFromRef}
+          selectFromRoomRef={this.selectFromRoomRef}
+          selectToObjectRef={this.selectToObjectRef}
         />
         {backdrop}
         <div id="MapContainer" style={{display: this.state.displayMap}}>
@@ -767,6 +776,7 @@ class Map extends Component {
     } else {
       this.selectToRef.current.value = '';
     }
+    this.selectToObjectRef.current.updateDataList(this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML);
 
     if (this.selected[0] && this.selected[1]) {
       this.setState({
@@ -789,21 +799,53 @@ class Map extends Component {
         direction: "Navigating... please wait"
       });
 
-      fetch(`getPath?start=${startID}&end=${endID}`)
-        .then(result => result.json())
-        .then(path => {
-          console.log(path);
-          this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length - 1]);
-          this.setState({
-            direction: "Finished pathfinding, press Next to begin"
+      if (this.selectToRoomRef.current.value) {
+        let building = BuildingRooms[this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML]
+        let roomNumber = building["Abbreviation"] + ' ' + this.selectToRoomRef.current.value;
+        console.log(roomNumber);
+
+        fetch(`getPath?start=${startID}&toRoom=${roomNumber}`)
+          .then(result => result.json())
+          .then(path => {
+            console.log(path);
+            if(!path.ERROR) {
+              this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length-1]);
+              this.setState({
+                direction: "Finished pathfinding, press Next to begin"
+              });
+              this.pathNodes = path.nodeIDs;
+              this.pathEdges = path.edgeIDs;
+              this.currNodes = 0;
+              this.flush();
+              this.highlightPath(path);
+              this.showButtons();
+            }
+
+            else {
+              this.setState({
+                direction: "Could not navigate to that room number. We may not have full support for that building yet, or " +
+                  "there could be no tunnels leading to that building."
+              });
+              this.flush();
+            }
           });
-          this.pathNodes = path.nodeIDs;
-          this.pathEdges = path.edgeIDs;
-          this.currNodes = 0;
-          this.flush();
-          this.highlightPath(path);
-          this.showButtons();
-        });
+      } else {
+        fetch(`getPath?start=${startID}&end=${endID}`)
+          .then(result => result.json())
+          .then(path => {
+            console.log(path);
+            this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length - 1]);
+            this.setState({
+              direction: "Finished pathfinding, press Next to begin"
+            });
+            this.pathNodes = path.nodeIDs;
+            this.pathEdges = path.edgeIDs;
+            this.currNodes = 0;
+            this.flush();
+            this.highlightPath(path);
+            this.showButtons();
+          });
+        }
     }
 
     // Rough solutin to navigate to a room number
@@ -817,6 +859,7 @@ class Map extends Component {
       fetch(`getPath?start=${startID}&toRoom=${roomNumber}`)
         .then(result => result.json())
         .then(path => {
+          console.log(path);
           if(!path.ERROR) {
             this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length-1]);
             this.setState({
@@ -1034,6 +1077,8 @@ class Map extends Component {
 
     this.selectToRef.current.value = '';
     this.selectFromRef.current.value = '';
+    this.selectToRoomRef.current.value = '';
+    this.selectFromRoomRef.current.value = '';
   }
 
   //make user element visible
