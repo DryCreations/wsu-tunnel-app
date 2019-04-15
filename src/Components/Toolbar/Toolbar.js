@@ -12,8 +12,6 @@ const toolbar = props => (
       <button className="menu_item" onClick={props.toMap}>CS-3900 Web App</button>
       <div className="spacer"> </div>
       <button className="menu_item" onClick={props.toHelp}>Help</button>
-      <div className="bar">|</div>
-      <button className="menu_item" onClick={props.toSettings}>Settings</button>
     </nav>
   </header>
 );

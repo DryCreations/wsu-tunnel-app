@@ -3,6 +3,8 @@ import "./SideDrawer.css";
 import SelectFrom from "./SelectFrom";
 import SelectTo from "./SelectTo";
 import Pilot from "../Images/pilot_wsu_logo.png";
+import Switch from "../Views/Settings/Switch";
+import "../Views/Settings/Switch.css";
 
 const sideDrawer = props => {
   let drawerClasses = "sideDrawer";
@@ -23,6 +25,9 @@ const sideDrawer = props => {
           </li>
           <li>
             <SelectTo />
+            <Switch label="Use elevators only (no stairs)" id="1"/>
+            <Switch label="Show bathrooms" id="2"/>
+            <Switch label="Enable Dark Theme" id="3"/>
           </li>
         </ul>
       </nav>

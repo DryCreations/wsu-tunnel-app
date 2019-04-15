@@ -8,7 +8,6 @@ import SideDrawer from "../SideDrawer/SideDrawer.js";
 import Backdrop from "../Backdrop/Backdrop.js";
 import MyFooter from "../Footer/MyFooter";
 
-import Settings from "./Settings/Settings";
 import HelpPage from "./Help.js";
 
 class Map extends Component {
@@ -126,9 +125,6 @@ class Map extends Component {
           </button>
 
           <img id="Compass" src="north.png" alt="compass" />
-        </div>
-        <div style={{display: this.state.displaySettings}}>
-          <Settings />
         </div>
         <div style={{display: this.state.displayHelp}}>
           <HelpPage />
