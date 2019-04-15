@@ -184,8 +184,9 @@ circle {
   left: 0px;
   top: 55px;
   padding:2px;
+  width:100%;
   background: white;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 #Compass {
