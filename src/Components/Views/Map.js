@@ -777,6 +777,10 @@ class Map extends Component {
     else if (startID) {
       let roomNumber = prompt("What room number would you like to go to?");
 
+      this.setState({
+        direction: "Navigating... please wait"
+      });
+      
       fetch(`getPath?start=${startID}&toRoom=${roomNumber}`)
         .then(result => result.json())
         .then(path => {
