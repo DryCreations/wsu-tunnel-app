@@ -21,8 +21,8 @@ const sideDrawer = props => {
 
         <ul>
           <li>
-            <SelectFrom selectFromRef={props.selectFromRef} selectStart={props.selectStart} />
-            <SelectTo selectToRef={props.selectToRef} selectEnd={props.selectEnd}/>
+            <SelectFrom selectFromRef={props.selectFromRef} selectFromRoomRef={props.selectFromRoomRef} selectStart={props.selectStart} />
+            <SelectTo ref={props.selectToObjectRef} selectToRef={props.selectToRef} selectToRoomRef={props.selectToRoomRef} selectEnd={props.selectEnd}/>
           </li>
           <li>
             <Switch label="Use elevators only (no stairs)" id="1"/>
