@@ -181,9 +181,9 @@ circle {
 
 #Directions {
   position: absolute;
-  width: 100%;
-  left: 5px;
+  left: 0px;
   top: 55px;
+  padding:2px;
   background: white;
 }
 
@@ -253,4 +253,8 @@ circle {
     fill: rgb(255, 0, 127);
     stroke: rgb(255, 0, 127);
   }
+}
+
+* {
+  overflow: hidden;
 }
