@@ -1031,6 +1031,9 @@ class Map extends Component {
 
         this.selected = sel;
       });
+
+    this.selectToRef.current.value = '';
+    this.selectFromRef.current.value = '';
   }
 
   //make user element visible
