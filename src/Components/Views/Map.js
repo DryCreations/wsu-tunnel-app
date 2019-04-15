@@ -26,6 +26,9 @@ class Map extends Component {
     this.currNodes = 0;
     this.defaultViewBoxArgs = "0 0 640 480";
 
+    this.selectFromRef = React.createRef();
+    this.selectToRef = React.createRef();
+
     this.state = {
       direction: "Tap to select a start and end location",
       sideDrawerOpen: false,
@@ -102,6 +105,10 @@ class Map extends Component {
         <SideDrawer
           show={this.state.sideDrawerOpen}
           clicky={this.backdropClickHandler}
+          selectStart={this.selectStartByMenu.bind(this)}
+          selectEnd={this.selectEndByMenu.bind(this)}
+          selectToRef={this.selectToRef}
+          selectFromRef={this.selectFromRef}
         />
         {backdrop}
         <div id="MapContainer" style={{display: this.state.displayMap}}>
@@ -739,6 +746,34 @@ class Map extends Component {
 
     this.selected = sel;
 
+    if (sel[0]) {
+      if (sel[0].classList.contains('russEngineering')) {
+        this.selectFromRef.current.value = '.russEngineering';
+      } else if (sel[0].classList.contains('allynHall')) {
+        this.selectFromRef.current.value = '.allynHall';
+      } else if (sel[0].classList.contains('millettHall')) {
+        this.selectFromRef.current.value = '.millettHall';
+      } else if (sel[0].classList.contains('fawcettHall')) {
+        this.selectFromRef.current.value = '.fawcettHall';
+      } else if (sel[0].classList.contains('oelmanHall')) {
+        this.selectFromRef.current.value = '.oelmanHall';
+      }
+    }
+
+    if (sel[1]) {
+      if (sel[1].classList.contains('russEngineering')) {
+        this.selectToRef.current.value = '.russEngineering';
+      } else if (sel[1].classList.contains('allynHall')) {
+        this.selectToRef.current.value = '.allynHall';
+      } else if (sel[1].classList.contains('millettHall')) {
+        this.selectToRef.current.value = '.millettHall';
+      } else if (sel[1].classList.contains('fawcettHall')) {
+        this.selectToRef.current.value = '.fawcettHall';
+      } else if (sel[1].classList.contains('oelmanHall')) {
+        this.selectToRef.current.value = '.oelmanHall';
+      }
+    }
+
     if (this.selected[0] && this.selected[1]) {
       this.setState({
         direction: "Press the navigate button to generate a path"
@@ -847,6 +882,20 @@ class Map extends Component {
     sel[0].classList.add("selected");
 
     this.selected = sel;
+
+    if (this.selected[0] && this.selected[1]) {
+      this.setState({
+        direction: "Press the navigate button to generate a path"
+      });
+    } else if (this.selected[0]) {
+      this.setState({
+        direction: "Tap to select destination"
+      });
+    } else {
+      this.setState({
+        direction: "Tap to select starting location"
+      });
+    }
   }
 
   //override current start point with this start point call with numerical id i.e '1'
@@ -868,6 +917,20 @@ class Map extends Component {
     sel[1].classList.add("selected");
 
     this.selected = sel;
+
+    if (this.selected[0] && this.selected[1]) {
+      this.setState({
+        direction: "Press the navigate button to generate a path"
+      });
+    } else if (this.selected[0]) {
+      this.setState({
+        direction: "Tap to select destination"
+      });
+    } else {
+      this.setState({
+        direction: "Tap to select starting location"
+      });
+    }
   }
 
   //override current end point with this end point call with numerical id i.e '1'
@@ -1525,16 +1588,31 @@ class Map extends Component {
     }
   }
 
-  getSearchGroup(b, r) {
+  getBuildingGroup(b) {
     var building = document.querySelectorAll("circle" + b + ":not(.backNode)");
     var ret = [];
-
-    for (let i of building) {
-      // console.log
-      if (i.getAttribute("class").match(r)) ret.push(i.id.substring(1));
+    for(let i of building) {
+      ret.push(i.id.substring(1));
     }
 
     console.log(ret);
+    return ret;
+  }
+
+  selectStartByMenu(b) {
+    if (b==='') {
+      this.selectElement(this.selected[0])
+    } else {
+      this.selectStartPoint(this.getBuildingGroup(b)[0]);
+    }
+  }
+
+  selectEndByMenu(b) {
+    if (b==='') {
+      this.selectElement(this.selected[1])
+    } else {
+      this.selectEndPoint(this.getBuildingGroup(b)[0]);
+    }
   }
 }
 

@@ -19,10 +19,10 @@ const sideDrawer = props => {
 
         <ul>
           <li>
-            <SelectFrom />
+            <SelectFrom selectFromRef={props.selectFromRef} selectStart={props.selectStart} />
           </li>
           <li>
-            <SelectTo />
+            <SelectTo selectToRef={props.selectToRef} selectEnd={props.selectEnd}/>
           </li>
         </ul>
       </nav>

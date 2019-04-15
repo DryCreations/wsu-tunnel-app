@@ -23,12 +23,13 @@ class SelectTo extends React.Component {
     return(
         <div id="select-to">
             <p>Select destination:</p>
-            <select>
-                <option value="Russ">Russ Engineering Center</option>
-                <option value="Allyn">Allyn Hall</option>
-                <option value="Millett">Millett Hall</option>
-                <option value="Fawcet">Fawcet Hall</option>
-                <option value="Oelman">Oelman Hall</option>
+            <select ref={this.props.selectToRef} onChange={(e) => {this.props.selectEnd(e.target.value);}}>
+              <option value="">[None Selected]</option>
+              <option value=".russEngineering">Russ Engineering Center</option>
+              <option value=".allynHall">Allyn Hall</option>
+              <option value=".millettHall">Millett Hall</option>
+              <option value=".fawcettHall">Fawcet Hall</option>
+              <option value=".oelmanHall">Oelman Hall</option>
             </select>
         </div>
     )
