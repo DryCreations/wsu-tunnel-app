@@ -92,6 +92,7 @@ class Map extends Component {
 
     return (
       <div style={{ height: "100%" }}>
+        <span id="Directions">{this.state.direction}</span>
         <Toolbar
           drawerClick={this.drawerToggleClickHandler}
           toMap={this.displayMapHandler}
@@ -106,9 +107,9 @@ class Map extends Component {
         <div id="MapContainer" style={{display: this.state.displayMap}}>
           <MapSVG />
 
-          <div id="Directions">
-            <p>{this.state.direction}</p>
-          </div>
+
+
+
           <button id="NavigateButton"
             onClick={() =>
               this.getPath(this.getStartPointID(), this.getEndPointID())
@@ -307,6 +308,7 @@ class Map extends Component {
     }
 
     if (from) {
+      from = from.split(',')[0];
       this.selectStartPointByID(from);
       var e = document.getElementById(from);
 
@@ -346,12 +348,13 @@ class Map extends Component {
       });
     }
     if (to) {
-      this.selectEndPointByID(to);
+      to = to.split(',')
+      this.selectEndPointByID(to[0]);
       this.transform(this.getStartPointID(), this.getEndPointID());
     }
 
     if (from && to) {
-      this.getPath(this.getStartPointID(), this.getEndPointID());
+      this.getPath(from.substring(1), to.map(n => n.substring(1)));
     }
   }
 
@@ -760,7 +763,8 @@ class Map extends Component {
       fetch(`getPath?start=${startID}&end=${endID}`)
         .then(result => result.json())
         .then(path => {
-          this.transform(startID, endID);
+          console.log(path);
+          this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length - 1]);
           this.setState({
             direction: "Finished pathfinding, press Next to begin"
           });
@@ -768,7 +772,6 @@ class Map extends Component {
           this.pathEdges = path.edgeIDs;
           this.currNodes = 0;
           this.flush();
-          console.log(path);
           this.highlightPath(path);
         });
     }
@@ -780,7 +783,7 @@ class Map extends Component {
       this.setState({
         direction: "Navigating... please wait"
       });
-      
+
       fetch(`getPath?start=${startID}&toRoom=${roomNumber}`)
         .then(result => result.json())
         .then(path => {
@@ -793,7 +796,6 @@ class Map extends Component {
             this.pathEdges = path.edgeIDs;
             this.currNodes = 0;
             this.flush();
-            console.log(path);
             this.highlightPath(path);
           }
 
