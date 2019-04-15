@@ -44,6 +44,7 @@ class SelectTo extends React.Component {
               <option value=".universityHall">University Hall</option>
 
             </select>
+            <input type='text' id='toRoom'/>
         </div>
     )
   }
