@@ -16,11 +16,6 @@ const MyFooter = props => {
       </head>
 
       <footer className="linkBar">
-        <nav className="linkBar_nav">
-          <div>
-            <img src="reverse.jpg" alt="biplane logo" />
-          </div>
-          <div className="spacer" />
           <div>
             <ul className={"Links"}>
               <li>
