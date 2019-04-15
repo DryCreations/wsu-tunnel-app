@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 
 class Switch extends Component {
+
   constructor(props) {
     super(props);
 
     this.state = {
-      isChecked: false
+      isChecked: false,
     };
+    
   }
 
   componentWillMount() {
@@ -14,9 +16,10 @@ class Switch extends Component {
   }
 
   render() {
+
     return (
       <div className="switch-container">
-        <label>
+        <label>{this.props.label}
           <input
             ref="switch"
             checked={this.state.isChecked}

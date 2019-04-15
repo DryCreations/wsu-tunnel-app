@@ -38,7 +38,7 @@ class SelectFrom extends React.Component {
               <option value=".joshiCenter">Joshi Center</option>
               <option value=".libraryAnnex">Library Annex</option>
               <option value=".mathAndMicrobiology">Math And Microbiology</option>
-              <option value=".medicalSciences">Medical Sciences</option>
+              <option value=".millettHall">Millett Hall</option>
               <option value=".motionPictures">Motion Pictures</option>
               <option value=".oelmanHall">Oelman Hall</option>
               <option value=".rikeHall">Rike Hall</option>
