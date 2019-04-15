@@ -18,7 +18,10 @@
     "Rike Hall" : {
         "Abbreviation" : "RK",
         "Rooms" : {
-            "Rey Rey Cafe" : 140
+            "Rey Rey Cafe" : 140,
+            "DAVE": 299,
+            "Tradeing and Stock Room": 167
         }
+        
     }
 }
