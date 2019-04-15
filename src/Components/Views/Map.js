@@ -801,7 +801,17 @@ class Map extends Component {
 
       if (this.selectToRoomRef.current.value) {
         let building = BuildingRooms[this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML]
-        let roomNumber = building["Abbreviation"] + ' ' + this.selectToRoomRef.current.value;
+
+        let number = this.selectToRoomRef.current.value;
+
+        for(var o of this.selectToRoomRef.current.list.options) {
+          if (o.value === number) {
+            number = o.innerHTML;
+            break;
+          }
+        }
+        
+        let roomNumber = building["Abbreviation"] + ' ' + number;
         console.log(roomNumber);
 
         fetch(`getPath?start=${startID}&toRoom=${roomNumber}`)

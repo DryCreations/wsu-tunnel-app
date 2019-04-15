@@ -63,8 +63,8 @@ class SelectTo extends React.Component {
       datalist.innerHTML = '';
       for(var key in rooms) {
         let opt = document.createElement('option');
-        opt.setAttribute('value', rooms[key]);
-        opt.innerHTML = key;
+        opt.setAttribute('value', key);
+        opt.innerHTML = rooms[key];
         datalist.appendChild(opt);
       }
     } else {
