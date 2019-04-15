@@ -1,24 +1,115 @@
 {
-    "Millet Hall" : {
-
-    },
-
     "Allyn Hall" : {
+        "Abbreviation" : "AL",
         "The Hangar" : 195
     },
 
+    "Biological Sciences I" : {
+        "Abbreviation" : "BS"
+
+    },
+
+    "Biological Sciences II" : {
+        "Abbreviation" : "BS"
+
+    },
+
+    "Brehm Lab" : {
+        "Abbreviation" : "BL"
+
+    },
+
+    "Creative Arts Center" : {
+        "Abbreviation" : "CA"
+
+    },
+
+    "Diggs Lab" : {
+        "Abbreviation" : "DG"
+
+    },
+
+    "Dunbar Library" : {
+        "Abbreviation" : "DL"
+
+    },
+
+    "Dunbar Library Annex" : {
+        "Abbreviation" : "LX"
+
+    },
+
     "Fawcett Hall" : {
+        "Abbreviation" : "FH"
+
+    },
+
+    "Health Sciences" : {
+        "Abbreviation" : "HS"
+
+    },
+
+    "Joshi Research Center" : {
+        "Abbreviation" : "JC"
+
+    },
+
+    "Math & Microbiology" : {
+        "Abbreviation" : "MM"
+
+    },
+
+    "Medical Sciences" : {
+        "Abbreviation" : "MS"
+
+    },
+
+    "Millet Hall" : {
+        "Abbreviation" : "MH"
+
+    },
+
+    "Neuroscience Engineering Collaboration" : {
+        "Abbreviation" : "NE"
 
     },
 
     "Oelman Hall" : {
+        "Abbreviation" : "OH"
 
     },
 
     "Rike Hall" : {
         "Abbreviation" : "RK",
         "Rooms" : {
-            "Rey Rey Cafe" : 140
+            "Rey Rey Cafe" : 140,
+            "DAVE": 299,
+            "Trading and Stock Room": 167
         }
+    },
+
+    "Russ Engineering Center" : {
+        "Abbreviation" : "RC"
+
+    },
+
+    "Student Success Center" : {
+        "Abbreviation" : "SC"
+
+    },
+
+    "Student Union" : {
+        "Abbreviation" : "SU"
+
+    },
+
+    "Tom Hanks Center for Motion Pictures" : {
+        "Abbreviation" : "TH"
+
+    },
+
+    "University Hall" : {
+        "Abbreviation" : "UH"
+
     }
 }

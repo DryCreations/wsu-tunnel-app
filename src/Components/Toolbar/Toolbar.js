@@ -9,7 +9,7 @@ const toolbar = props => (
       <div>
         <DrawerToggleButton click={props.drawerClick} />
       </div>
-      <button className="menu_item" onClick={props.toMap}>CS-3900 Web App</button>
+      <button className="menu_item" onClick={props.toMap}>Tunnel Raider</button>
       <div className="spacer"> </div>
       <button className="menu_item" onClick={props.toHelp}>Help</button>
     </nav>

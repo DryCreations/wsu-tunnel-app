@@ -94,7 +94,7 @@ circle {
 
 #NavigateButton {
   position: absolute;
-  bottom: 50px;
+  bottom: 70px;
   left: 50%;
   min-width: 100px;
   background-color: #026937;
@@ -103,7 +103,7 @@ circle {
   border-width: 2px;
   color: white;
   padding: 10px 10px;
-  margin: 20px;
+
   margin-left: -50px;
   font: bold 16px sans-serif;
   -webkit-transition-duration: 0.4s;
@@ -122,8 +122,8 @@ circle {
 
 #PreviousViewButton {
   position: absolute;
-  bottom: 50px;
-  left: 0%;
+  bottom: 70px;
+  left: 10px;
   min-width: 100px;
   background-color: #026937;
   border-color: #026937;
@@ -131,7 +131,6 @@ circle {
   border-width: 2px;
   color: white;
   padding: 10px 10px;
-  margin: 20px;
   font: bold 16px sans-serif;
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
@@ -149,8 +148,8 @@ circle {
 
 #NextViewButton {
   position: absolute;
-  bottom: 50px;
-  right: 0%;
+  bottom: 70px;
+  right: 10px;
   min-width: 100px;
   background-color: #026937;
   border-color: #026937;
@@ -158,7 +157,6 @@ circle {
   border-width: 2px;
   color: white;
   padding: 10px 10px;
-  margin: 20px;
   font: bold 16px sans-serif;
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
@@ -183,16 +181,10 @@ circle {
 
 #Directions {
   position: absolute;
-  width: 100%;
-  left: 0;
+  left: 0px;
   top: 55px;
-  margin: 0;
-  padding: 0px;
+  padding:2px;
   background: white;
-  height: 20px;
-}
-#Directions p {
-  margin: 0px;
 }
 
 #Compass {
@@ -261,4 +253,8 @@ circle {
     fill: rgb(255, 0, 127);
     stroke: rgb(255, 0, 127);
   }
+}
+
+* {
+  overflow: hidden;
 }

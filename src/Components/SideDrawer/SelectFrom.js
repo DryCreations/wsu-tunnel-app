@@ -23,13 +23,28 @@ class SelectFrom extends React.Component {
       return(
           <div id="select-from">
             <p>Select starting point:</p>
-            <select>
-                <option value="Russ">Russ Engineering Center</option>
-                <option value="Allyn">Allyn Hall</option>
-                <option value="Millett">Millett Hall</option>
-                <option value="Fawcet">Fawcet Hall</option>
-                <option value="Oelman">Oelman Hall</option>
+            <select ref={this.props.selectFromRef} onChange={(e) => {this.props.selectStart(e.target.value);}}>
+              <option value="">[None Selected]</option>
+              <option value=".allynHall">Allyn Hall</option>
+              <option value=".biologicalSciencesI">Biological Sciences I</option>
+              <option value=".biologicalSciencesII">Biological Sciences II</option>
+              <option value=".brehmLaboratory">Brehm Laboratory</option>
+              <option value=".creativeArtsCenter">Creative Arts Center</option>
+              <option value=".diggsLaboratory">Diggs Laboratory</option>
+              <option value=".dunbarLibrary">Dunbar Library</option>
+              <option value=".fawcettHall">Fawcett Hall</option>
+              <option value=".joshiCenter">Joshi Center</option>
+              <option value=".libraryAnnex">Library Annex</option>
+              <option value=".mathAndMicrobiology">Math And Microbiology</option>
+              <option value=".millettHall">Millett Hall</option>
+              <option value=".motionPictures">Motion Pictures</option>
+              <option value=".oelmanHall">Oelman Hall</option>
+              <option value=".rikeHall">Rike Hall</option>
+              <option value=".russEngineering">Russ Engineering Center</option>
+              <option value=".studentUnion">Student Union</option>
+              <option value=".universityHall">University Hall</option>
             </select>
+            <input type='text' id='fromRoom'/>
           </div>
       )
     }

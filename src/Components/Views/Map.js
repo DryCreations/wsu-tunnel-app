@@ -25,6 +25,9 @@ class Map extends Component {
     this.currNodes = 0;
     this.defaultViewBoxArgs = "0 0 640 480";
 
+    this.selectFromRef = React.createRef();
+    this.selectToRef = React.createRef();
+
     this.state = {
       direction: "Tap to select a start and end location",
       sideDrawerOpen: false,
@@ -91,6 +94,7 @@ class Map extends Component {
 
     return (
       <div style={{ height: "100%" }}>
+        <span id="Directions">{this.state.direction}</span>
         <Toolbar
           drawerClick={this.drawerToggleClickHandler}
           toMap={this.displayMapHandler}
@@ -100,27 +104,31 @@ class Map extends Component {
         <SideDrawer
           show={this.state.sideDrawerOpen}
           clicky={this.backdropClickHandler}
+          selectStart={this.selectStartByMenu.bind(this)}
+          selectEnd={this.selectEndByMenu.bind(this)}
+          selectToRef={this.selectToRef}
+          selectFromRef={this.selectFromRef}
         />
         {backdrop}
         <div id="MapContainer" style={{display: this.state.displayMap}}>
           <MapSVG />
 
-          <div id="Directions">
-            <p>{this.state.direction}</p>
-          </div>
+
+
+
           <button id="NavigateButton"
             onClick={() =>
               this.getPath(this.getStartPointID(), this.getEndPointID())
             }
           >
-          Navigate
+          Go
           </button>
 
-          <button id="PreviousViewButton" onClick={() => this.prevStep()}>
+          <button id="PreviousViewButton" style={{visibility: 'hidden'}} onClick={() => this.prevStep()}>
             Previous
           </button>
 
-          <button id="NextViewButton" onClick={() => this.nextStep()}>
+          <button id="NextViewButton" style={{visibility: 'hidden'}} onClick={() => this.nextStep()}>
             Next
           </button>
 
@@ -303,6 +311,7 @@ class Map extends Component {
     }
 
     if (from) {
+      from = from.split(',')[0];
       this.selectStartPointByID(from);
       var e = document.getElementById(from);
 
@@ -342,12 +351,13 @@ class Map extends Component {
       });
     }
     if (to) {
-      this.selectEndPointByID(to);
+      to = to.split(',')
+      this.selectEndPointByID(to[0]);
       this.transform(this.getStartPointID(), this.getEndPointID());
     }
 
     if (from && to) {
-      this.getPath(this.getStartPointID(), this.getEndPointID());
+      this.getPath(from.substring(1), to.map(n => n.substring(1)));
     }
   }
 
@@ -732,6 +742,28 @@ class Map extends Component {
 
     this.selected = sel;
 
+    var buildings = ['allynHall', 'biologicalSciencesI', 'biologicalSciencesII', 'brehmLaboratory', 'creativeArtsCenter', 'diggsLaboratory', 'dunbarLibrary', 'fawcettHall', 'joshiCenter', 'libraryAnnex', 'mathAndMicrobiology', 'medicalSciences', 'millettHall', 'motionPictures', 'oelmanHall', 'rikeHall', 'russEngineering', 'studentUnion', 'studentSuccessCenter', 'universityHall'];
+
+    if (sel[0]) {
+      for(let i of buildings) {
+        if (sel[0].classList.contains(i)) {
+          this.selectFromRef.current.value = '.' + i;
+        }
+      }
+    } else {
+      this.selectFromRef.current.value = '';
+    }
+
+    if (sel[1]) {
+      for(let i of buildings) {
+        if (sel[1].classList.contains(i)) {
+          this.selectToRef.current.value = '.' + i;
+        }
+      }
+    } else {
+      this.selectToRef.current.value = '';
+    }
+
     if (this.selected[0] && this.selected[1]) {
       this.setState({
         direction: "Press the navigate button to generate a path"
@@ -756,7 +788,8 @@ class Map extends Component {
       fetch(`getPath?start=${startID}&end=${endID}`)
         .then(result => result.json())
         .then(path => {
-          this.transform(startID, endID);
+          console.log(path);
+          this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length - 1]);
           this.setState({
             direction: "Finished pathfinding, press Next to begin"
           });
@@ -764,10 +797,49 @@ class Map extends Component {
           this.pathEdges = path.edgeIDs;
           this.currNodes = 0;
           this.flush();
-          console.log(path);
           this.highlightPath(path);
+          this.showButtons();
         });
     }
+
+    // Rough solutin to navigate to a room number
+    else if (startID) {
+      let roomNumber = prompt("What room number would you like to go to?");
+
+      this.setState({
+        direction: "Navigating... please wait"
+      });
+
+      fetch(`getPath?start=${startID}&toRoom=${roomNumber}`)
+        .then(result => result.json())
+        .then(path => {
+          if(!path.ERROR) {
+            this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length-1]);
+            this.setState({
+              direction: "Finished pathfinding, press Next to begin"
+            });
+            this.pathNodes = path.nodeIDs;
+            this.pathEdges = path.edgeIDs;
+            this.currNodes = 0;
+            this.flush();
+            this.highlightPath(path);
+            this.showButtons();
+          }
+
+          else {
+            this.setState({
+              direction: "Could not navigate to that room number. We may not have full support for that building yet, or " +
+                "there could be no tunnels leading to that building."
+            });
+            this.flush();
+          }
+        })
+    }
+  }
+
+  showButtons() {
+    document.getElementById('NextViewButton').style.visibility = 'visible';
+    document.getElementById('PreviousViewButton').style.visibility = 'visible';
   }
 
   highlightPath(path) {
@@ -800,6 +872,20 @@ class Map extends Component {
     sel[0].classList.add("selected");
 
     this.selected = sel;
+
+    if (this.selected[0] && this.selected[1]) {
+      this.setState({
+        direction: "Press the navigate button to generate a path"
+      });
+    } else if (this.selected[0]) {
+      this.setState({
+        direction: "Tap to select destination"
+      });
+    } else {
+      this.setState({
+        direction: "Tap to select starting location"
+      });
+    }
   }
 
   //override current start point with this start point call with numerical id i.e '1'
@@ -821,6 +907,20 @@ class Map extends Component {
     sel[1].classList.add("selected");
 
     this.selected = sel;
+
+    if (this.selected[0] && this.selected[1]) {
+      this.setState({
+        direction: "Press the navigate button to generate a path"
+      });
+    } else if (this.selected[0]) {
+      this.setState({
+        direction: "Tap to select destination"
+      });
+    } else {
+      this.setState({
+        direction: "Tap to select starting location"
+      });
+    }
   }
 
   //override current end point with this end point call with numerical id i.e '1'
@@ -927,6 +1027,9 @@ class Map extends Component {
 
         this.selected = sel;
       });
+
+    this.selectToRef.current.value = '';
+    this.selectFromRef.current.value = '';
   }
 
   //make user element visible
@@ -1478,16 +1581,31 @@ class Map extends Component {
     }
   }
 
-  getSearchGroup(b, r) {
+  getBuildingGroup(b) {
     var building = document.querySelectorAll("circle" + b + ":not(.backNode)");
     var ret = [];
-
-    for (let i of building) {
-      // console.log
-      if (i.getAttribute("class").match(r)) ret.push(i.id.substring(1));
+    for(let i of building) {
+      ret.push(i.id.substring(1));
     }
 
     console.log(ret);
+    return ret;
+  }
+
+  selectStartByMenu(b) {
+    if (b==='') {
+      this.selectElement(this.selected[0])
+    } else {
+      this.selectStartPoint(this.getBuildingGroup(b)[0]);
+    }
+  }
+
+  selectEndByMenu(b) {
+    if (b==='') {
+      this.selectElement(this.selected[1])
+    } else {
+      this.selectEndPoint(this.getBuildingGroup(b)[0]);
+    }
   }
 }
 

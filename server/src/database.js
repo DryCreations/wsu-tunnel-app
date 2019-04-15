@@ -15,6 +15,25 @@ exports.node = async function(nodeID) {
   return query("SELECT * FROM nodes WHERE nodeID = ?", nodeID);
 };
 
+exports.getNodesToRoom = async function(roomNumber) {
+  // Get all regexes and their corresponding node IDs
+  let nodes = await query("SELECT nodeID, roomRegEx FROM nodes");
+
+  //Create an array to hold the nodeIDs with regexs that match the room number
+  let connectedNodeIDs = [];
+
+  //Check over all of the nodes to see if their regex matches the room number
+  nodes.forEach(i => {
+    let regex = new RegExp(i.roomRegEx);
+    if(regex.test(roomNumber)) {
+      //If it does, add it to the array
+      connectedNodeIDs.push(i.nodeID);
+    }
+  });
+  
+  return connectedNodeIDs;
+}
+
 exports.adjacentNodes = async function(nodeID) {
   let sql =
     "SELECT connectionID, length, nodeA_ID AS nextNodeID " +

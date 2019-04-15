@@ -21,10 +21,10 @@ const sideDrawer = props => {
 
         <ul>
           <li>
-            <SelectFrom />
+            <SelectFrom selectFromRef={props.selectFromRef} selectStart={props.selectStart} />
+            <SelectTo selectToRef={props.selectToRef} selectEnd={props.selectEnd}/>
           </li>
           <li>
-            <SelectTo />
             <Switch label="Use elevators only (no stairs)" id="1"/>
             <Switch label="Show bathrooms" id="2"/>
             <Switch label="Enable Dark Theme" id="3"/>
