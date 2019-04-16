@@ -686,7 +686,7 @@ class Map extends Component {
       !(this.getScale() < 0.5 && 1 - event.deltaY / 1000 < 1)
     ) {
       newMatrix = this.multiplyMatrices(
-        this.getScaleMatrix(1 - event.deltaY / 1000),
+        this.getScaleMatrix(Math.min(Math.max(1 - event.deltaY / 1000, .01), 100)),
         newMatrix
       );
     }
