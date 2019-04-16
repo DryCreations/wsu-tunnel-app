@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { HashRouter, Route, Redirect } from "react-router-dom";
+
 import { ReactComponent as MapSVG } from "../Maps/map.svg";
 import "./Map.css";
 

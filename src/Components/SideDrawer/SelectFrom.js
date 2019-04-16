@@ -1,8 +1,8 @@
 import React from "react";
-import Dropdown from "react-dropdown";
+// import Dropdown from "react-dropdown";
 import "./SelectFrom.css";
 
-import BuildingRooms from '../../building-roomKeys.json';
+// import BuildingRooms from '../../building-roomKeys.json';
 
 // const SelectFrom = props => {
 //   const options = ["A", "B", "C", "D", "E"];
