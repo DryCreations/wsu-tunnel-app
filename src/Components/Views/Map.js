@@ -806,7 +806,7 @@ class Map extends Component {
             break;
           }
         }
-        
+
         let roomNumber = building["Abbreviation"] + ' ' + number;
         console.log(roomNumber);
 
@@ -926,6 +926,29 @@ class Map extends Component {
 
     this.selected = sel;
 
+    var buildings = ['allynHall', 'biologicalSciencesI', 'biologicalSciencesII', 'brehmLaboratory', 'creativeArtsCenter', 'diggsLaboratory', 'dunbarLibrary', 'fawcettHall', 'joshiCenter', 'libraryAnnex', 'mathAndMicrobiology', 'medicalSciences', 'millettHall', 'motionPictures', 'oelmanHall', 'rikeHall', 'russEngineering', 'studentUnion', 'studentSuccessCenter', 'universityHall'];
+
+    if (sel[0]) {
+      for(let i of buildings) {
+        if (sel[0].classList.contains(i)) {
+          this.selectFromRef.current.value = '.' + i;
+        }
+      }
+    } else {
+      this.selectFromRef.current.value = '';
+    }
+
+    if (sel[1]) {
+      for(let i of buildings) {
+        if (sel[1].classList.contains(i)) {
+          this.selectToRef.current.value = '.' + i;
+        }
+      }
+    } else {
+      this.selectToRef.current.value = '';
+    }
+    this.selectToObjectRef.current.updateDataList(this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML);
+
     if (this.selected[0] && this.selected[1]) {
       this.setState({
         direction: "Press the navigate button to generate a path"
@@ -960,6 +983,29 @@ class Map extends Component {
     sel[1].classList.add("selected");
 
     this.selected = sel;
+
+    var buildings = ['allynHall', 'biologicalSciencesI', 'biologicalSciencesII', 'brehmLaboratory', 'creativeArtsCenter', 'diggsLaboratory', 'dunbarLibrary', 'fawcettHall', 'joshiCenter', 'libraryAnnex', 'mathAndMicrobiology', 'medicalSciences', 'millettHall', 'motionPictures', 'oelmanHall', 'rikeHall', 'russEngineering', 'studentUnion', 'studentSuccessCenter', 'universityHall'];
+
+    if (sel[0]) {
+      for(let i of buildings) {
+        if (sel[0].classList.contains(i)) {
+          this.selectFromRef.current.value = '.' + i;
+        }
+      }
+    } else {
+      this.selectFromRef.current.value = '';
+    }
+
+    if (sel[1]) {
+      for(let i of buildings) {
+        if (sel[1].classList.contains(i)) {
+          this.selectToRef.current.value = '.' + i;
+        }
+      }
+    } else {
+      this.selectToRef.current.value = '';
+    }
+    this.selectToObjectRef.current.updateDataList(this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML);
 
     if (this.selected[0] && this.selected[1]) {
       this.setState({
