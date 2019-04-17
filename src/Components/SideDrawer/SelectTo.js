@@ -30,9 +30,9 @@ class SelectTo extends React.Component {
               <option value=".allynHall">Allyn Hall</option>
               <option value=".biologicalSciencesI">Biological Sciences I</option>
               <option value=".biologicalSciencesII">Biological Sciences II</option>
-              <option value=".brehmLaboratory">Brehm Laboratory</option>
+              <option value=".brehmLaboratory">Brehm Lab</option>
               <option value=".creativeArtsCenter">Creative Arts Center</option>
-              <option value=".diggsLaboratory">Diggs Laboratory</option>
+              <option value=".diggsLaboratory">Diggs Lab</option>
               <option value=".dunbarLibrary">Dunbar Library</option>
               <option value=".fawcettHall">Fawcett Hall</option>
               <option value=".joshiCenter">Joshi Center</option>
