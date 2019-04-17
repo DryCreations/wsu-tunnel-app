@@ -1,6 +1,8 @@
 import React from "react";
-import Dropdown from "react-dropdown";
+// import Dropdown from "react-dropdown";
 import "./SelectTo.css";
+
+import BuildingRooms from '../../building-roomKeys.json';
 
 // const SelectTo = props => {
 //   const options = ["A", "B", "C", "D", "E"];
@@ -23,7 +25,7 @@ class SelectTo extends React.Component {
     return(
         <div id="select-to">
             <p>Select destination:</p>
-            <select ref={this.props.selectToRef} onChange={(e) => {this.props.selectEnd(e.target.value);}}>
+            <select ref={this.props.selectToRef} onChange={(e) => {this.updateDataList(e.target.options[e.target.selectedIndex].innerHTML);this.props.selectEnd(e.target.value);}}>
               <option value="">[None Selected]</option>
               <option value=".allynHall">Allyn Hall</option>
               <option value=".biologicalSciencesI">Biological Sciences I</option>
@@ -36,6 +38,7 @@ class SelectTo extends React.Component {
               <option value=".joshiCenter">Joshi Center</option>
               <option value=".libraryAnnex">Library Annex</option>
               <option value=".mathAndMicrobiology">Math And Microbiology</option>
+              <option value=".millettHall">Millett Hall</option>
               <option value=".motionPictures">Motion Pictures</option>
               <option value=".oelmanHall">Oelman Hall</option>
               <option value=".rikeHall">Rike Hall</option>
@@ -44,9 +47,30 @@ class SelectTo extends React.Component {
               <option value=".universityHall">University Hall</option>
 
             </select>
-            <input type='text' id='toRoom'/>
+            <input ref={this.props.selectToRoomRef} type='text' id='toRoom' placeholder='room number' list='roomData'/>
+            <datalist id='roomData'/>
         </div>
     )
+  }
+
+  updateDataList(e) {
+    var rooms = BuildingRooms[e];
+
+
+    if (rooms && rooms["Rooms"]) {
+      rooms = rooms["Rooms"];
+      let datalist = document.getElementById('roomData');
+      datalist.innerHTML = '';
+      for(var key in rooms) {
+        let opt = document.createElement('option');
+        opt.setAttribute('value', key);
+        opt.innerHTML = rooms[key];
+        datalist.appendChild(opt);
+      }
+    } else {
+      document.getElementById('roomData').innerHTML = '';
+    }
+
   }
 }
 

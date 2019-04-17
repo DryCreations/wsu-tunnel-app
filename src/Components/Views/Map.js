@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { HashRouter, Route, Redirect } from "react-router-dom";
+
 import { ReactComponent as MapSVG } from "../Maps/map.svg";
 import "./Map.css";
 
@@ -8,8 +8,9 @@ import SideDrawer from "../SideDrawer/SideDrawer.js";
 import Backdrop from "../Backdrop/Backdrop.js";
 import MyFooter from "../Footer/MyFooter";
 
-import Settings from "./Settings/Settings";
 import HelpPage from "./Help.js";
+
+import BuildingRooms from "../../building-roomKeys.json";
 
 class Map extends Component {
   constructor(props) {
@@ -28,6 +29,10 @@ class Map extends Component {
 
     this.selectFromRef = React.createRef();
     this.selectToRef = React.createRef();
+    this.selectToRoomRef = React.createRef();
+    this.selectFromRoomRef = React.createRef();
+
+    this.selectToObjectRef = React.createRef();
 
     this.state = {
       direction: "Tap to select a start and end location",
@@ -108,7 +113,10 @@ class Map extends Component {
           selectStart={this.selectStartByMenu.bind(this)}
           selectEnd={this.selectEndByMenu.bind(this)}
           selectToRef={this.selectToRef}
+          selectToRoomRef={this.selectToRoomRef}
           selectFromRef={this.selectFromRef}
+          selectFromRoomRef={this.selectFromRoomRef}
+          selectToObjectRef={this.selectToObjectRef}
         />
         {backdrop}
         <div id="MapContainer" style={{display: this.state.displayMap}}>
@@ -134,9 +142,6 @@ class Map extends Component {
           </button>
 
           <img id="Compass" src="north.png" alt="compass" />
-        </div>
-        <div style={{display: this.state.displaySettings}}>
-          <Settings />
         </div>
         <div style={{display: this.state.displayHelp}}>
           <HelpPage />
@@ -681,7 +686,7 @@ class Map extends Component {
       !(this.getScale() < 0.5 && 1 - event.deltaY / 1000 < 1)
     ) {
       newMatrix = this.multiplyMatrices(
-        this.getScaleMatrix(1 - event.deltaY / 1000),
+        this.getScaleMatrix(Math.min(Math.max(1 - event.deltaY / 1000, .01), 100)),
         newMatrix
       );
     }
@@ -767,6 +772,7 @@ class Map extends Component {
     } else {
       this.selectToRef.current.value = '';
     }
+    this.selectToObjectRef.current.updateDataList(this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML);
 
     if (this.selected[0] && this.selected[1]) {
       this.setState({
@@ -789,21 +795,63 @@ class Map extends Component {
         direction: "Navigating... please wait"
       });
 
-      fetch(`getPath?start=${startID}&end=${endID}`)
-        .then(result => result.json())
-        .then(path => {
-          console.log(path);
-          this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length - 1]);
-          this.setState({
-            direction: "Finished pathfinding, press Next to begin"
+      if (this.selectToRoomRef.current.value) {
+        let building = BuildingRooms[this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML]
+
+        let number = this.selectToRoomRef.current.value;
+
+        for(var o of this.selectToRoomRef.current.list.options) {
+          if (o.value === number) {
+            number = o.innerHTML;
+            break;
+          }
+        }
+
+        let roomNumber = building["Abbreviation"] + ' ' + number;
+        console.log(roomNumber);
+
+        fetch(`getPath?start=${startID}&toRoom=${roomNumber}`)
+          .then(result => result.json())
+          .then(path => {
+            console.log(path);
+            if(!path.ERROR) {
+              this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length-1]);
+              this.setState({
+                direction: "Finished pathfinding, press Next to begin"
+              });
+              this.pathNodes = path.nodeIDs;
+              this.pathEdges = path.edgeIDs;
+              this.currNodes = 0;
+              this.flush();
+              this.highlightPath(path);
+              this.showButtons();
+            }
+
+            else {
+              this.setState({
+                direction: "Could not navigate to that room number. We may not have full support for that building yet, or " +
+                  "there could be no tunnels leading to that building."
+              });
+              this.flush();
+            }
           });
-          this.pathNodes = path.nodeIDs;
-          this.pathEdges = path.edgeIDs;
-          this.currNodes = 0;
-          this.flush();
-          this.highlightPath(path);
-          this.showButtons();
-        });
+      } else {
+        fetch(`getPath?start=${startID}&end=${endID}`)
+          .then(result => result.json())
+          .then(path => {
+            console.log(path);
+            this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length - 1]);
+            this.setState({
+              direction: "Finished pathfinding, press Next to begin"
+            });
+            this.pathNodes = path.nodeIDs;
+            this.pathEdges = path.edgeIDs;
+            this.currNodes = 0;
+            this.flush();
+            this.highlightPath(path);
+            this.showButtons();
+          });
+        }
     }
 
     // Rough solutin to navigate to a room number
@@ -817,6 +865,7 @@ class Map extends Component {
       fetch(`getPath?start=${startID}&toRoom=${roomNumber}`)
         .then(result => result.json())
         .then(path => {
+          console.log(path);
           if(!path.ERROR) {
             this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length-1]);
             this.setState({
@@ -877,6 +926,29 @@ class Map extends Component {
 
     this.selected = sel;
 
+    var buildings = ['allynHall', 'biologicalSciencesI', 'biologicalSciencesII', 'brehmLaboratory', 'creativeArtsCenter', 'diggsLaboratory', 'dunbarLibrary', 'fawcettHall', 'joshiCenter', 'libraryAnnex', 'mathAndMicrobiology', 'medicalSciences', 'millettHall', 'motionPictures', 'oelmanHall', 'rikeHall', 'russEngineering', 'studentUnion', 'studentSuccessCenter', 'universityHall'];
+
+    if (sel[0]) {
+      for(let i of buildings) {
+        if (sel[0].classList.contains(i)) {
+          this.selectFromRef.current.value = '.' + i;
+        }
+      }
+    } else {
+      this.selectFromRef.current.value = '';
+    }
+
+    if (sel[1]) {
+      for(let i of buildings) {
+        if (sel[1].classList.contains(i)) {
+          this.selectToRef.current.value = '.' + i;
+        }
+      }
+    } else {
+      this.selectToRef.current.value = '';
+    }
+    this.selectToObjectRef.current.updateDataList(this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML);
+
     if (this.selected[0] && this.selected[1]) {
       this.setState({
         direction: "Press the navigate button to generate a path"
@@ -911,6 +983,29 @@ class Map extends Component {
     sel[1].classList.add("selected");
 
     this.selected = sel;
+
+    var buildings = ['allynHall', 'biologicalSciencesI', 'biologicalSciencesII', 'brehmLaboratory', 'creativeArtsCenter', 'diggsLaboratory', 'dunbarLibrary', 'fawcettHall', 'joshiCenter', 'libraryAnnex', 'mathAndMicrobiology', 'medicalSciences', 'millettHall', 'motionPictures', 'oelmanHall', 'rikeHall', 'russEngineering', 'studentUnion', 'studentSuccessCenter', 'universityHall'];
+
+    if (sel[0]) {
+      for(let i of buildings) {
+        if (sel[0].classList.contains(i)) {
+          this.selectFromRef.current.value = '.' + i;
+        }
+      }
+    } else {
+      this.selectFromRef.current.value = '';
+    }
+
+    if (sel[1]) {
+      for(let i of buildings) {
+        if (sel[1].classList.contains(i)) {
+          this.selectToRef.current.value = '.' + i;
+        }
+      }
+    } else {
+      this.selectToRef.current.value = '';
+    }
+    this.selectToObjectRef.current.updateDataList(this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML);
 
     if (this.selected[0] && this.selected[1]) {
       this.setState({
@@ -1031,6 +1126,11 @@ class Map extends Component {
 
         this.selected = sel;
       });
+
+    this.selectToRef.current.value = '';
+    this.selectFromRef.current.value = '';
+    this.selectToRoomRef.current.value = '';
+    this.selectFromRoomRef.current.value = '';
   }
 
   //make user element visible

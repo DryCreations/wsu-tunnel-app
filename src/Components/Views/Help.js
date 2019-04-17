@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 
 function HelpPage() {
   return (
-    <p>
+    <div>
       <div id="What to Do">
         <h1 id="What to Do">What to Do</h1>
       </div>
@@ -50,7 +50,7 @@ function HelpPage() {
           </ol>
         </li>
       </ol>
-    </p>
+    </div>
   );
 }
 

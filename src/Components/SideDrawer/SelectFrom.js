@@ -1,6 +1,8 @@
 import React from "react";
-import Dropdown from "react-dropdown";
+// import Dropdown from "react-dropdown";
 import "./SelectFrom.css";
+
+// import BuildingRooms from '../../building-roomKeys.json';
 
 // const SelectFrom = props => {
 //   const options = ["A", "B", "C", "D", "E"];
@@ -36,6 +38,7 @@ class SelectFrom extends React.Component {
               <option value=".joshiCenter">Joshi Center</option>
               <option value=".libraryAnnex">Library Annex</option>
               <option value=".mathAndMicrobiology">Math And Microbiology</option>
+              <option value=".millettHall">Millett Hall</option>
               <option value=".motionPictures">Motion Pictures</option>
               <option value=".oelmanHall">Oelman Hall</option>
               <option value=".rikeHall">Rike Hall</option>
@@ -43,7 +46,7 @@ class SelectFrom extends React.Component {
               <option value=".studentUnion">Student Union</option>
               <option value=".universityHall">University Hall</option>
             </select>
-            <input type='text' id='fromRoom'/>
+            <input ref={this.props.selectFromRoomRef} type='text' id='fromRoom'/>
           </div>
       )
     }
