@@ -3,9 +3,7 @@ import React from "react";
 function HelpPage() {
   return (
     <div>
-      <div id="What to Do">
-        <h1 id="What to Do">What to Do</h1>
-      </div>
+      <h1>What to Do</h1>
       <ol>
         <li>
           Select a route
@@ -21,7 +19,7 @@ function HelpPage() {
                   Select the tunnel intersection that you believe you wish to
                   navigate to by tapping it.
                 </li>
-                <li>Press the navigate button.</li>
+                <li>Press the go button.</li>
               </ol>
             </li>
             <li>
@@ -50,6 +48,8 @@ function HelpPage() {
           </ol>
         </li>
       </ol>
+      <p>
+      </p>
     </div>
   );
 }
