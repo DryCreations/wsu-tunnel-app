@@ -6,6 +6,7 @@ import Pilot from "../Images/pilot_wsu_logo.png";
 import Switch from "../Views/Settings/Switch";
 import "../Views/Settings/Switch.css";
 
+
 const sideDrawer = props => {
   let drawerClasses = "sideDrawer";
   if (props.show) {
@@ -23,11 +24,13 @@ const sideDrawer = props => {
           <li>
             <SelectFrom selectFromRef={props.selectFromRef} selectFromRoomRef={props.selectFromRoomRef} selectStart={props.selectStart} />
             <SelectTo ref={props.selectToObjectRef} selectToRef={props.selectToRef} selectToRoomRef={props.selectToRoomRef} selectEnd={props.selectEnd}/>
+            <button style={{position: "relative", left: "20%", marginTop: "20px", height: "30px", width: "60px"}} onClick={props.navigateFunction}>Go</button>
           </li>
           <li>
+            
             <Switch label="Use elevators only (no stairs)" id="1"/>
-            <Switch label="Show bathrooms" id="2"/>
-            <Switch label="Enable Dark Theme" id="3"/>
+            {/* <Switch label="Show bathrooms" id="2"/> */}
+            <Switch label="Enable Dark Theme" id="2"/>
           </li>
         </ul>
       </nav>

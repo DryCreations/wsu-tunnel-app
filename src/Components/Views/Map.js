@@ -117,6 +117,7 @@ class Map extends Component {
           selectFromRef={this.selectFromRef}
           selectFromRoomRef={this.selectFromRoomRef}
           selectToObjectRef={this.selectToObjectRef}
+          navigateFunction={(() => this.getPath(this.getStartPointID(), this.getEndPointID())).bind(this)}
         />
         {backdrop}
         <div id="MapContainer" style={{display: this.state.displayMap}}>
