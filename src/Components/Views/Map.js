@@ -117,7 +117,11 @@ class Map extends Component {
           selectFromRef={this.selectFromRef}
           selectFromRoomRef={this.selectFromRoomRef}
           selectToObjectRef={this.selectToObjectRef}
-          navigateFunction={(() => this.getPath(this.getStartPointID(), this.getEndPointID())).bind(this)}
+          navigateFunction={() => {this.getPath(this.getStartPointID(), this.getEndPointID());
+            this.setState({sideDrawerOpen: false});
+            }
+          }
+          
         />
         {backdrop}
         <div id="MapContainer" style={{display: this.state.displayMap}}>
@@ -127,7 +131,7 @@ class Map extends Component {
 
 
           <button id="NavigateButton"
-            onClick={() =>
+            onClick={() => 
               this.getPath(this.getStartPointID(), this.getEndPointID())
             }
           >
@@ -144,7 +148,7 @@ class Map extends Component {
 
           <img id="Compass" src="north.png" alt="compass" />
         </div>
-        <div style={{display: this.state.displayHelp}}>
+        <div style={{display: this.state.displayHelp, overflow: 'auto', height: '100vh', padding: '65px 0px 65px 0px'}}>
           <HelpPage />
         </div>
         <MyFooter />
