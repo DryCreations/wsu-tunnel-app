@@ -2,7 +2,7 @@ import React from "react";
 
 function HelpPage() {
   return (
-    <div >
+    <div style={{overflow: 'auto', padding: '65px 0px 65px 0px'}}>
       <div id="What to Do">
         <h1 id="What to Do">What to Do</h1>
       </div>
