@@ -2,10 +2,8 @@ import React from "react";
 
 function HelpPage() {
   return (
-    <div style={{overflow: 'auto', padding: '65px 0px 65px 0px'}}>
-      <div id="What to Do">
-        <h1 id="What to Do">What to Do</h1>
-      </div>
+    <div>
+      <h1>What to Do</h1>
       <ol>
         <li>
           Select a route
@@ -50,6 +48,115 @@ function HelpPage() {
           </ol>
         </li>
       </ol>
+      <p>
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      blabla blablablablablablablablablabla pblabla blabla blabla
+      </p>
     </div>
   );
 }
