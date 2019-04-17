@@ -1,7 +1,25 @@
 {
     "Allyn Hall" : {
         "Abbreviation" : "AL",
-        "The Hangar" : 195
+        "Rooms" : {
+            "The Hangar" : 195,
+            "Educational Resource Center" : 116,
+            "WSU Police Communications Center" : "060",
+            "Facilities Management & Services" : 129,
+            "Veteran & Military Center" : 131,
+            "FMS - Customer Care Center & Parking Services" : "065",
+            "FMS - Custodial Services" : "077",
+            "LEAP Intensive English Program" : 106,
+            "Service - Learning and Civic Engagement" : 106,
+            "Human Services - CEHS" : 108,
+            "Organizational Development and Learning" : 131,
+            "Department of Teacher Education" : 310,
+            "Academic Advising" : 378,
+            "College of Education and & Human Services" : 415,
+            "Department of Leadership Studies in Education and Organizations" : 490,
+            "Division of Professional Development" : 415,
+            "ESPM" : "031"
+        }
     },
 
     "Biological Sciences I" : {
@@ -15,7 +33,15 @@
     },
 
     "Brehm Lab" : {
-        "Abbreviation" : "BL"
+        "Abbreviation" : "BL",
+        "Rooms" : {
+            "Mercury Clean Lab" : 279,
+            "Trace Metal Biogeochemistry" : 271,
+            "Environmental Geochemistry" : 270,
+            "Department of Earth & Environmental Sciences" : 260,
+            "Biogeochemistry Lab" : 261,
+            ""
+        }
 
     },
 
@@ -40,7 +66,32 @@
     },
 
     "Fawcett Hall" : {
-        "Abbreviation" : "FH"
+        "Abbreviation" : "FH",
+        "Rooms" : {
+            "Nanoscience & Nanotechnology Lab" : "011",
+            "Atomic & Molecular Spectroscopy Lab" : "007",
+            "Physics Help Room" : 201,
+            "Optics Lab" : 223,
+            "Physics Department" : 248,
+            "Psychology 1010 Laboratory" : 366,
+            "Psychology Success Center" : 342,
+            "Department of Psychology" : 335,
+            "Department of Military Science" : 328,
+            "Signal Detection Lab" : 401,
+            "Mathematical Modeling of Human Performance Lab" : 400,
+            "ASTECCA Lab" : 407,
+            "Eye Movement & Motion Psychophysics" : 406,
+            "Cognition Lab" : 423,
+            "Human-Centered Science Lab" : 420,
+            "Engineering Psychology Lab" : 422,
+            "Social/Health Psychophysiology Lab" : 426,
+            "Cognitive Systems Engineering Lab" : 427,
+            "Organizational & Personnel Psychology Labs" : 433,
+            "Workplace Personality Project Lab" : 436,
+            "Social Cognitive & Sociotechnical Behavior Modeling Lab" : 438,
+            "Human Neuroscience & Visual Cognition Lab" : 437,
+            "Motivation & Training Lab" : 442
+        }
 
     },
 
@@ -55,7 +106,11 @@
     },
 
     "Math And Microbiology" : {
-        "Abbreviation" : "MM"
+        "Abbreviation" : "MM",
+        "Rooms" : {
+            "IASM Commons" : 260,
+            "WrightMath" : 240
+        }
 
     },
 
@@ -65,7 +120,49 @@
     },
 
     "Millett Hall" : {
-        "Abbreviation" : "MH"
+        "Abbreviation" : "MH",
+        "Rooms" : {
+            "Mail Center" : "014",
+            "Model UN Team" : "016",
+            "Anthropology Lab" : "065",
+            "College of Liberal Arts - Dean's Office" : 163,
+            "College of Liberal Arts - Advising" : 120,
+            "College of Liberal Arts - Workforce Development (CLASS)" : 139,
+            "Latinx, Asian, and Native American Affairs" : 154,
+            "Bolinga Black Cultural Resources Center" : 140,
+            "Women's Center" : 148,
+            "Air Force ROTC" : 118,
+            "Department of Modern Languages" : 225,
+            "Department of Social Work" : 270,
+            "Department of Sociology & Anthropology" : 270,
+            "African and African American Studies" : 270,
+            "Crime and Justice Studies Program" : 270,
+            "Women, Gender, & Sexuality Studies" : 270,
+            "Applied Behavioral Sciences Program" : 270,
+            "Honors Program" : 243,
+            "Applied Policy Research Institute" : 325,
+            "School of Public and International Affairs" : 325,
+            "Department of Geography" : 325,
+            "Department of International & Comparative Politics M.A." : 325,
+            "Department of International Studies" : 325,
+            "Master of Public Administration Program" : 325,
+            "Department of Political Science" : 325,
+            "Department of Urban Affairs" : 325,
+            "Department of History" : 370,
+            "Social Science Education" : 370,
+            "Department of Religion" : 370,
+            "Department of Philosophy" : 370,
+            "Department of Classics" : 370,
+            "Liberal Studies Program" : 370,
+            "CoLA Research Lab" : 393,
+            "Master of Humanities Program" : 370,
+            "Department of Communication" : 425,
+            "Department of English" : 470,
+            "Multicultural Lounge" : 161,
+            "GIS/CAD Lab" : 295,
+            "Survey Lab" : 233,
+            "Desktop/Web Publishing Lab" : 403
+        }
 
     },
 
@@ -75,7 +172,23 @@
     },
 
     "Oelman Hall" : {
-        "Abbreviation" : "OH"
+        "Abbreviation" : "OH",
+        "Rooms" : {
+            "NMR Lab" : "031",
+            "X-ray Diffraction Lab" : "029",
+            "Lactation Room" : 110,
+            "Student Services" : 106,
+            "College of Science and Mathematics" : 106,
+            "Department of Chemistry" : 202,
+            "Earth and Environmental Science" : 227,
+            "College of Science and Mathematics - Dean's Office" : 134,
+            "MIMS Lab" : 237,
+            "Molecular Lab" : 233,
+            "Computational Chemistry" : 219,
+            "Environmental Chemistry" : 216,
+            "Nano-biotechnology/Cell Culture Room" : 214,
+            "Environmental Surface Chemistry" : 201
+        }
 
     },
 
@@ -89,8 +202,11 @@
     },
 
     "Russ Engineering Center" : {
-        "Abbreviation" : "RC"
-
+        "Abbreviation" : "RC",
+        "Rooms" : {
+            "Fishbowl" : 158,
+            "Computer labs" : 152
+        }
     },
 
     "Student Success Center" : {
