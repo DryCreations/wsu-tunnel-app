@@ -196,8 +196,16 @@
         "Abbreviation" : "RK",
         "Rooms" : {
             "Rey Rey Cafe" : 140,
-            "DAVE": 299,
-            "Trading and Stock Room": 167
+            "Economics Lab": 299,
+            "Soin Trading Center": 167,
+            "Department of Accountacy" : 298,
+            "Department of Finance & Financial Services" : 296,
+            "Department of Economics" : 290,
+            "Department of Marketing" : 254,
+            "Department of Information Systems & Supply Chain Management" : 251,
+            "Department of Management and International Business" : 250,
+            "Accounting Lab" : 249,
+            "Raj Soin College of Business" : 100
         }
     },
 
@@ -210,7 +218,21 @@
     },
 
     "Student Success Center" : {
-        "Abbreviation" : "SC"
+        "Abbreviation" : "SC",
+        "Rooms" : {
+            "Huddle Room" : "020",
+            "John & Shirley Berry Auditorium" : "009",
+            "Academic Advising" : 101,
+            "Career Services" : 101,
+            "Foundation Studies" : 101,
+            "Academic Success Centers" : 122,
+            "Tutoring Services" : 122,
+            "Supplemental Instruction" : 122,
+            "Math Learning Center" : 122,
+            "University Writing Center" : 122,
+            "Student Athlete Resource Center" : 220,
+            "Math Studio" : 222
+        }
 
     },
 
@@ -225,7 +247,40 @@
     },
 
     "University Hall" : {
-        "Abbreviation" : "UH"
+        "Abbreviation" : "UH",
+        "Rooms" : {
+            "Nursing Student Lounge" : "089",
+            "No Talking Lab" : "003",
+            "Interfaith Meditation Room" : "079",
+            "Nursing Computer Lab" : "009",
+            "Nursing Learning Resource Center Lab #1" : "015",
+            "Nursing Learning Resource Center Lab #2" : "025",
+            "Nursing Learning Resource Center Lab #3" : "031",
+            "College of Nursing & Health" : 101,
+            "Nursing Meeting Room" : 158,
+            "Office of Disability Services" : 180,
+            "Office of Communications" : 201,
+            "Office of Marketing" : 201,
+            "Office of Institutional Research & Analytics" : 201,
+            "Office of the President" : 250,
+            "Office of the Provost" : 250,
+            "Office of Public Affairs" : 250,
+            "Office of General Counsel" : 250,
+            "Office of Equity and Inclusion" : 280,
+            "Office of the Controller" : 301,
+            "Office of Accounts Payable" : 301,
+            "Office of General Accounting" : 301,
+            "Office of Payroll" : 301,
+            "Office of Procurement and Contract Services" : 301,
+            "Procurement Card Services" : 301,
+            "Office of Risk Management" : 301,
+            "University Fiscal Services" : 301,
+            "Office of the Vice President for Student Affairs" : 350,
+            "Office of the Vice President for Research" : 350,
+            "Office of Research and Sponsored Programs" : 350,
+            "Office of Research Compliance" : 350,
+            "Office of Technology Transfer" : 350
+        }
 
     }
 }
