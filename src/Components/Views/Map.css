@@ -180,13 +180,14 @@ circle {
 }
 
 #Directions {
-  position: absolute;
+  position: fixed;
   left: 0px;
   top: 55px;
   padding:2px;
   width:100%;
   background: white;
   font-size: 20px;
+  z-index: 1;
 }
 
 #Compass {
@@ -259,4 +260,12 @@ circle {
 
 * {
   overflow: hidden;
+}
+
+#Help {
+  overflow:scroll;
+}
+
+#Help > * {
+  overflow: auto;
 }
