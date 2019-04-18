@@ -48,6 +48,7 @@ class SelectTo extends React.Component {
               <option value=".universityHall">University Hall</option>
 
             </select>
+            <br/>
             <input ref={this.props.selectToRoomRef} type='text' id='toRoom' placeholder='room number' list='roomData'/>
             <datalist id='roomData'/>
         </div>

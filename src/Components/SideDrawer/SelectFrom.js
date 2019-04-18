@@ -47,7 +47,7 @@ class SelectFrom extends React.Component {
               <option value=".studentUnion">Student Union</option>
               <option value=".universityHall">University Hall</option>
             </select>
-            <input ref={this.props.selectFromRoomRef} type='text' id='fromRoom'/>
+            
           </div>
       )
     }
