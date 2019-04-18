@@ -437,7 +437,7 @@ class Map extends Component {
     var scale = this.defaultViewBoxArgs[2] / map.getBoundingClientRect().width;
     let group = document.getElementById("UserTransform");
     let lastMatrix = this.getUserMatrix();
-    if (event.touches.length > 1) {
+    if (event.touches.length > 1 && this.o2) {
       let o1 = {
         x: this.o1.x * scale + this.defaultViewBoxArgs[0],
         y: this.o1.y * scale + this.defaultViewBoxArgs[1]
