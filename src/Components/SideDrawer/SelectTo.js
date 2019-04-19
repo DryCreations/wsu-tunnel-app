@@ -22,32 +22,16 @@ import BuildingRooms from '../../building-roomKeys.json';
 
 class SelectTo extends React.Component {
   render() {
+    var options = [];
+    options.push(<option key="to None Selected" value={""}>{"[None Selected]"}</option>)
+    for(let b in BuildingRooms) {
+        options.push(<option key={"to" + b} value={BuildingRooms[b]["Class"]}>{b}</option>);
+    }
     return(
         <div id="select-to">
             <p>Select destination:</p>
             <select ref={this.props.selectToRef} onChange={(e) => {this.updateDataList(e.target.options[e.target.selectedIndex].innerHTML);this.props.selectEnd(e.target.value);}}>
-              <option value="">[None Selected]</option>
-              <option value=".allynHall">Allyn Hall</option>
-              <option value=".biologicalSciencesI">Biological Sciences I</option>
-              <option value=".biologicalSciencesII">Biological Sciences II</option>
-              <option value=".brehmLaboratory">Brehm Lab</option>
-              <option value=".creativeArtsCenter">Creative Arts Center</option>
-              <option value=".diggsLaboratory">Diggs Lab</option>
-              <option value=".dunbarLibrary">Dunbar Library</option>
-              <option value=".fawcettHall">Fawcett Hall</option>
-              <option value=".joshiCenter">Joshi Center</option>
-              <option value=".libraryAnnex">Library Annex</option>
-              <option value=".mathAndMicrobiology">Math And Microbiology</option>
-              <option value=".millettHall">Millett Hall</option>
-              <option value=".medicalSciences">Medical Sciences</option>
-              <option value=".motionPictures">Motion Pictures</option>
-              <option value=".oelmanHall">Oelman Hall</option>
-              <option value=".rikeHall">Rike Hall</option>
-              <option value=".russEngineering">Russ Engineering Center</option>
-              <option value=".studentSuccessCenter">Student Success Center</option>
-              <option value=".studentUnion">Student Union</option>
-              <option value=".universityHall">University Hall</option>
-
+              {options}
             </select>
             <br/>
             <input ref={this.props.selectToRoomRef} type='text' id='toRoom' placeholder='room number' list='roomData'/>

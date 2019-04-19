@@ -146,7 +146,7 @@ class Map extends Component {
 
           <img id="Compass" src="north.png" alt="compass" />
         </div>
-        <div id="Help" style={{display: this.state.displayHelp, position:'fixed', height: '100vh'}}>
+        <div id="Help" style={{display: this.state.displayHelp}}>
           <HelpPage />
         </div>
         <MyFooter />
@@ -776,6 +776,8 @@ class Map extends Component {
       this.selectToRef.current.value = '';
     }
 
+    this.selectToObjectRef.current.updateDataList(this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML);
+
     if (this.selected[0] && this.selected[1]) {
       this.setState({
         direction: "Press the navigate button to generate a path"
@@ -1031,10 +1033,8 @@ class Map extends Component {
 
   //highlights svg element with this id call with id i.e. 'N1' or 'E2'
   highlightByID(id) {
-    document
-      .getElementById("Map")
-      .getElementById(id)
-      .classList.add("highlight");
+    let elem = document.getElementById("Map").getElementById(id);
+    if(elem !== null) elem.classList.add("highlight");
   }
 
   //highlight a specific node call with numerical id i.e. '1'
@@ -1322,13 +1322,11 @@ class Map extends Component {
   //move map to next step in path
   nextStep() {
     if (this.pathNodes != null && this.currNodes < this.pathNodes.length - 1) {
-      document
-        .getElementById("N" + this.pathNodes[this.currNodes])
-        .classList.add("traversed");
+      let node = document.getElementById("N" + this.pathNodes[this.currNodes]);
+      if(node !== null) node.classList.add("traversed");
       if (this.currNodes > 0) {
-        document
-          .getElementById("E" + this.pathEdges[this.currNodes - 1])
-          .classList.add("traversed");
+        let edge = document.getElementById("E" + this.pathEdges[this.currNodes - 1]);
+        if(edge !== null) edge.classList.add("traversed");
       }
       this.transform(
         this.pathNodes[this.currNodes],
@@ -1698,7 +1696,18 @@ class Map extends Component {
     if (b==='') {
       this.selectElement(this.selected[0])
     } else {
-      this.selectStartPoint(this.getBuildingGroup(b)[0]);
+      let g = this.getBuildingGroup(b);
+      if (g.length > 0) {
+        this.selectStartPoint(g[0]);
+      } else {
+
+        if(this.selected[0]) {
+          this.selectElement(this.selected[0]);
+        }
+        this.setState({
+          direction: "There is no direct access to that building from the tunnels"
+        });
+      }
     }
   }
 
@@ -1706,7 +1715,19 @@ class Map extends Component {
     if (b==='') {
       this.selectElement(this.selected[1])
     } else {
-      this.selectEndPoint(this.getBuildingGroup(b)[0]);
+      let g = this.getBuildingGroup(b);
+      if (g.length > 0) {
+        this.selectEndPoint(g[0]);
+      } else {
+
+        if (this.selected[1]) {
+          this.selectElement(this.selected[1]);
+        }
+        this.setState({
+          direction: "There is no direct access to that building from the tunnels"
+        });
+      }
+
     }
   }
 }
