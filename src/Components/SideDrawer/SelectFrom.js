@@ -44,6 +44,7 @@ class SelectFrom extends React.Component {
               <option value=".oelmanHall">Oelman Hall</option>
               <option value=".rikeHall">Rike Hall</option>
               <option value=".russEngineering">Russ Engineering Center</option>
+              <option value=".studentSuccessCenter">Student Success Center</option>
               <option value=".studentUnion">Student Union</option>
               <option value=".universityHall">University Hall</option>
             </select>
