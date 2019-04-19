@@ -180,3 +180,5 @@ Testing of the pathfinding is done by running `npm test` command in the server d
 #### Additional Contributors
 
 - Wright State University and the Wright State University Marketing Department
+- David Kendrick
+- Thank you to all who tested TunnelRaider for us!
