@@ -1,6 +1,7 @@
 {
     "Allyn Hall" : {
         "Abbreviation" : "AL",
+        "Class" : ".allynHall",
         "Rooms" : {
             "The Hangar" : 195,
             "Educational Resource Center" : 116,
@@ -23,17 +24,20 @@
     },
 
     "Biological Sciences I" : {
-        "Abbreviation" : "BS"
+        "Abbreviation" : "BS",
+        "Class" : ".biologicalSciencesI"
 
     },
 
     "Biological Sciences II" : {
-        "Abbreviation" : "BS"
+        "Abbreviation" : "BS",
+        "Class" : ".biologicalSciencesII"
 
     },
 
     "Brehm Lab" : {
         "Abbreviation" : "BL",
+        "Class" : ".brehmLaboratory",
         "Rooms" : {
             "Mercury Clean Lab" : 279,
             "Trace Metal Biogeochemistry" : 271,
@@ -45,27 +49,32 @@
     },
 
     "Creative Arts Center" : {
-        "Abbreviation" : "CA"
+        "Abbreviation" : "CA",
+        "Class" : ".creativeArtsCenter"
 
     },
 
     "Diggs Lab" : {
-        "Abbreviation" : "DG"
+        "Abbreviation" : "DG",
+        "Class" : ".diggsLaboratory"
 
     },
 
     "Dunbar Library" : {
-        "Abbreviation" : "DL"
+        "Abbreviation" : "DL",
+        "Class" : ".dunbarLibrary"
 
     },
 
     "Library Annex" : {
-        "Abbreviation" : "LX"
+        "Abbreviation" : "LX",
+        "Class" : ".libraryAnnex"
 
     },
 
     "Fawcett Hall" : {
         "Abbreviation" : "FH",
+        "Class" : ".fawcettHall",
         "Rooms" : {
             "Nanoscience & Nanotechnology Lab" : "011",
             "Atomic & Molecular Spectroscopy Lab" : "007",
@@ -95,17 +104,20 @@
     },
 
     "Health Sciences" : {
-        "Abbreviation" : "HS"
+        "Abbreviation" : "HS",
+        "Class" : ".healthSciences"
 
     },
 
     "Joshi Center" : {
-        "Abbreviation" : "JC"
+        "Abbreviation" : "JC",
+        "Class" : ".joshiCenter"
 
     },
 
     "Math And Microbiology" : {
         "Abbreviation" : "MM",
+        "Class" : ".mathAndMicrobiology",
         "Rooms" : {
             "IASM Commons" : 260,
             "WrightMath" : 240
@@ -114,12 +126,14 @@
     },
 
     "Medical Sciences" : {
-        "Abbreviation" : "MS"
+        "Abbreviation" : "MS",
+        "Class" : ".medicalSciences"
 
     },
 
     "Millett Hall" : {
         "Abbreviation" : "MH",
+        "Class" : ".millettHall",
         "Rooms" : {
             "Mail Center" : "014",
             "Model UN Team" : "016",
@@ -166,12 +180,15 @@
     },
 
     "Neuroscience Engineering Collaboration" : {
-        "Abbreviation" : "NE"
+        "Abbreviation" : "NE",
+        "Class": ".neuroscienceEngineeringCollaboration"
+
 
     },
 
     "Oelman Hall" : {
         "Abbreviation" : "OH",
+        "Class" : ".oelmanHall",
         "Rooms" : {
             "NMR Lab" : "031",
             "X-ray Diffraction Lab" : "029",
@@ -193,6 +210,7 @@
 
     "Rike Hall" : {
         "Abbreviation" : "RK",
+        "Class" : ".rikeHall",
         "Rooms" : {
             "Rey Rey Cafe" : 140,
             "Economics Lab": 299,
@@ -210,6 +228,7 @@
 
     "Russ Engineering Center" : {
         "Abbreviation" : "RC",
+        "Class" : ".russEngineering",
         "Rooms" : {
             "Materials Processing Lab" : 110,
             "Materials Testing Lab" : 114,
@@ -274,6 +293,7 @@
 
     "Student Success Center" : {
         "Abbreviation" : "SC",
+        "Class" : ".studentSuccessCenter",
         "Rooms" : {
             "Huddle Room" : "020",
             "John & Shirley Berry Auditorium" : "009",
@@ -292,17 +312,20 @@
     },
 
     "Student Union" : {
-        "Abbreviation" : "SU"
+        "Abbreviation" : "SU",
+        "Class" : ".studentUnion"
 
     },
 
     "Motion Pictures" : {
-        "Abbreviation" : "TH"
+        "Abbreviation" : "TH",
+        "Class" : ".motionPictures"
 
     },
 
     "University Hall" : {
         "Abbreviation" : "UH",
+        "Class" : ".universityHall",
         "Rooms" : {
             "Nursing Student Lounge" : "089",
             "No Talking Lab" : "003",
