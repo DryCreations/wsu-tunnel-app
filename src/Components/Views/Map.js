@@ -30,7 +30,6 @@ class Map extends Component {
     this.selectFromRef = React.createRef();
     this.selectToRef = React.createRef();
     this.selectToRoomRef = React.createRef();
-    this.selectFromRoomRef = React.createRef();
 
     this.selectToObjectRef = React.createRef();
 
@@ -115,7 +114,6 @@ class Map extends Component {
           selectToRef={this.selectToRef}
           selectToRoomRef={this.selectToRoomRef}
           selectFromRef={this.selectFromRef}
-          selectFromRoomRef={this.selectFromRoomRef}
           selectToObjectRef={this.selectToObjectRef}
           navigateFunction={() => {this.getPath(this.getStartPointID(), this.getEndPointID());
             this.setState({sideDrawerOpen: false});
@@ -777,7 +775,6 @@ class Map extends Component {
     } else {
       this.selectToRef.current.value = '';
     }
-    this.selectToObjectRef.current.updateDataList(this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML);
 
     if (this.selected[0] && this.selected[1]) {
       this.setState({
@@ -1135,7 +1132,6 @@ class Map extends Component {
     this.selectToRef.current.value = '';
     this.selectFromRef.current.value = '';
     this.selectToRoomRef.current.value = '';
-    this.selectFromRoomRef.current.value = '';
   }
 
   //make user element visible
