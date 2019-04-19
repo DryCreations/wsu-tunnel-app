@@ -94,11 +94,6 @@
 
     },
 
-    "Health Sciences" : {
-        "Abbreviation" : "HS"
-
-    },
-
     "Joshi Center" : {
         "Abbreviation" : "JC"
 
@@ -162,11 +157,6 @@
             "Survey Lab" : 233,
             "Desktop/Web Publishing Lab" : 403
         }
-
-    },
-
-    "Neuroscience Engineering Collaboration" : {
-        "Abbreviation" : "NE"
 
     },
 
