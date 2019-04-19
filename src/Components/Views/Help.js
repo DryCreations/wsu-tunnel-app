@@ -12,39 +12,43 @@ function HelpPage() {
               Navigate by Touch
               <ol>
                 <li>
-                  Select an tunnel intersection (green circle) that will
-                  represent your start location by tapping it.
+                  Select a tunnel intersection (dark green circle) that will
+                  represent your starting location by tapping it.
                 </li>
                 <li>
-                  Select the tunnel intersection that you believe you wish to
+                  Select the tunnel intersection you wish to
                   navigate to by tapping it.
                 </li>
-                <li>Press the go button.</li>
+                <li>Press the Go button.</li>
               </ol>
             </li>
             <li>
               Navigate using sidebar
               <ol>
                 <li>Select a starting building from the dropdown.</li>
-                <li>From the nested menu enter your room number or name.</li>
-                <li>Repeat steps 1 and 2 for the destination.</li>
-                <li>Hide sidebar and select the navigate button.</li>
+                <li>Select a destination building and optionally, a room number or specific area.</li>
+                <li>Press the Go button from the sidebar or from the map.</li>
               </ol>
             </li>
+            Set your preferences
+            <ol>
+                <li>Toggle the first switch to the ON position to prevent using stairs.</li>
+                <li>Toggle the second switch to the ON position to use a dark theme.</li>
+            </ol>
           </ul>
         </li>
         <li>
           Turn by Turn Navigation
           <ol>
             <li>
-              After a path has been found by the app, press the next button.
-              (You will begin at start node).
+              After a path has been found by the app, press the Next button.
+              (You will begin at the starting location you selected).
             </li>
             <li>
-              Press next as many times as needed until you reach your
+              Press Next as many times as needed until you reach your
               destination.
             </li>
-            <li>Use the previous button if you lose track of your route.</li>
+            <li>Use the Previous button if you lose track of your route.</li>
           </ol>
         </li>
       </ol>
