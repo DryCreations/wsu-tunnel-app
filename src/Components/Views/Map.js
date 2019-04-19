@@ -1033,10 +1033,8 @@ class Map extends Component {
 
   //highlights svg element with this id call with id i.e. 'N1' or 'E2'
   highlightByID(id) {
-    document
-      .getElementById("Map")
-      .getElementById(id)
-      .classList.add("highlight");
+    let elem = document.getElementById("Map").getElementById(id);
+    if(elem !== null) elem.classList.add("highlight");
   }
 
   //highlight a specific node call with numerical id i.e. '1'
