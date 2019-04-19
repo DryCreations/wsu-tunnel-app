@@ -66,12 +66,6 @@
 
     },
 
-    "Library Annex" : {
-        "Abbreviation" : "LX",
-        "Class" : ".libraryAnnex"
-
-    },
-
     "Fawcett Hall" : {
         "Abbreviation" : "FH",
         "Class" : ".fawcettHall",
@@ -111,6 +105,12 @@
     "Joshi Center" : {
         "Abbreviation" : "JC",
         "Class" : ".joshiCenter"
+
+    },
+
+    "Library Annex" : {
+        "Abbreviation" : "LX",
+        "Class" : ".libraryAnnex"
 
     },
 
@@ -175,6 +175,12 @@
             "Survey Lab" : 233,
             "Desktop/Web Publishing Lab" : 403
         }
+
+    },
+
+    "Motion Pictures" : {
+        "Abbreviation" : "TH",
+        "Class" : ".motionPictures"
 
     },
 
@@ -306,12 +312,6 @@
     "Student Union" : {
         "Abbreviation" : "SU",
         "Class" : ".studentUnion"
-
-    },
-
-    "Motion Pictures" : {
-        "Abbreviation" : "TH",
-        "Class" : ".motionPictures"
 
     },
 
