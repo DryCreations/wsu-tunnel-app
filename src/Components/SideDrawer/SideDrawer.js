@@ -22,7 +22,7 @@ const sideDrawer = props => {
 
         <ul>
           <li>
-            <SelectFrom selectFromRef={props.selectFromRef} selectFromRoomRef={props.selectFromRoomRef} selectStart={props.selectStart} />
+            <SelectFrom selectFromRef={props.selectFromRef} selectStart={props.selectStart} />
             <SelectTo ref={props.selectToObjectRef} selectToRef={props.selectToRef} selectToRoomRef={props.selectToRoomRef} selectEnd={props.selectEnd}/>
             <button style={{position: "relative", left: "20%", marginTop: "20px", height: "30px", width: "60px"}} onClick={props.navigateFunction}>Go</button>
           </li>
