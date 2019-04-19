@@ -30,7 +30,6 @@ class Map extends Component {
     this.selectFromRef = React.createRef();
     this.selectToRef = React.createRef();
     this.selectToRoomRef = React.createRef();
-    this.selectFromRoomRef = React.createRef();
 
     this.selectToObjectRef = React.createRef();
 
@@ -115,13 +114,12 @@ class Map extends Component {
           selectToRef={this.selectToRef}
           selectToRoomRef={this.selectToRoomRef}
           selectFromRef={this.selectFromRef}
-          selectFromRoomRef={this.selectFromRoomRef}
           selectToObjectRef={this.selectToObjectRef}
           navigateFunction={() => {this.getPath(this.getStartPointID(), this.getEndPointID());
             this.setState({sideDrawerOpen: false});
             }
           }
-          
+
         />
         {backdrop}
         <div id="MapContainer" style={{display: this.state.displayMap}}>
@@ -131,7 +129,7 @@ class Map extends Component {
 
 
           <button id="NavigateButton"
-            onClick={() => 
+            onClick={() =>
               this.getPath(this.getStartPointID(), this.getEndPointID())
             }
           >
@@ -148,7 +146,7 @@ class Map extends Component {
 
           <img id="Compass" src="north.png" alt="compass" />
         </div>
-        <div style={{display: this.state.displayHelp, overflow: 'auto', height: '100vh', padding: '65px 0px 65px 0px'}}>
+        <div id="Help" style={{display: this.state.displayHelp}}>
           <HelpPage />
         </div>
         <MyFooter />
@@ -437,7 +435,7 @@ class Map extends Component {
     var scale = this.defaultViewBoxArgs[2] / map.getBoundingClientRect().width;
     let group = document.getElementById("UserTransform");
     let lastMatrix = this.getUserMatrix();
-    if (event.touches.length > 1) {
+    if (event.touches.length > 1 && this.o2) {
       let o1 = {
         x: this.o1.x * scale + this.defaultViewBoxArgs[0],
         y: this.o1.y * scale + this.defaultViewBoxArgs[1]
@@ -777,7 +775,6 @@ class Map extends Component {
     } else {
       this.selectToRef.current.value = '';
     }
-    this.selectToObjectRef.current.updateDataList(this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML);
 
     if (this.selected[0] && this.selected[1]) {
       this.setState({
@@ -1135,7 +1132,6 @@ class Map extends Component {
     this.selectToRef.current.value = '';
     this.selectFromRef.current.value = '';
     this.selectToRoomRef.current.value = '';
-    this.selectFromRoomRef.current.value = '';
   }
 
   //make user element visible

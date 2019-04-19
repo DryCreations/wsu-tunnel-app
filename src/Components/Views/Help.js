@@ -2,7 +2,7 @@ import React from "react";
 
 function HelpPage() {
   return (
-    <div>
+    <div style={{padding: '65px 0px 200px 0px'}}>
       <h1>What to Do</h1>
       <ol>
         <li>
