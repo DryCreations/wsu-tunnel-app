@@ -776,6 +776,8 @@ class Map extends Component {
       this.selectToRef.current.value = '';
     }
 
+    this.selectToObjectRef.current.updateDataList(this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML);
+
     if (this.selected[0] && this.selected[1]) {
       this.setState({
         direction: "Press the navigate button to generate a path"
