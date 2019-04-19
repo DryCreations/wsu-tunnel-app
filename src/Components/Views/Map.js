@@ -775,7 +775,6 @@ class Map extends Component {
     } else {
       this.selectToRef.current.value = '';
     }
-    this.selectToObjectRef.current.updateDataList(this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML);
 
     if (this.selected[0] && this.selected[1]) {
       this.setState({
