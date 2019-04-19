@@ -146,7 +146,7 @@ class Map extends Component {
 
           <img id="Compass" src="north.png" alt="compass" />
         </div>
-        <div id="Help" style={{display: this.state.displayHelp, position:'fixed', height: '100vh'}}>
+        <div id="Help" style={{display: this.state.displayHelp}}>
           <HelpPage />
         </div>
         <MyFooter />
