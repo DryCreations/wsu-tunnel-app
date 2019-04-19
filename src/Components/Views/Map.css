@@ -264,8 +264,8 @@ circle {
 
 #Help {
   overflow: scroll;
-  position:'fixed';
-  height: '100vh';
+  position: fixed;
+  height: 100vh;
 }
 
 #Help > * {
