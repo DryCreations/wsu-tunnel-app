@@ -776,6 +776,8 @@ class Map extends Component {
       this.selectToRef.current.value = '';
     }
 
+    this.selectToObjectRef.current.updateDataList(this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML);
+
     if (this.selected[0] && this.selected[1]) {
       this.setState({
         direction: "Press the navigate button to generate a path"
@@ -1698,7 +1700,18 @@ class Map extends Component {
     if (b==='') {
       this.selectElement(this.selected[0])
     } else {
-      this.selectStartPoint(this.getBuildingGroup(b)[0]);
+      let g = this.getBuildingGroup(b);
+      if (g.length > 0) {
+        this.selectStartPoint(g[0]);
+      } else {
+
+        if(this.selected[0]) {
+          this.selectElement(this.selected[0]);
+        }
+        this.setState({
+          direction: "There is no direct access to that building from the tunnels"
+        });
+      }
     }
   }
 
@@ -1706,7 +1719,19 @@ class Map extends Component {
     if (b==='') {
       this.selectElement(this.selected[1])
     } else {
-      this.selectEndPoint(this.getBuildingGroup(b)[0]);
+      let g = this.getBuildingGroup(b);
+      if (g.length > 0) {
+        this.selectEndPoint(g[0]);
+      } else {
+
+        if (this.selected[1]) {
+          this.selectElement(this.selected[1]);
+        }
+        this.setState({
+          direction: "There is no direct access to that building from the tunnels"
+        });
+      }
+
     }
   }
 }
