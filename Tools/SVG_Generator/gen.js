@@ -158,16 +158,16 @@ $("form").submit(function(e1) {
         path.setAttribute(
           "d",
           "M " +
-            map(data[data2[i][1]][2], longMin, longMax, 0, svgXMax) +
+            map(data[parseInt(data2[i][1]) + 1][2], longMin, longMax, 0, svgXMax) +
             " " +
-            map(data[data2[i][1]][1], latMax, latMin, 0, svgYMax) +
+            map(data[parseInt(data2[i][1]) + 1][1], latMax, latMin, 0, svgYMax) +
             " " +
-            map(data[data2[i][2]][2], longMin, longMax, 0, svgXMax) +
+            map(data[parseInt(data2[i][2]) + 1][2], longMin, longMax, 0, svgXMax) +
             " " +
-            map(data[data2[i][2]][1], latMax, latMin, 0, svgYMax)
+            map(data[parseInt(data2[i][2]) + 1][1], latMax, latMin, 0, svgYMax)
         );
 
-        switch (data[data2[i][1]][8]) {
+        switch (data[parseInt(data2[i][1]) + 1][8]) {
           case "0":
             path.classList.add("intersection");
             break;
@@ -182,7 +182,7 @@ $("form").submit(function(e1) {
             break;
         }
 
-        switch (data[data2[i][1]][5]) {
+        switch (data[parseInt(data2[i][1]) + 1][5]) {
           case "0":
             path.classList.add("noBuilding");
             break;
@@ -247,7 +247,7 @@ $("form").submit(function(e1) {
             path.classList.add("universityHall");
             break;
         }
-        switch (data[data2[i][2]][8]) {
+        switch (data[parseInt(data2[i][2]) + 1][8]) {
           case "0":
             path.classList.add("intersection");
             break;
@@ -262,7 +262,7 @@ $("form").submit(function(e1) {
             break;
         }
 
-        switch (data[data2[i][2]][5]) {
+        switch (data[parseInt(data2[i][2]) + 1][5]) {
           case "0":
             path.classList.add("noBuilding");
             break;
