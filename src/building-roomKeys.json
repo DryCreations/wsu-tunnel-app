@@ -26,13 +26,42 @@
 
     "Biological Sciences I" : {
         "Abbreviation" : "BS",
-        "Class" : ".biologicalSciencesI"
+        "Class" : ".biologicalSciencesI",
+        "Rooms" : {
+            "SM-1010" : "008",
+            "Peer Instructors" : "008",
+            "Adjunct Instructors" : "008",
+            "Lab Prep" : "008",
+            "Planarian Regeneration" : "014",
+            "Genetics & Evolution" : "028",
+            "Department of Biological Sciences" : 235,
+            "DNA Profiling" : 223,
+            "Science Education Research Lab" : 221,
+            "Clinical Laboratory Science" : 118,
+            "Clinical Laboratory Science" : 122
+        }
 
     },
 
     "Biological Sciences II" : {
         "Abbreviation" : "BS",
-        "Class" : ".biologicalSciencesII"
+        "Class" : ".biologicalSciencesII",
+        "Rooms" : {
+            "Cell & Tissue Biology" : "042",
+            "Department of Environmental Health & Safety" : "047",
+            "Bioinformatics" : "050",
+            "Exercise Biology Lab" : "055",
+            "Body Composition Lab" : "060",
+            "Comparative Physiology" : "061",
+            "Lactation Room" : "051",
+            "Department of Neuroscience" : 143,
+            "Department of Cell Biology" : 143,
+            "Department of Physiology" : 143,
+            "NCBP Conference Room" : 140,
+            "TRAVERS Lab" : 148,
+            "Pharmacology/Toxicology" : 148,
+            "Department of Biological Sciences" : 235
+        }
 
     },
 
@@ -51,19 +80,67 @@
 
     "Creative Arts Center" : {
         "Abbreviation" : "CA",
-        "Class" : ".creativeArtsCenter"
+        "Class" : ".creativeArtsCenter",
+        "Rooms" : {
+            "Printmaking Studio" : "023",
+            "Printmaking Studio" : "029",
+            "Photo Studio" : "021",
+            "Department of Music" : "088",
+            "Choral Rehearsal" : 180,
+            "Percussion Practce Suite" : 181,
+            "Percussion Studio" : 188,
+            "Schuster Hall" : 106,
+            "Art Studio" : 129,
+            "Art Studio" : 131,
+            "Department of Art" : 127,
+            "Recital Hall" : 102,
+            "Rehearsal/Classroom" : 104,
+            "KCC Office" : 173,
+            "Practice Rooms" : 175,
+            "Dance Cross Over" : "170D",
+            "Movement Combat Studio" : 178,
+            "Stein Galleries" : 160,
+            "Greenroom" : 105,
+            "Theater, Dance, and Motion Pictures Office" : 140,
+            "Festival Playhouse" : 103,
+            "Classroom/Directing Lab" : 145,
+            "Practice Rooms" : 210,
+            "Music Archive Studio" : 277,
+            "Piano Lab & Music Education" : 279,
+            "Practice Rooms" : 275,
+            "Gallery 263" : 263,
+            "CO Lab" : 201,
+            "Permanent Collection Gallery" : 260,
+            "COLAB 3" : 205
+        }
 
     },
 
     "Diggs Lab" : {
         "Abbreviation" : "DG",
-        "Class" : ".diggsLaboratory"
+        "Class" : ".diggsLaboratory",
+        "Rooms" : {
+            "Cold Room" : "005",
+            "Department of Biochemistry" : 162,
+            "Department of Molecular Biology" : 162
+        }
 
     },
 
     "Dunbar Library" : {
         "Abbreviation" : "DL",
-        "Class" : ".dunbarLibrary"
+        "Class" : ".dunbarLibrary",
+        "Rooms" : {
+            "New Media Incubator" : "015",
+            "Center for Technology and Learning" : "023",
+            "University Libraries Administrative Office" : 126,
+            "Media/Music STAC" : 210,
+            "Student Technology Assistance Center" : 240,
+            "Library Instruction Room" : 241,
+            "Library Instruction Room" : 242,
+            "Individual Quiet Study Rooms" : 328,
+            "Fordham Room" : 442
+        }
 
     },
 
@@ -99,19 +176,64 @@
     },
 
     "Health Sciences" : {
-        "Abbreviation" : "HS"
+        "Abbreviation" : "HS",
+        "Class" : ".healthSciences",
+        "Rooms" : {
+            "Office of Admissions" : 110,
+            "School of Professional Psychology" : 117,
+            "Department of Envionmental Health & Safety" : 104
+        }
 
     },
 
     "Joshi Center" : {
         "Abbreviation" : "JC",
-        "Class" : ".joshiCenter"
+        "Class" : ".joshiCenter",
+        "Rooms" : {
+            "Computational Nanomaterials Lab" : 181,
+            "Advanced Manufacturing Research Lab" : 180,
+            "Two-dimensional Nanomaterials Lab" : 183,
+            "fNIRS Lab" : 185,
+            "CECS International Collaborations & Student Programs" : 182,
+            "CECS Student Clubs" : 184,
+            "Device Development Center" : 187,
+            "Human-Centered Technology Group" : 189,
+            "Sensor Exploitation Lab" : 188,
+            "DISC Center" : 195,
+            "Engineering Math Help Room" : 197,
+            "EGR 1010 Help Room" : 299,
+            "Brandeberry Career Development Center" : 292,
+            "Student Success Center" : 280,
+            "R.C. Appenzeller Visualization Lab" : 278,
+            "Bioinformatics Research Group" : 390,
+            "Data Mining, Machine Learning, & Natural Language Processing" : 384,
+            "Semantic Web" : 380,
+            "Knowledge Engineering Lab" : 364,
+            "DIAC Lab" : 364,
+            "Systems Integration Lab" : 494,
+            "Systems Integration Lab" : 490,
+            "BMW-Net Lab" : 484,
+            "Wright Center for Sensor System Engineering WSU Site" : 484,
+            "Wright Center for Sensor System Engineering WSU Site" : 482,
+            "Medical Data Analysis & Multimedia Applications" : 472,
+            "Metadata and Languages Laboratory" : 476
+        }
 
     },
 
     "Library Annex" : {
         "Abbreviation" : "LX",
-        "Class" : ".libraryAnnex"
+        "Class" : ".libraryAnnex",
+        "Rooms" : {
+            "Computer Lab" : "026",
+            "CATS Help Desk" : "025",
+            "Windows PC Computer Lab" : "005",
+            "Adaptive Computer Lab" : "034",
+            "Computing and Telecommunications Services" : "040",
+            "Computing and Telecommunications Services" : "035",
+            "Content Acquisition & Management" : 120,
+            "Instruction & Research Services" : 120
+        }
 
     },
 
@@ -127,7 +249,23 @@
 
     "Medical Sciences" : {
         "Abbreviation" : "MS",
-        "Class" : ".medicalSciences"
+        "Class" : ".medicalSciences",
+        "Rooms" : {
+            "Boonshoft School of Medicine" : "009",
+            "MedIT" : "009",
+            "Amphitheatre" : "001A",
+            "Amphitheatre" : 120,
+            "AAUP-WSU" : 113,
+            "Employee Health & Wellness Center" : 111,
+            "Pediatrics & Internal Medicine" : 105,
+            "Early College Programs" : 208,
+            "Enrollment Management" : 210,
+            "Orientation" : "210A",
+            "Enrollment Processing" : 212,
+            "Office of Financial Aid Processing" : 216,
+            "Office of the Bursar" : 224,
+            "Office of the Registrar" : 248
+        }
 
     },
 
@@ -181,7 +319,14 @@
 
     "Motion Pictures" : {
         "Abbreviation" : "TH",
-        "Class" : ".motionPictures"
+        "Class" : ".motionPictures",
+        "Rooms" : {
+            "Makeup" : "007",
+            "Large Sound Stage" : "002",
+            "Digital Technology Lab" : 104,
+            "Begley Editing Suite" : 101,
+            "Faculty Office Suite" : 102
+        }
 
     },
 
@@ -312,7 +457,45 @@
 
     "Student Union" : {
         "Abbreviation" : "SU",
-        "Class" : ".studentUnion"
+        "Class" : ".studentUnion",
+        "Rooms" : {
+            "Raider Food Pantry" : "055",
+            "Student Health Services" : "051",
+            "Counseling and Wellness Services" : "053",
+            "Student Health Insurance" : "051D",
+            "Intramurals & Sports Clubs" : "039",
+            "Outdoor Resource Center" : "037",
+            "Gymnasium" : "034",
+            "Commuter Lounge" : "031A",
+            "Student Support Services & Survivor Advocacy & Health Promotion" : "022",
+            "Student Activities" : "019",
+            "Fraternity & Sorority Life" : "019",
+            "WWSU 106.9" : "018",
+            "LGBTQA Community Engagement Room" : "016",
+            "The Guardian" : "014",
+            "Rathskeller" : "008",
+            "Hospitality Services" : "006",
+            "Cyber Cafe" : 104,
+            "Sushi Do" : 101,
+            "Dixon Hearth Lounge" : 102,
+            "Cafeteria" : 111,
+            "Tim Hortons" : "139A",
+            "Pathfinder Lounge" : 108,
+            "LANA Student Lounge" : "108A",
+            "University Center for International Education" : 186,
+            "Bookstore" : 182,
+            "Natatorium" : 196,
+            "Wright Copy" : 181,
+            "Wright patt Credit Union" : 180,
+            "Admissions" : "141",
+            "Student Union Administration" : 210,
+            "Student Legal Services" : 224,
+            "Wright1 Card I.D. Center" : 238,
+            "CaTS" : 230,
+            "Community Standards & Student Conduct" : 201,
+            "Graduate School" : 344,
+            "Career Center" : 334,
+            ""
 
     },
 
