@@ -7,7 +7,6 @@ alt="This will eventually work" width="240" height="240" border="10" /></a>
 ### Video To Be Published
 ____
 - [Summary](https://github.com/RLey/wsu-tunnel-app/#Summary)
-- [Getting Started](https://github.com/RLey/wsu-tunnel-app/#Getting-Started)
 - [Prerequisites](https://github.com/RLey/wsu-tunnel-app/#Prerequisites)
 - [Features](https://github.com/RLey/wsu-tunnel-app/#Features)
 - [Built With](https://github.com/RLey/wsu-tunnel-app/#Built-With)
@@ -22,21 +21,18 @@ ____
 
 ____
 ### Summary
-Eventually this field will contain a short summary of our project, it's goals, and the results.
-____
-### Getting Started
-This field will hold information on implementing our product, or at least running it for testing.
+
+Fun Intro Video Goes Here
+
 ____
 ### Prerequisites
 
-What things you need to install the software and how to install them
+All you need to run TunnelRaider is an internet connection and a device, preferably a mobile device, with which to navigate.
 
-```
-Give examples
-```
 ____
 ### Features
-This field will have a video demonstrating use of the app, as well as a list of features and corresponding descriptions.
+
+In depth usage video goes here
 ____
 ## Built With
 
@@ -51,6 +47,8 @@ ____
   The User Interface was designed to feel both familiar and functional.  The design pulls its inspiration from many common mobile applications.  It has a static header and footer with dynamic content in the middle.  Additional content is brought into view by means of a side loading menu.
 ____
   #### Pathfinding Algorithm
+  
+  https://www.youtube.com/watch?v=-L-WgKMFuhE
 ____
   #### Server/AWS
 
