@@ -175,17 +175,6 @@
 
     },
 
-    "Health Sciences" : {
-        "Abbreviation" : "HS",
-        "Class" : ".healthSciences",
-        "Rooms" : {
-            "Office of Admissions" : 110,
-            "School of Professional Psychology" : 117,
-            "Department of Envionmental Health & Safety" : 104
-        }
-
-    },
-
     "Joshi Center" : {
         "Abbreviation" : "JC",
         "Class" : ".joshiCenter",
