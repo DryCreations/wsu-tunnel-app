@@ -1,8 +1,22 @@
 NodeID,Regex
-0,RC [02-4]\d{2}[A-Z]?
-2,RC 2\d{2}[A-Z]?
-3,RC [02-4]\d{2}[A-Z]?
+0,(RC|JC) [02-4]\d{2}[A-Z]*
+2,(RC|JC) 2\d{2}[A-Z]?
+3,(RC|JC) [02-4]\d{2}[A-Z]*
 6,RC 1\d{2}[A-Z]*
+7,JC 1\d{2}
+9,SU 0\d{2}[A-Z]?
+11,SU [1-3]\d{2}[A-Z]?
+13,SU [1-3]\d{2}[A-Z]?
+14,SU [1-3]\d{2}[A-Z]?
+15,SU [1-3]\d{2}[A-Z]?
+17,SU 1\d{2}[A-Z]?
+19,SU 0\d{2}[A-Z]?
+20,SU 0\d{2}[A-Z]?
+21,SU 1\d{2}[A-Z]?
+22,SU 1\d{2}[A-Z]?
+24,SU 1\d{2}[A-Z]?
+25,SU 1\d{2}[A-Z]?
+26,SU 1\d{2}[A-Z]?
 28,MS 0\d{2}[A-Z]*
 29,MS (1\d{2}[A-Z]*|2[2-9]\d[A-Z]?)
 30,MS 0\d{2}[A-Z]*
@@ -12,12 +26,37 @@ NodeID,Regex
 34,MS (1\d{2}[A-Z]*|2[01]\d[A-Z]?)
 35,MS 0\d{2}[A-Z]*
 36,MS (1\d{2}[A-Z]*|2[01]\d[A-Z]?)
+38,BS 0\d{2}[A-Z]?
+44,BS 0\d{2}[A-Z]?
+52,BS 0\d{2}[A-Z]?
+39,BS (1[4-9]|2\d)\d[A-Z]?
+40,BS (1[4-9]|2\d)\d[A-Z]?
+43,BS (1[0-3]|2\d)\d[A-Z]?
+51,BS (1[0-3]|2\d)\d[A-Z]?
+42,BS 2\d{2}[A-Z]?
+45,DG [1-2]\d{2}[A-Z]?
+47,DG [1-2]\d{2}[A-Z]?
+50,DG [1-2]\d{2}[A-Z]?
 53,FH [1-4]\d{2}[A-Z]?
 54,FH 0\d{2}[A-Z]?
 55,FH [1-4]\d{2}[A-Z]?
 56,FH [1-4]\d{2}[A-Z]?
 57,FH 0\d{2}[A-Z]?
 58,FH 1\d{2}[A-Z]?
+64,a^This elevator does not go to the basement
+65,DL 0\d{2}[A-Z]?
+68,DL 0\d{2}[A-Z]?
+74,DL 0\d{2}[A-Z]?
+67,a^This staircase leads to the outside
+75,a^This staircase leads to the outside
+73,(DL|LX) [1-4]\d{2}[A-Z]?
+66,(DL|LX) [1-4]\d{2}[A-Z]?
+61,LX 0\d{2}[A-Z]?
+59,LX [2-4]\d{2}[A-Z]?,Can students access this?
+60,LX [2-4]\d{2}[A-Z]?,Can students access this?
+63,LX [2-4]\d{2}[A-Z]?,Can students access this?
+77,MP 0\d{2}[A-Z]?
+78,MP 1\d{2}[A-Z]?
 79,FH 0\d{2}[A-Z]?
 80,FH [1-4]\d{2}[A-Z]?
 81,MH 0\d{2}[A-Z]?
