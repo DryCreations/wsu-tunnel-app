@@ -155,7 +155,7 @@ $("form").submit(function(e1) {
         var path = document.createElementNS(null, "path");
 
         // path.setAttribute('id', 'E' + data2[i][0]);
-        path.setAttribute("id", "E" + (i + 1));
+        path.setAttribute("id", "E" + data2[i][0]);
 
         console.log('from: ' + data2[i][1], 'to: ' + data2[i][2]);
 
