@@ -37,8 +37,8 @@ class Map extends Component {
       direction: "Tap to select a start and end location",
       sideDrawerOpen: false,
       displayMap: "block",
-      displaySettings: "none",
-      displayHelp: "none"
+      displayHelp: "none",
+      displayGame: "none"
     };
 
     //bind touch events to this object
@@ -65,33 +65,32 @@ class Map extends Component {
   };
 
   displayMapHandler = () => {
+    if (this.jsspeccy) {
+      this.jsspeccy.deactivateKeyboard();
+      this.jsspeccy.stop();
+    }
     this.setState({
       displayMap: "block",
-      displaySettings: "none",
-      displayHelp: "none"
+      displayHelp: "none",
+      displayGame: "none"
     });
   };
 
   displayHelpHandler = () => {
+    if (this.jsspeccy) {
+      this.jsspeccy.deactivateKeyboard();
+      this.jsspeccy.stop();
+    }
     this.setState({
       displayMap: "none",
-      displaySettings: "none",
-      displayHelp: "block"
-    });
-  };
-
-  displaySettingsHandler = () => {
-    this.setState({
-      displayMap: "none",
-      displaySettings: "block",
-      displayHelp: "none"
+      displayHelp: "block",
+      displayGame: "none"
     });
   };
 
   //render map to screen
   render() {
     let backdrop;
-
 
     if (this.state.sideDrawerOpen) {
       backdrop = <Backdrop clicky={this.backdropClickHandler} />;
@@ -104,7 +103,6 @@ class Map extends Component {
           drawerClick={this.drawerToggleClickHandler}
           toMap={this.displayMapHandler}
           toHelp={this.displayHelpHandler}
-          toSettings={this.displaySettingsHandler}
         />
         <SideDrawer
           show={this.state.sideDrawerOpen}
@@ -149,6 +147,7 @@ class Map extends Component {
         <div id="Help" style={{display: this.state.displayHelp}}>
           <HelpPage />
         </div>
+        <div id="speccy" style={{display: this.state.displayGame}}></div>
         <MyFooter />
       </div>
     );
@@ -371,6 +370,16 @@ class Map extends Component {
     if (from && to) {
       this.getPath(from.substring(1), to.map(n => n.substring(1)));
     }
+
+    this.jsspeccy = window.JSSpeccy("speccy", {
+      "autostart": false,
+      "autoload": true,
+      "dragToLoad": false,
+      "scaleFactor": 2,
+      "loadFile": process.env.PUBLIC_URL + "jsspeccy/roms/tunnel-raider.tzx"
+    });
+
+    this.jsspeccy.deactivateKeyboard();
   }
 
   //scale svg viewbox to user viewport
@@ -778,6 +787,7 @@ class Map extends Component {
 
     this.selectToObjectRef.current.updateDataList(this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML);
 
+
     if (this.selected[0] && this.selected[1]) {
       this.setState({
         direction: "Press the navigate button to generate a path"
@@ -804,57 +814,69 @@ class Map extends Component {
 
         let number = this.selectToRoomRef.current.value;
 
-        for(var o of this.selectToRoomRef.current.list.options) {
-          if (o.value === number) {
-            number = o.innerHTML;
-            break;
-          }
-        }
-
-        let roomNumber = building["Abbreviation"] + ' ' + number;
-        console.log(roomNumber);
-
-        fetch(`getPath?start=${startID}&toRoom=${roomNumber}`)
-          .then(result => result.json())
-          .then(path => {
-            console.log(path);
-            if(!path.ERROR) {
-              this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length-1]);
-              this.setState({
-                direction: "Finished pathfinding, press Next to begin"
-              });
-              this.pathNodes = path.nodeIDs;
-              this.pathEdges = path.edgeIDs;
-              this.currNodes = 0;
-              this.flush();
-              this.highlightPath(path);
-              this.showButtons();
+        if (building.Abbreviation + number === "BSgame") {
+            if (this.jsspeccy) {
+                this.jsspeccy.start();
+                this.jsspeccy.activateKeyboard();
             }
-
-            else {
-              this.setState({
-                direction: "Could not navigate to that room number. We may not have full support for that building yet, or " +
-                  "there could be no tunnels leading to that building."
-              });
-              this.flush();
-            }
-          });
-      } else {
-        fetch(`getPath?start=${startID}&end=${endID}`)
-          .then(result => result.json())
-          .then(path => {
-            console.log(path);
-            this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length - 1]);
             this.setState({
-              direction: "Finished pathfinding, press Next to begin"
+              direction: "Easter Egg",
+              displayMap: "none",
+              displayHelp: "none",
+              displayGame: "block"
             });
-            this.pathNodes = path.nodeIDs;
-            this.pathEdges = path.edgeIDs;
-            this.currNodes = 0;
-            this.flush();
-            this.highlightPath(path);
-            this.showButtons();
-          });
+        } else {
+            for(var o of this.selectToRoomRef.current.list.options) {
+              if (o.value === number) {
+                number = o.innerHTML;
+                break;
+              }
+            }
+
+            let roomNumber = building["Abbreviation"] + ' ' + number;
+            console.log(roomNumber);
+
+            fetch(`getPath?start=${startID}&toRoom=${roomNumber}`)
+              .then(result => result.json())
+              .then(path => {
+                console.log(path);
+                if(!path.ERROR) {
+                  this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length-1]);
+                  this.setState({
+                    direction: "Finished pathfinding, press Next to begin"
+                  });
+                  this.pathNodes = path.nodeIDs;
+                  this.pathEdges = path.edgeIDs;
+                  this.currNodes = 0;
+                  this.flush();
+                  this.highlightPath(path);
+                  this.showButtons();
+                }
+
+                else {
+                  this.setState({
+                    direction: "Could not navigate to that room number. We may not have full support for that building yet, or " +
+                      "there could be no tunnels leading to that building."
+                  });
+                  this.flush();
+                }
+              });
+        }} else {
+            fetch(`getPath?start=${startID}&end=${endID}`)
+              .then(result => result.json())
+              .then(path => {
+                console.log(path);
+                this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length - 1]);
+                this.setState({
+                  direction: "Finished pathfinding, press Next to begin"
+                });
+                this.pathNodes = path.nodeIDs;
+                this.pathEdges = path.edgeIDs;
+                this.currNodes = 0;
+                this.flush();
+                this.highlightPath(path);
+                this.showButtons();
+              });
         }
     }
 
