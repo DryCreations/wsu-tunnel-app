@@ -202,6 +202,9 @@ circle {
   transition: all 0.5s ease-out;
 }
 
+#speccy {
+  margin: auto;
+}
 .backNode {
   opacity: 0;
 }
