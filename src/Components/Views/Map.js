@@ -372,11 +372,12 @@ class Map extends Component {
     }
 
     this.jsspeccy = window.JSSpeccy("speccy", {
-      "autostart": false,
-      "autoload": true,
-      "dragToLoad": false,
-      "scaleFactor": 2,
-      "loadFile": process.env.PUBLIC_URL + "jsspeccy/roms/tunnel-raider.tzx"
+      autostart : false,
+      autoload : true,
+      dragToLoad : false,
+      scaleFactor : 2,
+      audio : false,
+      loadFile : process.env.PUBLIC_URL + "jsspeccy/roms/tunnel-raider.tzx"
     });
 
     this.jsspeccy.deactivateKeyboard();
