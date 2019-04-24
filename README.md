@@ -13,7 +13,6 @@ alt="This will eventually work" width="240" height="240" border="10" /></a>
 ---
 
 - [Summary](https://github.com/RLey/wsu-tunnel-app/#Summary)
-- [Getting Started](https://github.com/RLey/wsu-tunnel-app/#Getting-Started)
 - [Prerequisites](https://github.com/RLey/wsu-tunnel-app/#Prerequisites)
 - [Features](https://github.com/RLey/wsu-tunnel-app/#Features)
 - [Built With](https://github.com/RLey/wsu-tunnel-app/#Built-With)
@@ -30,31 +29,22 @@ alt="This will eventually work" width="240" height="240" border="10" /></a>
 
 ### Summary
 
-Eventually this field will contain a short summary of our project, it's goals, and the results.
 
----
+=======
+Fun Intro Video Goes Here
 
-### Getting Started
-
-This field will hold information on implementing our product, or at least running it for testing.
-
----
+____
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+All you need to run TunnelRaider is an internet connection and a device, preferably a mobile device, with which to navigate.
 
-```
-Give examples
-```
-
----
-
+=======
+____
 ### Features
 
-This field will have a video demonstrating use of the app, as well as a list of features and corresponding descriptions.
-
----
+In depth usage video goes here
+____
 
 ## Built With
 
@@ -65,18 +55,6 @@ This field will have a video demonstrating use of the app, as well as a list of 
 ---
 
 ### Subprojects
-
----
-
-#### UI
-
-The User Interface was designed to feel both familiar and functional. The design pulls its inspiration from many common mobile applications. It has a static header and footer with dynamic content in the middle. Additional content is brought into view by means of a side loading menu.
-
----
-
-#### Pathfinding Algorithm
-
----
 
 #### Server/AWS
 
@@ -111,6 +89,35 @@ should be up and running. If they aren't, logs can be found in `~/repo/app.log`
 and `~/repo/server.log`.
 
 ---
+
+=======
+____
+  #### UI
+  The User Interface was designed to feel both familiar and functional.  The design pulls its inspiration from many common mobile applications.  It has a static header and footer with dynamic content in the middle.  Additional content is brought into view by means of a side loading menu.
+____
+  #### Pathfinding Algorithm
+  
+  https://www.youtube.com/watch?v=-L-WgKMFuhE
+____
+  #### Server/AWS
+
+  ##### Server
+  * Start before the client.
+  * Run by executing `npm run start-server` in the root directory.
+  * Using https://github.com/mysqljs/mysql to access the database.
+  * Using https://github.com/expressjs/express to run the server.
+  ____
+  ##### AWS
+
+  Use the CloudFormation template AWS-Ububtu.yml to create the stack. Once 
+    the stack has been created, log into its EC2 server and run the command 
+    `sudo bash /var/lib/cloud/instances/*/user-data.txt <BRANCH>`, where `<BRANCH>` is
+    whatever branch from the repository you want the server to use. If no branch is 
+    specified, the script will default to the master branch. After the command
+    finishes (it might take awhile), both the app server and the navigation server 
+    should be up and running.  If they aren't, logs can be found in `~/repo/app.log` 
+    and `~/repo/server.log`.
+  ____
 
 ### Testing
 
