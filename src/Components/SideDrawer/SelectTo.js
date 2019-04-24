@@ -30,7 +30,7 @@ class SelectTo extends React.Component {
     return(
         <div id="select-to">
             <p>Select destination:</p>
-            <select ref={this.props.selectToRef} onChange={(e) => {this.updateDataList(e.target.options[e.target.selectedIndex].innerHTML);this.props.selectEnd(e.target.value);}}>
+            <select ref={this.props.selectToRef} onChange={(e) => {this.updateDataList(e.target.options[e.target.selectedIndex].innerHTML);this.props.selectEnd(e.target.value);document.getElementById('toRoom').value = '';}}>
               {options}
             </select>
             <br/>
@@ -42,7 +42,6 @@ class SelectTo extends React.Component {
 
   updateDataList(e) {
     var rooms = BuildingRooms[e];
-
 
     if (rooms && rooms["Rooms"]) {
       rooms = rooms["Rooms"];
