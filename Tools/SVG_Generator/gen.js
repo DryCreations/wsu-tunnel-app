@@ -37,7 +37,7 @@ $("form").submit(function(e1) {
     transformGroup.style.r = nodeRadius;
 
     for (var i = 1; i < data.length; i++) {
-      if (data[i][0]) {
+      if (data[i][1]) {
         var node = document.createElementNS(null, "circle");
         node.setAttribute("id", "N" + data[i][0]);
 
@@ -155,7 +155,7 @@ $("form").submit(function(e1) {
         var path = document.createElementNS(null, "path");
 
         // path.setAttribute('id', 'E' + data2[i][0]);
-        path.setAttribute("id", "E" + (i + 1));
+        path.setAttribute("id", "E" + data2[i][0]);
 
         console.log('from: ' + data2[i][1], 'to: ' + data2[i][2]);
 
