@@ -18,25 +18,17 @@ Parameters:
     ConstraintDescription: must be a valid EC2 instance type smaller than a t2.large.
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
-    Type: 'AWS::EC2::KeyPair::KeyName'
-    Default: ''
+    Type: "AWS::EC2::KeyPair::KeyName"
     ConstraintDescription: must be the name of an existing EC2 KeyPair.
+    Default: ""
   SSHLocation:
-    Description: ' The IP address range that can be used to access the EC2 instance'
+    Description: " The IP address range that can be used to access the EC2 instance"
     Type: String
-    MinLength: '9'
-    MaxLength: '18'
+    MinLength: "9"
+    MaxLength: "18"
     Default: 130.108.0.0/16
     AllowedPattern: '(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})'
     ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
-  DBPort:
-    Description: 'The port that the database will be on'
-    Type: String
-    MinLength: 1
-    MaxLength: 5
-    Default: 3306
-    AllowedPattern: '\d{1,5}'
-    ConstraintDescription: Must be a one to five digit decimal integer
 Mappings:
   AWSInstanceType2Arch:
     t2.nano:
@@ -62,178 +54,94 @@ Mappings:
       HVMG2: NOT_SUPPORTED
     us-east-2:
       PV64: NOT_SUPPORTED
-      HVM64: NOT_SUPPORTED
+      HVM64: ami-0f65671a86f061fcd
       HVMG2: NOT_SUPPORTED
 Resources:
   VPC:
-    Type: 'AWS::EC2::VPC'
+    Type: "AWS::EC2::VPC"
     Properties:
       CidrBlock: 10.0.0.0/16
-      InstanceTenancy: default
-      EnableDnsSupport: 'true'
-      EnableDnsHostnames: 'true'
       Tags:
         - Key: Application
-          Value: !Ref 'AWS::StackId'
+          Value: !Ref "AWS::StackId"
         - Key: Name
           Value: CS-3900 Special Subjects
   Subnet:
-    Type: 'AWS::EC2::Subnet'
+    Type: "AWS::EC2::Subnet"
     Properties:
       VpcId: !Ref VPC
-      CidrBlock: 10.0.0.0/20
+      CidrBlock: 10.0.0.0/24
       Tags:
         - Key: Application
-          Value: !Ref 'AWS::StackId'
-  DatabaseSubnet1:
-    Type: 'AWS::EC2::Subnet'
-    Properties:
-      VpcId: !Ref VPC
-      CidrBlock: 10.0.16.0/20
-      AvailabilityZone: us-east-1a
-  DatabaseSubnet2:
-    Type: 'AWS::EC2::Subnet'
-    Properties:
-      VpcId: !Ref VPC
-      CidrBlock: 10.0.32.0/20
-      AvailabilityZone: us-east-1b
-  DatabaseSubnet3:
-    Type: 'AWS::EC2::Subnet'
-    Properties:
-      VpcId: !Ref VPC
-      CidrBlock: 10.0.48.0/20
-      AvailabilityZone: us-east-1c
-  DatabaseSubnet4:
-    Type: 'AWS::EC2::Subnet'
-    Properties:
-      VpcId: !Ref VPC
-      CidrBlock: 10.0.64.0/20
-      AvailabilityZone: us-east-1d
-  DatabaseSubnet5:
-    Type: 'AWS::EC2::Subnet'
-    Properties:
-      VpcId: !Ref VPC
-      CidrBlock: 10.0.80.0/20
-      AvailabilityZone: us-east-1e
-  DatabaseSubnet6:
-    Type: 'AWS::EC2::Subnet'
-    Properties:
-      VpcId: !Ref VPC
-      CidrBlock: 10.0.96.0/20
-      AvailabilityZone: us-east-1f
-  DatabaseSubnetGroup:
-    Type: 'AWS::RDS::DBSubnetGroup'
-    Properties:
-      DBSubnetGroupDescription: default
-      SubnetIds:
-        - !Ref DatabaseSubnet1
-        - !Ref DatabaseSubnet2
-        - !Ref DatabaseSubnet3
-        - !Ref DatabaseSubnet4
-        - !Ref DatabaseSubnet5
-        - !Ref DatabaseSubnet6
+          Value: !Ref "AWS::StackId"
   InternetGateway:
-    Type: 'AWS::EC2::InternetGateway'
+    Type: "AWS::EC2::InternetGateway"
     Properties:
       Tags:
         - Key: Application
-          Value: !Ref 'AWS::StackId'
+          Value: !Ref "AWS::StackId"
   AttachGateway:
-    Type: 'AWS::EC2::VPCGatewayAttachment'
+    Type: "AWS::EC2::VPCGatewayAttachment"
     Properties:
       VpcId: !Ref VPC
       InternetGatewayId: !Ref InternetGateway
   RouteTable:
-    Type: 'AWS::EC2::RouteTable'
+    Type: "AWS::EC2::RouteTable"
     Properties:
       VpcId: !Ref VPC
       Tags:
         - Key: Application
-          Value: !Ref 'AWS::StackId'
+          Value: !Ref "AWS::StackId"
   Route:
-    Type: 'AWS::EC2::Route'
+    Type: "AWS::EC2::Route"
     DependsOn: AttachGateway
     Properties:
       RouteTableId: !Ref RouteTable
       DestinationCidrBlock: 0.0.0.0/0
       GatewayId: !Ref InternetGateway
   SubnetRouteTableAssociation:
-    Type: 'AWS::EC2::SubnetRouteTableAssociation'
+    Type: "AWS::EC2::SubnetRouteTableAssociation"
     Properties:
       SubnetId: !Ref Subnet
       RouteTableId: !Ref RouteTable
   IPAddress:
-    Type: 'AWS::EC2::EIP'
+    Type: "AWS::EC2::EIP"
     DependsOn: AttachGateway
     Properties:
       Domain: vpc
       InstanceId: !Ref WebServerInstance
+    Metadata:
+      "AWS::CloudFormation::Designer":
+        id: e3a55eb6-e430-4ada-a225-7677aeaad343
   InstanceSecurityGroup:
-    Type: 'AWS::EC2::SecurityGroup'
+    Type: "AWS::EC2::SecurityGroup"
     Properties:
       VpcId: !Ref VPC
       GroupDescription: Enable SSH access via port 22 and access to app features via ports 3000 and 5000
       SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: '22'
-          ToPort: '22'
+          FromPort: "22"
+          ToPort: "22"
           CidrIp: !Ref SSHLocation
         - IpProtocol: tcp
-          FromPort: '3000'
-          ToPort: '3000'
+          FromPort: "80"
+          ToPort: "80"
           CidrIp: 0.0.0.0/0
         - IpProtocol: tcp
-          FromPort: '5000'
-          ToPort: '5000'
+          FromPort: "3000"
+          ToPort: "3000"
           CidrIp: 0.0.0.0/0
-  DatabaseSecurityGroup:
-    Type: 'AWS::EC2::SecurityGroup'
-    Properties:
-      VpcId: !Ref VPC
-      GroupDescription: Only allow traffic over the database port from local ip addresses
-      SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: !Ref DBPort
-          ToPort: !Ref DBPort
-          CidrIp: 10.0.0.0/16
-  DatabaseInstance:
-    Type: 'AWS::RDS::DBInstance'
-    Properties:
-      AllocatedStorage: 20
-      AllowMajorVersionUpgrade: 'false'
-      AutoMinorVersionUpgrade: 'true'
-      DBInstanceClass: db.t2.micro
-      Port: !Ref DBPort
-      PubliclyAccessible: 'true'
-      StorageType: gp2
-      BackupRetentionPeriod: '7'
-      MasterUsername: wsutunneladmin
-      MasterUserPassword: MyPassword
-      PreferredBackupWindow: '05:11-05:41'
-      PreferredMaintenanceWindow: 'sun:03:30-sun:04:00'
-      DBName: wustunnelapp
-      Engine: mysql
-      EngineVersion: 8.0.13
-      LicenseModel: general-public-license
-      DBSubnetGroupName: !Ref DatabaseSubnetGroup
-      VPCSecurityGroups:
-        - !Ref DatabaseSecurityGroup
-      Tags:
-        - Key: workload-type
-          Value: other
-  S3Bucket:
-    Type: 'AWS::S3::Bucket'
-    Properties:
-      AccessControl: Private
-      VersioningConfiguration:
-        Status: Enabled
+          FromPort: "5000"
+          ToPort: "5000"
+          CidrIp: 0.0.0.0/0
   WebServerInstance:
-    Type: 'AWS::EC2::Instance'
+    Type: "AWS::EC2::Instance"
     DependsOn: AttachGateway
     Properties:
       ImageId: !FindInMap
         - AWSRegionArch2AMI
-        - !Ref 'AWS::Region'
+        - !Ref "AWS::Region"
         - !FindInMap
           - AWSInstanceType2Arch
           - !Ref InstanceType
@@ -242,34 +150,47 @@ Resources:
       KeyName: !Ref KeyName
       Tags:
         - Key: Application
-          Value: !Ref 'AWS::StackId'
+          Value: !Ref "AWS::StackId"
         - Key: Name
           Value: Sample-instance
       NetworkInterfaces:
         - GroupSet:
             - !Ref InstanceSecurityGroup
-          AssociatePublicIpAddress: 'true'
-          DeviceIndex: '0'
-          DeleteOnTermination: 'true'
+          AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          DeleteOnTermination: "true"
           SubnetId: !Ref Subnet
       UserData:
         Fn::Base64: |
           #!/bin/bash
 
+          # Add the mysql software repositories to apt
+          wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.12-1_all.deb
+          dpkg -i mysql-apt-config_0.8.12-1_all.deb
+          apt update
+          apt upgrade
+          apt auto-remove
+
+          #Install dependencies
+          yes | apt install build-essential
+          yes | apt install git
+          yes | apt install nodejs
+          yes | apt install npm
+          npm install -g react-scripts
+
+          # Install mysql
+          apt install mysql-server
+
           # Give the server some swap space
-          fallocate -l 4G /swapfile
+          fallocate -l 2G /swapfile
           chmod 0600 /swapfile
           mkswap /swapfile
           swapon /swapfile
           sysctl vm.swappiness=10
 
-          # Install dependencies
-          apt-get update
-          yes | apt-get install build-essential
-          yes | apt-get install git
-          yes | apt-get install nodejs
-          yes | apt-get install npm
-          npm install -g react-scripts
+          # Start mysql now and for all time
+          service mysql start
+          service mysql status
 
           # Download the course repo
           git clone https://github.com/RLey/wsu-tunnel-app.git ~/repo
@@ -277,6 +198,26 @@ Resources:
           # Get whatever branch the user specified and store it for future reference.
           # If no branch was specified, default to master
           branch=${1:-'master'}
+
+          # et the path for the database that the user wants to use
+          echo -ne "Please enter the path of the .sql file to use\072 "
+          read sqlfile
+
+          # If no database was specified, use a default
+          sqlfile=${sqlfile:-'~/repo/Database_Info/wsutunnelapp_Spiral3_Data.sql'}
+
+          # If the sqlfile doesn't exist, use it, else use a default
+          if [ -e $sqlfile ]; then
+            mysql -p < $sqlfile
+          else
+            mysql -p < ~/repo/Database_Info/wsutunnelapp_Spiral3_Data.sql
+          fi
+
+          # Create a non-admin user to access the database
+          echo "CREATE USER 'tunnelapp-user'@'localhost' IDENTIFIED BY 'Cs3900';" > makeUser
+          echo "GRANT SELECT ON wsutunnelapp.* TO 'tunnelapp-user'@'localhost';" >> makeUser
+          mysql -p < makeUser
+          rm makeUser
 
           # Change directories to the downloaded repository
           pushd ~/repo
@@ -290,4 +231,4 @@ Resources:
           # Change back to the original working directory
           popd
 
-          echo -e "\033[32;1mServer should be up and running at ${dig +short myip.opendns.com @resolver1.opendns.com}:3000\033[0m"
+

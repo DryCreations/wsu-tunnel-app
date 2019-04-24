@@ -2,41 +2,54 @@ body {
   touch-action: none;
 }
 path {
-  stroke: #063D1C;
+  stroke: #063d1c;
   fill: none !important;
+  /* animation: rainbow 2.5s linear;
+	animation-iteration-count: infinite; */
 }
 
 circle {
-  stroke: #063D1C;
-  fill: #063D1C;
+  stroke: #063d1c;
+  fill: #063d1c;
   stroke-width: 0.5;
+  /* animation: rainbow 2.5s linear;
+	animation-iteration-count: infinite; */
 }
 
 circle:hover {
-  cursor:pointer
+  cursor: pointer;
 }
 
 .selected {
-  stroke: #CEA052;
+  stroke: #cea052;
+  /* animation: rainbow 1s linear;
+	animation-iteration-count: infinite; */
 }
 
 .highlight {
-  stroke: #CEA052;
-  fill: #CEA052;
+  stroke: #cea052;
+  fill: #cea052;
+  /* animation: rainbow 1s linear;
+	animation-iteration-count: infinite; */
+}
+
+.traversed {
+  stroke: #AF8446;
+  fill: #AF8446;
 }
 
 #User {
-  display:none;
-  stroke: #CEA052;
-  fill: #F2F1EB;
+  display: none;
+  stroke: #cea052;
+  fill: #f2f1eb;
 }
 
 #User.show {
-  display:inherit;
+  display: inherit;
 }
 
 #User:hover {
-  cursor:default;
+  cursor: default;
 }
 
 #TransformMap {
@@ -69,19 +82,19 @@ circle {
 }
 
 #Map {
-  background: #F2F1EB;
+  background: #f2f1eb;
   /*border-radius: 10px;
   border-style: solid;
   border-width: 5px;
   border-color: #063D1C;*/
   user-select: none;
   /*max-width: 100vh;*/
-  touch-action:none;
+  touch-action: none;
 }
 
 #NavigateButton {
   position: absolute;
-  bottom: 50px;
+  bottom: 70px;
   left: 50%;
   min-width: 100px;
   background-color: #026937;
@@ -90,16 +103,16 @@ circle {
   border-width: 2px;
   color: white;
   padding: 10px 10px;
-  margin: 20px;
+
   margin-left: -50px;
   font: bold 16px sans-serif;
   -webkit-transition-duration: 0.4s;
-
+  transition-duration: 0.4s;
 }
 
-#NavigateButton:hover:enabled   {
-  background-color: #F2F1EB;
-  color: #063D1C;
+#NavigateButton:hover:enabled {
+  background-color: #f2f1eb;
+  color: #063d1c;
 }
 
 #NavigateButton:disabled {
@@ -109,8 +122,8 @@ circle {
 
 #PreviousViewButton {
   position: absolute;
-  bottom: 50px;
-  left: 0%;
+  bottom: 70px;
+  left: 10px;
   min-width: 100px;
   background-color: #026937;
   border-color: #026937;
@@ -118,15 +131,14 @@ circle {
   border-width: 2px;
   color: white;
   padding: 10px 10px;
-  margin: 20px;
   font: bold 16px sans-serif;
   -webkit-transition-duration: 0.4s;
-
+  transition-duration: 0.4s;
 }
 
-#PreviousViewButton:hover:enabled   {
-  background-color: #F2F1EB;
-  color: #063D1C;
+#PreviousViewButton:hover:enabled {
+  background-color: #f2f1eb;
+  color: #063d1c;
 }
 
 #PreviousViewButton:disabled {
@@ -136,8 +148,8 @@ circle {
 
 #NextViewButton {
   position: absolute;
-  bottom: 50px;
-  right: 0%;
+  bottom: 70px;
+  right: 10px;
   min-width: 100px;
   background-color: #026937;
   border-color: #026937;
@@ -145,15 +157,14 @@ circle {
   border-width: 2px;
   color: white;
   padding: 10px 10px;
-  margin: 20px;
   font: bold 16px sans-serif;
   -webkit-transition-duration: 0.4s;
-
+  transition-duration: 0.4s;
 }
 
-#NextViewButton:hover:enabled   {
-  background-color: #F2F1EB;
-  color: #063D1C;
+#NextViewButton:hover:enabled {
+  background-color: #f2f1eb;
+  color: #063d1c;
 }
 
 #NextViewButton:disabled {
@@ -161,20 +172,109 @@ circle {
   cursor: not-allowed;
 }
 
-#N130,#N131 {
+#N130,
+#N131,
+#N122,
+#N123,
+#N130B,
+#N131B,
+#N122B,
+#N123B {
   visibility: hidden;
 }
 
 #Directions {
-  position: absolute;
-  width: 100%;
-  left: 0;
+  position: fixed;
+  left: 0px;
   top: 55px;
-  margin: 0;
-  padding: 5px;
-  background:white;
-  height: 20px;
+  padding:2px;
+  width:100%;
+  background: white;
+  font-size: 20px;
+  z-index: 1;
 }
-#Directions p {
-  margin: 0px;
+
+#Compass {
+  position: absolute;
+  right: 5%;
+  top: 100px;
+  width: 10%;
+  transition: all 0.5s ease-out;
+}
+
+#speccy {
+  margin: auto;
+}
+.backNode {
+  opacity: 0;
+}
+
+.backNode.selected {
+  opacity: 0.1;
+}
+
+@keyframes rainbow {
+  100%,
+  0% {
+    fill: rgb(255, 0, 0);
+    stroke: rgb(255, 0, 0);
+  }
+  8% {
+    fill: rgb(255, 127, 0);
+    stroke: rgb(255, 127, 0);
+  }
+  16% {
+    fill: rgb(255, 255, 0);
+    stroke: rgb(255, 255, 0);
+  }
+  25% {
+    fill: rgb(127, 255, 0);
+    stroke: rgb(127, 255, 0);
+  }
+  33% {
+    fill: rgb(0, 255, 0);
+    stroke: rgb(0, 255, 0);
+  }
+  41% {
+    fill: rgb(0, 255, 127);
+    stroke: rgb(0, 255, 127);
+  }
+  50% {
+    fill: rgb(0, 255, 255);
+    stroke: rgb(0, 255, 255);
+  }
+  58% {
+    fill: rgb(0, 127, 255);
+    stroke: rgb(0, 127, 255);
+  }
+  66% {
+    fill: rgb(0, 0, 255);
+    stroke: rgb(0, 0, 255);
+  }
+  75% {
+    fill: rgb(127, 0, 255);
+    stroke: rgb(127, 0, 255);
+  }
+  83% {
+    fill: rgb(255, 0, 255);
+    stroke: rgb(255, 0, 255);
+  }
+  91% {
+    fill: rgb(255, 0, 127);
+    stroke: rgb(255, 0, 127);
+  }
+}
+
+* {
+  overflow: hidden;
+}
+
+#Help {
+  overflow: scroll;
+  position: fixed;
+  height: 100vh;
+}
+
+#Help > * {
+  overflow: auto;
 }

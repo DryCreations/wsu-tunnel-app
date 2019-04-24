@@ -1,4 +1,4 @@
-$('form').submit(function(e1) {
+$("form").submit(function(e1) {
   e1.preventDefault();
 
   var file = e1.target[8].files[0];
@@ -21,108 +21,128 @@ $('form').submit(function(e1) {
     var csv = e2.target.result;
     var data = $.csv.toArrays(csv);
 
-    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
-    var userTransform = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    userTransform.setAttribute('id', 'UserTransform');
+    var userTransform = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "g"
+    );
+    userTransform.setAttribute("id", "UserTransform");
 
-    var transformGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g')
-    transformGroup.setAttribute('id', 'TransformMap');
+    var transformGroup = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "g"
+    );
+    transformGroup.setAttribute("id", "TransformMap");
     transformGroup.style.r = nodeRadius;
 
-    for(var i = 1; i < data.length; i++) {
-      var node = document.createElementNS(null, 'circle');
-      node.setAttribute('id', 'N' + data[i][0]);
+    for (var i = 1; i < data.length; i++) {
+      if (data[i][1]) {
+        var node = document.createElementNS(null, "circle");
+        node.setAttribute("id", "N" + data[i][0]);
 
-      node.setAttribute('cx', map(data[i][2], longMin, longMax, 0, svgXMax));
-      node.setAttribute('cy', map(data[i][1], latMax, latMin, 0, svgYMax));
+        node.setAttribute("cx", map(data[i][2], longMin, longMax, 0, svgXMax));
+        node.setAttribute("cy", map(data[i][1], latMax, latMin, 0, svgYMax));
 
-      node.setAttribute('r', nodeRadius);
+        node.setAttribute("r", nodeRadius);
 
-      node.setAttribute('style', 'transform-origin:' + map(data[i][2], longMin, longMax, 0, svgXMax) + 'px ' + map(data[i][1], latMax, latMin, 0, svgYMax) + 'px')
+        node.setAttribute(
+          "style",
+          "transform-origin:" +
+            map(data[i][2], longMin, longMax, 0, svgXMax) +
+            "px " +
+            map(data[i][1], latMax, latMin, 0, svgYMax) +
+            "px"
+        );
 
-      switch(data[i][8]) {
-        case '0':
-          node.classList.add('intersection');
-          break;
-        case '1':
-          node.classList.add('exit');
-          break;
-        case '2':
-          node.classList.add('staircase');
-          break;
-        case '3':
-          node.classList.add('elevator');
-          break;
+        switch (data[i][8]) {
+          case "0":
+            node.classList.add("intersection");
+            break;
+          case "1":
+            node.classList.add("exit");
+            break;
+          case "2":
+            node.classList.add("staircase");
+            break;
+          case "3":
+            node.classList.add("elevator");
+            break;
+        }
+
+        switch (data[i][5]) {
+          case "0":
+            node.classList.add("noBuilding");
+            break;
+          case "1":
+            node.classList.add("allynHall");
+            break;
+          case "2":
+            node.classList.add("biologicalSciencesI");
+            break;
+          case "3":
+            node.classList.add("biologicalSciencesII");
+            break;
+          case "4":
+            node.classList.add("brehmLaboratory");
+            break;
+          case "5":
+            node.classList.add("creativeArtsCenter");
+            break;
+          case "6":
+            node.classList.add("diggsLaboratory");
+            break;
+          case "7":
+            node.classList.add("dunbarLibrary");
+            break;
+          case "8":
+            node.classList.add("fawcettHall");
+            break;
+          case "9":
+            node.classList.add("joshiCenter");
+            break;
+          case "10":
+            node.classList.add("libraryAnnex");
+            break;
+          case "11":
+            node.classList.add("mathAndMicrobiology");
+            break;
+          case "12":
+            node.classList.add("medicalSciences");
+            break;
+          case "13":
+            node.classList.add("millettHall");
+            break;
+          case "14":
+            node.classList.add("motionPictures");
+            break;
+          case "15":
+            node.classList.add("oelmanHall");
+            break;
+          case "16":
+            node.classList.add("rikeHall");
+            break;
+          case "17":
+            node.classList.add("russEngineering");
+            break;
+          case "18":
+            node.classList.add("studentSuccessCenter");
+            break;
+          case "19":
+            node.classList.add("studentUnion");
+            break;
+          case "20":
+            node.classList.add("universityHall");
+            break;
+        }
+        var backNode = node.cloneNode();
+        backNode.classList.add("backNode");
+        backNode.setAttribute("id", backNode.getAttribute("id") + "B");
+        backNode.setAttribute("r", nodeRadius * 10);
+
+        transformGroup.appendChild(node);
+        transformGroup.prepend(backNode);
       }
-
-      switch(data[i][5]) {
-        case '0':
-          node.classList.add('noBuilding');
-          break;
-        case '1':
-          node.classList.add('allynHall');
-          break;
-        case '2':
-          node.classList.add('biologicalSciencesI');
-          break;
-        case '3':
-          node.classList.add('biologicalSciencesII');
-          break;
-        case '4':
-          node.classList.add('brehmLaboratory');
-          break;
-        case '5':
-          node.classList.add('creativeArtsCenter');
-          break;
-        case '6':
-          node.classList.add('diggsLaboratory');
-          break;
-        case '7':
-          node.classList.add('dunbarLibrary');
-          break;
-        case '8':
-          node.classList.add('fawcettHall');
-          break;
-        case '9':
-          node.classList.add('joshiCenter');
-          break;
-        case '10':
-          node.classList.add('libraryAnnex');
-          break;
-        case '11':
-          node.classList.add('mathAndMicrobiology');
-          break;
-        case '12':
-          node.classList.add('medicalSciences');
-          break;
-        case '13':
-          node.classList.add('millettHall');
-          break;
-        case '14':
-          node.classList.add('motionPictures');
-          break;
-        case '15':
-          node.classList.add('oelmanHall');
-          break;
-        case '16':
-          node.classList.add('rikeHall');
-          break;
-        case '17':
-          node.classList.add('russEngineering');
-          break;
-        case '18':
-          node.classList.add('studentSuccessCenter');
-          break;
-        case '19':
-          node.classList.add('studentUnion');
-          break;
-        case '20':
-          node.classList.add('universityHall');
-          break;
-      }
-
-      transformGroup.appendChild(node);
     }
 
     var reader2 = new FileReader();
@@ -131,172 +151,184 @@ $('form').submit(function(e1) {
       var csv2 = e3.target.result;
       var data2 = $.csv.toArrays(csv2);
 
-      for(var i = 0; i < data2.length; i++) {
-        var path = document.createElementNS(null, 'path');
+      for (var i = 0; i < data2.length; i++) {
+        var path = document.createElementNS(null, "path");
 
         // path.setAttribute('id', 'E' + data2[i][0]);
-        path.setAttribute('id', 'E' + (i+1));
+        path.setAttribute("id", "E" + data2[i][0]);
 
-        path.setAttribute('d', 'M ' + map(data[data2[i][1]][2], longMin, longMax, 0, svgXMax) + ' ' + map(data[data2[i][1]][1], latMax, latMin, 0, svgYMax) + ' ' + map(data[data2[i][2]][2], longMin, longMax, 0, svgXMax) + ' ' + map(data[data2[i][2]][1], latMax, latMin, 0, svgYMax));
+        console.log('from: ' + data2[i][1], 'to: ' + data2[i][2]);
 
-        switch(data[data2[i][1]][8]) {
-          case '0':
-            path.classList.add('intersection');
+        path.setAttribute(
+          "d",
+          "M " +
+            map(data[parseInt(data2[i][1]) + 1][2], longMin, longMax, 0, svgXMax) +
+            " " +
+            map(data[parseInt(data2[i][1]) + 1][1], latMax, latMin, 0, svgYMax) +
+            " " +
+            map(data[parseInt(data2[i][2]) + 1][2], longMin, longMax, 0, svgXMax) +
+            " " +
+            map(data[parseInt(data2[i][2]) + 1][1], latMax, latMin, 0, svgYMax)
+        );
+
+        switch (data[parseInt(data2[i][1]) + 1][8]) {
+          case "0":
+            path.classList.add("intersection");
             break;
-          case '1':
-            path.classList.add('exit');
+          case "1":
+            path.classList.add("exit");
             break;
-          case '2':
-            path.classList.add('staircase');
+          case "2":
+            path.classList.add("staircase");
             break;
-          case '3':
-            path.classList.add('elevator');
+          case "3":
+            path.classList.add("elevator");
             break;
         }
 
-        switch(data[data2[i][1]][5]) {
-          case '0':
-            path.classList.add('noBuilding');
+        switch (data[parseInt(data2[i][1]) + 1][5]) {
+          case "0":
+            path.classList.add("noBuilding");
             break;
-          case '1':
-            path.classList.add('allynHall');
+          case "1":
+            path.classList.add("allynHall");
             break;
-          case '2':
-            path.classList.add('biologicalSciencesI');
+          case "2":
+            path.classList.add("biologicalSciencesI");
             break;
-          case '3':
-            path.classList.add('biologicalSciencesII');
+          case "3":
+            path.classList.add("biologicalSciencesII");
             break;
-          case '4':
-            path.classList.add('brehmLaboratory');
+          case "4":
+            path.classList.add("brehmLaboratory");
             break;
-          case '5':
-            path.classList.add('creativeArtsCenter');
+          case "5":
+            path.classList.add("creativeArtsCenter");
             break;
-          case '6':
-            path.classList.add('diggsLaboratory');
+          case "6":
+            path.classList.add("diggsLaboratory");
             break;
-          case '7':
-            path.classList.add('dunbarLibrary');
+          case "7":
+            path.classList.add("dunbarLibrary");
             break;
-          case '8':
-            path.classList.add('fawcettHall');
+          case "8":
+            path.classList.add("fawcettHall");
             break;
-          case '9':
-            path.classList.add('joshiCenter');
+          case "9":
+            path.classList.add("joshiCenter");
             break;
-          case '10':
-            path.classList.add('libraryAnnex');
+          case "10":
+            path.classList.add("libraryAnnex");
             break;
-          case '11':
-            path.classList.add('mathAndMicrobiology');
+          case "11":
+            path.classList.add("mathAndMicrobiology");
             break;
-          case '12':
-            path.classList.add('medicalSciences');
+          case "12":
+            path.classList.add("medicalSciences");
             break;
-          case '13':
-            path.classList.add('millettHall');
+          case "13":
+            path.classList.add("millettHall");
             break;
-          case '14':
-            path.classList.add('motionPictures');
+          case "14":
+            path.classList.add("motionPictures");
             break;
-          case '15':
-            node.classList.add('oelmanHall');
+          case "15":
+            node.classList.add("oelmanHall");
             break;
-          case '16':
-            node.classList.add('rikeHall');
+          case "16":
+            node.classList.add("rikeHall");
             break;
-          case '17':
-            node.classList.add('russEngineering');
+          case "17":
+            node.classList.add("russEngineering");
             break;
-          case '18':
-            path.classList.add('studentSuccessCenter');
+          case "18":
+            path.classList.add("studentSuccessCenter");
             break;
-          case '19':
-            path.classList.add('studentUnion');
+          case "19":
+            path.classList.add("studentUnion");
             break;
-          case '20':
-            path.classList.add('universityHall');
+          case "20":
+            path.classList.add("universityHall");
             break;
         }
-        switch(data[data2[i][2]][8]) {
-          case '0':
-            path.classList.add('intersection');
+        switch (data[parseInt(data2[i][2]) + 1][8]) {
+          case "0":
+            path.classList.add("intersection");
             break;
-          case '1':
-            path.classList.add('exit');
+          case "1":
+            path.classList.add("exit");
             break;
-          case '2':
-            path.classList.add('staircase');
+          case "2":
+            path.classList.add("staircase");
             break;
-          case '3':
-            path.classList.add('elevator');
+          case "3":
+            path.classList.add("elevator");
             break;
         }
 
-        switch(data[data2[i][2]][5]) {
-          case '0':
-            path.classList.add('noBuilding');
+        switch (data[parseInt(data2[i][2]) + 1][5]) {
+          case "0":
+            path.classList.add("noBuilding");
             break;
-          case '1':
-            path.classList.add('allynHall');
+          case "1":
+            path.classList.add("allynHall");
             break;
-          case '2':
-            path.classList.add('biologicalSciencesI');
+          case "2":
+            path.classList.add("biologicalSciencesI");
             break;
-          case '3':
-            path.classList.add('biologicalSciencesII');
+          case "3":
+            path.classList.add("biologicalSciencesII");
             break;
-          case '4':
-            path.classList.add('brehmLaboratory');
+          case "4":
+            path.classList.add("brehmLaboratory");
             break;
-          case '5':
-            path.classList.add('creativeArtsCenter');
+          case "5":
+            path.classList.add("creativeArtsCenter");
             break;
-          case '6':
-            path.classList.add('diggsLaboratory');
+          case "6":
+            path.classList.add("diggsLaboratory");
             break;
-          case '7':
-            path.classList.add('dunbarLibrary');
+          case "7":
+            path.classList.add("dunbarLibrary");
             break;
-          case '8':
-            path.classList.add('fawcettHall');
+          case "8":
+            path.classList.add("fawcettHall");
             break;
-          case '9':
-            path.classList.add('joshiCenter');
+          case "9":
+            path.classList.add("joshiCenter");
             break;
-          case '10':
-            path.classList.add('libraryAnnex');
+          case "10":
+            path.classList.add("libraryAnnex");
             break;
-          case '11':
-            path.classList.add('mathAndMicrobiology');
+          case "11":
+            path.classList.add("mathAndMicrobiology");
             break;
-          case '12':
-            path.classList.add('medicalSciences');
+          case "12":
+            path.classList.add("medicalSciences");
             break;
-          case '13':
-            path.classList.add('millettHall');
+          case "13":
+            path.classList.add("millettHall");
             break;
-          case '14':
-            path.classList.add('motionPictures');
+          case "14":
+            path.classList.add("motionPictures");
             break;
-          case '15':
-            node.classList.add('oelmanHall');
+          case "15":
+            path.classList.add("oelmanHall");
             break;
-          case '16':
-            node.classList.add('rikeHall');
+          case "16":
+            path.classList.add("rikeHall");
             break;
-          case '17':
-            node.classList.add('russEngineering');
+          case "17":
+            path.classList.add("russEngineering");
             break;
-          case '18':
-            path.classList.add('studentSuccessCenter');
+          case "18":
+            path.classList.add("studentSuccessCenter");
             break;
-          case '19':
-            path.classList.add('studentUnion');
+          case "19":
+            path.classList.add("studentUnion");
             break;
-          case '20':
-            path.classList.add('universityHall');
+          case "20":
+            path.classList.add("universityHall");
             break;
         }
 
@@ -306,26 +338,25 @@ $('form').submit(function(e1) {
       userTransform.appendChild(transformGroup);
       svg.appendChild(userTransform);
 
-      svg.setAttribute('viewBox', '0 0 ' + svgXMax + ' ' + svgYMax);
-      svg.setAttribute('version', '1.1');
-      svg.setAttribute('id', 'Map');
-      svg.setAttribute('stroke-width', strokeWidth + 'px');
+      svg.setAttribute("viewBox", "0 0 " + svgXMax + " " + svgYMax);
+      svg.setAttribute("version", "1.1");
+      svg.setAttribute("id", "Map");
+      svg.setAttribute("stroke-width", strokeWidth + "px");
 
       var serializer = new XMLSerializer();
       var source = serializer.serializeToString(svg);
 
-      var url = "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(source);
+      var url =
+        "data:image/svg+xml;charset=utf-8," + encodeURIComponent(source);
 
-      var down = document.createElement('a');
-      down.setAttribute('href', url)
-      down.setAttribute('download', 'map.svg')
+      var down = document.createElement("a");
+      down.setAttribute("href", url);
+      down.setAttribute("download", "map.svg");
       down.click();
 
       console.log(svg);
-    }
-
-
-  }
+    };
+  };
 });
 
 var map = function(e, fmin, fmax, tmin, tmax) {
@@ -340,4 +371,4 @@ var map = function(e, fmin, fmax, tmin, tmax) {
   r = r + tmin;
 
   return r;
-}
+};
