@@ -22,7 +22,7 @@
 Please click the image below:
 
 <a href="https://www.youtube.com/watch?v=WEzk7ZuJnKU&feature=youtu.be" target="_blank"><img 
-src="https://i.imgur.com/2YS5Z6x.jpg" 
+src="https://i.imgur.com/xnUQ37b.jpg" 
 alt="This works!" width="240" height="240" border="10" /></a>
 
 ____
@@ -34,7 +34,11 @@ All you need to run TunnelRaider is an internet connection and a device, prefera
 ____
 ### Features
 
-In depth usage video goes here
+Please click the image below:
+
+<a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" target="_blank"><img 
+src="https://i.imgur.com/EpuNufB.jpg" 
+alt="This works!" width="240" height="240" border="10" /></a>
 
 ____
 
@@ -71,8 +75,6 @@ specified, the script will default to the master branch. After the command
 finishes (it might take awhile), both the app server and the navigation server
 should be up and running. If they aren't, logs can be found in `~/repo/app.log`
 and `~/repo/server.log`.
-
----
 
 ____
 
