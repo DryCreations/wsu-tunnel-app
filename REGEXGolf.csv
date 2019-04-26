@@ -52,9 +52,9 @@ NodeID,Regex
 73,(DL|LX) [1-4]\d{2}[A-Z]?
 66,(DL|LX) [1-4]\d{2}[A-Z]?
 61,LX 0\d{2}[A-Z]?
-59,LX [2-4]\d{2}[A-Z]?,Can students access this?
-60,LX [2-4]\d{2}[A-Z]?,Can students access this?
-63,LX [2-4]\d{2}[A-Z]?,Can students access this?
+59,a^Locked staricases...
+60,a^Locked staricases...
+63,a^Locked staricases...
 77,MP 0\d{2}[A-Z]?
 78,MP 1\d{2}[A-Z]?
 79,FH 0\d{2}[A-Z]?
