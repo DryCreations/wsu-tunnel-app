@@ -40,15 +40,15 @@ class Switch extends Component {
   _handleChange = () => {
     this.setState({ isChecked: !this.state.isChecked });
     let m = document.getElementById("Map");
-    // let original = "#f2f1eb";
+    let original = "#f2f1eb";
     if (this.props.id==="2") {
       if (this.state.on) {
         this.setState({on: false})
-        // m.style.background = original;
+        m.style.background = original;
       }
       else {
         this.setState({on: true})
-        // m.style.background = "#2a2a2b";
+        m.style.background = "#2a2a2b";
       }
     }
   };
