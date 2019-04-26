@@ -1705,7 +1705,7 @@ class Map extends Component {
   }
 
   getBuildingGroup(b) {
-    var building = document.querySelectorAll("circle" + b + ":not(.backNode)");
+    var building = document.querySelectorAll("circle" + b + ".intersection:not(.backNode)");
     var ret = [];
     for(let i of building) {
       ret.push(i.id.substring(1));
