@@ -7,7 +7,6 @@
 - [Summary](https://github.com/RLey/wsu-tunnel-app/#Summary)
 - [Prerequisites](https://github.com/RLey/wsu-tunnel-app/#Prerequisites)
 - [Features](https://github.com/RLey/wsu-tunnel-app/#Features)
-- [Built With](https://github.com/RLey/wsu-tunnel-app/#Built-With)
 - [Subprojects](https://github.com/RLey/wsu-tunnel-app/#Subprojects)
   - [UI](https://github.com/RLey/wsu-tunnel-app/#UI)
   - [Database](https://github.com/RLey/wsu-tunnel-app/#Database)
@@ -15,7 +14,6 @@
   - [Server/AWS](https://github.com/RLey/wsu-tunnel-app/#Server/AWS)
 - [Testing](https://github.com/RLey/wsu-tunnel-app/#Testing)
 - [Credits](https://github.com/RLey/wsu-tunnel-app/#Credits)
-  - [Contribution Link](https://github.com/RLey/wsu-tunnel-app/#Contribution-Link)
 
 ---
 
