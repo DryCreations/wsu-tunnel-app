@@ -791,7 +791,7 @@ class Map extends Component {
 
     if (this.selected[0] && this.selected[1]) {
       this.setState({
-        direction: "Press the navigate button to generate a path"
+        direction: "Press the Go button to generate a path"
       });
     } else if (this.selected[0]) {
       this.setState({
@@ -978,7 +978,7 @@ class Map extends Component {
 
     if (this.selected[0] && this.selected[1]) {
       this.setState({
-        direction: "Press the navigate button to generate a path"
+        direction: "Press the Go button to generate a path"
       });
     } else if (this.selected[0]) {
       this.setState({
@@ -1036,7 +1036,7 @@ class Map extends Component {
 
     if (this.selected[0] && this.selected[1]) {
       this.setState({
-        direction: "Press the navigate button to generate a path"
+        direction: "Press the Go button to generate a path"
       });
     } else if (this.selected[0]) {
       this.setState({
