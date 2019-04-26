@@ -59,7 +59,8 @@ To start the react server, two options are available. To start the react scripts
 ##### Pathfinding Server
 
 - Start before the client.
-- Run by executing `npm run start-server` in the root directory.
+- Run by executing `npm run start-server` in the repo root directory. To use a local database with the server,
+  run the command `npm run start-server-local` instead.
 - Using https://github.com/mysqljs/mysql to access the database.
 - Using https://github.com/expressjs/express to run the server.
 
@@ -89,8 +90,9 @@ ____
 
   #### Pathfinding Algorithm
   
-  Please click the image below:
-  
+  The pathfinding algorithm uses a modified implementation of the A* algorithm that allows for navigation to multiple
+    end points. For an explanation of the standard A* algorithm, please click the image below:
+    
 <a href="https://www.youtube.com/watch?v=-L-WgKMFuhE" target="_blank"><img 
 src="https://i.imgur.com/GI0Mxso.png" 
 alt="This works!" width="240" height="240" border="10" /></a>
@@ -102,7 +104,8 @@ ____
 
   ##### Server
   * Start before the client.
-  * Run by executing `npm run start-server` in the root directory.
+  * Run by executing `npm run start-server` in the repo root directory. To use a local database with the server,
+    run the command `npm run start-server-local` instead.
   * Using https://github.com/mysqljs/mysql to access the database.
   * Using https://github.com/expressjs/express to run the server.
   ____
