@@ -81,6 +81,10 @@ ____
   #### UI
   
   The User Interface was designed to feel both familiar and functional.  The design pulls its inspiration from many common mobile applications.  It has a static header and footer with dynamic content in the middle.  Additional content is brought into view by means of two side loading menus.
+  
+  [Design Inspiration](https://github.com/RLey/wsu-tunnel-app/blob/master/UI_Info/Design_Inspiration.md)
+  
+  [Team Credits](https://github.com/RLey/wsu-tunnel-app/blob/master/UI_Info/Team.md)
 ____
 
   #### Pathfinding Algorithm
