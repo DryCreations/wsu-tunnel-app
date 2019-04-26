@@ -88,6 +88,8 @@ ____
 <a href="https://www.youtube.com/watch?v=-L-WgKMFuhE" target="_blank"><img 
 src="https://i.imgur.com/GI0Mxso.png" 
 alt="This works!" width="240" height="240" border="10" /></a>
+
+Credit for the above video goes to Sebastian Lague, please subscribe: https://www.youtube.com/channel/UCmtyQOKKmrMVaKuRXz02jbQ
  
 ____
   #### Server/AWS
