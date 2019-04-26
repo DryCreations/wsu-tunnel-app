@@ -882,39 +882,39 @@ class Map extends Component {
     }
 
     // Rough solutin to navigate to a room number
-    else if (startID) {
-      let roomNumber = prompt("What room number would you like to go to?");
-
-      this.setState({
-        direction: "Navigating... please wait"
-      });
-
-      fetch(`getPath?start=${startID}&toRoom=${roomNumber}`)
-        .then(result => result.json())
-        .then(path => {
-          console.log(path);
-          if(!path.ERROR) {
-            this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length-1]);
-            this.setState({
-              direction: "Finished pathfinding, press Next to begin"
-            });
-            this.pathNodes = path.nodeIDs;
-            this.pathEdges = path.edgeIDs;
-            this.currNodes = 0;
-            this.flush();
-            this.highlightPath(path);
-            this.showButtons();
-          }
-
-          else {
-            this.setState({
-              direction: "Could not navigate to that room number. We may not have full support for that building yet, or " +
-                "there could be no tunnels leading to that building."
-            });
-            this.flush();
-          }
-        })
-    }
+    // else if (startID) {
+    //   let roomNumber = prompt("What room number would you like to go to?");
+    //
+    //   this.setState({
+    //     direction: "Navigating... please wait"
+    //   });
+    //
+    //   fetch(`getPath?start=${startID}&toRoom=${roomNumber}`)
+    //     .then(result => result.json())
+    //     .then(path => {
+    //       console.log(path);
+    //       if(!path.ERROR) {
+    //         this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length-1]);
+    //         this.setState({
+    //           direction: "Finished pathfinding, press Next to begin"
+    //         });
+    //         this.pathNodes = path.nodeIDs;
+    //         this.pathEdges = path.edgeIDs;
+    //         this.currNodes = 0;
+    //         this.flush();
+    //         this.highlightPath(path);
+    //         this.showButtons();
+    //       }
+    //
+    //       else {
+    //         this.setState({
+    //           direction: "Could not navigate to that room number. We may not have full support for that building yet, or " +
+    //             "there could be no tunnels leading to that building."
+    //         });
+    //         this.flush();
+    //       }
+    //     })
+    // }
   }
 
   showButtons() {
@@ -1391,10 +1391,10 @@ class Map extends Component {
 
   //returns directions for user based on node passed in.
   getDirection(currNodes) {
-    var ret = "Your destination is ahead";
+    var ret = "Your destination is at the ";
+    var n1 = document.getElementById("N" + this.pathNodes[currNodes]);
+    var n2 = document.getElementById("N" + this.pathNodes[currNodes + 1]);
     if (this.pathNodes && currNodes < this.pathNodes.length - 2) {
-      var n1 = document.getElementById("N" + this.pathNodes[currNodes]);
-      var n2 = document.getElementById("N" + this.pathNodes[currNodes + 1]);
       var n3 = document.getElementById("N" + this.pathNodes[currNodes + 2]);
 
       var theta1 = Math.atan2(
@@ -1444,6 +1444,14 @@ class Map extends Component {
       } else if (n2.classList.contains("elevator")) {
         ret += "elevator";
       }
+    } else if (n2.classList.contains("intersection")) {
+      ret += "intersection ahead";
+    } else if (n2.classList.contains("staircase")) {
+      ret += "staircase ahead";
+    } else if (n2.classList.contains("exit")) {
+      ret += "exit ahead";
+    } else if (n2.classList.contains("elevator")) {
+      ret += "elevator ahead";
     }
     return ret;
   }
