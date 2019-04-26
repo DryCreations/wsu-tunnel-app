@@ -45,10 +45,12 @@ class Switch extends Component {
       if (this.state.on) {
         this.setState({on: false})
         m.style.background = original;
+        document.getElementById("Compass").style.filter="invert(0)";
       }
       else {
         this.setState({on: true})
         m.style.background = "#2a2a2b";
+        document.getElementById("Compass").style.filter="invert(1)";
       }
     }
   };
