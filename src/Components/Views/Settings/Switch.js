@@ -9,7 +9,7 @@ class Switch extends Component {
       isChecked: false,
       on: false
     };
-    
+
   }
 
   componentWillMount() {
@@ -20,6 +20,7 @@ class Switch extends Component {
 
     return (
       <div className="switch-container">
+        <link rel="stylesheet" href="darktheme.css" disabled={!this.state.on} />
         <label>{this.props.label}
           <input
             ref="switch"
@@ -39,15 +40,15 @@ class Switch extends Component {
   _handleChange = () => {
     this.setState({ isChecked: !this.state.isChecked });
     let m = document.getElementById("Map");
-    let original = "#f2f1eb";
+    // let original = "#f2f1eb";
     if (this.props.id==="2") {
       if (this.state.on) {
         this.setState({on: false})
-        m.style.background = original;
+        // m.style.background = original;
       }
       else {
         this.setState({on: true})
-        m.style.background = "#2a2a2b";
+        // m.style.background = "#2a2a2b";
       }
     }
   };
