@@ -1423,7 +1423,7 @@ class Map extends Component {
           ret += "slight right ";
         }
       } else if (theta < -Math.PI / 8) {
-        ret += "take a ";
+        ret += "Take a ";
         if (theta < -Math.PI / 4) {
           ret += "left ";
         } else {
