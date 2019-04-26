@@ -1416,7 +1416,7 @@ class Map extends Component {
       }
 
       if (theta > Math.PI / 8) {
-        ret += "take a ";
+        ret += "Take a ";
         if (theta > Math.PI / 4) {
           ret += "right ";
         } else {
@@ -1430,7 +1430,7 @@ class Map extends Component {
           ret += "slight left ";
         }
       } else {
-        ret += "continue straight ";
+        ret += "Continue straight ";
       }
 
       ret += "at the next ";
