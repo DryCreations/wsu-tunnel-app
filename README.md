@@ -4,14 +4,6 @@
 
 ---
 
-<a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" target="_blank"><img 
-src="https://i.imgur.com/2YS5Z6x.jpg" 
-alt="This will eventually work" width="240" height="240" border="10" /></a>
-
-### Video To Be Published
-
----
-
 - [Summary](https://github.com/RLey/wsu-tunnel-app/#Summary)
 - [Prerequisites](https://github.com/RLey/wsu-tunnel-app/#Prerequisites)
 - [Features](https://github.com/RLey/wsu-tunnel-app/#Features)
@@ -29,9 +21,11 @@ alt="This will eventually work" width="240" height="240" border="10" /></a>
 
 ### Summary
 
+Please click the image below:
 
-=======
-Fun Intro Video Goes Here
+<a href="https://www.youtube.com/watch?v=WEzk7ZuJnKU&feature=youtu.be" target="_blank"><img 
+src="https://i.imgur.com/2YS5Z6x.jpg" 
+alt="This works!" width="240" height="240" border="10" /></a>
 
 ____
 
@@ -39,20 +33,12 @@ ____
 
 All you need to run TunnelRaider is an internet connection and a device, preferably a mobile device, with which to navigate.
 
-=======
 ____
 ### Features
 
 In depth usage video goes here
+
 ____
-
-## Built With
-
-- [Example](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-- [Example1](https://maven.apache.org/) - Dependency Management
-- [Example2](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
----
 
 ### Subprojects
 
@@ -90,14 +76,21 @@ and `~/repo/server.log`.
 
 ---
 
-=======
 ____
+
   #### UI
-  The User Interface was designed to feel both familiar and functional.  The design pulls its inspiration from many common mobile applications.  It has a static header and footer with dynamic content in the middle.  Additional content is brought into view by means of a side loading menu.
+  
+  The User Interface was designed to feel both familiar and functional.  The design pulls its inspiration from many common mobile applications.  It has a static header and footer with dynamic content in the middle.  Additional content is brought into view by means of two side loading menus.
 ____
+
   #### Pathfinding Algorithm
   
-  https://www.youtube.com/watch?v=-L-WgKMFuhE
+  Please click the image below:
+  
+<a href="https://www.youtube.com/watch?v=-L-WgKMFuhE" target="_blank"><img 
+src="https://i.imgur.com/GI0Mxso.png" 
+alt="This works!" width="240" height="240" border="10" /></a>
+ 
 ____
   #### Server/AWS
 
@@ -120,6 +113,12 @@ ____
   ____
 
 ### Testing
+
+#### Beta Testing
+
+Beta Testers included members of the Wright State University Computing and Telecommunications Services office, as well as members of the Wright State Student Body and members of the Fairborn/Beavercreek Community.
+
+#### CloudFormation Template Validation
 
 Validation of CloudFormation templates is done by running the command:
 
