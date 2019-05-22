@@ -13,31 +13,42 @@ server.on("request", async function(request, response) {
   if (checkUrlForID(parsedUrl)) {
     const path = await preparePath(parsedUrl);
     response.end(JSON.stringify(path));
-  }
+  } else if (checkUrlForRoom(parsedUrl)) {
+    let endNodes = await database.getNodesToRoom(
+      parsedUrl.query.toRoom,
+      parsedUrl.query.useStairs ? true : false
+    );
 
-  else if (checkUrlForRoom(parsedUrl)) {
-    let endNodes = await database.getNodesToRoom(parsedUrl.query.toRoom);
-    
-    if(endNodes.length > 0) {
+    if (endNodes.length > 0) {
       let path = await pathfinder.getPath(+parsedUrl.query.start, endNodes);
       response.end(JSON.stringify(path));
+    } else {
+      response.end(
+        JSON.stringify({
+          ERROR: "Could not find any paths to room " + parsedUrl.query.toRoom
+        })
+      );
     }
-    else {
-      response.end(JSON.stringify({"ERROR": "Could not find any paths to room " + parsedUrl.query.toRoom}));
-    }
-  } 
-
-  else {
-    response.end(JSON.stringify({"ERROR": "Poorly formed URL", "REQUESTED URL": request.url}));
+  } else {
+    response.end(
+      JSON.stringify({
+        ERROR: "Poorly formed URL",
+        "REQUESTED URL": request.url
+      })
+    );
   }
 });
 
 function checkUrlForID(parsedUrl) {
-  return parsedUrl.path.match(/getPath\?start=\d+&end=[\d,]+/);
+  return parsedUrl.path.match(
+    /getPath\?start=\d+&end=[\d,]+(&useStairs=(true|false))?/
+  );
 }
 
 function checkUrlForRoom(parsedUrl) {
-  return parsedUrl.path.match(/getPath\?start=\d+&toRoom=[A-Z]{2}%20[A-Z]*[A-Z0-9]\d{2}[A-Z]{0,2}/);
+  return parsedUrl.path.match(
+    /getPath\?start=\d+&toRoom=[A-Z]{2}%20[A-Z]*[A-Z0-9]\d{2}[A-Z]{0,2}(&useStairs=(true|false))?/
+  );
 }
 
 function parseUrl(requestUrl) {
@@ -46,8 +57,7 @@ function parseUrl(requestUrl) {
 
 async function preparePath(parsedUrl) {
   //Transform the comma separated node IDs into an array
-  let endNodes = parsedUrl.query.end.split(',').map(i => +i);
-  
+  let endNodes = parsedUrl.query.end.split(",").map(i => +i);
+
   return pathfinder.getPath(+parsedUrl.query.start, endNodes);
 }
-

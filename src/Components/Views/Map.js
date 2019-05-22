@@ -27,6 +27,8 @@ class Map extends Component {
     this.currNodes = 0;
     this.defaultViewBoxArgs = "0 0 640 480";
 
+    global.useStairs = true;
+
     this.selectFromRef = React.createRef();
     this.selectToRef = React.createRef();
     this.selectToRoomRef = React.createRef();
@@ -113,41 +115,46 @@ class Map extends Component {
           selectToRoomRef={this.selectToRoomRef}
           selectFromRef={this.selectFromRef}
           selectToObjectRef={this.selectToObjectRef}
-          navigateFunction={() => {this.getPath(this.getStartPointID(), this.getEndPointID());
-            this.setState({sideDrawerOpen: false});
-            }
-          }
-
+          navigateFunction={() => {
+            this.getPath(this.getStartPointID(), this.getEndPointID());
+            this.setState({ sideDrawerOpen: false });
+          }}
         />
         {backdrop}
-        <div id="MapContainer" style={{display: this.state.displayMap}}>
+        <div id="MapContainer" style={{ display: this.state.displayMap }}>
           <MapSVG />
 
-
-
-
-          <button id="NavigateButton"
+          <button
+            id="NavigateButton"
             onClick={() =>
               this.getPath(this.getStartPointID(), this.getEndPointID())
             }
           >
-          Go
+            Go
           </button>
 
-          <button id="PreviousViewButton" style={{visibility: 'hidden'}} onClick={() => this.prevStep()}>
+          <button
+            id="PreviousViewButton"
+            style={{ visibility: "hidden" }}
+            onClick={() => this.prevStep()}
+          >
             Previous
           </button>
 
-          <button id="NextViewButton" style={{visibility: 'hidden'}} onClick={() => this.nextStep()}>
+          <button
+            id="NextViewButton"
+            style={{ visibility: "hidden" }}
+            onClick={() => this.nextStep()}
+          >
             Next
           </button>
 
           <img id="Compass" src="north.png" alt="compass" />
         </div>
-        <div id="Help" style={{display: this.state.displayHelp}}>
+        <div id="Help" style={{ display: this.state.displayHelp }}>
           <HelpPage />
         </div>
-        <div id="speccy" style={{display: this.state.displayGame}}></div>
+        <div id="speccy" style={{ display: this.state.displayGame }} />
         <MyFooter />
       </div>
     );
@@ -175,14 +182,14 @@ class Map extends Component {
       .setAttribute(
         "style",
         "transform:rotate(" +
-        angle +
-        "deg);-webkit-transform:rotate(" +
-        angle +
-        "deg);-moz-transform:rotate(" +
-        angle +
-        "deg);-o-transform:rotate(" +
-        angle +
-        "deg);"
+          angle +
+          "deg);-webkit-transform:rotate(" +
+          angle +
+          "deg);-moz-transform:rotate(" +
+          angle +
+          "deg);-o-transform:rotate(" +
+          angle +
+          "deg);"
       );
   }
 
@@ -322,7 +329,7 @@ class Map extends Component {
     }
 
     if (from) {
-      from = from.split(',')[0];
+      from = from.split(",")[0];
       this.selectStartPointByID(from);
       var e = document.getElementById(from);
 
@@ -345,24 +352,24 @@ class Map extends Component {
         .setAttribute(
           "style",
           ";transform:" +
-          transformString +
-          ";" +
-          "-webkit-transform:" +
-          transformString +
-          ";" +
-          "-moz-transform:" +
-          transformString +
-          ";" +
-          "-o-transform:" +
-          transformString +
-          ";"
+            transformString +
+            ";" +
+            "-webkit-transform:" +
+            transformString +
+            ";" +
+            "-moz-transform:" +
+            transformString +
+            ";" +
+            "-o-transform:" +
+            transformString +
+            ";"
         );
       this.setState({
         direction: "You are here, tap to select destination"
       });
     }
     if (to) {
-      to = to.split(',')
+      to = to.split(",");
       this.selectEndPointByID(to[0]);
       this.transform(this.getStartPointID(), this.getEndPointID());
     }
@@ -372,12 +379,12 @@ class Map extends Component {
     }
 
     this.jsspeccy = window.JSSpeccy("speccy", {
-      autostart : false,
-      autoload : true,
-      dragToLoad : false,
-      scaleFactor : 2,
-      audio : false,
-      loadFile : process.env.PUBLIC_URL + "jsspeccy/roms/tunnel-raider.tzx"
+      autostart: false,
+      autoload: true,
+      dragToLoad: false,
+      scaleFactor: 2,
+      audio: false,
+      loadFile: process.env.PUBLIC_URL + "jsspeccy/roms/tunnel-raider.tzx"
     });
 
     this.jsspeccy.deactivateKeyboard();
@@ -471,17 +478,17 @@ class Map extends Component {
       group.setAttribute(
         "style",
         "transform:" +
-        transformString +
-        ";" +
-        "-webkit-transform:" +
-        transformString +
-        ";" +
-        "-moz-transform:" +
-        transformString +
-        ";" +
-        "-o-transform:" +
-        transformString +
-        ";"
+          transformString +
+          ";" +
+          "-webkit-transform:" +
+          transformString +
+          ";" +
+          "-moz-transform:" +
+          transformString +
+          ";" +
+          "-o-transform:" +
+          transformString +
+          ";"
       );
 
       this.o1 = { x: event.touches[0].pageX, y: event.touches[0].pageY };
@@ -500,17 +507,17 @@ class Map extends Component {
       group.setAttribute(
         "style",
         "transform:" +
-        transformString +
-        ";" +
-        "-webkit-transform:" +
-        transformString +
-        ";" +
-        "-moz-transform:" +
-        transformString +
-        ";" +
-        "-o-transform:" +
-        transformString +
-        ";"
+          transformString +
+          ";" +
+          "-webkit-transform:" +
+          transformString +
+          ";" +
+          "-moz-transform:" +
+          transformString +
+          ";" +
+          "-o-transform:" +
+          transformString +
+          ";"
       );
 
       this.o1 = { x: event.touches[0].pageX, y: event.touches[0].pageY };
@@ -580,17 +587,17 @@ class Map extends Component {
         group.setAttribute(
           "style",
           "transform:" +
-          transformString +
-          ";" +
-          "-webkit-transform:" +
-          transformString +
-          ";" +
-          "-moz-transform:" +
-          transformString +
-          ";" +
-          "-o-transform:" +
-          transformString +
-          ";"
+            transformString +
+            ";" +
+            "-webkit-transform:" +
+            transformString +
+            ";" +
+            "-moz-transform:" +
+            transformString +
+            ";" +
+            "-o-transform:" +
+            transformString +
+            ";"
         );
 
         this.o1 = event;
@@ -623,17 +630,17 @@ class Map extends Component {
         group.setAttribute(
           "style",
           "transform:" +
-          transformString +
-          ";" +
-          "-webkit-transform:" +
-          transformString +
-          ";" +
-          "-moz-transform:" +
-          transformString +
-          ";" +
-          "-o-transform:" +
-          transformString +
-          ";"
+            transformString +
+            ";" +
+            "-webkit-transform:" +
+            transformString +
+            ";" +
+            "-moz-transform:" +
+            transformString +
+            ";" +
+            "-o-transform:" +
+            transformString +
+            ";"
         );
 
         this.o2 = event;
@@ -659,17 +666,17 @@ class Map extends Component {
       group.setAttribute(
         "style",
         "transform:" +
-        transformString +
-        ";" +
-        "-webkit-transform:" +
-        transformString +
-        ";" +
-        "-moz-transform:" +
-        transformString +
-        ";" +
-        "-o-transform:" +
-        transformString +
-        ";"
+          transformString +
+          ";" +
+          "-webkit-transform:" +
+          transformString +
+          ";" +
+          "-moz-transform:" +
+          transformString +
+          ";" +
+          "-o-transform:" +
+          transformString +
+          ";"
       );
 
       this.o1 = event;
@@ -699,7 +706,9 @@ class Map extends Component {
       !(this.getScale() < 0.5 && 1 - event.deltaY / 1000 < 1)
     ) {
       newMatrix = this.multiplyMatrices(
-        this.getScaleMatrix(Math.min(Math.max(1 - event.deltaY / 1000, .01), 100)),
+        this.getScaleMatrix(
+          Math.min(Math.max(1 - event.deltaY / 1000, 0.01), 100)
+        ),
         newMatrix
       );
     }
@@ -715,17 +724,17 @@ class Map extends Component {
     group.setAttribute(
       "style",
       "transform:" +
-      transformString +
-      ";" +
-      "-webkit-transform:" +
-      transformString +
-      ";" +
-      "-moz-transform:" +
-      transformString +
-      ";" +
-      "-o-transform:" +
-      transformString +
-      ";"
+        transformString +
+        ";" +
+        "-webkit-transform:" +
+        transformString +
+        ";" +
+        "-moz-transform:" +
+        transformString +
+        ";" +
+        "-o-transform:" +
+        transformString +
+        ";"
     );
     // this.scaleViewBoxAtPos(Math.min(2, Math.max(1 - event.deltaY / 1000, .5)), event.pageX - document.getElementById('Map').getBoundingClientRect().left, event.pageY - document.getElementById('Map').getBoundingClientRect().top);
     this.scaleNodes();
@@ -764,30 +773,53 @@ class Map extends Component {
 
     this.selected = sel;
 
-    var buildings = ['allynHall', 'biologicalSciencesI', 'biologicalSciencesII', 'brehmLaboratory', 'creativeArtsCenter', 'diggsLaboratory', 'dunbarLibrary', 'fawcettHall', 'joshiCenter', 'libraryAnnex', 'mathAndMicrobiology', 'medicalSciences', 'millettHall', 'motionPictures', 'oelmanHall', 'rikeHall', 'russEngineering', 'studentUnion', 'studentSuccessCenter', 'universityHall'];
+    var buildings = [
+      "allynHall",
+      "biologicalSciencesI",
+      "biologicalSciencesII",
+      "brehmLaboratory",
+      "creativeArtsCenter",
+      "diggsLaboratory",
+      "dunbarLibrary",
+      "fawcettHall",
+      "joshiCenter",
+      "libraryAnnex",
+      "mathAndMicrobiology",
+      "medicalSciences",
+      "millettHall",
+      "motionPictures",
+      "oelmanHall",
+      "rikeHall",
+      "russEngineering",
+      "studentUnion",
+      "studentSuccessCenter",
+      "universityHall"
+    ];
 
     if (sel[0]) {
-      for(let i of buildings) {
+      for (let i of buildings) {
         if (sel[0].classList.contains(i)) {
-          this.selectFromRef.current.value = '.' + i;
+          this.selectFromRef.current.value = "." + i;
         }
       }
     } else {
-      this.selectFromRef.current.value = '';
+      this.selectFromRef.current.value = "";
     }
 
     if (sel[1]) {
-      for(let i of buildings) {
+      for (let i of buildings) {
         if (sel[1].classList.contains(i)) {
-          this.selectToRef.current.value = '.' + i;
+          this.selectToRef.current.value = "." + i;
         }
       }
     } else {
-      this.selectToRef.current.value = '';
+      this.selectToRef.current.value = "";
     }
 
-    this.selectToObjectRef.current.updateDataList(this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML);
-
+    this.selectToObjectRef.current.updateDataList(
+      this.selectToRef.current.options[this.selectToRef.current.selectedIndex]
+        .innerHTML
+    );
 
     if (this.selected[0] && this.selected[1]) {
       this.setState({
@@ -811,63 +843,50 @@ class Map extends Component {
       });
 
       if (this.selectToRoomRef.current.value) {
-        let building = BuildingRooms[this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML]
+        let building =
+          BuildingRooms[
+            this.selectToRef.current.options[
+              this.selectToRef.current.selectedIndex
+            ].innerHTML
+          ];
 
         let number = this.selectToRoomRef.current.value;
 
         if (building.Abbreviation + number === "BSgame") {
-            if (this.jsspeccy) {
-                this.jsspeccy.start();
-                this.jsspeccy.activateKeyboard();
-            }
-            this.setState({
-              direction: "Easter Egg",
-              displayMap: "none",
-              displayHelp: "none",
-              displayGame: "block"
-            });
+          if (this.jsspeccy) {
+            this.jsspeccy.start();
+            this.jsspeccy.activateKeyboard();
+          }
+          this.setState({
+            direction: "Easter Egg",
+            displayMap: "none",
+            displayHelp: "none",
+            displayGame: "block"
+          });
         } else {
-            for(var o of this.selectToRoomRef.current.list.options) {
-              if (o.value === number) {
-                number = o.innerHTML;
-                break;
-              }
+          for (var o of this.selectToRoomRef.current.list.options) {
+            if (o.value === number) {
+              number = o.innerHTML;
+              break;
             }
+          }
 
-            let roomNumber = building["Abbreviation"] + ' ' + number;
-            console.log(roomNumber);
+          let roomNumber = building["Abbreviation"] + " " + number;
+          console.log(roomNumber);
 
-            fetch(`getPath?start=${startID}&toRoom=${roomNumber}`)
-              .then(result => result.json())
-              .then(path => {
-                console.log(path);
-                if(!path.ERROR) {
-                  this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length-1]);
-                  this.setState({
-                    direction: "Finished pathfinding, press Next to begin"
-                  });
-                  this.pathNodes = path.nodeIDs;
-                  this.pathEdges = path.edgeIDs;
-                  this.currNodes = 0;
-                  this.flush();
-                  this.highlightPath(path);
-                  this.showButtons();
-                }
-
-                else {
-                  this.setState({
-                    direction: "Could not navigate to that room number. We may not have full support for that building yet, or " +
-                      "there could be no tunnels leading to that building."
-                  });
-                  this.flush();
-                }
-              });
-        }} else {
-            fetch(`getPath?start=${startID}&end=${endID}`)
-              .then(result => result.json())
-              .then(path => {
-                console.log(path);
-                this.transform(path.nodeIDs[0], path.nodeIDs[path.nodeIDs.length - 1]);
+          fetch(
+            `getPath?start=${startID}&toRoom=${roomNumber}&useStairs=${
+              global.useStairs
+            }`
+          )
+            .then(result => result.json())
+            .then(path => {
+              console.log(path);
+              if (!path.ERROR) {
+                this.transform(
+                  path.nodeIDs[0],
+                  path.nodeIDs[path.nodeIDs.length - 1]
+                );
                 this.setState({
                   direction: "Finished pathfinding, press Next to begin"
                 });
@@ -877,8 +896,38 @@ class Map extends Component {
                 this.flush();
                 this.highlightPath(path);
                 this.showButtons();
-              });
+              } else {
+                this.setState({
+                  direction:
+                    "Could not navigate to that room number. We may not have full support for that building yet, or " +
+                    "there could be no tunnels leading to that building."
+                });
+                this.flush();
+              }
+            });
         }
+      } else {
+        fetch(
+          `getPath?start=${startID}&end=${endID}&useStairs=${global.useStairs}`
+        )
+          .then(result => result.json())
+          .then(path => {
+            console.log(path);
+            this.transform(
+              path.nodeIDs[0],
+              path.nodeIDs[path.nodeIDs.length - 1]
+            );
+            this.setState({
+              direction: "Finished pathfinding, press Next to begin"
+            });
+            this.pathNodes = path.nodeIDs;
+            this.pathEdges = path.edgeIDs;
+            this.currNodes = 0;
+            this.flush();
+            this.highlightPath(path);
+            this.showButtons();
+          });
+      }
     }
 
     // Rough solutin to navigate to a room number
@@ -918,8 +967,8 @@ class Map extends Component {
   }
 
   showButtons() {
-    document.getElementById('NextViewButton').style.visibility = 'visible';
-    document.getElementById('PreviousViewButton').style.visibility = 'visible';
+    document.getElementById("NextViewButton").style.visibility = "visible";
+    document.getElementById("PreviousViewButton").style.visibility = "visible";
   }
 
   highlightPath(path) {
@@ -953,28 +1002,52 @@ class Map extends Component {
 
     this.selected = sel;
 
-    var buildings = ['allynHall', 'biologicalSciencesI', 'biologicalSciencesII', 'brehmLaboratory', 'creativeArtsCenter', 'diggsLaboratory', 'dunbarLibrary', 'fawcettHall', 'joshiCenter', 'libraryAnnex', 'mathAndMicrobiology', 'medicalSciences', 'millettHall', 'motionPictures', 'oelmanHall', 'rikeHall', 'russEngineering', 'studentUnion', 'studentSuccessCenter', 'universityHall'];
+    var buildings = [
+      "allynHall",
+      "biologicalSciencesI",
+      "biologicalSciencesII",
+      "brehmLaboratory",
+      "creativeArtsCenter",
+      "diggsLaboratory",
+      "dunbarLibrary",
+      "fawcettHall",
+      "joshiCenter",
+      "libraryAnnex",
+      "mathAndMicrobiology",
+      "medicalSciences",
+      "millettHall",
+      "motionPictures",
+      "oelmanHall",
+      "rikeHall",
+      "russEngineering",
+      "studentUnion",
+      "studentSuccessCenter",
+      "universityHall"
+    ];
 
     if (sel[0]) {
-      for(let i of buildings) {
+      for (let i of buildings) {
         if (sel[0].classList.contains(i)) {
-          this.selectFromRef.current.value = '.' + i;
+          this.selectFromRef.current.value = "." + i;
         }
       }
     } else {
-      this.selectFromRef.current.value = '';
+      this.selectFromRef.current.value = "";
     }
 
     if (sel[1]) {
-      for(let i of buildings) {
+      for (let i of buildings) {
         if (sel[1].classList.contains(i)) {
-          this.selectToRef.current.value = '.' + i;
+          this.selectToRef.current.value = "." + i;
         }
       }
     } else {
-      this.selectToRef.current.value = '';
+      this.selectToRef.current.value = "";
     }
-    this.selectToObjectRef.current.updateDataList(this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML);
+    this.selectToObjectRef.current.updateDataList(
+      this.selectToRef.current.options[this.selectToRef.current.selectedIndex]
+        .innerHTML
+    );
 
     if (this.selected[0] && this.selected[1]) {
       this.setState({
@@ -1011,28 +1084,52 @@ class Map extends Component {
 
     this.selected = sel;
 
-    var buildings = ['allynHall', 'biologicalSciencesI', 'biologicalSciencesII', 'brehmLaboratory', 'creativeArtsCenter', 'diggsLaboratory', 'dunbarLibrary', 'fawcettHall', 'joshiCenter', 'libraryAnnex', 'mathAndMicrobiology', 'medicalSciences', 'millettHall', 'motionPictures', 'oelmanHall', 'rikeHall', 'russEngineering', 'studentUnion', 'studentSuccessCenter', 'universityHall'];
+    var buildings = [
+      "allynHall",
+      "biologicalSciencesI",
+      "biologicalSciencesII",
+      "brehmLaboratory",
+      "creativeArtsCenter",
+      "diggsLaboratory",
+      "dunbarLibrary",
+      "fawcettHall",
+      "joshiCenter",
+      "libraryAnnex",
+      "mathAndMicrobiology",
+      "medicalSciences",
+      "millettHall",
+      "motionPictures",
+      "oelmanHall",
+      "rikeHall",
+      "russEngineering",
+      "studentUnion",
+      "studentSuccessCenter",
+      "universityHall"
+    ];
 
     if (sel[0]) {
-      for(let i of buildings) {
+      for (let i of buildings) {
         if (sel[0].classList.contains(i)) {
-          this.selectFromRef.current.value = '.' + i;
+          this.selectFromRef.current.value = "." + i;
         }
       }
     } else {
-      this.selectFromRef.current.value = '';
+      this.selectFromRef.current.value = "";
     }
 
     if (sel[1]) {
-      for(let i of buildings) {
+      for (let i of buildings) {
         if (sel[1].classList.contains(i)) {
-          this.selectToRef.current.value = '.' + i;
+          this.selectToRef.current.value = "." + i;
         }
       }
     } else {
-      this.selectToRef.current.value = '';
+      this.selectToRef.current.value = "";
     }
-    this.selectToObjectRef.current.updateDataList(this.selectToRef.current.options[this.selectToRef.current.selectedIndex].innerHTML);
+    this.selectToObjectRef.current.updateDataList(
+      this.selectToRef.current.options[this.selectToRef.current.selectedIndex]
+        .innerHTML
+    );
 
     if (this.selected[0] && this.selected[1]) {
       this.setState({
@@ -1057,7 +1154,7 @@ class Map extends Component {
   //highlights svg element with this id call with id i.e. 'N1' or 'E2'
   highlightByID(id) {
     let elem = document.getElementById("Map").getElementById(id);
-    if(elem !== null) elem.classList.add("highlight");
+    if (elem !== null) elem.classList.add("highlight");
   }
 
   //highlight a specific node call with numerical id i.e. '1'
@@ -1152,9 +1249,9 @@ class Map extends Component {
         this.selected = sel;
       });
 
-    this.selectToRef.current.value = '';
-    this.selectFromRef.current.value = '';
-    this.selectToRoomRef.current.value = '';
+    this.selectToRef.current.value = "";
+    this.selectFromRef.current.value = "";
+    this.selectToRoomRef.current.value = "";
   }
 
   //make user element visible
@@ -1325,17 +1422,17 @@ class Map extends Component {
     group.setAttribute(
       "style",
       ";transform:" +
-      transformString +
-      ";" +
-      "-webkit-transform:" +
-      transformString +
-      ";" +
-      "-moz-transform:" +
-      transformString +
-      ";" +
-      "-o-transform:" +
-      transformString +
-      ";"
+        transformString +
+        ";" +
+        "-webkit-transform:" +
+        transformString +
+        ";" +
+        "-moz-transform:" +
+        transformString +
+        ";" +
+        "-o-transform:" +
+        transformString +
+        ";"
     );
 
     this.scaleNodes();
@@ -1346,10 +1443,12 @@ class Map extends Component {
   nextStep() {
     if (this.pathNodes != null && this.currNodes < this.pathNodes.length - 1) {
       let node = document.getElementById("N" + this.pathNodes[this.currNodes]);
-      if(node !== null) node.classList.add("traversed");
+      if (node !== null) node.classList.add("traversed");
       if (this.currNodes > 0) {
-        let edge = document.getElementById("E" + this.pathEdges[this.currNodes - 1]);
-        if(edge !== null) edge.classList.add("traversed");
+        let edge = document.getElementById(
+          "E" + this.pathEdges[this.currNodes - 1]
+        );
+        if (edge !== null) edge.classList.add("traversed");
       }
       this.transform(
         this.pathNodes[this.currNodes],
@@ -1504,16 +1603,16 @@ class Map extends Component {
       arrow.setAttribute(
         "points",
         point1.x +
-        "," +
-        point1.y +
-        " " +
-        point2.x +
-        "," +
-        point2.y +
-        " " +
-        point3.x +
-        "," +
-        point3.y
+          "," +
+          point1.y +
+          " " +
+          point2.x +
+          "," +
+          point2.y +
+          " " +
+          point3.x +
+          "," +
+          point3.y
       );
 
       path.parentElement.insertBefore(arrow, path.nextSibling);
@@ -1614,7 +1713,7 @@ class Map extends Component {
     var originTranslation = this.getTranslationMatrix(-o.x, -o.y);
     var rotationTranslation = this.getRotationMatrix(
       Math.atan2(r2.x - r1.x, r2.y - r1.y) -
-      Math.atan2(o2.x - o1.x, o2.y - o1.y)
+        Math.atan2(o2.x - o1.x, o2.y - o1.y)
     );
     var scaleMatrix = this.getScaleMatrix(rd / od);
     var newTranslation = this.getTranslationMatrix(r.x, r.y);
@@ -1713,12 +1812,14 @@ class Map extends Component {
   }
 
   getBuildingGroup(b) {
-    var building = document.querySelectorAll("circle" + b + ".intersection:not(.backNode)");
-    if(building.length === 0) {
-      building = document.querySelectorAll("circle" + b + ":not(.backNode)")
+    var building = document.querySelectorAll(
+      "circle" + b + ".intersection:not(.backNode)"
+    );
+    if (building.length === 0) {
+      building = document.querySelectorAll("circle" + b + ":not(.backNode)");
     }
     var ret = [];
-    for(let i of building) {
+    for (let i of building) {
       ret.push(i.id.substring(1));
     }
 
@@ -1727,41 +1828,40 @@ class Map extends Component {
   }
 
   selectStartByMenu(b) {
-    if (b==='') {
-      this.selectElement(this.selected[0])
+    if (b === "") {
+      this.selectElement(this.selected[0]);
     } else {
       let g = this.getBuildingGroup(b);
       if (g.length > 0) {
         this.selectStartPoint(g[0]);
       } else {
-
-        if(this.selected[0]) {
+        if (this.selected[0]) {
           this.selectElement(this.selected[0]);
         }
         this.setState({
-          direction: "There is no direct access to that building from the tunnels"
+          direction:
+            "There is no direct access to that building from the tunnels"
         });
       }
     }
   }
 
   selectEndByMenu(b) {
-    if (b==='') {
-      this.selectElement(this.selected[1])
+    if (b === "") {
+      this.selectElement(this.selected[1]);
     } else {
       let g = this.getBuildingGroup(b);
       if (g.length > 0) {
         this.selectEndPoint(g[0]);
       } else {
-
         if (this.selected[1]) {
           this.selectElement(this.selected[1]);
         }
         this.setState({
-          direction: "There is no direct access to that building from the tunnels"
+          direction:
+            "There is no direct access to that building from the tunnels"
         });
       }
-
     }
   }
 }
