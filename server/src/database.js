@@ -18,7 +18,7 @@ exports.node = async function(nodeID) {
 exports.getNodesToRoom = async function(roomNumber, useStairs = true) {
   // Get all regexes and their corresponding node IDs
   let nodes = await query(
-    "SELECT nodeID, roomRegEx FROM nodes WHERE nodeTypeID>=" +
+    "SELECT nodeID, roomRegEx, nodeTypeID FROM nodes WHERE nodeTypeID>=" +
       (useStairs ? "2" : "3")
   );
 
