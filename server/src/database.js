@@ -19,10 +19,8 @@ exports.getNodesToRoom = async function(roomNumber, useStairs = true) {
   // Get all regexes and their corresponding node IDs
   let nodes = await query(
     "SELECT nodeID, roomRegEx, nodeTypeID FROM nodes WHERE nodeTypeID>=" +
-      (useStairs ? "2" : "3")
+      (useStairs === "true" ? "2" : "3")
   );
-
-  console.log(nodes);
 
   //Create an array to hold the nodeIDs with regexs that match the room number
   let connectedNodeIDs = [];
@@ -30,7 +28,6 @@ exports.getNodesToRoom = async function(roomNumber, useStairs = true) {
   //Check over all of the nodes to see if their regex matches the room number
   nodes.forEach(i => {
     let regex = new RegExp(i.roomRegEx);
-    console.log(i.roomRegEx);
     if (regex.test(roomNumber)) {
       //If it does, add it to the array
       connectedNodeIDs.push(i.nodeID);

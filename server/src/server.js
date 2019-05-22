@@ -16,7 +16,7 @@ server.on("request", async function(request, response) {
   } else if (checkUrlForRoom(parsedUrl)) {
     let endNodes = await database.getNodesToRoom(
       parsedUrl.query.toRoom,
-      parsedUrl.query.useStairs ? parsedUrl.query.useStairs : false
+      parsedUrl.query.useStairs
     );
 
     if (endNodes.length > 0) {
