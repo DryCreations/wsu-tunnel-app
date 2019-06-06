@@ -4,18 +4,9 @@
 
 ---
 
-<a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" target="_blank"><img 
-src="https://i.imgur.com/2YS5Z6x.jpg" 
-alt="This will eventually work" width="240" height="240" border="10" /></a>
-
-### Video To Be Published
-
----
-
 - [Summary](https://github.com/RLey/wsu-tunnel-app/#Summary)
 - [Prerequisites](https://github.com/RLey/wsu-tunnel-app/#Prerequisites)
 - [Features](https://github.com/RLey/wsu-tunnel-app/#Features)
-- [Built With](https://github.com/RLey/wsu-tunnel-app/#Built-With)
 - [Subprojects](https://github.com/RLey/wsu-tunnel-app/#Subprojects)
   - [UI](https://github.com/RLey/wsu-tunnel-app/#UI)
   - [Database](https://github.com/RLey/wsu-tunnel-app/#Database)
@@ -23,15 +14,16 @@ alt="This will eventually work" width="240" height="240" border="10" /></a>
   - [Server/AWS](https://github.com/RLey/wsu-tunnel-app/#Server/AWS)
 - [Testing](https://github.com/RLey/wsu-tunnel-app/#Testing)
 - [Credits](https://github.com/RLey/wsu-tunnel-app/#Credits)
-  - [Contribution Link](https://github.com/RLey/wsu-tunnel-app/#Contribution-Link)
 
 ---
 
 ### Summary
 
+Please click the image below:
 
-=======
-Fun Intro Video Goes Here
+<a href="https://www.youtube.com/watch?v=WEzk7ZuJnKU&feature=youtu.be" target="_blank"><img 
+src="https://i.imgur.com/xnUQ37b.jpg" 
+alt="This works!" width="240" height="240" border="10" /></a>
 
 ____
 
@@ -39,20 +31,16 @@ ____
 
 All you need to run TunnelRaider is an internet connection and a device, preferably a mobile device, with which to navigate.
 
-=======
 ____
 ### Features
 
-In depth usage video goes here
+Please click the image below:
+
+<a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" target="_blank"><img 
+src="https://i.imgur.com/EpuNufB.jpg" 
+alt="This works!" width="240" height="240" border="10" /></a>
+
 ____
-
-## Built With
-
-- [Example](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-- [Example1](https://maven.apache.org/) - Dependency Management
-- [Example2](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
----
 
 ### Subprojects
 
@@ -71,7 +59,8 @@ To start the react server, two options are available. To start the react scripts
 ##### Pathfinding Server
 
 - Start before the client.
-- Run by executing `npm run start-server` in the root directory.
+- Run by executing `npm run start-server` in the repo root directory. To use a local database with the server,
+  run the command `npm run start-server-local` instead.
 - Using https://github.com/mysqljs/mysql to access the database.
 - Using https://github.com/expressjs/express to run the server.
 
@@ -88,22 +77,35 @@ finishes (it might take awhile), both the app server and the navigation server
 should be up and running. If they aren't, logs can be found in `~/repo/app.log`
 and `~/repo/server.log`.
 
----
+____
 
-=======
-____
   #### UI
-  The User Interface was designed to feel both familiar and functional.  The design pulls its inspiration from many common mobile applications.  It has a static header and footer with dynamic content in the middle.  Additional content is brought into view by means of a side loading menu.
+  
+  The User Interface was designed to feel both familiar and functional.  The design pulls its inspiration from many common mobile applications.  It has a static header and footer with dynamic content in the middle.  Additional content is brought into view by means of two side loading menus.
+  
+  [Design Inspiration](https://github.com/RLey/wsu-tunnel-app/blob/master/UI_Info/Design_Inspiration.md)
+  
+  [Team Credits](https://github.com/RLey/wsu-tunnel-app/blob/master/UI_Info/Team.md)
 ____
+
   #### Pathfinding Algorithm
   
-  https://www.youtube.com/watch?v=-L-WgKMFuhE
+  The pathfinding algorithm uses a modified implementation of the A* algorithm that allows for navigation to multiple
+    end points. For an explanation of the standard A* algorithm, please click the image below:
+    
+<a href="https://www.youtube.com/watch?v=-L-WgKMFuhE" target="_blank"><img 
+src="https://i.imgur.com/GI0Mxso.png" 
+alt="This works!" width="240" height="240" border="10" /></a>
+
+Credit for the above video goes to Sebastian Lague, please subscribe: https://www.youtube.com/channel/UCmtyQOKKmrMVaKuRXz02jbQ
+ 
 ____
   #### Server/AWS
 
   ##### Server
   * Start before the client.
-  * Run by executing `npm run start-server` in the root directory.
+  * Run by executing `npm run start-server` in the repo root directory. To use a local database with the server,
+    run the command `npm run start-server-local` instead.
   * Using https://github.com/mysqljs/mysql to access the database.
   * Using https://github.com/expressjs/express to run the server.
   ____
@@ -120,6 +122,12 @@ ____
   ____
 
 ### Testing
+
+#### Beta Testing
+
+Beta Testers included members of the Wright State University Computing and Telecommunications Services office, as well as members of the Wright State Student Body and members of the Fairborn/Beavercreek Community.
+
+#### CloudFormation Template Validation
 
 Validation of CloudFormation templates is done by running the command:
 
