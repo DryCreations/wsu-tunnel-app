@@ -20,3 +20,5 @@ RUN npm install -g react-scripts
 
 COPY setup.sh /usr/bin/setup
 RUN chmod 0755 /usr/bin/setup
+
+ENTRYPOINT [ "/bin/bash" ]
