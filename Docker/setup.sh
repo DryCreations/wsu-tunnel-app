@@ -75,16 +75,4 @@ popd
 # Start the other part of the server
 npm run start-server-local &>>server.log &
 
-# Check to see if the server started correctly
-
-if lsof -n -i4TCP:5000 -i6TCP:5000 | grep -q LISTEN; then
-    if lsof -n -i4TCP:$portNumber -i6TCP:$portNumber | grep -q LISTEN; then 
-        echo -e "\033[32;1mServer should be up and running on port $portNumber\033[0m"
-    else
-        echo -e "\033[31;1mServer failed to start\033[0m"
-    fi
-else
-    echo -e "\033[31;1mServer failed to start\033[0m"
-fi
-
 popd
