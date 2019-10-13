@@ -4,7 +4,6 @@ FROM debian:stretch-20190910
 #   80 for the front end, 5000 for the path finding server
 EXPOSE 80
 EXPOSE 5000
-EXPOSE 3000
 
 WORKDIR /root/repo
 
