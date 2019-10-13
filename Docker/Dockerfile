@@ -34,4 +34,18 @@ COPY setup.sh /usr/bin/startServer
 RUN chmod 0755 /usr/bin/startServer
 COPY databaseData.sql /root/databaseData.sql
 
-ENTRYPOINT [ "/bin/bash" ]
+# Setup mysql without needing interactivity
+# Add the mysql key
+RUN apt-key adv --keyserver pool.sks-keyservers.net --recv-keys 5072E1F5
+# Add the apt repository
+RUN echo "deb http://repo.mysql.com/apt/debian stretch mysql-8.0" > /etc/apt/sources.list.d/mysql80.list
+RUN apt update
+# Set up debian package installation automatic selections 
+RUN echo "mysql-community-server mysql-community-server/root-pass password password" | debconf-set-selections
+RUN echo  "mysql-community-server mysql-community-server/re-root-pass password password"| debconf-set-selections
+RUN echo "mysql-community-server mysql-server/default-auth-override select Use Legacy Authentication Method (Retain MySQL 5.x Compatibility)" | debconf-set-selections
+
+# Install mysql non-interactively
+RUN DEBIAN_FRONTEND=noninteractive apt install -y mysql-server
+
+CMD [ "/usr/bin/startServer" ]
