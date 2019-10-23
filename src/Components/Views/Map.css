@@ -278,3 +278,7 @@ circle {
 #Help > * {
   overflow: auto;
 }
+
+.invert {
+  filter: invert(1);
+}
